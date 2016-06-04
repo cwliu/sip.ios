@@ -12,9 +12,6 @@
 		A9AAE48E1D0273C20034B564 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48D1D0273C20034B564 /* ViewController.swift */; };
 		A9AAE4911D0273C20034B564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE48F1D0273C20034B564 /* Main.storyboard */; };
 		A9AAE4931D0273C20034B564 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE4921D0273C20034B564 /* Assets.xcassets */; };
-		A9AAE4AB1D02CABC0034B564 /* O365ClientFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE4AA1D02CABC0034B564 /* O365ClientFetcher.swift */; };
-		A9AAE4AD1D02CB810034B564 /* SendMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE4AC1D02CB810034B564 /* SendMailViewController.swift */; };
-		A9AAE4AF1D02CCB60034B564 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE4AE1D02CCB60034B564 /* AuthenticationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +22,7 @@
 		A9AAE4901D0273C20034B564 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9AAE4921D0273C20034B564 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9AAE4971D0273C20034B564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9AAE4AA1D02CABC0034B564 /* O365ClientFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = O365ClientFetcher.swift; sourceTree = "<group>"; };
-		A9AAE4AC1D02CB810034B564 /* SendMailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMailViewController.swift; sourceTree = "<group>"; };
-		A9AAE4AE1D02CCB60034B564 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		A9AAE4B11D02D1A20034B564 /* bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridging.h; sourceTree = "<group>"; };
 		F29322827BA6B16F01F5B020 /* Pods_GoodWox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodWox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +83,7 @@
 				A9AAE48F1D0273C20034B564 /* Main.storyboard */,
 				A9AAE4921D0273C20034B564 /* Assets.xcassets */,
 				A9AAE4971D0273C20034B564 /* Info.plist */,
+				A9AAE4B11D02D1A20034B564 /* bridging.h */,
 			);
 			path = GoodWox;
 			sourceTree = "<group>";
@@ -95,9 +91,6 @@
 		A9AAE4A71D02C9A20034B564 /* Office365 */ = {
 			isa = PBXGroup;
 			children = (
-				A9AAE4AE1D02CCB60034B564 /* AuthenticationManager.swift */,
-				A9AAE4AC1D02CB810034B564 /* SendMailViewController.swift */,
-				A9AAE4AA1D02CABC0034B564 /* O365ClientFetcher.swift */,
 			);
 			path = Office365;
 			sourceTree = "<group>";
@@ -225,9 +218,6 @@
 			files = (
 				A9AAE48E1D0273C20034B564 /* ViewController.swift in Sources */,
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
-				A9AAE4AB1D02CABC0034B564 /* O365ClientFetcher.swift in Sources */,
-				A9AAE4AF1D02CCB60034B564 /* AuthenticationManager.swift in Sources */,
-				A9AAE4AD1D02CB810034B564 /* SendMailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +329,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiadvance.GoodWox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = bridging.h;
 			};
 			name = Debug;
 		};
@@ -351,6 +342,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiadvance.GoodWox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = bridging.h;
 			};
 			name = Release;
 		};
