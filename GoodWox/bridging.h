@@ -9,7 +9,6 @@
 #ifndef bridging_h
 #define bridging_h
 
+#import <MSGraphSDK/MSGraphSDK.h>
 
 #endif /* bridging_h */
-
-

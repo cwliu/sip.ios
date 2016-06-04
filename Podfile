@@ -6,7 +6,5 @@ target 'GoodWox' do
   use_frameworks!
 
   # Pods for GoodWox
-   pod 'ADALiOS', '~> 1.2.1'
-  # pod 'Office365/Outlook', '= 0.9.1'
-  # pod 'Office365/Discovery', '= 0.9.1'
+  pod 'MSGraphSDK', '~> 0.10'
 end

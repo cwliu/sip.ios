@@ -1,3 +1,24 @@
-PODFILE CHECKSUM: 6a5d0a6b312082051a78e7ab644a223af7a8063a
+PODS:
+  - MSGraphSDK (0.10.1):
+    - MSGraphSDK/Common (= 0.10.1)
+    - MSGraphSDK/Extensions (= 0.10.1)
+    - MSGraphSDK/Implementations (= 0.10.1)
+    - MSGraphSDK/MSGraphCoreSDK (= 0.10.1)
+  - MSGraphSDK/Common (0.10.1)
+  - MSGraphSDK/Extensions (0.10.1):
+    - MSGraphSDK/Implementations
+    - MSGraphSDK/MSGraphCoreSDK
+  - MSGraphSDK/Implementations (0.10.1):
+    - MSGraphSDK/Common
+  - MSGraphSDK/MSGraphCoreSDK (0.10.1):
+    - MSGraphSDK/Common
+
+DEPENDENCIES:
+  - MSGraphSDK (~> 0.10)
+
+SPEC CHECKSUMS:
+  MSGraphSDK: 3c43eb632ca969593f1bdd5612b573e436bd3283
+
+PODFILE CHECKSUM: 85a7accdea859a91a68be3271807b70d8b6db4b4
 
 COCOAPODS: 1.0.1
