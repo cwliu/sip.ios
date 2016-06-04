@@ -7,19 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		589DCC94BBEAA60F699753EB /* Pods_GoodWox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F29322827BA6B16F01F5B020 /* Pods_GoodWox.framework */; };
 		A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48B1D0273C20034B564 /* AppDelegate.swift */; };
 		A9AAE48E1D0273C20034B564 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48D1D0273C20034B564 /* ViewController.swift */; };
 		A9AAE4911D0273C20034B564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE48F1D0273C20034B564 /* Main.storyboard */; };
 		A9AAE4931D0273C20034B564 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE4921D0273C20034B564 /* Assets.xcassets */; };
+		A9AAE4AB1D02CABC0034B564 /* O365ClientFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE4AA1D02CABC0034B564 /* O365ClientFetcher.swift */; };
+		A9AAE4AD1D02CB810034B564 /* SendMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE4AC1D02CB810034B564 /* SendMailViewController.swift */; };
+		A9AAE4AF1D02CCB60034B564 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE4AE1D02CCB60034B564 /* AuthenticationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		111C376739DFF46C34F969C9 /* Pods-GoodWox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.release.xcconfig"; sourceTree = "<group>"; };
 		A9AAE4881D0273C20034B564 /* GoodWox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodWox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AAE48B1D0273C20034B564 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9AAE48D1D0273C20034B564 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A9AAE4901D0273C20034B564 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9AAE4921D0273C20034B564 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9AAE4971D0273C20034B564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9AAE4AA1D02CABC0034B564 /* O365ClientFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = O365ClientFetcher.swift; sourceTree = "<group>"; };
+		A9AAE4AC1D02CB810034B564 /* SendMailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMailViewController.swift; sourceTree = "<group>"; };
+		A9AAE4AE1D02CCB60034B564 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		F29322827BA6B16F01F5B020 /* Pods_GoodWox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodWox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				589DCC94BBEAA60F699753EB /* Pods_GoodWox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19B95BF27E40B9AD490BDCB3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F29322827BA6B16F01F5B020 /* Pods_GoodWox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		203FA76BE0E7B1BF27840E22 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */,
+				111C376739DFF46C34F969C9 /* Pods-GoodWox.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A9AAE47F1D0273C20034B564 = {
 			isa = PBXGroup;
 			children = (
 				A9AAE48A1D0273C20034B564 /* GoodWox */,
 				A9AAE4891D0273C20034B564 /* Products */,
+				203FA76BE0E7B1BF27840E22 /* Pods */,
+				19B95BF27E40B9AD490BDCB3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +82,7 @@
 		A9AAE48A1D0273C20034B564 /* GoodWox */ = {
 			isa = PBXGroup;
 			children = (
+				A9AAE4A71D02C9A20034B564 /* Office365 */,
 				A9AAE48B1D0273C20034B564 /* AppDelegate.swift */,
 				A9AAE48D1D0273C20034B564 /* ViewController.swift */,
 				A9AAE48F1D0273C20034B564 /* Main.storyboard */,
@@ -61,6 +92,16 @@
 			path = GoodWox;
 			sourceTree = "<group>";
 		};
+		A9AAE4A71D02C9A20034B564 /* Office365 */ = {
+			isa = PBXGroup;
+			children = (
+				A9AAE4AE1D02CCB60034B564 /* AuthenticationManager.swift */,
+				A9AAE4AC1D02CB810034B564 /* SendMailViewController.swift */,
+				A9AAE4AA1D02CABC0034B564 /* O365ClientFetcher.swift */,
+			);
+			path = Office365;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -68,9 +109,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9AAE49A1D0273C20034B564 /* Build configuration list for PBXNativeTarget "GoodWox" */;
 			buildPhases = (
+				EE93B588ECFB1AFF777EB341 /* [CP] Check Pods Manifest.lock */,
 				A9AAE4841D0273C20034B564 /* Sources */,
 				A9AAE4851D0273C20034B564 /* Frameworks */,
 				A9AAE4861D0273C20034B564 /* Resources */,
+				A2BC0C2BAAB3C42A0BDDFA09 /* [CP] Embed Pods Frameworks */,
+				60598BB1E79DFCB2499586A3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -126,6 +170,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		60598BB1E79DFCB2499586A3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2BC0C2BAAB3C42A0BDDFA09 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE93B588ECFB1AFF777EB341 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A9AAE4841D0273C20034B564 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -133,6 +225,9 @@
 			files = (
 				A9AAE48E1D0273C20034B564 /* ViewController.swift in Sources */,
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
+				A9AAE4AB1D02CABC0034B564 /* O365ClientFetcher.swift in Sources */,
+				A9AAE4AF1D02CCB60034B564 /* AuthenticationManager.swift in Sources */,
+				A9AAE4AD1D02CB810034B564 /* SendMailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +332,7 @@
 		};
 		A9AAE49B1D0273C20034B564 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GoodWox/Info.plist;
@@ -248,6 +344,7 @@
 		};
 		A9AAE49C1D0273C20034B564 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 111C376739DFF46C34F969C9 /* Pods-GoodWox.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GoodWox/Info.plist;

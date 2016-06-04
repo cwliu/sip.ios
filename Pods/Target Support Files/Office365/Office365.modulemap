@@ -1,0 +1,6 @@
+framework module Office365 {
+  umbrella header "Office365-umbrella.h"
+
+  export *
+  module * { export * }
+}
