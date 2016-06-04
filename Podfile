@@ -6,5 +6,6 @@ target 'GoodWox' do
   use_frameworks!
 
   # Pods for GoodWox
-  pod 'MSGraphSDK', '~> 0.10'
+  pod 'MSGraphSDK'
+  pod 'MSGraphSDK-NXOAuth2Adapter'
 end
