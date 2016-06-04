@@ -82,16 +82,3 @@ strip_invalid_archs() {
   fi
 }
 
-
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/ADALiOS/ADALiOS.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/LiveSDK/LiveSDK.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Office365/Office365.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/orc/orc.framework"
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/ADALiOS/ADALiOS.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/LiveSDK/LiveSDK.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Office365/Office365.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/orc/orc.framework"
-fi

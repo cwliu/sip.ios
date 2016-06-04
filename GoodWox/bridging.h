@@ -12,6 +12,4 @@
 
 #endif /* bridging_h */
 
-#import <ADALiOS/ADAL.h>
-#import <orc/orc.h>
-#import <outlook_services/outlook_services.h>
+

@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KZ-Mw-NsQ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KZ-Mw-NsQ">
                                 <rect key="frame" x="279" y="285" width="42" height="30"/>
                                 <state key="normal" title="Log In"/>
                                 <connections>
@@ -26,6 +26,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5KZ-Mw-NsQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NAR-b6-O6T"/>
+                            <constraint firstItem="5KZ-Mw-NsQ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="XMl-YR-Zcd"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="view" destination="5KZ-Mw-NsQ" id="uBT-GM-En1"/>
@@ -33,7 +37,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="186" y="200"/>
+            <point key="canvasLocation" x="-352" y="208"/>
         </scene>
     </scenes>
 </document>
