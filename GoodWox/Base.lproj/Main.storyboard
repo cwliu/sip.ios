@@ -8,7 +8,7 @@
         <!--Login Page-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -34,7 +34,7 @@
                     <navigationItem key="navigationItem" title="Login Page" id="fiH-T5-qGw"/>
                     <connections>
                         <outlet property="view" destination="5KZ-Mw-NsQ" id="uBT-GM-En1"/>
-                        <segue destination="ffE-XP-Exd" kind="show" identifier="loginSegue" id="vHo-dJ-daF"/>
+                        <segue destination="ffE-XP-Exd" kind="show" identifier="login" id="vHo-dJ-daF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
