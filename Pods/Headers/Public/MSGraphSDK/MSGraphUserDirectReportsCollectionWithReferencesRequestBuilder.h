@@ -1,0 +1,1 @@
+../../../MSGraphSDK/MSGraphSDK/MSGraphCoreSDK/requests/MSGraphUserDirectReportsCollectionWithReferencesRequestBuilder.h

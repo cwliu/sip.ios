@@ -4,6 +4,18 @@ PODS:
     - MSGraphSDK/Extensions (= 0.10.1)
     - MSGraphSDK/Implementations (= 0.10.1)
     - MSGraphSDK/MSGraphCoreSDK (= 0.10.1)
+  - MSGraphSDK-NXOAuth2Adapter (0.9.2):
+    - MSGraphSDK-NXOAuth2Adapter/Auth (= 0.9.2)
+    - MSGraphSDK-NXOAuth2Adapter/Common (= 0.9.2)
+    - MSGraphSDK-NXOAuth2Adapter/Extensions (= 0.9.2)
+  - MSGraphSDK-NXOAuth2Adapter/Auth (0.9.2):
+    - MSGraphSDK-NXOAuth2Adapter/Common
+    - MSGraphSDK/Common
+    - MSGraphSDK/Implementations
+    - NXOAuth2Client (~> 1.2.8)
+  - MSGraphSDK-NXOAuth2Adapter/Common (0.9.2)
+  - MSGraphSDK-NXOAuth2Adapter/Extensions (0.9.2):
+    - MSGraphSDK-NXOAuth2Adapter/Common
   - MSGraphSDK/Common (0.10.1)
   - MSGraphSDK/Extensions (0.10.1):
     - MSGraphSDK/Implementations
@@ -12,13 +24,17 @@ PODS:
     - MSGraphSDK/Common
   - MSGraphSDK/MSGraphCoreSDK (0.10.1):
     - MSGraphSDK/Common
+  - NXOAuth2Client (1.2.8)
 
 DEPENDENCIES:
-  - MSGraphSDK (~> 0.10)
+  - MSGraphSDK
+  - MSGraphSDK-NXOAuth2Adapter
 
 SPEC CHECKSUMS:
   MSGraphSDK: 3c43eb632ca969593f1bdd5612b573e436bd3283
+  MSGraphSDK-NXOAuth2Adapter: 2b6db8cc771d4f4f269091bc4280c405b3c3e4a4
+  NXOAuth2Client: 98c4d4c594edd2b289cfc34a8928653e1dab7adf
 
-PODFILE CHECKSUM: 85a7accdea859a91a68be3271807b70d8b6db4b4
+PODFILE CHECKSUM: 3df9b17f78d43e522f7b2c3547bfffa7e450b83b
 
 COCOAPODS: 1.0.1

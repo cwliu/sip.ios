@@ -1,0 +1,1 @@
+../../../MSGraphSDK/MSGraphSDK/MSGraphCoreSDK/model/MSGraphSpecialFolder.h

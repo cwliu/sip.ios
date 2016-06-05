@@ -1,0 +1,1 @@
+../../../MSGraphSDK-NXOAuth2Adapter/MSGraphSDKNXOAuth2/Auth/NXOAuth2AuthenticationProvider.h

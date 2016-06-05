@@ -1,0 +1,1 @@
+../../../MSGraphSDK/MSGraphSDK/MSGraphCoreSDK/Extensions/MSGraphThumbnailSet+CustomThumbnail.h

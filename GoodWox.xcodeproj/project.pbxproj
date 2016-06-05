@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		589DCC94BBEAA60F699753EB /* Pods_GoodWox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F29322827BA6B16F01F5B020 /* Pods_GoodWox.framework */; };
 		A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48B1D0273C20034B564 /* AppDelegate.swift */; };
 		A9AAE48E1D0273C20034B564 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48D1D0273C20034B564 /* ViewController.swift */; };
 		A9AAE4911D0273C20034B564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE48F1D0273C20034B564 /* Main.storyboard */; };
 		A9AAE4931D0273C20034B564 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE4921D0273C20034B564 /* Assets.xcassets */; };
+		C79A623207062187CB969EDE /* libPods-GoodWox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B0F44A3A2F01AA16952C71 /* libPods-GoodWox.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,8 +22,8 @@
 		A9AAE4901D0273C20034B564 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9AAE4921D0273C20034B564 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9AAE4971D0273C20034B564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9AAE4B11D02D1A20034B564 /* bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridging.h; sourceTree = "<group>"; };
-		F29322827BA6B16F01F5B020 /* Pods_GoodWox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodWox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9AAE4B11D02D1A20034B564 /* GoodWox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoodWox-Bridging-Header.h"; sourceTree = "<group>"; };
+		F8B0F44A3A2F01AA16952C71 /* libPods-GoodWox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GoodWox.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -32,7 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				589DCC94BBEAA60F699753EB /* Pods_GoodWox.framework in Frameworks */,
+				C79A623207062187CB969EDE /* libPods-GoodWox.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,7 +42,7 @@
 		19B95BF27E40B9AD490BDCB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F29322827BA6B16F01F5B020 /* Pods_GoodWox.framework */,
+				F8B0F44A3A2F01AA16952C71 /* libPods-GoodWox.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -54,6 +54,32 @@
 				111C376739DFF46C34F969C9 /* Pods-GoodWox.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A9863C0F1D03B919003FE7B3 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				A9AAE4971D0273C20034B564 /* Info.plist */,
+				A9AAE4921D0273C20034B564 /* Assets.xcassets */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		A9863C101D03B92A003FE7B3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A9AAE48B1D0273C20034B564 /* AppDelegate.swift */,
+				A9AAE48D1D0273C20034B564 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A9863C111D03B938003FE7B3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A9AAE48F1D0273C20034B564 /* Main.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		A9AAE47F1D0273C20034B564 = {
@@ -77,13 +103,11 @@
 		A9AAE48A1D0273C20034B564 /* GoodWox */ = {
 			isa = PBXGroup;
 			children = (
+				A9863C111D03B938003FE7B3 /* View */,
+				A9863C101D03B92A003FE7B3 /* Controller */,
+				A9863C0F1D03B919003FE7B3 /* Resource */,
 				A9AAE4A71D02C9A20034B564 /* Office365 */,
-				A9AAE48B1D0273C20034B564 /* AppDelegate.swift */,
-				A9AAE48D1D0273C20034B564 /* ViewController.swift */,
-				A9AAE48F1D0273C20034B564 /* Main.storyboard */,
-				A9AAE4921D0273C20034B564 /* Assets.xcassets */,
-				A9AAE4971D0273C20034B564 /* Info.plist */,
-				A9AAE4B11D02D1A20034B564 /* bridging.h */,
+				A9AAE4B11D02D1A20034B564 /* GoodWox-Bridging-Header.h */,
 			);
 			path = GoodWox;
 			sourceTree = "<group>";
@@ -329,7 +353,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiadvance.GoodWox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = bridging.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "GoodWox/GoodWox-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 			};
 			name = Debug;
 		};
@@ -342,7 +367,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiadvance.GoodWox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = bridging.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "GoodWox/GoodWox-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 			};
 			name = Release;
 		};
