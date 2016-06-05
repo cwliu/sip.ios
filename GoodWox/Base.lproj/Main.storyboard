@@ -74,7 +74,13 @@
                             <constraint firstItem="gbr-my-xiT" firstAttribute="centerX" secondItem="CF0-b7-ste" secondAttribute="centerX" id="mg5-hG-mMH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile Page" id="ia6-TE-hAy"/>
+                    <navigationItem key="navigationItem" title="Profile Page" id="ia6-TE-hAy">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="4Y2-0D-I6c">
+                            <connections>
+                                <action selector="logout:" destination="ffE-XP-Exd" id="HRN-8Q-gvV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailLabel" destination="gbr-my-xiT" id="bCL-7l-mgb"/>
                         <outlet property="nameLabel" destination="876-IF-FGj" id="Oq5-SX-TQy"/>

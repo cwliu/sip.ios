@@ -1,11 +1,3 @@
-//
-//  ProfileController.swift
-//  GoodWox
-//
-//  Created by Cody Liu on 6/5/16.
-//  Copyright © 2016 WiAdvance. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -23,6 +15,9 @@ class ProfileController: UIViewController{
     }()
     
     override func viewDidLoad(){
+        
+        // Disalbe backbutton
+        navigationItem.hidesBackButton = true;
         
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
         self.getUserInfo()
@@ -54,5 +49,24 @@ class ProfileController: UIViewController{
                 
             }
         }
+    }
+    
+}
+
+
+// MARK: Actions
+private extension ProfileController{
+    @IBAction func logout(sender: AnyObject){
+        self.disconnect()
+    }
+
+}
+
+
+// MARK: Graph Helper
+private extension ProfileController{
+    func disconnect(){
+        authentication.disconnect()
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
