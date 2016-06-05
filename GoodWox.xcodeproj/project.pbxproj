@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C121D03BB1C003FE7B3 /* ProfileController.swift */; };
 		A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48B1D0273C20034B564 /* AppDelegate.swift */; };
 		A9AAE48E1D0273C20034B564 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48D1D0273C20034B564 /* ViewController.swift */; };
 		A9AAE4911D0273C20034B564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE48F1D0273C20034B564 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		111C376739DFF46C34F969C9 /* Pods-GoodWox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.release.xcconfig"; sourceTree = "<group>"; };
+		A9863C121D03BB1C003FE7B3 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		A9AAE4881D0273C20034B564 /* GoodWox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodWox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AAE48B1D0273C20034B564 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9AAE48D1D0273C20034B564 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			children = (
 				A9AAE48B1D0273C20034B564 /* AppDelegate.swift */,
 				A9AAE48D1D0273C20034B564 /* ViewController.swift */,
+				A9863C121D03BB1C003FE7B3 /* ProfileController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			files = (
 				A9AAE48E1D0273C20034B564 /* ViewController.swift in Sources */,
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
+				A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
