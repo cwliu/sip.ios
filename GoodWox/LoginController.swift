@@ -22,9 +22,18 @@ class LoginController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        // There is only one segue
+        let profileViewController: ProfileController = segue.destinationViewController as! ProfileController
+        profileViewController.authentication = authentication
+    }
+
     @IBAction func login(){
         authenticate()
     }
+    
+    
 }
 
 // MARK: Authentication
