@@ -1,9 +1,14 @@
 import Foundation
 import UIKit
 
+extension MSGraphUser {
+//    var optMobilePhone : String? { return self.dictionary["mobilePhone"] as? String }
+    var optMail: String { return "boss@wiadvance.com" }
+}
+
 class ProfileController: UIViewController{
     
-
+    
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     
@@ -19,8 +24,10 @@ class ProfileController: UIViewController{
         // Disalbe backbutton
         navigationItem.hidesBackButton = true;
         
+        authentication.authenticationProvider
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
         self.getUserInfo()
+        self.getContactInfo()
     }
     
     private func getUserInfo(){
@@ -51,15 +58,29 @@ class ProfileController: UIViewController{
         }
     }
     
+    private func getContactInfo(){
+        self.graphClient.users().request().getWithCompletion{
+            (collection: MSCollection?, request:MSGraphUsersCollectionRequest?, error: NSError?) in
+            if let users = collection {
+                for user: MSGraphUser in users.value as! [MSGraphUser] {
+                    if user.userPrincipalName == "T302OfficeAdmin@wiadvance.net" {
+                        continue
+                    }
+                    
+                    print(user)
+                    print(user.mail)
+                }
+            }
+        }
+    }
 }
-
 
 // MARK: Actions
 private extension ProfileController{
     @IBAction func logout(sender: AnyObject){
         self.disconnect()
     }
-
+    
 }
 
 
