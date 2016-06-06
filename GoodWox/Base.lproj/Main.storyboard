@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7pW-ko-FqI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Login Page-->
+        <!--GOODWOX Comm-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="GOODWOX Comm" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="LoginController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_150dp" translatesAutoresizingMaskIntoConstraints="NO" id="11W-r5-WuP">
-                                <rect key="frame" x="180" y="114" width="240" height="245"/>
+                                <rect key="frame" x="180" y="70" width="240" height="245"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="245" id="atd-by-H5L"/>
                                     <constraint firstAttribute="width" constant="240" id="kmo-GX-Ld5"/>
@@ -71,7 +71,7 @@
                     <navigationItem key="navigationItem" title="Login Page" id="fiH-T5-qGw"/>
                     <connections>
                         <outlet property="view" destination="5KZ-Mw-NsQ" id="uBT-GM-En1"/>
-                        <segue destination="ffE-XP-Exd" kind="show" identifier="login" id="vHo-dJ-daF"/>
+                        <segue destination="XfV-c8-IhI" kind="show" identifier="login" id="vHo-dJ-daF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -91,13 +91,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name placeholder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="876-IF-FGj">
-                                <rect key="frame" x="230" y="162" width="140" height="21"/>
+                                <rect key="frame" x="230" y="118" width="140" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email placeholder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbr-my-xiT">
-                                <rect key="frame" x="232" y="235" width="136" height="21"/>
+                                <rect key="frame" x="232" y="191" width="136" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -111,6 +111,7 @@
                             <constraint firstItem="gbr-my-xiT" firstAttribute="centerX" secondItem="CF0-b7-ste" secondAttribute="centerX" id="mg5-hG-mMH"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="我的最愛" id="Bye-Q5-8Mj"/>
                     <navigationItem key="navigationItem" title="Profile Page" id="ia6-TE-hAy">
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="4Y2-0D-I6c">
                             <connections>
@@ -125,25 +126,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4P5-2i-NmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1171" y="208"/>
+            <point key="canvasLocation" x="1983" y="208"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="WOe-vk-nEC">
+        <!--Tab Controller-->
+        <scene sceneID="tmO-SX-CbP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7pW-ko-FqI" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="XfV-c8-IhI" customClass="TabController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vzU-2W-1i2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="U4v-eh-NQj">
                         <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Sk8-eM-nEx"/>
+                        <segue destination="ffE-XP-Exd" kind="relationship" relationship="viewControllers" id="yxr-Y2-7Pr"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0G0-SC-coh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LqR-ta-UuX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-352" y="208"/>
+            <point key="canvasLocation" x="1171" y="208"/>
         </scene>
     </scenes>
     <resources>

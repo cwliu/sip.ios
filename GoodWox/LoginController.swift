@@ -27,8 +27,9 @@ class LoginController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         // There is only one segue
-        let profileViewController: ProfileController = segue.destinationViewController as! ProfileController
-        profileViewController.authentication = authentication
+        let tabController: TabController = segue.destinationViewController as! TabController
+        let pc: ProfileController = tabController.viewControllers![0] as! ProfileController
+        pc.authentication = authentication
     }
 
     override func viewWillAppear(animated: Bool) {
