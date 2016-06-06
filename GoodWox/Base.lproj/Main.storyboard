@@ -97,7 +97,7 @@
             </objects>
             <point key="canvasLocation" x="-114" y="814"/>
         </scene>
-        <!--聯絡記錄-->
+        <!--記錄-->
         <scene sceneID="a75-ga-StP">
             <objects>
                 <viewController id="r0k-ZH-0g6" sceneMemberID="viewController">
@@ -110,7 +110,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="聯絡記錄" image="recents_gray_25dp" id="D8O-qn-2bI"/>
+                    <tabBarItem key="tabBarItem" title="記錄" image="recents_gray_25dp" id="D8O-qn-2bI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYr-2o-waw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -185,7 +185,7 @@
             </objects>
             <point key="canvasLocation" x="1162" y="814"/>
         </scene>
-        <!--Item-->
+        <!--公司通訊-->
         <scene sceneID="3rF-yh-IeV">
             <objects>
                 <tableViewController id="2Ji-UU-Nzu" customClass="CompanyController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
@@ -208,7 +208,7 @@
                             <outlet property="delegate" destination="2Ji-UU-Nzu" id="ePL-rw-Shj"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="lvO-Vn-67U"/>
+                    <tabBarItem key="tabBarItem" title="公司通訊" image="connect_gray_25dp" id="lvO-Vn-67U"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTO-hf-kPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -237,6 +237,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="connect_gray_25dp" width="25" height="25"/>
         <image name="contacts_gray_25dp" width="25" height="25"/>
         <image name="logo_150dp" width="150" height="200"/>
         <image name="more_gray_25dp" width="25" height="25"/>
