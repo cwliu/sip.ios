@@ -10,5 +10,12 @@ import UIKit
 
 
 class TabController: UITabBarController{
-    
+
+    var freshLaunch = true
+    override func viewWillAppear(animated: Bool) {
+        if freshLaunch == true {
+            freshLaunch = false
+//            self.tabBarController?.selectedIndex = 3 // 5th tab
+        }
+    }
 }
