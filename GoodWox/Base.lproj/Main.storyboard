@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--GOODWOX Comm-->
@@ -140,23 +141,26 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3h-kT-AcP">
+                                <rect key="frame" x="47" y="42" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="ffE-XP-Exd" eventType="touchUpInside" id="Cb4-Qu-GjY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.94509803921568625" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="gbr-my-xiT" firstAttribute="top" secondItem="876-IF-FGj" secondAttribute="bottom" constant="52" id="HBP-OV-HWd"/>
-                            <constraint firstItem="876-IF-FGj" firstAttribute="top" secondItem="Tnc-Uz-7Bd" secondAttribute="bottom" constant="98" id="MZn-HH-eQf"/>
-                            <constraint firstItem="876-IF-FGj" firstAttribute="centerX" secondItem="CF0-b7-ste" secondAttribute="centerX" id="TGs-dA-x0C"/>
-                            <constraint firstItem="gbr-my-xiT" firstAttribute="centerX" secondItem="CF0-b7-ste" secondAttribute="centerX" id="mg5-hG-mMH"/>
+                            <constraint firstItem="r3h-kT-AcP" firstAttribute="leading" secondItem="CF0-b7-ste" secondAttribute="leadingMargin" constant="27" id="LOo-kc-bGE"/>
+                            <constraint firstItem="876-IF-FGj" firstAttribute="top" secondItem="Tnc-Uz-7Bd" secondAttribute="bottom" constant="98" id="WcO-ex-2dj"/>
+                            <constraint firstItem="r3h-kT-AcP" firstAttribute="top" secondItem="Tnc-Uz-7Bd" secondAttribute="bottom" constant="22" id="hdO-lc-5G5"/>
+                            <constraint firstItem="876-IF-FGj" firstAttribute="centerX" secondItem="gbr-my-xiT" secondAttribute="centerX" id="jAQ-tl-CEm"/>
+                            <constraint firstItem="876-IF-FGj" firstAttribute="centerX" secondItem="CF0-b7-ste" secondAttribute="centerX" id="nhs-r9-ZKg"/>
+                            <constraint firstItem="gbr-my-xiT" firstAttribute="top" secondItem="876-IF-FGj" secondAttribute="bottom" constant="52" id="q7c-Jw-sOp"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="更多" image="more_gray_25dp" id="Bye-Q5-8Mj"/>
-                    <navigationItem key="navigationItem" title="Profile Page" id="ia6-TE-hAy">
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="4Y2-0D-I6c">
-                            <connections>
-                                <action selector="logout:" destination="ffE-XP-Exd" id="HRN-8Q-gvV"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Profile Page" id="ia6-TE-hAy"/>
                     <connections>
                         <outlet property="emailLabel" destination="gbr-my-xiT" id="bCL-7l-mgb"/>
                         <outlet property="nameLabel" destination="876-IF-FGj" id="Oq5-SX-TQy"/>
@@ -185,7 +189,7 @@
             </objects>
             <point key="canvasLocation" x="1162" y="814"/>
         </scene>
-        <!--公司通訊-->
+        <!--公司-->
         <scene sceneID="3rF-yh-IeV">
             <objects>
                 <tableViewController id="2Ji-UU-Nzu" customClass="CompanyController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
@@ -208,7 +212,7 @@
                             <outlet property="delegate" destination="2Ji-UU-Nzu" id="ePL-rw-Shj"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="公司通訊" image="connect_gray_25dp" id="lvO-Vn-67U"/>
+                    <tabBarItem key="tabBarItem" title="公司" image="connect_gray_25dp" id="lvO-Vn-67U"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTO-hf-kPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
