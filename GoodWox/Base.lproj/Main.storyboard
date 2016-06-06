@@ -91,7 +91,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="我的最愛" image="star_gray_25dp" id="r1N-Tv-igj"/>
+                    <tabBarItem key="tabBarItem" title="我的最愛" image="star_blue_25dp" id="r1N-Tv-igj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSu-aH-BrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -232,6 +232,6 @@
         <image name="logo_150dp" width="150" height="200"/>
         <image name="more_gray_25dp" width="25" height="25"/>
         <image name="recents_gray_25dp" width="25" height="25"/>
-        <image name="star_gray_25dp" width="25" height="25"/>
+        <image name="star_blue_25dp" width="25" height="25"/>
     </resources>
 </document>
