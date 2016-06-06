@@ -141,23 +141,29 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3h-kT-AcP">
-                                <rect key="frame" x="47" y="42" width="48" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oi9-GB-40z">
+                                <rect key="frame" x="513" y="28" width="48" height="30"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
-                                    <action selector="logout:" destination="ffE-XP-Exd" eventType="touchUpInside" id="Cb4-Qu-GjY"/>
+                                    <action selector="logout:" destination="ffE-XP-Exd" eventType="touchUpInside" id="1JP-oL-PUN"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.94509803921568625" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="r3h-kT-AcP" firstAttribute="leading" secondItem="CF0-b7-ste" secondAttribute="leadingMargin" constant="27" id="LOo-kc-bGE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oi9-GB-40z" secondAttribute="trailing" constant="19" id="GcQ-Df-ZLV"/>
+                            <constraint firstItem="oi9-GB-40z" firstAttribute="leading" secondItem="CF0-b7-ste" secondAttribute="leadingMargin" id="I8J-JW-Qrd"/>
                             <constraint firstItem="876-IF-FGj" firstAttribute="top" secondItem="Tnc-Uz-7Bd" secondAttribute="bottom" constant="98" id="WcO-ex-2dj"/>
-                            <constraint firstItem="r3h-kT-AcP" firstAttribute="top" secondItem="Tnc-Uz-7Bd" secondAttribute="bottom" constant="22" id="hdO-lc-5G5"/>
+                            <constraint firstItem="oi9-GB-40z" firstAttribute="top" secondItem="Tnc-Uz-7Bd" secondAttribute="bottom" constant="8" symbolic="YES" id="hCv-CE-17k"/>
                             <constraint firstItem="876-IF-FGj" firstAttribute="centerX" secondItem="gbr-my-xiT" secondAttribute="centerX" id="jAQ-tl-CEm"/>
                             <constraint firstItem="876-IF-FGj" firstAttribute="centerX" secondItem="CF0-b7-ste" secondAttribute="centerX" id="nhs-r9-ZKg"/>
                             <constraint firstItem="gbr-my-xiT" firstAttribute="top" secondItem="876-IF-FGj" secondAttribute="bottom" constant="52" id="q7c-Jw-sOp"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="I8J-JW-Qrd"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="更多" image="more_gray_25dp" id="Bye-Q5-8Mj"/>
                     <navigationItem key="navigationItem" title="Profile Page" id="ia6-TE-hAy"/>
@@ -202,7 +208,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfh-vJ-1MW" id="8n9-xg-cV5">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

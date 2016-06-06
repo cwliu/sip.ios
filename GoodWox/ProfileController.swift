@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 extension MSGraphUser {
-//    var optMobilePhone : String? { return self.dictionary["mobilePhone"] as? String }
+    //    var optMobilePhone : String? { return self.dictionary["mobilePhone"] as? String }
     var optMail: String { return "boss@wiadvance.com" }
 }
 
@@ -87,7 +87,7 @@ private extension ProfileController{
 // MARK: Graph Helper
 private extension ProfileController{
     func disconnect(){
-        authentication.disconnect()
-        self.navigationController?.popViewControllerAnimated(true)
+        authentication.disconnect()        
+        self.dismissViewControllerAnimated(true, completion: {});
     }
 }
