@@ -28,7 +28,7 @@ class LoginController: UIViewController {
 
         // There is only one segue
         let tabController: TabController = segue.destinationViewController as! TabController
-        let pc: ProfileController = tabController.viewControllers![0] as! ProfileController
+        let pc: ProfileController = tabController.viewControllers![4] as! ProfileController
         pc.authentication = authentication
     }
 
