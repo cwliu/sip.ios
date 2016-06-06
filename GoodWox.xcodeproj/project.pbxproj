@@ -10,6 +10,7 @@
 		A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C121D03BB1C003FE7B3 /* ProfileController.swift */; };
 		A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */; };
 		A9863C171D03BD6D003FE7B3 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C161D03BD6D003FE7B3 /* Authentication.swift */; };
+		A9863C371D0579C0003FE7B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9863C361D0579C0003FE7B3 /* LaunchScreen.storyboard */; };
 		A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48B1D0273C20034B564 /* AppDelegate.swift */; };
 		A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48D1D0273C20034B564 /* LoginController.swift */; };
 		A9AAE4911D0273C20034B564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE48F1D0273C20034B564 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		A9863C121D03BB1C003FE7B3 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
 		A9863C161D03BD6D003FE7B3 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		A9863C361D0579C0003FE7B3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9AAE4881D0273C20034B564 /* GoodWox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodWox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AAE48B1D0273C20034B564 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9AAE48D1D0273C20034B564 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				A9AAE48F1D0273C20034B564 /* Main.storyboard */,
+				A9863C361D0579C0003FE7B3 /* LaunchScreen.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9863C371D0579C0003FE7B3 /* LaunchScreen.storyboard in Resources */,
 				A9AAE4931D0273C20034B564 /* Assets.xcassets in Resources */,
 				A9AAE4911D0273C20034B564 /* Main.storyboard in Resources */,
 			);
