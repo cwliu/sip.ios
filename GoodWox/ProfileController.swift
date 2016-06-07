@@ -24,7 +24,6 @@ class ProfileController: UIViewController{
         // Disalbe backbutton
         navigationItem.hidesBackButton = true;
         
-        authentication.authenticationProvider
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
         self.getUserInfo()
         self.getContactInfo()

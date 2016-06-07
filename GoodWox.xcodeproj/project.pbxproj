@@ -13,7 +13,9 @@
 		A9863C371D0579C0003FE7B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9863C361D0579C0003FE7B3 /* LaunchScreen.storyboard */; };
 		A99663221D0591D4003B5EEE /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99663211D0591D4003B5EEE /* TabController.swift */; };
 		A99663251D05A105003B5EEE /* CompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99663241D05A105003B5EEE /* CompanyController.swift */; };
-		A99663291D05A81B003B5EEE /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99663281D05A81B003B5EEE /* ItemCell.swift */; };
+		A99663291D05A81B003B5EEE /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99663281D05A81B003B5EEE /* ContactCell.swift */; };
+		A996632B1D06483D003B5EEE /* ContactStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996632A1D06483D003B5EEE /* ContactStore.swift */; };
+		A996632D1D064916003B5EEE /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996632C1D064916003B5EEE /* Contact.swift */; };
 		A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48B1D0273C20034B564 /* AppDelegate.swift */; };
 		A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48D1D0273C20034B564 /* LoginController.swift */; };
 		A9AAE4911D0273C20034B564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE48F1D0273C20034B564 /* Main.storyboard */; };
@@ -29,7 +31,9 @@
 		A9863C361D0579C0003FE7B3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A99663211D0591D4003B5EEE /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		A99663241D05A105003B5EEE /* CompanyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyController.swift; sourceTree = "<group>"; };
-		A99663281D05A81B003B5EEE /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		A99663281D05A81B003B5EEE /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		A996632A1D06483D003B5EEE /* ContactStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactStore.swift; sourceTree = "<group>"; };
+		A996632C1D064916003B5EEE /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		A9AAE4881D0273C20034B564 /* GoodWox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodWox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AAE48B1D0273C20034B564 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9AAE48D1D0273C20034B564 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -103,7 +107,9 @@
 		A99663231D05A0B0003B5EEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A99663281D05A81B003B5EEE /* ItemCell.swift */,
+				A99663281D05A81B003B5EEE /* ContactCell.swift */,
+				A996632A1D06483D003B5EEE /* ContactStore.swift */,
+				A996632C1D064916003B5EEE /* Contact.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -183,7 +189,7 @@
 				TargetAttributes = {
 					A9AAE4871D0273C20034B564 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = U4822EP996;
+						DevelopmentTeam = 82F9JAXFE4;
 					};
 				};
 			};
@@ -271,13 +277,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A99663291D05A81B003B5EEE /* ItemCell.swift in Sources */,
+				A99663291D05A81B003B5EEE /* ContactCell.swift in Sources */,
 				A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */,
+				A996632D1D064916003B5EEE /* Contact.swift in Sources */,
 				A99663221D0591D4003B5EEE /* TabController.swift in Sources */,
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
 				A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */,
 				A9863C171D03BD6D003FE7B3 /* Authentication.swift in Sources */,
 				A99663251D05A105003B5EEE /* CompanyController.swift in Sources */,
+				A996632B1D06483D003B5EEE /* ContactStore.swift in Sources */,
 				A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

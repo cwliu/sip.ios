@@ -1,6 +1,6 @@
 import UIKit
 
-class ItemCell: UITableViewCell {
+class ContactCell: UITableViewCell {
     
     @IBOutlet var nameLabel: UILabel!
 

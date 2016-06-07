@@ -79,7 +79,7 @@
             </objects>
             <point key="canvasLocation" x="-80" y="-64"/>
         </scene>
-        <!--我的最愛-->
+        <!--最愛-->
         <scene sceneID="edC-8s-aH2">
             <objects>
                 <viewController id="8dd-aL-YHN" sceneMemberID="viewController">
@@ -92,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="我的最愛" image="star_blue_25dp" id="r1N-Tv-igj"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="最愛" image="star_blue_25dp" id="r1N-Tv-igj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSu-aH-BrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -111,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="記錄" image="recents_gray_25dp" id="D8O-qn-2bI"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="記錄" image="recents_gray_25dp" id="D8O-qn-2bI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYr-2o-waw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,7 +142,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oi9-GB-40z">
-                                <rect key="frame" x="513" y="28" width="48" height="30"/>
+                                <rect key="frame" x="20" y="28" width="48" height="30"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logout:" destination="ffE-XP-Exd" eventType="touchUpInside" id="1JP-oL-PUN"/>
@@ -151,13 +151,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.94509803921568625" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="oi9-GB-40z" secondAttribute="trailing" constant="19" id="GcQ-Df-ZLV"/>
                             <constraint firstItem="oi9-GB-40z" firstAttribute="leading" secondItem="CF0-b7-ste" secondAttribute="leadingMargin" id="I8J-JW-Qrd"/>
-                            <constraint firstItem="876-IF-FGj" firstAttribute="top" secondItem="Tnc-Uz-7Bd" secondAttribute="bottom" constant="98" id="WcO-ex-2dj"/>
-                            <constraint firstItem="oi9-GB-40z" firstAttribute="top" secondItem="Tnc-Uz-7Bd" secondAttribute="bottom" constant="8" symbolic="YES" id="hCv-CE-17k"/>
-                            <constraint firstItem="876-IF-FGj" firstAttribute="centerX" secondItem="gbr-my-xiT" secondAttribute="centerX" id="jAQ-tl-CEm"/>
-                            <constraint firstItem="876-IF-FGj" firstAttribute="centerX" secondItem="CF0-b7-ste" secondAttribute="centerX" id="nhs-r9-ZKg"/>
-                            <constraint firstItem="gbr-my-xiT" firstAttribute="top" secondItem="876-IF-FGj" secondAttribute="bottom" constant="52" id="q7c-Jw-sOp"/>
+                            <constraint firstItem="oi9-GB-40z" firstAttribute="leading" secondItem="CF0-b7-ste" secondAttribute="leadingMargin" id="Ing-IB-2YY"/>
+                            <constraint firstItem="876-IF-FGj" firstAttribute="centerX" secondItem="gbr-my-xiT" secondAttribute="centerX" id="N2g-Gf-iLz"/>
+                            <constraint firstItem="gbr-my-xiT" firstAttribute="top" secondItem="876-IF-FGj" secondAttribute="bottom" constant="52" id="gUY-zk-LGV"/>
+                            <constraint firstItem="876-IF-FGj" firstAttribute="centerX" secondItem="CF0-b7-ste" secondAttribute="centerX" id="iMU-gb-IZ4"/>
+                            <constraint firstItem="876-IF-FGj" firstAttribute="top" secondItem="Tnc-Uz-7Bd" secondAttribute="bottom" constant="98" id="sh1-P4-0sc"/>
+                            <constraint firstItem="oi9-GB-40z" firstAttribute="top" secondItem="Tnc-Uz-7Bd" secondAttribute="bottom" constant="8" symbolic="YES" id="xme-GI-dxT"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -189,7 +189,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="聯絡人" image="contacts_gray_25dp" id="32z-Jt-0fW"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="聯絡人" image="contacts_gray_25dp" id="32z-Jt-0fW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9my-EW-AY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -208,7 +208,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfh-vJ-1MW" id="8n9-xg-cV5">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -218,7 +218,7 @@
                             <outlet property="delegate" destination="2Ji-UU-Nzu" id="ePL-rw-Shj"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="公司" image="connect_gray_25dp" id="lvO-Vn-67U"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="公司" image="connect_gray_25dp" id="lvO-Vn-67U"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTO-hf-kPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -234,11 +234,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="ffE-XP-Exd" kind="relationship" relationship="viewControllers" id="yxr-Y2-7Pr"/>
                         <segue destination="8dd-aL-YHN" kind="relationship" relationship="viewControllers" id="F8U-L2-KMQ"/>
                         <segue destination="r0k-ZH-0g6" kind="relationship" relationship="viewControllers" id="mnr-Ju-Yad"/>
                         <segue destination="lyk-ky-zLY" kind="relationship" relationship="viewControllers" id="fqr-wh-cAH"/>
                         <segue destination="2Ji-UU-Nzu" kind="relationship" relationship="viewControllers" id="yea-EI-qOF"/>
+                        <segue destination="ffE-XP-Exd" kind="relationship" relationship="viewControllers" id="yxr-Y2-7Pr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LqR-ta-UuX" userLabel="First Responder" sceneMemberID="firstResponder"/>
