@@ -66,8 +66,8 @@ class ProfileController: UIViewController{
                         continue
                     }
                     
-                    print(user)
-                    print(user.mail)
+                    // print(user)
+                    // print(user.mail)
                 }
             }
         }
