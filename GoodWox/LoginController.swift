@@ -16,16 +16,6 @@ class LoginController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-        // There is only one segue
-//        let tabController: TabController = segue.destinationViewController as! TabController
-//        let cc: CompanyController = tabController.viewControllers![3] as! CompanyController
-//        let pc: ProfileController = tabController.viewControllers![4] as! ProfileController
-//        cc.authentication = authentication
-//        pc.authentication = authentication
-    }
-
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         

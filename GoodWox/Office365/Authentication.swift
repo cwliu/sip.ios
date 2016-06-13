@@ -31,9 +31,6 @@ extension Authentication {
         
         // Try silent log in. This will attempt to sign in if there is a previous successful
         // sign in user information.
-        // NSLog("Access token: " + NXOAuth2AuthenticationProvider.sharedAuthProvider())
-        // userAccount.accessToken
-        
         if NXOAuth2AuthenticationProvider.sharedAuthProvider().loginSilent() == true {
             completion(error: nil)
         }

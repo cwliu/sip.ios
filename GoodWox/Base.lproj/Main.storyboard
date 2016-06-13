@@ -269,7 +269,7 @@
                                 <connections>
                                     <outlet property="emailLabel" destination="pEb-2J-qs2" id="t2F-gu-5bi"/>
                                     <outlet property="nameLabel" destination="jPv-ms-DJq" id="3SP-Uz-L5D"/>
-                                    <segue destination="tiK-IN-xw8" kind="show" id="pdA-Cq-GVJ"/>
+                                    <segue destination="tiK-IN-xw8" kind="show" identifier="makeCall" id="pdA-Cq-GVJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
