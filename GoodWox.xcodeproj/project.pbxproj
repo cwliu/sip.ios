@@ -61,6 +61,7 @@
 		A9842BEE1D0DA48C0062A35B /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842BEC1D0DA48C0062A35B /* libstdc++.6.tbd */; };
 		A9842BF21D0DA5340062A35B /* linphonerc in Resources */ = {isa = PBXBuildFile; fileRef = A9842BF01D0DA5340062A35B /* linphonerc */; };
 		A9842BF31D0DA5340062A35B /* linphonerc-factory in Resources */ = {isa = PBXBuildFile; fileRef = A9842BF11D0DA5340062A35B /* linphonerc-factory */; };
+		A9842BF71D0EA1730062A35B /* OutgoingCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9842BF61D0EA1730062A35B /* OutgoingCallController.swift */; };
 		A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C121D03BB1C003FE7B3 /* ProfileController.swift */; };
 		A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */; };
 		A9863C171D03BD6D003FE7B3 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C161D03BD6D003FE7B3 /* Authentication.swift */; };
@@ -132,6 +133,7 @@
 		A9842BEC1D0DA48C0062A35B /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		A9842BF01D0DA5340062A35B /* linphonerc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = linphonerc; path = "liblinphone-sdk/linphonerc"; sourceTree = "<group>"; };
 		A9842BF11D0DA5340062A35B /* linphonerc-factory */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "linphonerc-factory"; path = "liblinphone-sdk/linphonerc-factory"; sourceTree = "<group>"; };
+		A9842BF61D0EA1730062A35B /* OutgoingCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingCallController.swift; sourceTree = "<group>"; };
 		A9863C121D03BB1C003FE7B3 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
 		A9863C161D03BD6D003FE7B3 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				A99663241D05A105003B5EEE /* CompanyController.swift */,
 				A9863C121D03BB1C003FE7B3 /* ProfileController.swift */,
 				A99663211D0591D4003B5EEE /* TabController.swift */,
+				A9842BF61D0EA1730062A35B /* OutgoingCallController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -382,18 +385,19 @@
 				A9863C111D03B938003FE7B3 /* View */,
 				A9863C101D03B92A003FE7B3 /* Controller */,
 				A9863C0F1D03B919003FE7B3 /* Resource */,
-				A9AAE4A71D02C9A20034B564 /* Office365 */,
+				A9AAE4A71D02C9A20034B564 /* MicrosoftGraph */,
 				A9AAE4B11D02D1A20034B564 /* GoodWox-Bridging-Header.h */,
 			);
 			path = GoodWox;
 			sourceTree = "<group>";
 		};
-		A9AAE4A71D02C9A20034B564 /* Office365 */ = {
+		A9AAE4A71D02C9A20034B564 /* MicrosoftGraph */ = {
 			isa = PBXGroup;
 			children = (
 				A9863C161D03BD6D003FE7B3 /* Authentication.swift */,
 				A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */,
 			);
+			name = MicrosoftGraph;
 			path = Office365;
 			sourceTree = "<group>";
 		};
@@ -526,6 +530,7 @@
 				A99663291D05A81B003B5EEE /* ContactCell.swift in Sources */,
 				A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */,
 				A996632D1D064916003B5EEE /* Contact.swift in Sources */,
+				A9842BF71D0EA1730062A35B /* OutgoingCallController.swift in Sources */,
 				A99663221D0591D4003B5EEE /* TabController.swift in Sources */,
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
 				A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */,

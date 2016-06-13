@@ -8,12 +8,11 @@ extension MSGraphUser {
 
 class ProfileController: UIViewController{
     
-    
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     
-    var authentication: Authentication!
-    
+    let authentication: Authentication = Authentication()
+
     lazy var graphClient: MSGraphClient = {
         let client = MSGraphClient.defaultClient()
         return client
@@ -64,8 +63,7 @@ class ProfileController: UIViewController{
                 for user: MSGraphUser in users.value as! [MSGraphUser] {
                     if user.userPrincipalName == "T302OfficeAdmin@wiadvance.net" {
                         continue
-                    }
-                    
+                    }                    
                     // print(user)
                     // print(user.mail)
                 }
@@ -79,14 +77,12 @@ private extension ProfileController{
     @IBAction func logout(sender: AnyObject){
         self.disconnect()
     }
-    
 }
-
 
 // MARK: Graph Helper
 private extension ProfileController{
     func disconnect(){
-        authentication.disconnect()        
+        authentication.disconnect()
         self.dismissViewControllerAnimated(true, completion: {});
     }
 }

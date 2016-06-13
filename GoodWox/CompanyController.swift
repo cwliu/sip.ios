@@ -2,14 +2,9 @@ import Foundation
 
 class CompanyController: UITableViewController{
     
-    var authentication: Authentication!
-    var contactStore: ContactStore
+    var contactStore: ContactStore!
     
-    required init?(coder aDecoder: NSCoder) {
-        self.contactStore = ContactStore()
-
-        super.init(coder: aDecoder)
-    }
+    let authentication: Authentication = Authentication()
     
     lazy var graphClient: MSGraphClient = {
         let client = MSGraphClient.defaultClient()
@@ -17,13 +12,14 @@ class CompanyController: UITableViewController{
     }()
     
     override func viewDidLoad() {
+        NSLog("CompanyController.viewDidLoad()")
+        
+        self.contactStore = ContactStore()
 
-        // Init
+        //Init Microsoft Graph
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
-
-        
+    
         modifyTableStyle()
-        
         downloadCompanyContact()
     }
     
@@ -57,25 +53,34 @@ class CompanyController: UITableViewController{
         }
     }
     
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        NSLog("self.contactStore.contactList.count: \(self.contactStore.contactList.count)")
         return self.contactStore.contactList.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Value1, reuseIdentifier: "Cell")
-//
+
         let contact = self.contactStore.contactList[indexPath.row]
-        cell.textLabel?.text = "\(contact.name ?? "No name") - \(contact.email ?? "No name")"
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("company", forIndexPath: indexPath)as! ContactCell
+
+        cell.nameLabel.text = "\(contact.name ?? "No name")"
+        cell.emailLabel.text = "\(contact.email ?? "No name")"
+
         return cell
+
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let row = indexPath.row
+        NSLog("Row: \(row)")
+    }
     
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
     }
-    
     
     // MARK: Style
     private func modifyTableStyle(){
@@ -84,6 +89,10 @@ class CompanyController: UITableViewController{
         let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        NSLog("prepareForSegue: \(segue.identifier)")
     }
 }
 

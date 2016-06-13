@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  GoodWox
-//
-//  Created by Cody Liu on 6/4/16.
-//  Copyright © 2016 WiAdvance. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -44,7 +36,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

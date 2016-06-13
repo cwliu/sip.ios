@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  GoodWox
-//
-//  Created by Cody Liu on 6/4/16.
-//  Copyright © 2016 WiAdvance. All rights reserved.
-//
-
 import UIKit
 
 class LoginController: UIViewController {
@@ -27,11 +19,11 @@ class LoginController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         // There is only one segue
-        let tabController: TabController = segue.destinationViewController as! TabController
-        let cc: CompanyController = tabController.viewControllers![3] as! CompanyController
-        let pc: ProfileController = tabController.viewControllers![4] as! ProfileController
-        cc.authentication = authentication
-        pc.authentication = authentication
+//        let tabController: TabController = segue.destinationViewController as! TabController
+//        let cc: CompanyController = tabController.viewControllers![3] as! CompanyController
+//        let pc: ProfileController = tabController.viewControllers![4] as! ProfileController
+//        cc.authentication = authentication
+//        pc.authentication = authentication
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -49,8 +41,6 @@ class LoginController: UIViewController {
     @IBAction func login(){
         authenticate()
     }
-    
-    
 }
 
 // MARK: Authentication
