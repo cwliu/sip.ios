@@ -83,6 +83,10 @@ class LinphoneManager {
         setTimer()
     }
     
+    func getLc() -> COpaquePointer? {
+        return LinphoneManager.lc
+    }
+    
     @objc func iterate(){
         linphone_core_iterate(LinphoneManager.lc); /* first iterate initiates registration */
     }
