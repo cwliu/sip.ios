@@ -16,6 +16,7 @@ class OutgoingCallController: UIViewController{
     @IBAction func hangUp(){
         NSLog("OutgoingCallController.hangUp()")
         
+        linphone_core_terminate_all_calls(LinphoneManager.lc)
         self.dismissViewControllerAnimated(true, completion: {});
     }
 }
