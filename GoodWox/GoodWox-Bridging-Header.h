@@ -9,4 +9,5 @@
 #include "linphone/linphonecore.h"
 #include "linphone/linphonecore_utils.h"
 
+#include "exception.h"
 #endif

@@ -62,6 +62,7 @@
 		A9842BF21D0DA5340062A35B /* linphonerc in Resources */ = {isa = PBXBuildFile; fileRef = A9842BF01D0DA5340062A35B /* linphonerc */; };
 		A9842BF31D0DA5340062A35B /* linphonerc-factory in Resources */ = {isa = PBXBuildFile; fileRef = A9842BF11D0DA5340062A35B /* linphonerc-factory */; };
 		A9842BF71D0EA1730062A35B /* OutgoingCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9842BF61D0EA1730062A35B /* OutgoingCallController.swift */; };
+		A9842BFD1D0FA45D0062A35B /* exception.m in Sources */ = {isa = PBXBuildFile; fileRef = A9842BFC1D0FA45D0062A35B /* exception.m */; };
 		A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C121D03BB1C003FE7B3 /* ProfileController.swift */; };
 		A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */; };
 		A9863C171D03BD6D003FE7B3 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C161D03BD6D003FE7B3 /* Authentication.swift */; };
@@ -122,7 +123,7 @@
 		A9842BD71D0DA1A40062A35B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A9842BD91D0DA1AC0062A35B /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		A9842BDB1D0DA1E20062A35B /* LinphoneManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinphoneManager.swift; path = GoodWox/LinphoneManager.swift; sourceTree = "<group>"; };
-		A9842BDD1D0DA2500062A35B /* Secret.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secret.plist; sourceTree = "<group>"; };
+		A9842BDD1D0DA2500062A35B /* Secret.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Secret.plist; path = ../Secret.plist; sourceTree = "<group>"; };
 		A9842BDF1D0DA42F0062A35B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A9842BE11D0DA4370062A35B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A9842BE31D0DA4400062A35B /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
@@ -134,6 +135,8 @@
 		A9842BF01D0DA5340062A35B /* linphonerc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = linphonerc; path = "liblinphone-sdk/linphonerc"; sourceTree = "<group>"; };
 		A9842BF11D0DA5340062A35B /* linphonerc-factory */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "linphonerc-factory"; path = "liblinphone-sdk/linphonerc-factory"; sourceTree = "<group>"; };
 		A9842BF61D0EA1730062A35B /* OutgoingCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingCallController.swift; sourceTree = "<group>"; };
+		A9842BFC1D0FA45D0062A35B /* exception.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = exception.m; sourceTree = "<group>"; };
+		A9842BFE1D0FA4860062A35B /* exception.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
 		A9863C121D03BB1C003FE7B3 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
 		A9863C161D03BD6D003FE7B3 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
@@ -317,9 +320,20 @@
 			name = config;
 			sourceTree = "<group>";
 		};
+		A9842BFF1D0FA4FC0062A35B /* ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				A9842BFE1D0FA4860062A35B /* exception.h */,
+				A9842BFC1D0FA45D0062A35B /* exception.m */,
+			);
+			name = ObjC;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		A9863C0F1D03B919003FE7B3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A9842BDD1D0DA2500062A35B /* Secret.plist */,
 				A9AAE4971D0273C20034B564 /* Info.plist */,
 				A9AAE4921D0273C20034B564 /* Assets.xcassets */,
 			);
@@ -361,7 +375,6 @@
 		A9AAE47F1D0273C20034B564 = {
 			isa = PBXGroup;
 			children = (
-				A9842BDD1D0DA2500062A35B /* Secret.plist */,
 				A9842B5E1D0DA0510062A35B /* Linphone */,
 				A9AAE48A1D0273C20034B564 /* GoodWox */,
 				A9AAE4891D0273C20034B564 /* Products */,
@@ -385,6 +398,7 @@
 				A9863C111D03B938003FE7B3 /* View */,
 				A9863C101D03B92A003FE7B3 /* Controller */,
 				A9863C0F1D03B919003FE7B3 /* Resource */,
+				A9842BFF1D0FA4FC0062A35B /* ObjC */,
 				A9AAE4A71D02C9A20034B564 /* MicrosoftGraph */,
 				A9AAE4B11D02D1A20034B564 /* GoodWox-Bridging-Header.h */,
 			);
@@ -527,6 +541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9842BFD1D0FA45D0062A35B /* exception.m in Sources */,
 				A99663291D05A81B003B5EEE /* ContactCell.swift in Sources */,
 				A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */,
 				A996632D1D064916003B5EEE /* Contact.swift in Sources */,

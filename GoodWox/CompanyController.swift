@@ -11,6 +11,8 @@ class CompanyController: UITableViewController{
         return client
     }()
     
+    var sipNumber = "0702552519"
+    
     override func viewDidLoad() {
         NSLog("CompanyController.viewDidLoad()")
         
@@ -25,7 +27,6 @@ class CompanyController: UITableViewController{
     
     func downloadCompanyContact(){
         
-        
         // Download contact data from Office 365
         self.graphClient.users().request().getWithCompletion{
             (collection: MSCollection?, request:MSGraphUsersCollectionRequest?, error: NSError?) in
@@ -34,17 +35,23 @@ class CompanyController: UITableViewController{
                 NSLog("Contact data download error")
                 return
             }
-            NSLog("Contact data successful")
+            
+            NSLog("Contact data loaded successful")
             if let users = collection {
                 for user: MSGraphUser in users.value as! [MSGraphUser] {
-                    if user.userPrincipalName == "T302OfficeAdmin@wiadvance.net" {
-                        continue
-                    }
 
-                    let contact: Contact = Contact(name: user.displayName, email: user.mail)
-                    NSLog("\(user.displayName)  \(user.mail)")
-                    self.contactStore.contactList.append(contact)
+                    do {
+                        try Exception.catchException {
+                            /* calls that might throw an NSException */
+                            let contact: Contact = Contact(name: user.displayName, email: user.mail)
+                            NSLog("\(user.displayName)  \(user.mail)")
+                            self.contactStore.contactList.append(contact)
+                        }
+                    } catch let error{
+                        NSLog("NSError ocurred: \(error)")
+                    }
                 }
+
                 NSLog("Reload tableView data after contact data has been downloaded")
                 NSOperationQueue.mainQueue().addOperationWithBlock(){
                     self.tableView.reloadData()
@@ -66,7 +73,6 @@ class CompanyController: UITableViewController{
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         
         return cell
-
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -92,6 +98,13 @@ class CompanyController: UITableViewController{
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         NSLog("prepareForSegue: \(segue.identifier)")
+        
+        if(segue.identifier == "makeCall"){
+            
+            let controller = segue.destinationViewController as! OutgoingCallController
+            controller.sipNumber = sipNumber
+            
+        }
     }
 }
 
