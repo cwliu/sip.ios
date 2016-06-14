@@ -58,7 +58,7 @@
             </objects>
             <point key="canvasLocation" x="-80" y="-64"/>
         </scene>
-        <!--最愛-->
+        <!--我的最愛-->
         <scene sceneID="edC-8s-aH2">
             <objects>
                 <viewController id="8dd-aL-YHN" sceneMemberID="viewController">
@@ -71,13 +71,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="最愛" image="star_blue_25dp" id="r1N-Tv-igj"/>
+                    <tabBarItem key="tabBarItem" title="我的最愛" image="star_blue_25dp" id="r1N-Tv-igj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSu-aH-BrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-114" y="814"/>
         </scene>
-        <!--記錄-->
+        <!--聯絡記錄-->
         <scene sceneID="a75-ga-StP">
             <objects>
                 <viewController id="r0k-ZH-0g6" sceneMemberID="viewController">
@@ -90,7 +90,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="記錄" image="recents_gray_25dp" id="D8O-qn-2bI"/>
+                    <tabBarItem key="tabBarItem" title="聯絡記錄" image="recents_gray_25dp" id="D8O-qn-2bI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYr-2o-waw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -236,7 +236,7 @@
             </objects>
             <point key="canvasLocation" x="2616" y="812"/>
         </scene>
-        <!--公司-->
+        <!--公司通訊-->
         <scene sceneID="3rF-yh-IeV">
             <objects>
                 <tableViewController id="2Ji-UU-Nzu" customClass="CompanyController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
@@ -245,29 +245,54 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="company" id="vfh-vJ-1MW" customClass="ContactCell" customModule="GoodWox" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="company" rowHeight="44" id="vfh-vJ-1MW" customClass="ContactCell" customModule="GoodWox" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfh-vJ-1MW" id="8n9-xg-cV5">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPv-ms-DJq">
-                                            <rect key="frame" x="26" y="11" width="125" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPv-ms-DJq">
+                                            <rect key="frame" x="83" y="11" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEb-2J-qs2">
-                                            <rect key="frame" x="165" y="11" width="295" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contacts_gray_25dp" translatesAutoresizingMaskIntoConstraints="NO" id="2Hl-Od-1yb">
+                                            <rect key="frame" x="33" y="9" width="25" height="25"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arror_right_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="bOu-j0-IVs">
+                                            <rect key="frame" x="563" y="14" width="16" height="16"/>
+                                            <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="qJY-n8-9iR">
+                                            <rect key="frame" x="527" y="14" width="16" height="16"/>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2Hl-Od-1yb" firstAttribute="leading" secondItem="bOu-j0-IVs" secondAttribute="trailing" constant="17" id="9Zb-lv-STd"/>
+                                        <constraint firstItem="2Hl-Od-1yb" firstAttribute="leading" secondItem="8n9-xg-cV5" secondAttribute="leadingMargin" constant="25" id="F9Q-ZE-qjb"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="bOu-j0-IVs" secondAttribute="trailing" constant="13" id="LtD-80-Zd0"/>
+                                        <constraint firstItem="bOu-j0-IVs" firstAttribute="leading" secondItem="qJY-n8-9iR" secondAttribute="trailing" constant="20" id="MWf-hU-a3U"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="bOu-j0-IVs" secondAttribute="trailing" constant="8" id="Swi-un-KyO"/>
+                                        <constraint firstItem="bOu-j0-IVs" firstAttribute="centerY" secondItem="8n9-xg-cV5" secondAttribute="centerY" id="Vz2-Lp-gGH"/>
+                                        <constraint firstItem="bOu-j0-IVs" firstAttribute="centerX" secondItem="8n9-xg-cV5" secondAttribute="centerX" id="dzp-Lt-jdK"/>
+                                        <constraint firstItem="bOu-j0-IVs" firstAttribute="trailing" secondItem="8n9-xg-cV5" secondAttribute="trailingMargin" constant="8" id="h2B-o0-XVL"/>
+                                        <constraint firstItem="2Hl-Od-1yb" firstAttribute="centerY" secondItem="8n9-xg-cV5" secondAttribute="centerY" id="hoI-kZ-6yo"/>
+                                        <constraint firstItem="jPv-ms-DJq" firstAttribute="centerY" secondItem="8n9-xg-cV5" secondAttribute="centerY" id="iLK-mY-rzs"/>
+                                        <constraint firstItem="jPv-ms-DJq" firstAttribute="leading" secondItem="2Hl-Od-1yb" secondAttribute="trailing" constant="25" id="plM-IU-isb"/>
+                                        <constraint firstItem="qJY-n8-9iR" firstAttribute="centerY" secondItem="8n9-xg-cV5" secondAttribute="centerY" id="ti0-EM-GAw"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="9Zb-lv-STd"/>
+                                            <exclude reference="Swi-un-KyO"/>
+                                            <exclude reference="dzp-Lt-jdK"/>
+                                            <exclude reference="h2B-o0-XVL"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="emailLabel" destination="pEb-2J-qs2" id="t2F-gu-5bi"/>
                                     <outlet property="nameLabel" destination="jPv-ms-DJq" id="3SP-Uz-L5D"/>
                                     <segue destination="tiK-IN-xw8" kind="show" identifier="makeCall" id="pdA-Cq-GVJ"/>
                                 </connections>
@@ -278,7 +303,7 @@
                             <outlet property="delegate" destination="2Ji-UU-Nzu" id="ePL-rw-Shj"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="公司" image="connect_gray_25dp" id="lvO-Vn-67U"/>
+                    <tabBarItem key="tabBarItem" title="公司通訊" image="connect_gray_25dp" id="lvO-Vn-67U"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTO-hf-kPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -307,11 +332,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arror_right_gray_16dp" width="16" height="16"/>
         <image name="connect_gray_25dp" width="25" height="25"/>
         <image name="contacts_gray_25dp" width="25" height="25"/>
         <image name="logo_150dp" width="150" height="200"/>
         <image name="more_gray_25dp" width="25" height="25"/>
         <image name="recents_gray_25dp" width="25" height="25"/>
         <image name="star_blue_25dp" width="25" height="25"/>
+        <image name="star_gray_16dp" width="16" height="16"/>
     </resources>
 </document>

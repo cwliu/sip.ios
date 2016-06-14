@@ -64,8 +64,7 @@ class CompanyController: UITableViewController{
         let cell = tableView.dequeueReusableCellWithIdentifier("company", forIndexPath: indexPath)as! ContactCell
 
         cell.nameLabel.text = "\(contact.name ?? "No name")"
-        cell.emailLabel.text = "\(contact.email ?? "No name")"
-
+        
         return cell
 
     }
