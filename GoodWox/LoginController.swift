@@ -53,7 +53,7 @@ private extension LoginController {
                 switch graphError {
                 case .NSErrorType(let nsError):
                     print("Error:", nsError.localizedDescription)
-//                     self.showError(message: "Login failed, please try it again later")
+                    // self.showError(message: "Login failed, please try it again later")
                 }
             }
             else {
