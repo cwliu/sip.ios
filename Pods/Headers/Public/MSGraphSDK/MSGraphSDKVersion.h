@@ -1,1 +1,0 @@
-../../../MSGraphSDK/MSGraphSDK/Common/MSGraphSDKVersion.h

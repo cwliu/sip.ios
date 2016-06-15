@@ -1,1 +1,0 @@
-../../../MSGraphSDK/MSGraphSDK/MSGraphCoreSDK/model/MSGraphSharingInvitation.h

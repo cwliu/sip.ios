@@ -1,1 +1,0 @@
-../../../MSGraphSDK/MSGraphSDK/MSGraphCoreSDK/model/MSGraphDevice.h

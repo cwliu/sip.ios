@@ -11,7 +11,7 @@ class CompanyController: UITableViewController{
         return client
     }()
     
-    var sipNumber = "0702552519"
+    var sipNumber = "0702126175"
     
     override func viewDidLoad() {
         NSLog("CompanyController.viewDidLoad()")

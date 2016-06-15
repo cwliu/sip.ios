@@ -1,1 +1,0 @@
-../../../MSGraphSDK/MSGraphSDK/MSGraphCoreSDK/requests/MSGraphMailFolderRequestBuilder.h

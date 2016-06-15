@@ -1,0 +1,6 @@
+framework module MSGraphSDK_NXOAuth2Adapter {
+  umbrella header "MSGraphSDK-NXOAuth2Adapter-umbrella.h"
+
+  export *
+  module * { export * }
+}

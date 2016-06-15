@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62D958190217ECD6C13112EB /* Pods_GoodWox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */; };
 		A9842BAC1D0DA1170062A35B /* libantlr3c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B851D0DA0D00062A35B /* libantlr3c.a */; };
 		A9842BAD1D0DA1170062A35B /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B861D0DA0D00062A35B /* libavcodec.a */; };
 		A9842BAE1D0DA1170062A35B /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B871D0DA0D00062A35B /* libavutil.a */; };
@@ -63,6 +64,7 @@
 		A9842BF31D0DA5340062A35B /* linphonerc-factory in Resources */ = {isa = PBXBuildFile; fileRef = A9842BF11D0DA5340062A35B /* linphonerc-factory */; };
 		A9842BF71D0EA1730062A35B /* OutgoingCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9842BF61D0EA1730062A35B /* OutgoingCallController.swift */; };
 		A9842BFD1D0FA45D0062A35B /* exception.m in Sources */ = {isa = PBXBuildFile; fileRef = A9842BFC1D0FA45D0062A35B /* exception.m */; };
+		A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9842C031D0FE7FE0062A35B /* SipClient.swift */; };
 		A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C121D03BB1C003FE7B3 /* ProfileController.swift */; };
 		A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */; };
 		A9863C171D03BD6D003FE7B3 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C161D03BD6D003FE7B3 /* Authentication.swift */; };
@@ -137,6 +139,7 @@
 		A9842BF61D0EA1730062A35B /* OutgoingCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingCallController.swift; sourceTree = "<group>"; };
 		A9842BFC1D0FA45D0062A35B /* exception.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = exception.m; sourceTree = "<group>"; };
 		A9842BFE1D0FA4860062A35B /* exception.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
+		A9842C031D0FE7FE0062A35B /* SipClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SipClient.swift; sourceTree = "<group>"; };
 		A9863C121D03BB1C003FE7B3 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
 		A9863C161D03BD6D003FE7B3 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
@@ -153,7 +156,7 @@
 		A9AAE4921D0273C20034B564 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9AAE4971D0273C20034B564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9AAE4B11D02D1A20034B564 /* GoodWox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoodWox-Bridging-Header.h"; sourceTree = "<group>"; };
-		F8B0F44A3A2F01AA16952C71 /* libPods-GoodWox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GoodWox.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodWox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +215,7 @@
 				A9842BC81D0DA1170062A35B /* libvo-amrwbenc.a in Frameworks */,
 				A9842BC91D0DA1170062A35B /* libvpx.a in Frameworks */,
 				A9842BCA1D0DA1170062A35B /* libx264.a in Frameworks */,
+				62D958190217ECD6C13112EB /* Pods_GoodWox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +270,7 @@
 				A9842BA21D0DA0D00062A35B /* libvpx.a */,
 				A9842BA31D0DA0D00062A35B /* libx264.a */,
 				A9842BA41D0DA0D00062A35B /* mediastreamer */,
-				F8B0F44A3A2F01AA16952C71 /* libPods-GoodWox.a */,
+				B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -328,6 +332,14 @@
 			);
 			name = ObjC;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		A9842C001D0FE0460062A35B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A9842C031D0FE7FE0062A35B /* SipClient.swift */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 		A9863C0F1D03B919003FE7B3 /* Resource */ = {
@@ -394,6 +406,7 @@
 		A9AAE48A1D0273C20034B564 /* GoodWox */ = {
 			isa = PBXGroup;
 			children = (
+				A9842C001D0FE0460062A35B /* Service */,
 				A99663231D05A0B0003B5EEE /* Model */,
 				A9863C111D03B938003FE7B3 /* View */,
 				A9863C101D03B92A003FE7B3 /* Controller */,
@@ -548,6 +561,7 @@
 				A9842BF71D0EA1730062A35B /* OutgoingCallController.swift in Sources */,
 				A99663221D0591D4003B5EEE /* TabController.swift in Sources */,
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
+				A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */,
 				A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */,
 				A9863C171D03BD6D003FE7B3 /* Authentication.swift in Sources */,
 				A9842BDC1D0DA1E20062A35B /* LinphoneManager.swift in Sources */,
@@ -676,7 +690,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoodWox/GoodWox-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/liblinphone-sdk/apple-darwin/include";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/liblinphone-sdk/apple-darwin/include $(SRCROOT)/Pods/MSGraphSDK/** $(SRCROOT)/Pods/NXOAuth2Client/**";
 			};
 			name = Debug;
 		};
@@ -700,7 +714,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoodWox/GoodWox-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/liblinphone-sdk/apple-darwin/include";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/liblinphone-sdk/apple-darwin/include $(SRCROOT)/Pods/MSGraphSDK/** $(SRCROOT)/Pods/NXOAuth2Client/**";
 			};
 			name = Release;
 		};

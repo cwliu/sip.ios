@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (3.4.0)
   - MSGraphSDK (0.10.1):
     - MSGraphSDK/Common (= 0.10.1)
     - MSGraphSDK/Extensions (= 0.10.1)
@@ -27,14 +28,16 @@ PODS:
   - NXOAuth2Client (1.2.8)
 
 DEPENDENCIES:
+  - Alamofire (~> 3.4)
   - MSGraphSDK
   - MSGraphSDK-NXOAuth2Adapter
 
 SPEC CHECKSUMS:
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   MSGraphSDK: 3c43eb632ca969593f1bdd5612b573e436bd3283
   MSGraphSDK-NXOAuth2Adapter: 2b6db8cc771d4f4f269091bc4280c405b3c3e4a4
   NXOAuth2Client: 98c4d4c594edd2b289cfc34a8928653e1dab7adf
 
-PODFILE CHECKSUM: 3df9b17f78d43e522f7b2c3547bfffa7e450b83b
+PODFILE CHECKSUM: 3e5bb09720f45424904b8a0c77ff055c9b8a028c
 
 COCOAPODS: 1.0.1

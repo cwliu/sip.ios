@@ -82,3 +82,16 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MSGraphSDK/MSGraphSDK.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MSGraphSDK-NXOAuth2Adapter/MSGraphSDK_NXOAuth2Adapter.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/NXOAuth2Client/NXOAuth2Client.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MSGraphSDK/MSGraphSDK.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MSGraphSDK-NXOAuth2Adapter/MSGraphSDK_NXOAuth2Adapter.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/NXOAuth2Client/NXOAuth2Client.framework"
+fi

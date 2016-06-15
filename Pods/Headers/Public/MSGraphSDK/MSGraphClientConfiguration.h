@@ -1,1 +1,0 @@
-../../../MSGraphSDK/MSGraphSDK/MSGraphCoreSDK/Core/MSGraphClientConfiguration.h
