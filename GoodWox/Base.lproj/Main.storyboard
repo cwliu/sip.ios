@@ -33,7 +33,10 @@
                                     <action selector="login" destination="BYZ-38-t0r" eventType="touchUpInside" id="FIV-wy-9Y9"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_150dp" translatesAutoresizingMaskIntoConstraints="NO" id="11W-r5-WuP">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Sxq-DX-AH8">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_150dp" translatesAutoresizingMaskIntoConstraints="NO" id="11W-r5-WuP">
                                 <rect key="frame" x="180" y="70" width="240" height="245"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="245" id="atd-by-H5L"/>
@@ -43,14 +46,18 @@
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.95686274509803915" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Sxq-DX-AH8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TwA-mz-wyO"/>
                             <constraint firstItem="11W-r5-WuP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bTz-Z0-wiH"/>
                             <constraint firstItem="11W-r5-WuP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="jrB-uC-3yg"/>
+                            <constraint firstItem="Sxq-DX-AH8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="k3r-iJ-ldz"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Fee-oJ-Hvg" secondAttribute="bottom" constant="147" id="kPE-yW-qNX"/>
                             <constraint firstItem="Fee-oJ-Hvg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vQ0-3w-0eQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login Page" id="fiH-T5-qGw"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Sxq-DX-AH8" id="8rw-AP-U6w"/>
+                        <outlet property="connectButton" destination="Fee-oJ-Hvg" id="yXt-B3-GzO"/>
                         <segue destination="XfV-c8-IhI" kind="show" identifier="login" id="vHo-dJ-daF"/>
                     </connections>
                 </viewController>
@@ -249,7 +256,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfh-vJ-1MW" id="8n9-xg-cV5">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPv-ms-DJq">

@@ -52,4 +52,10 @@ extension Authentication {
     func disconnect() {
         NXOAuth2AuthenticationProvider.sharedAuthProvider().logout()
     }
+    
+    func getAccessToken() -> String {
+        
+        return NXOAuth2AuthenticationProvider.sharedAuthProvider().tokenURL
+    }
+
 }
