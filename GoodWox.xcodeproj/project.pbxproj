@@ -79,6 +79,7 @@
 		A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48D1D0273C20034B564 /* LoginController.swift */; };
 		A9AAE4911D0273C20034B564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE48F1D0273C20034B564 /* Main.storyboard */; };
 		A9AAE4931D0273C20034B564 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE4921D0273C20034B564 /* Assets.xcassets */; };
+		A9C249041D12A00F00430C92 /* PhoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C249031D12A00F00430C92 /* PhoneController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,7 +126,7 @@
 		A9842BD51D0DA19D0062A35B /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A9842BD71D0DA1A40062A35B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A9842BD91D0DA1AC0062A35B /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		A9842BDB1D0DA1E20062A35B /* LinphoneManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinphoneManager.swift; path = GoodWox/LinphoneManager.swift; sourceTree = "<group>"; };
+		A9842BDB1D0DA1E20062A35B /* LinphoneManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinphoneManager.swift; sourceTree = "<group>"; };
 		A9842BDD1D0DA2500062A35B /* Secret.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Secret.plist; path = ../Secret.plist; sourceTree = "<group>"; };
 		A9842BDF1D0DA42F0062A35B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A9842BE11D0DA4370062A35B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -158,6 +159,7 @@
 		A9AAE4921D0273C20034B564 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9AAE4971D0273C20034B564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9AAE4B11D02D1A20034B564 /* GoodWox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoodWox-Bridging-Header.h"; sourceTree = "<group>"; };
+		A9C249031D12A00F00430C92 /* PhoneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneController.swift; sourceTree = "<group>"; };
 		B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodWox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -290,7 +292,6 @@
 			isa = PBXGroup;
 			children = (
 				A9842BEF1D0DA4DB0062A35B /* config */,
-				A9842BDB1D0DA1E20062A35B /* LinphoneManager.swift */,
 			);
 			name = Linphone;
 			sourceTree = "<group>";
@@ -359,6 +360,8 @@
 			children = (
 				A9AAE48B1D0273C20034B564 /* AppDelegate.swift */,
 				A9AAE48D1D0273C20034B564 /* LoginController.swift */,
+				A9842BDB1D0DA1E20062A35B /* LinphoneManager.swift */,
+				A9C249031D12A00F00430C92 /* PhoneController.swift */,
 				A99663241D05A105003B5EEE /* CompanyController.swift */,
 				A9863C121D03BB1C003FE7B3 /* ProfileController.swift */,
 				A99663211D0591D4003B5EEE /* TabController.swift */,
@@ -571,6 +574,7 @@
 				A9842BDC1D0DA1E20062A35B /* LinphoneManager.swift in Sources */,
 				A99663251D05A105003B5EEE /* CompanyController.swift in Sources */,
 				A996632B1D06483D003B5EEE /* ContactStore.swift in Sources */,
+				A9C249041D12A00F00430C92 /* PhoneController.swift in Sources */,
 				A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

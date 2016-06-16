@@ -1,11 +1,6 @@
 import Foundation
 import UIKit
 
-extension MSGraphUser {
-    //    var optMobilePhone : String? { return self.dictionary["mobilePhone"] as? String }
-    var optMail: String { return "boss@wiadvance.com" }
-}
-
 class ProfileController: UIViewController{
     
     @IBOutlet var nameLabel: UILabel!
@@ -24,11 +19,10 @@ class ProfileController: UIViewController{
         navigationItem.hidesBackButton = true;
         
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
-        self.getUserInfo()
-        self.getContactInfo()
+        self.getMeInfo()
     }
     
-    private func getUserInfo(){
+    private func getMeInfo(){
         self.graphClient.me().request().getWithCompletion {
             (user: MSGraphUser?, error: NSError?) in
             if let graphError = error {
@@ -36,7 +30,6 @@ class ProfileController: UIViewController{
                 dispatch_async(dispatch_get_main_queue(),{
                     NSLog("Graph Error")
                 })
-                
             }
             else {
                 guard let userInfo = user else {
@@ -56,21 +49,6 @@ class ProfileController: UIViewController{
                     self.emailLabel.text = userInfo.mail
                 })
                 
-            }
-        }
-    }
-    
-    private func getContactInfo(){
-        self.graphClient.users().request().getWithCompletion{
-            (collection: MSCollection?, request:MSGraphUsersCollectionRequest?, error: NSError?) in
-            if let users = collection {
-                for user: MSGraphUser in users.value as! [MSGraphUser] {
-                    if user.userPrincipalName == "T302OfficeAdmin@wiadvance.net" {
-                        continue
-                    }                    
-                    // print(user)
-                    // print(user.mail)
-                }
             }
         }
     }
