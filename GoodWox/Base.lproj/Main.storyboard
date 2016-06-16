@@ -260,18 +260,18 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPv-ms-DJq">
-                                            <rect key="frame" x="68" y="11" width="45" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPv-ms-DJq">
+                                            <rect key="frame" x="68" y="11" width="46" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arror_right_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="bOu-j0-IVs">
-                                            <rect key="frame" x="563" y="14" width="16" height="16"/>
+                                            <rect key="frame" x="556" y="14" width="16" height="16"/>
                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="qJY-n8-9iR">
-                                            <rect key="frame" x="527" y="14" width="16" height="16"/>
+                                            <rect key="frame" x="520" y="14" width="16" height="16"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_gray_30dp" translatesAutoresizingMaskIntoConstraints="NO" id="2Hl-Od-1yb">
                                             <rect key="frame" x="23" y="7" width="30" height="30"/>
@@ -279,7 +279,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="2Hl-Od-1yb" firstAttribute="leading" secondItem="8n9-xg-cV5" secondAttribute="leadingMargin" constant="15" id="F9Q-ZE-qjb"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="bOu-j0-IVs" secondAttribute="trailing" constant="13" id="LtD-80-Zd0"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="bOu-j0-IVs" secondAttribute="trailing" constant="20" id="LtD-80-Zd0"/>
                                         <constraint firstItem="bOu-j0-IVs" firstAttribute="leading" secondItem="qJY-n8-9iR" secondAttribute="trailing" constant="20" id="MWf-hU-a3U"/>
                                         <constraint firstItem="bOu-j0-IVs" firstAttribute="centerY" secondItem="8n9-xg-cV5" secondAttribute="centerY" id="Vz2-Lp-gGH"/>
                                         <constraint firstItem="2Hl-Od-1yb" firstAttribute="centerY" secondItem="8n9-xg-cV5" secondAttribute="centerY" id="hoI-kZ-6yo"/>
