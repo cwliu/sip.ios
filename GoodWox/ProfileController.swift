@@ -48,7 +48,6 @@ class ProfileController: UIViewController{
                     self.nameLabel.text = userInfo.displayName
                     self.emailLabel.text = userInfo.mail
                 })
-                
             }
         }
     }

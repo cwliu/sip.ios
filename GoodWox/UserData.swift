@@ -9,7 +9,7 @@ class UserData {
     static private let SIP_PASSWORD_KEY: String = "SIP_PASSWORD_KEY"
     static private let SIP_PROXY_ADDRESS_KEY: String = "SIP_PROXY_ADDRESS_KEY"
     static private let SIP_PROXY_PORT_KEY: String = "SIP_PROXY_PORT_KEY"
-    
+    static private let SIP_BACKEND_ACCESS_TOKEN_KEY: String = "SIP_BACKEND_ACCESS_TOKEN_KEY"
     static func setGraphAccesssToken(accessToken: String){
         preference.setValue(accessToken, forKey: ACCESS_TOKEN_KEY)
         preference.synchronize()
@@ -63,5 +63,14 @@ class UserData {
     
     static func getProxyPort() -> String?{
         return preference.stringForKey(SIP_PROXY_PORT_KEY)
+    }
+
+    static func setBackendAccessToken(backendAccessToken: String){
+        preference.setValue(backendAccessToken, forKey: SIP_BACKEND_ACCESS_TOKEN_KEY)
+        preference.synchronize()
+    }
+    
+    static func getBackendAccessToken() -> String?{
+        return preference.stringForKey(SIP_BACKEND_ACCESS_TOKEN_KEY)
     }
 }

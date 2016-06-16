@@ -37,11 +37,13 @@ class SipApiClient {
                     let sipPassword = json["sip_password"] as! String
                     let proxyAddress = json["proxy_address"] as! String
                     let proxyPort = String(json["proxy_port"] as! Int)
+                    let backendAccessToken = json["backend_access_token"] as! String
                     
                     UserData.setSipAccount(sipAccount)
                     UserData.setSipPassword(sipPassword)
                     UserData.setProxyAddress(proxyAddress)
                     UserData.setProxyPort(proxyPort)
+                    UserData.setBackendAccessToken(backendAccessToken)
                     
                     let sipList = json["sip_list"] as! [[String: AnyObject]]
                     for account: [String: AnyObject] in sipList{
