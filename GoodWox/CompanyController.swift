@@ -23,8 +23,6 @@ class CompanyController: UITableViewController{
     
         modifyTableStyle()
         downloadCompanyContact()
-        
-        self.tableView.separatorStyle = .None
     }
     
     func downloadCompanyContact(){
