@@ -1,38 +1,59 @@
-
 import Foundation
 import Alamofire
 
-class ApiClient {
+class SipApiClient {
     
     func getSipAccount(){
         
-        // Get MG Token
         let authentication: Authentication = Authentication()
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
         
-        let preferencesRead = NSUserDefaults.standardUserDefaults()
-        if let accessToken = preferencesRead.stringForKey("graphAccessToken"),
-            email = preferencesRead.stringForKey("graphEmail"){
-            
-            Alamofire.request(.POST, "https://sipphone-web-staging.azurewebsites.net/api/v1/sips/", parameters: ["email": email, "access_token": accessToken])
-                .responseJSON { response in
+        guard let accessToken = UserData.getGraphAccessToken() else{
+            return
+        }
+        
+        guard let email = UserData.getGraphAccount() else {
+            return
+        }
+        
+        Alamofire.request(.POST, "https://sipphone-web-staging.azurewebsites.net/api/v1/sips/", parameters: ["email": email, "access_token": accessToken])
+            .responseJSON { response in
+                
+                NSLog("response.request: \(response.request)")  // original URL request
+                NSLog("esponse.response: \(response.response)") // URL response
+                
+                switch response.result {
+                case .Success:
+                    NSLog("Validation Successful")
+                case .Failure(let error):
+                    NSLog("\(error)")
+                }
+                
+                // Save sip account information to NSUserdefaults
+                if let json = response.result.value as? [String: AnyObject]{
                     
-                    NSLog(">>>>>>>>")
-                    print("response.request: \(response.request)")  // original URL request
-                    print(response.response) // URL response
+                    // Set user data
+                    let sipAccount = json["sip_account"] as! String
+                    let sipPassword = json["sip_password"] as! String
+                    let proxyAddress = json["proxy_address"] as! String
+                    let proxyPort = String(json["proxy_port"] as! Int)
                     
-                    switch response.result {
-                    case .Success:
-                        print("Validation Successful")
-                    case .Failure(let error):
-                        print(error)
+                    UserData.setSipAccount(sipAccount)
+                    UserData.setSipPassword(sipPassword)
+                    UserData.setProxyAddress(proxyAddress)
+                    UserData.setProxyPort(proxyPort)
+                    
+                    let sipList = json["sip_list"] as! [[String: AnyObject]]
+                    for account: [String: AnyObject] in sipList{
+                        NSLog(account["email"]! as! String)
+                        NSLog(String(account["phone"]!))
+                        NSLog(String(account["sip_account"]!))
                     }
-                    
-                    if let JSON = response.result.value {
-                        print("JSON: \(JSON)")
-                    }
-            }
-            
+
+                    // Start linphone
+                    let lm = LinphoneManager()
+                    lm.startLinphone()
+                }
         }
     }
 }

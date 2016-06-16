@@ -46,11 +46,9 @@ class ProfileController: UIViewController{
                     return
                 }
                 
-                let preferencesSave = NSUserDefaults.standardUserDefaults()
-                preferencesSave.setValue(userInfo.mail, forKey: "graphEmail")
-                preferencesSave.synchronize()
-
-                ApiClient().getSipAccount()
+                UserData.setGraphAccount(userInfo.mail)
+                
+                SipApiClient().getSipAccount()
 
                 dispatch_async(dispatch_get_main_queue(),{
                     NSLog("User information loaded.")

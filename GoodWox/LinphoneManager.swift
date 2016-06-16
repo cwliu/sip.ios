@@ -85,6 +85,7 @@ class LinphoneManager {
         linphone_core_set_ring(LinphoneManager.lc, localRing)
     }
     
+    
     func startLinphone() {
         let proxyConfig = setIdentify()
         register(proxyConfig)        
@@ -131,13 +132,12 @@ class LinphoneManager {
         
         // Reference: http://www.linphone.org/docs/liblinphone/group__registration__tutorials.html
         
-        let path = NSBundle.mainBundle().pathForResource("Secret", ofType: "plist")
-        let dict = NSDictionary(contentsOfFile: path!)
-        let account = dict?.objectForKey("account") as! String
-        let password = dict?.objectForKey("password") as! String
-        let domain = dict?.objectForKey("domain") as! String
+        let account = UserData.getSipAccount()!
+        let password = UserData.getSipPassword()!
+        let domain = UserData.getProxyAddress()!
+        let port = UserData.getProxyPort()!
         
-        let identity = "sip:" + account + "@" + domain;
+        let identity = "sip:" + account + "@" + domain + ":" + port;
         
         
         /*create proxy config*/

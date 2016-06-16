@@ -7,8 +7,8 @@ class OutgoingCallController: UIViewController{
     override func viewDidLoad() {
         NSLog("OutgoingCallController.viewDidLoad()")
         
-        if let calleeSipAccount = sipNumber {
-            linphone_core_invite(LinphoneManager.lc, calleeSipAccount)
+        if let calleeSipAccount = sipNumber, lc = LinphoneManager.lc {
+            linphone_core_invite(lc, calleeSipAccount)
         }
     }
     

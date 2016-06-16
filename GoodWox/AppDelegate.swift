@@ -7,26 +7,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var lc: LinphoneManager!;
-
     @objc func graphAccountChange(notification: NSNotification){
         
         if let userInfo = notification.userInfo {
             let account = userInfo["NXOAuth2AccountStoreNewAccountUserInfoKey"] as? NXOAuth2Account
             let accessToken = account?.accessToken.accessToken
             NSLog("accessToken: \(accessToken)")
-            
-            let preferencesSave = NSUserDefaults.standardUserDefaults()
-            preferencesSave.setValue(accessToken, forKey: "graphAccessToken")
-            preferencesSave.synchronize()
+
+            UserData.setGraphAccesssToken(accessToken!)
         }
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
-//        lc = LinphoneManager()
-//        lc.startLinphone()
         
         NSNotificationCenter.defaultCenter().addObserver(
             self,
