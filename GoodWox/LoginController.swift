@@ -10,7 +10,7 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true        
         // Do any additional setup after loading the view, typically from a nib.
-        
+ 
     }
 
     override func didReceiveMemoryWarning() {
