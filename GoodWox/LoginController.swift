@@ -24,6 +24,10 @@ class LoginController: UIViewController {
     @IBAction func login(){
         authenticate()
     }
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+        
+    }
 }
 
 // MARK: Authentication

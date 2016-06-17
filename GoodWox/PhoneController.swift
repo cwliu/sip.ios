@@ -28,5 +28,7 @@ class PhoneController: UITableViewController{
                     }
                 }
         }
+        
+        self.navigationController?.navigationBar.barStyle = .Black
     }
 }

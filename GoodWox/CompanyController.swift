@@ -25,6 +25,7 @@ class CompanyController: UITableViewController{
         downloadCompanyContact()
     }
     
+
     func downloadCompanyContact(){
         
         // Download contact data from Office 365
@@ -88,7 +89,7 @@ class CompanyController: UITableViewController{
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
     }
-    
+
     // MARK: Style
     private func modifyTableStyle(){
         // Set tableView padding
@@ -96,12 +97,9 @@ class CompanyController: UITableViewController{
         let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
+        
+        self.navigationController?.navigationBar.barStyle = .Black
     }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-
     
     // MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

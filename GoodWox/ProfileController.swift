@@ -4,7 +4,6 @@ import UIKit
 class ProfileController: UIViewController{
     
     @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var emailLabel: UILabel!
     
     let authentication: Authentication = Authentication()
 
@@ -19,10 +18,6 @@ class ProfileController: UIViewController{
         self.getMeInfo()
         
         self.navigationController?.navigationBar.barStyle = .Black
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     private func getMeInfo(){
@@ -49,7 +44,7 @@ class ProfileController: UIViewController{
                 dispatch_async(dispatch_get_main_queue(),{
                     NSLog("User information loaded.")
                     self.nameLabel.text = userInfo.displayName
-                    self.emailLabel.text = userInfo.mail
+                    // userInfo.mail
                 })
             }
         }
@@ -70,7 +65,11 @@ private extension ProfileController{
 // MARK: Graph Helper
 private extension ProfileController{
     func disconnect(){
-        authentication.disconnect()
-        self.dismissViewControllerAnimated(true, completion: {});
+         authentication.disconnect()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+        self.presentViewController(vc, animated: true, completion: nil)
+        
     }
 }

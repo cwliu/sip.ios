@@ -9,7 +9,7 @@
         <!--GOODWOX Comm-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="GOODWOX Comm" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="LoginController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginController" title="GOODWOX Comm" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="LoginController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -194,9 +194,11 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="nameLabel" destination="876-IF-FGj" id="Oq5-SX-TQy"/>
+                        <segue destination="LWE-0U-cKc" kind="unwind" unwindAction="prepareForUnwind:" id="1bL-rt-n4X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4P5-2i-NmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="LWE-0U-cKc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="700" y="-880"/>
         </scene>
@@ -210,7 +212,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Bbx-qz-UGt">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bbx-qz-UGt" id="aYp-JV-b2b">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -245,11 +247,11 @@
                             <outlet property="delegate" destination="JI9-Ph-iXv" id="9ko-3A-Tds"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="連絡人" image="contacts_gray_25dp" id="MCf-aC-4dj"/>
+                    <navigationItem key="navigationItem" title="連絡人" id="W2z-7b-US4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3E-h9-z5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-296" y="3"/>
+            <point key="canvasLocation" x="516" y="3"/>
         </scene>
         <!--接聽-->
         <scene sceneID="Ue8-l0-yqH">
@@ -311,7 +313,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bFP-Ac-fg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1936" y="-4"/>
+            <point key="canvasLocation" x="2748" y="-4"/>
         </scene>
         <!--公司通訊-->
         <scene sceneID="3rF-yh-IeV">
@@ -373,7 +375,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTO-hf-kPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1164" y="-4"/>
+            <point key="canvasLocation" x="1976" y="-4"/>
         </scene>
         <!--Init Controller-->
         <scene sceneID="d5a-rh-n7k">
@@ -408,7 +410,7 @@
                     <connections>
                         <segue destination="8dd-aL-YHN" kind="relationship" relationship="viewControllers" id="F8U-L2-KMQ"/>
                         <segue destination="r0k-ZH-0g6" kind="relationship" relationship="viewControllers" id="mnr-Ju-Yad"/>
-                        <segue destination="JI9-Ph-iXv" kind="relationship" relationship="viewControllers" id="lSd-jh-XiU"/>
+                        <segue destination="Y2A-jK-rMB" kind="relationship" relationship="viewControllers" id="lSd-jh-XiU"/>
                         <segue destination="BCJ-3Z-Utf" kind="relationship" relationship="viewControllers" id="yea-EI-qOF"/>
                         <segue destination="YNi-eE-xKJ" kind="relationship" relationship="viewControllers" id="yxr-Y2-7Pr"/>
                     </connections>
@@ -454,7 +456,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2g-cl-f5v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="352" y="-4"/>
+            <point key="canvasLocation" x="1164" y="-4"/>
+        </scene>
+        <!--連絡人-->
+        <scene sceneID="8VM-LQ-Mvy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y2A-jK-rMB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="連絡人" image="contacts_gray_25dp" id="MCf-aC-4dj"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ted-Hr-6OM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JI9-Ph-iXv" kind="relationship" relationship="rootViewController" id="Z4E-dZ-Qnm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0h9-AM-BZy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-296" y="3"/>
         </scene>
     </scenes>
     <resources>
