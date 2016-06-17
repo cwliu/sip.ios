@@ -60,6 +60,8 @@ class CompanyController: UITableViewController{
         }
     }
     
+    // MARK: Style
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         NSLog("self.contactStore.contactList.count: \(self.contactStore.contactList.count)")
         return self.contactStore.contactList.count
@@ -96,6 +98,12 @@ class CompanyController: UITableViewController{
         tableView.scrollIndicatorInsets = insets
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+
+    
+    // MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         NSLog("prepareForSegue: \(segue.identifier)")
         

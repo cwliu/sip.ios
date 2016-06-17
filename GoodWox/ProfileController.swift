@@ -14,12 +14,15 @@ class ProfileController: UIViewController{
     }()
     
     override func viewDidLoad(){
-        
-        // Disalbe backbutton
-        navigationItem.hidesBackButton = true;
-        
+
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
         self.getMeInfo()
+        
+        self.navigationController?.navigationBar.barStyle = .Black
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     private func getMeInfo(){
@@ -50,6 +53,10 @@ class ProfileController: UIViewController{
                 })
             }
         }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
 }
 

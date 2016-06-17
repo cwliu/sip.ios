@@ -58,12 +58,12 @@
                     <connections>
                         <outlet property="activityIndicator" destination="Sxq-DX-AH8" id="8rw-AP-U6w"/>
                         <outlet property="connectButton" destination="Fee-oJ-Hvg" id="yXt-B3-GzO"/>
-                        <segue destination="XfV-c8-IhI" kind="show" identifier="login" id="vHo-dJ-daF"/>
+                        <segue destination="7fx-xH-nx1" kind="show" identifier="login" id="RwK-hV-aai"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1572" y="-880"/>
+            <point key="canvasLocation" x="-2507" y="-1203"/>
         </scene>
         <!--我的最愛-->
         <scene sceneID="edC-8s-aH2">
@@ -152,6 +152,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="更多" id="ia6-TE-hAy"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="emailLabel" destination="gbr-my-xiT" id="bCL-7l-mgb"/>
                         <outlet property="nameLabel" destination="876-IF-FGj" id="Oq5-SX-TQy"/>
@@ -159,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4P5-2i-NmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697" y="-856"/>
+            <point key="canvasLocation" x="700" y="-880"/>
         </scene>
         <!--聯絡人-->
         <scene sceneID="NAa-dI-LbR">
@@ -174,7 +175,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bbx-qz-UGt" id="aYp-JV-b2b">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="avatar_gray_30dp" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-r9-UEH">
@@ -288,7 +289,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfh-vJ-1MW" id="8n9-xg-cV5">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPv-ms-DJq">
@@ -336,6 +337,27 @@
             </objects>
             <point key="canvasLocation" x="1164" y="-4"/>
         </scene>
+        <!--Init Controller-->
+        <scene sceneID="d5a-rh-n7k">
+            <objects>
+                <viewController id="7fx-xH-nx1" customClass="InitController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bN5-QK-tEQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="ajr-YH-MPX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dcq-dA-l76">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="XfV-c8-IhI" kind="show" identifier="main" id="I43-Qh-lE5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9JJ-Qm-RbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1637" y="-1203"/>
+        </scene>
         <!--連絡人-->
         <scene sceneID="tmO-SX-CbP">
             <objects>
@@ -363,6 +385,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YNi-eE-xKJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="更多" image="more_gray_25dp" id="Bye-Q5-8Mj"/>
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qba-9l-VUc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -374,7 +397,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNG-6d-cvg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-59" y="-872"/>
+            <point key="canvasLocation" x="-59" y="-880"/>
         </scene>
         <!--公司通訊-->
         <scene sceneID="Ff0-bI-CMO">
