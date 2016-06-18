@@ -4,8 +4,12 @@ import Alamofire
 class PhoneController: UITableViewController{
     
     override func viewDidLoad() {
-        // Download manual contact
+        self.navigationController?.navigationBar.barStyle = .Black
+    }
+    
+    func downloadManualContact(){
         
+        // Download manual contact
         Alamofire.request(.GET, "https://sipphone-web-staging.azurewebsites.net/api/v1/contacts/", parameters: ["email": UserData.getGraphAccount()!, "backend_access_token": UserData.getBackendAccessToken()!])
             .responseJSON { response in
                 
@@ -28,7 +32,5 @@ class PhoneController: UITableViewController{
                     }
                 }
         }
-        
-        self.navigationController?.navigationBar.barStyle = .Black
     }
 }

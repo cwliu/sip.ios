@@ -388,9 +388,19 @@
                     <view key="view" contentMode="scaleToFill" id="Dcq-dA-l76">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bCw-Vr-jKV">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bCw-Vr-jKV" firstAttribute="centerY" secondItem="Dcq-dA-l76" secondAttribute="centerY" id="sMY-rp-wLe"/>
+                            <constraint firstItem="bCw-Vr-jKV" firstAttribute="centerX" secondItem="Dcq-dA-l76" secondAttribute="centerX" id="unl-ZD-mNr"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="bCw-Vr-jKV" id="2CY-Ya-Jed"/>
                         <segue destination="XfV-c8-IhI" kind="show" identifier="main" id="I43-Qh-lE5"/>
                     </connections>
                 </viewController>

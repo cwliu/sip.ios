@@ -6,13 +6,8 @@ class CompanyController: UITableViewController{
     
     let authentication: Authentication = Authentication()
     
-    lazy var graphClient: MSGraphClient = {
-        let client = MSGraphClient.defaultClient()
-        return client
-    }()
-    
     var sipNumber = "0702126175"
-    
+
     override func viewDidLoad() {
         NSLog("CompanyController.viewDidLoad()")
         
@@ -22,44 +17,8 @@ class CompanyController: UITableViewController{
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
     
         modifyTableStyle()
-        downloadCompanyContact()
     }
     
-
-    func downloadCompanyContact(){
-        
-        // Download contact data from Office 365
-        self.graphClient.users().request().getWithCompletion{
-            (collection: MSCollection?, request:MSGraphUsersCollectionRequest?, error: NSError?) in
-            
-            if let _ = error {
-                NSLog("Contact data download error")
-                return
-            }
-            
-            NSLog("Contact data loaded successful")
-            if let users = collection {
-                for user: MSGraphUser in users.value as! [MSGraphUser] {
-
-                    do {
-                        try Exception.catchException {
-                            /* calls that might throw an NSException */
-                            let contact: Contact = Contact(name: user.displayName, email: user.mail)
-                            NSLog("\(user.displayName)  \(user.mail)")
-                            self.contactStore.contactList.append(contact)
-                        }
-                    } catch let error{
-                        NSLog("NSError ocurred: \(error)")
-                    }
-                }
-
-                NSLog("Reload tableView data after contact data has been downloaded")
-                NSOperationQueue.mainQueue().addOperationWithBlock(){
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
     
     // MARK: Style
     

@@ -44,7 +44,6 @@ class ProfileController: UIViewController{
                 dispatch_async(dispatch_get_main_queue(),{
                     NSLog("User information loaded.")
                     self.nameLabel.text = userInfo.displayName
-                    // userInfo.mail
                 })
             }
         }

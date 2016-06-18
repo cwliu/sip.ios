@@ -66,6 +66,7 @@
 		A9842BFD1D0FA45D0062A35B /* exception.m in Sources */ = {isa = PBXBuildFile; fileRef = A9842BFC1D0FA45D0062A35B /* exception.m */; };
 		A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9842C031D0FE7FE0062A35B /* SipClient.swift */; };
 		A9842C241D1183340062A35B /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9842C231D1183340062A35B /* UserData.swift */; };
+		A98621681D15293C00BA767D /* GoodWox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A98621661D15293C00BA767D /* GoodWox.xcdatamodeld */; };
 		A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C121D03BB1C003FE7B3 /* ProfileController.swift */; };
 		A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */; };
 		A9863C171D03BD6D003FE7B3 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C161D03BD6D003FE7B3 /* Authentication.swift */; };
@@ -144,6 +145,7 @@
 		A9842BFE1D0FA4860062A35B /* exception.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
 		A9842C031D0FE7FE0062A35B /* SipClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SipClient.swift; sourceTree = "<group>"; };
 		A9842C231D1183340062A35B /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		A98621671D15293C00BA767D /* GoodWox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodWox.xcdatamodel; sourceTree = "<group>"; };
 		A9863C121D03BB1C003FE7B3 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
 		A9863C161D03BD6D003FE7B3 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
@@ -362,13 +364,13 @@
 			children = (
 				A9AAE48B1D0273C20034B564 /* AppDelegate.swift */,
 				A9AAE48D1D0273C20034B564 /* LoginController.swift */,
+				A9C249271D13EB2D00430C92 /* InitController.swift */,
 				A9842BDB1D0DA1E20062A35B /* LinphoneManager.swift */,
 				A9C249031D12A00F00430C92 /* PhoneController.swift */,
 				A99663241D05A105003B5EEE /* CompanyController.swift */,
 				A9863C121D03BB1C003FE7B3 /* ProfileController.swift */,
 				A99663211D0591D4003B5EEE /* TabController.swift */,
 				A9842BF61D0EA1730062A35B /* OutgoingCallController.swift */,
-				A9C249271D13EB2D00430C92 /* InitController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -389,6 +391,7 @@
 				A996632A1D06483D003B5EEE /* ContactStore.swift */,
 				A996632C1D064916003B5EEE /* Contact.swift */,
 				A9842C231D1183340062A35B /* UserData.swift */,
+				A98621661D15293C00BA767D /* GoodWox.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -415,9 +418,9 @@
 		A9AAE48A1D0273C20034B564 /* GoodWox */ = {
 			isa = PBXGroup;
 			children = (
+				A9863C111D03B938003FE7B3 /* View */,
 				A9842C001D0FE0460062A35B /* Service */,
 				A99663231D05A0B0003B5EEE /* Model */,
-				A9863C111D03B938003FE7B3 /* View */,
 				A9863C101D03B92A003FE7B3 /* Controller */,
 				A9863C0F1D03B919003FE7B3 /* Resource */,
 				A9842BFF1D0FA4FC0062A35B /* ObjC */,
@@ -576,6 +579,7 @@
 				A9C249281D13EB2D00430C92 /* InitController.swift in Sources */,
 				A9863C171D03BD6D003FE7B3 /* Authentication.swift in Sources */,
 				A9842BDC1D0DA1E20062A35B /* LinphoneManager.swift in Sources */,
+				A98621681D15293C00BA767D /* GoodWox.xcdatamodeld in Sources */,
 				A99663251D05A105003B5EEE /* CompanyController.swift in Sources */,
 				A996632B1D06483D003B5EEE /* ContactStore.swift in Sources */,
 				A9C249041D12A00F00430C92 /* PhoneController.swift in Sources */,
@@ -752,6 +756,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A98621661D15293C00BA767D /* GoodWox.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A98621671D15293C00BA767D /* GoodWox.xcdatamodel */,
+			);
+			currentVersion = A98621671D15293C00BA767D /* GoodWox.xcdatamodel */;
+			path = GoodWox.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A9AAE4801D0273C20034B564 /* Project object */;
 }
