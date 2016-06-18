@@ -1,14 +1,5 @@
 import Foundation
 import CoreData
-//class Contact {
-//    var name: String = ""
-//    var email: String = ""
-//    
-//    init(name: String, email: String){
-//        self.name = name
-//        self.email = email
-//    }
-//}
 
 enum ContactType {
     case COMPANY
