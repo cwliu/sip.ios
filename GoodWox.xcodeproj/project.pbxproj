@@ -67,6 +67,7 @@
 		A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9842C031D0FE7FE0062A35B /* SipClient.swift */; };
 		A9842C241D1183340062A35B /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9842C231D1183340062A35B /* UserData.swift */; };
 		A98621681D15293C00BA767D /* GoodWox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A98621661D15293C00BA767D /* GoodWox.xcdatamodeld */; };
+		A986216A1D15495E00BA767D /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98621691D15495E00BA767D /* ContactManager.swift */; };
 		A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C121D03BB1C003FE7B3 /* ProfileController.swift */; };
 		A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */; };
 		A9863C171D03BD6D003FE7B3 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C161D03BD6D003FE7B3 /* Authentication.swift */; };
@@ -146,6 +147,7 @@
 		A9842C031D0FE7FE0062A35B /* SipClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SipClient.swift; sourceTree = "<group>"; };
 		A9842C231D1183340062A35B /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A98621671D15293C00BA767D /* GoodWox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodWox.xcdatamodel; sourceTree = "<group>"; };
+		A98621691D15495E00BA767D /* ContactManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		A9863C121D03BB1C003FE7B3 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
 		A9863C161D03BD6D003FE7B3 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				A996632C1D064916003B5EEE /* Contact.swift */,
 				A9842C231D1183340062A35B /* UserData.swift */,
 				A98621661D15293C00BA767D /* GoodWox.xcdatamodeld */,
+				A98621691D15495E00BA767D /* ContactManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				A9842BF71D0EA1730062A35B /* OutgoingCallController.swift in Sources */,
 				A99663221D0591D4003B5EEE /* TabController.swift in Sources */,
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
+				A986216A1D15495E00BA767D /* ContactManager.swift in Sources */,
 				A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */,
 				A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */,
 				A9C249281D13EB2D00430C92 /* InitController.swift in Sources */,

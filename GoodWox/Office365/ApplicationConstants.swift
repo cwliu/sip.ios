@@ -1,7 +1,7 @@
 import Foundation
 
 struct ApplicationConstants {
-    static let clientId = "dcd04b40-11f3-4dba-b7da-ce9474ed8c92"
+    static let clientId = "79d4b5a2-08f6-4a5e-89a9-71c8ec463e70"
     static let scopes   = ["https://graph.microsoft.com/User.ReadBasic.All"]
 }
 

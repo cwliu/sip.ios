@@ -78,7 +78,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="我的最愛" image="star_blue_25dp" id="r1N-Tv-igj"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="我的最愛" image="star_blue_25dp" id="r1N-Tv-igj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSu-aH-BrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="聯絡記錄" image="recents_gray_25dp" id="D8O-qn-2bI"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="聯絡記錄" image="recents_gray_25dp" id="D8O-qn-2bI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYr-2o-waw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -122,14 +122,14 @@
                                     <constraint firstAttribute="width" constant="120" id="UHd-o9-uiz"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="876-IF-FGj">
-                                <rect key="frame" x="296" y="278" width="9" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="876-IF-FGj">
+                                <rect key="frame" x="261" y="278" width="79" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="check_circle_green_14dp" translatesAutoresizingMaskIntoConstraints="NO" id="pTJ-eN-kFv">
-                                <rect key="frame" x="313" y="282" width="14" height="14"/>
+                                <rect key="frame" x="348" y="282" width="14" height="14"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YEW-07-SFR">
                                 <rect key="frame" x="36" y="382" width="78" height="33"/>
@@ -393,7 +393,7 @@
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.9686274528503418" green="0.94509804248809814" blue="0.93725490570068359" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="bCw-Vr-jKV" firstAttribute="centerY" secondItem="Dcq-dA-l76" secondAttribute="centerY" id="sMY-rp-wLe"/>
                             <constraint firstItem="bCw-Vr-jKV" firstAttribute="centerX" secondItem="Dcq-dA-l76" secondAttribute="centerX" id="unl-ZD-mNr"/>
@@ -472,7 +472,7 @@
         <scene sceneID="8VM-LQ-Mvy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y2A-jK-rMB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="連絡人" image="contacts_gray_25dp" id="MCf-aC-4dj"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="連絡人" image="contacts_gray_25dp" id="MCf-aC-4dj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ted-Hr-6OM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

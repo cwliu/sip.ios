@@ -1,8 +1,9 @@
 import Foundation
+import CoreData
 
 class CompanyController: UITableViewController{
     
-    var contactStore: ContactStore!
+    var contacts: [Contact] = []
     
     let authentication: Authentication = Authentication()
     
@@ -11,25 +12,30 @@ class CompanyController: UITableViewController{
     override func viewDidLoad() {
         NSLog("CompanyController.viewDidLoad()")
         
-        self.contactStore = ContactStore()
-
         //Init Microsoft Graph
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
     
         modifyTableStyle()
+        
+        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest(entityName: "Contact")
+            do {
+                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+                tableView.reloadData()
+            } catch {
+                print(error)
+            }
+        }
     }
     
-    
     // MARK: Style
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        NSLog("self.contactStore.contactList.count: \(self.contactStore.contactList.count)")
-        return self.contactStore.contactList.count
+        return self.contacts.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        let contact = self.contactStore.contactList[indexPath.row]
+        let contact = self.contacts[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("company", forIndexPath: indexPath)as! ContactCell
 
         cell.nameLabel.text = "\(contact.name ?? "No name")"
