@@ -7,7 +7,7 @@ class CompanyController: UITableViewController{
     
     let authentication: Authentication = Authentication()
     
-    var sipNumber = "0702126175"
+    var sipNumber: String? = nil
 
     override func viewDidLoad() {
         NSLog("CompanyController.viewDidLoad()")
@@ -46,6 +46,11 @@ class CompanyController: UITableViewController{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if let sip = self.contacts[indexPath.row].sip{
+            sipNumber = sip
+        }else{
+            sipNumber = nil
+        }
         
         let row = indexPath.row
         NSLog("Row: \(row)")
@@ -73,9 +78,26 @@ class CompanyController: UITableViewController{
         if(segue.identifier == "makeCall"){
             
             let controller = segue.destinationViewController as! OutgoingCallController
-            controller.sipNumber = sipNumber
             
+            if let sip = sipNumber {
+                controller.sipNumber = sip
+                
+            }else{
+                let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no SIP number", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
         }
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if(identifier == "makeCall"){
+            if sipNumber == nil {
+                return false
+            }
+        }
+        
+        return true
     }
 }
 

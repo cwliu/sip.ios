@@ -4,10 +4,13 @@ class OutgoingCallController: UIViewController{
 
     var sipNumber: String?
     
+    @IBOutlet var sipNumberLabel: UILabel!
+    
     override func viewDidLoad() {
         NSLog("OutgoingCallController.viewDidLoad()")
         
         if let calleeSipAccount = sipNumber, lc = LinphoneManager.lc {
+            sipNumberLabel.text = sipNumber!
             linphone_core_invite(lc, calleeSipAccount)
         }
     }

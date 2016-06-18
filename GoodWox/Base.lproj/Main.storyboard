@@ -303,13 +303,24 @@
                                     <action selector="hangUp" destination="tiK-IN-xw8" eventType="touchUpInside" id="oMi-cO-nvn"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIP NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrO-sg-PXJ">
+                                <rect key="frame" x="250" y="244" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nua-xe-PXC" firstAttribute="top" secondItem="WrO-sg-PXJ" secondAttribute="bottom" constant="20" id="JSA-I5-mCY"/>
                             <constraint firstItem="nua-xe-PXC" firstAttribute="centerX" secondItem="WTA-Qn-CDs" secondAttribute="centerX" id="Zxr-rt-nbu"/>
                             <constraint firstItem="nua-xe-PXC" firstAttribute="centerY" secondItem="WTA-Qn-CDs" secondAttribute="centerY" id="kpo-M1-6Cf"/>
+                            <constraint firstItem="WrO-sg-PXJ" firstAttribute="centerX" secondItem="WTA-Qn-CDs" secondAttribute="centerX" id="q20-mM-n5K"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="sipNumberLabel" destination="WrO-sg-PXJ" id="C2f-Qt-LFH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bFP-Ac-fg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

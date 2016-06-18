@@ -21,9 +21,6 @@ class InitController: UIViewController{
         
         ContactDbHelper.deleteAll()
         initData()
-        // SipApiClient().getSipAccount()
-        
-        
     }
     
     private func initData(){
@@ -51,14 +48,10 @@ class InitController: UIViewController{
     }
     
     func downloadMicrosoftGraphContact(){
-        defer {
-            finish()
-        }
         
         if ContactDbHelper.getAll().count != 0{
             return
         }
-        
         
         // Download contact data from Office 365
         self.graphClient.users().request().getWithCompletion{
@@ -73,21 +66,9 @@ class InitController: UIViewController{
             if let users = collection {
                 
                 if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
-                    //
-                    
                     for user: MSGraphUser in users.value as! [MSGraphUser] {
                         
-                        //                    do {
-                        //                        try Exception.catchException {
-                        //                        }
-                        //
-                        //                    } catch let error{
-                        //                        NSLog("NSError ocurred: \(error)")
-                        //                    }
-                        
-                        
                         let contact = NSEntityDescription.insertNewObjectForEntityForName("Contact", inManagedObjectContext: managedObjectContext) as! Contact
-                        
                         do {
                             try Exception.catchException {
                                 
@@ -105,7 +86,7 @@ class InitController: UIViewController{
                         } catch let error{
                             NSLog("NSError ocurred: \(error)")
                             managedObjectContext.deleteObject(contact)
-
+                            
                         }
                         
                     }
@@ -115,7 +96,10 @@ class InitController: UIViewController{
                     } catch let error {
                         NSLog("NSError ocurred: \(error)")
                     }
-
+                    
+                    // BUG
+                    SipApiClient().initSip(self.finish)
+                    
                 }
             }
         }
