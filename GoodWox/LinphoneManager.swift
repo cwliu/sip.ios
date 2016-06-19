@@ -54,20 +54,20 @@ class LinphoneManager {
     
     static var lc: COpaquePointer?
     static var iterateTimer: NSTimer!
+    static var isInit: Bool = false
     
     var lct: LinphoneCoreVTable = LinphoneCoreVTable()
 
     func startLinphone() {
-//        if let _ = LinphoneManager.lc {
+        if LinphoneManager.isInit {
+            NSLog("Linphone already init")
+        }else{
             NSLog("Linphone init")
             initLinphone()
             let proxyConfig = setIdentify()
             register(proxyConfig)
             setTimer()
-//        }else{
-//            NSLog("Linphone already init")
-//        }
-        
+        }
     }
     
     func initLinphone(){
@@ -88,6 +88,7 @@ class LinphoneManager {
         lct.call_state_changed = callStateChanged
         
         LinphoneManager.lc = linphone_core_new_with_config(&lct, lpConfig, nil)
+        LinphoneManager.isInit = true
         
         // Set ring asset
         let ringbackPath = NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath).URLByAppendingPathComponent("/ringback.wav").absoluteString
@@ -177,6 +178,7 @@ class LinphoneManager {
         }
         
         linphone_core_destroy(LinphoneManager.getLc());
+        LinphoneManager.isInit = false
     }
     
     private func setTimer(){
