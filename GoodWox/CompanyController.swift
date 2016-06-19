@@ -44,20 +44,7 @@ class CompanyController: UITableViewController{
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if let sip = self.contacts[indexPath.row].sip{
-            sipNumber = sip
-        }else{
-            sipNumber = nil
-        }
-        
-        let row = indexPath.row
-        NSLog("Row: \(row)")
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        tableView.reloadData()
     }
 
     // MARK: Style
@@ -75,11 +62,14 @@ class CompanyController: UITableViewController{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         NSLog("prepareForSegue: \(segue.identifier)")
         
+        
+        let indexPath = self.tableView.indexPathForSelectedRow
+        
         if(segue.identifier == "makeCall"){
             
             let controller = segue.destinationViewController as! OutgoingCallController
             
-            if let sip = sipNumber {
+            if let sip = self.contacts[indexPath!.row].sip{
                 controller.sipNumber = sip
                 
             }else{
@@ -88,16 +78,6 @@ class CompanyController: UITableViewController{
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
-    }
-    
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if(identifier == "makeCall"){
-            if sipNumber == nil {
-                return false
-            }
-        }
-        
-        return true
-    }
+    }    
 }
 
