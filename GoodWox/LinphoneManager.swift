@@ -100,23 +100,6 @@ class LinphoneManager {
         linphone_core_iterate(LinphoneManager.lc); /* first iterate initiates registration */
     }
     
-    func shutdown(){
-        NSLog("Shutdown..")
-        
-        LinphoneManager.iterateTimer.invalidate()
-        
-        let proxy_cfg = linphone_core_get_default_proxy_config(LinphoneManager.lc); /* get default proxy config*/
-        linphone_proxy_config_edit(proxy_cfg); /*start editing proxy configuration*/
-        linphone_proxy_config_enable_register(proxy_cfg, 0); /*de-activate registration for this proxy config*/
-        linphone_proxy_config_done(proxy_cfg); /*initiate REGISTER with expire = 0*/
-        while(linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationCleared){
-            linphone_core_iterate(LinphoneManager.lc); /*to make sure we receive call backs before shutting down*/
-            ms_usleep(50000);
-        }
-        
-        linphone_core_destroy(LinphoneManager.lc);
-    }
-    
     private func bundleFile(file: NSString) -> NSString{
         return NSBundle.mainBundle().pathForResource(file.stringByDeletingPathExtension, ofType: file.pathExtension)!
     }
@@ -170,6 +153,24 @@ class LinphoneManager {
     
     private func register(proxy_cfg: COpaquePointer){
         linphone_proxy_config_enable_register(proxy_cfg, 1); /* activate registration for this proxy config*/
+    }
+    
+    
+    static func unregister(){
+        NSLog("Linphone unregister()..")
+        
+        LinphoneManager.iterateTimer.invalidate()
+        
+        let proxy_cfg = linphone_core_get_default_proxy_config(LinphoneManager.lc); /* get default proxy config*/
+        linphone_proxy_config_edit(proxy_cfg); /*start editing proxy configuration*/
+        linphone_proxy_config_enable_register(proxy_cfg, 0); /*de-activate registration for this proxy config*/
+        linphone_proxy_config_done(proxy_cfg); /*initiate REGISTER with expire = 0*/
+        while(linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationCleared && linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationFailed ){
+            linphone_core_iterate(LinphoneManager.lc); /*to make sure we receive call backs before shutting down*/
+            ms_usleep(50000);
+        }
+        
+        linphone_core_destroy(LinphoneManager.lc);
     }
     
     private func setTimer(){

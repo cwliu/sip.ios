@@ -18,8 +18,6 @@ class InitController: UIViewController{
         
         loadingUI(show: true)
         
-        
-        ContactDbHelper.deleteAll()
         initData()
     }
     
@@ -42,14 +40,16 @@ class InitController: UIViewController{
                 UserData.setGraphAccount(userInfo.mail)
                 UserData.setGraphName(userInfo.displayName)
                 
-                self.downloadMicrosoftGraphContact()
+                self.downloadCompanyContact()
             }
         }
     }
     
-    func downloadMicrosoftGraphContact(){
+    func downloadCompanyContact(){
         
+        // Already downloaded
         if ContactDbHelper.getAll().count != 0{
+            SipApiClient().initSip(self.finish)
             return
         }
         
@@ -76,7 +76,6 @@ class InitController: UIViewController{
                                 contact.email = user.mail
                                 contact.uid = user.entityId
                                 contact.type = ContactType.COMPANY.hashValue
-                                
                             }
                             
                             if user.mail == UserData.getGraphAccount()!{
@@ -86,9 +85,7 @@ class InitController: UIViewController{
                         } catch let error{
                             NSLog("NSError ocurred: \(error)")
                             managedObjectContext.deleteObject(contact)
-                            
                         }
-                        
                     }
                     
                     do {
@@ -97,9 +94,7 @@ class InitController: UIViewController{
                         NSLog("NSError ocurred: \(error)")
                     }
                     
-                    // BUG
                     SipApiClient().initSip(self.finish)
-                    
                 }
             }
         }
@@ -116,7 +111,6 @@ class InitController: UIViewController{
         self.presentViewController(vc, animated: true, completion: nil)
     }
 }
-
 
 private extension InitController {
     func loadingUI(show show: Bool) {

@@ -37,11 +37,17 @@ private extension ProfileController{
 // MARK: Graph Helper
 private extension ProfileController{
     func disconnect(){
+        
+        // Graph logout
         authentication.disconnect()
         
         UserData.clear()
         
+        // Delete DB
+        ContactDbHelper.deleteAll()
         
+        // linphone unregister
+        LinphoneManager.unregister()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("LoginController") as! LoginController

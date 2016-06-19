@@ -8,6 +8,7 @@ class SipApiClient {
         if UserData.getSipAccount() != nil {
             startLinphone()
             completionHandler()
+            login({})
         }else{
             login(completionHandler)
         }
