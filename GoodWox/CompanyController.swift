@@ -28,6 +28,7 @@ class CompanyController: UITableViewController{
         }
     }
     
+    
     // MARK: Style
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.contacts.count
@@ -71,6 +72,7 @@ class CompanyController: UITableViewController{
             
             if let sip = self.contacts[indexPath!.row].sip{
                 controller.sipNumber = sip
+                controller.calleeName = self.contacts[indexPath!.row].name
                 
             }else{
                 let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no SIP number", preferredStyle: UIAlertControllerStyle.Alert)
@@ -78,6 +80,6 @@ class CompanyController: UITableViewController{
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
-    }    
+    }
 }
 

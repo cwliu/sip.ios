@@ -296,29 +296,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nua-xe-PXC">
-                                <rect key="frame" x="285" y="285" width="30" height="30"/>
-                                <state key="normal" title="掛斷"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIP NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrO-sg-PXJ">
+                                <rect key="frame" x="250" y="296" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nua-xe-PXC">
+                                <rect key="frame" x="252" y="375" width="96" height="96"/>
+                                <state key="normal" image="call_end_red_96dp"/>
                                 <connections>
                                     <action selector="hangUp" destination="tiK-IN-xw8" eventType="touchUpInside" id="oMi-cO-nvn"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIP NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrO-sg-PXJ">
-                                <rect key="frame" x="250" y="244" width="100" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="avatar_light_48dp" translatesAutoresizingMaskIntoConstraints="NO" id="mHp-mo-adD">
+                                <rect key="frame" x="240" y="100" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="Qzg-gK-1MA"/>
+                                    <constraint firstAttribute="width" constant="120" id="w2d-8Y-ZGp"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyt-Ws-PRZ">
+                                <rect key="frame" x="266" y="244" width="69" height="28"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="sip_white_18dp" translatesAutoresizingMaskIntoConstraints="NO" id="RkI-pV-4BL">
+                                <rect key="frame" x="220" y="298" width="18" height="18"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.4117647111415863" green="0.77254903316497803" blue="0.85882353782653809" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="WrO-sg-PXJ" firstAttribute="leading" secondItem="RkI-pV-4BL" secondAttribute="trailing" constant="12" id="3LV-fA-Q0O"/>
+                            <constraint firstItem="mHp-mo-adD" firstAttribute="centerX" secondItem="WTA-Qn-CDs" secondAttribute="centerX" id="Evo-ra-z2O"/>
+                            <constraint firstItem="oyt-Ws-PRZ" firstAttribute="top" secondItem="mHp-mo-adD" secondAttribute="bottom" constant="24" id="FyN-q2-ePr"/>
                             <constraint firstItem="nua-xe-PXC" firstAttribute="top" secondItem="WrO-sg-PXJ" secondAttribute="bottom" constant="20" id="JSA-I5-mCY"/>
+                            <constraint firstItem="dzu-Xu-8Gb" firstAttribute="top" secondItem="nua-xe-PXC" secondAttribute="bottom" constant="80" id="LA5-Ta-yx6"/>
+                            <constraint firstItem="oyt-Ws-PRZ" firstAttribute="centerX" secondItem="WTA-Qn-CDs" secondAttribute="centerX" id="UjC-AI-Tjt"/>
+                            <constraint firstItem="WrO-sg-PXJ" firstAttribute="top" secondItem="oyt-Ws-PRZ" secondAttribute="bottom" constant="24" id="Vds-I7-IXU"/>
                             <constraint firstItem="nua-xe-PXC" firstAttribute="centerX" secondItem="WTA-Qn-CDs" secondAttribute="centerX" id="Zxr-rt-nbu"/>
+                            <constraint firstItem="mHp-mo-adD" firstAttribute="top" secondItem="ath-Uq-8At" secondAttribute="bottom" constant="80" id="idq-8I-u4S"/>
                             <constraint firstItem="nua-xe-PXC" firstAttribute="centerY" secondItem="WTA-Qn-CDs" secondAttribute="centerY" id="kpo-M1-6Cf"/>
                             <constraint firstItem="WrO-sg-PXJ" firstAttribute="centerX" secondItem="WTA-Qn-CDs" secondAttribute="centerX" id="q20-mM-n5K"/>
+                            <constraint firstItem="RkI-pV-4BL" firstAttribute="centerY" secondItem="WrO-sg-PXJ" secondAttribute="centerY" id="wwY-4v-SaS"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="JSA-I5-mCY"/>
+                                <exclude reference="kpo-M1-6Cf"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="nameLabel" destination="oyt-Ws-PRZ" id="4TO-j3-xdZ"/>
                         <outlet property="sipNumberLabel" destination="WrO-sg-PXJ" id="C2f-Qt-LFH"/>
                     </connections>
                 </viewController>
@@ -503,6 +535,7 @@
         <image name="arror_right_gray_16dp" width="16" height="16"/>
         <image name="avatar_gray_30dp" width="30" height="30"/>
         <image name="avatar_light_48dp" width="48" height="48"/>
+        <image name="call_end_red_96dp" width="96" height="96"/>
         <image name="check_circle_green_14dp" width="14" height="14"/>
         <image name="connect_gray_25dp" width="25" height="25"/>
         <image name="contacts_gray_25dp" width="25" height="25"/>
@@ -511,6 +544,7 @@
         <image name="logout_gray_16dp" width="16" height="16"/>
         <image name="more_gray_25dp" width="25" height="25"/>
         <image name="recents_gray_25dp" width="25" height="25"/>
+        <image name="sip_white_18dp" width="18" height="18"/>
         <image name="star_blue_25dp" width="25" height="25"/>
         <image name="star_gray_16dp" width="16" height="16"/>
     </resources>
