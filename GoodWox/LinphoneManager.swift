@@ -31,13 +31,35 @@ var callStateChanged: LinphoneCoreCallStateChangedCb = {
     case LinphoneCallIncomingReceived: /**<This is a new incoming call */
         NSLog("callStateChanged: LinphoneCallIncomingReceived")
         
-        if var topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
+        //        if var topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+        //            while let presentedViewController = topController.presentedViewController {
+        //                topController = presentedViewController
+        //            }
+        
+        // topController should now be your topmost view controller
+        
+        //            let controller = topController as! U
+        //            UI
+        
+        //            topController.
+        //            topController.
+        
+        
+        //receiveCall
+        //        }
+        
+        //        UIApplication.sharedApplication().keyWindow?.rootViewController.
+        if var controller = UIApplication.sharedApplication().keyWindow?.rootViewController{
+            while let presentedViewController = controller.presentedViewController {
+                controller = presentedViewController
             }
             
-            // topController should now be your topmost view controller
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("receiveCall")
+            controller.presentViewController(vc, animated: true, completion: nil)
         }
+        
+        
         
     case LinphoneCallStreamsRunning: /**<The media streams are established and running*/
         NSLog("callStateChanged: LinphoneCallStreamsRunning")
@@ -53,11 +75,11 @@ var callStateChanged: LinphoneCoreCallStateChangedCb = {
 class LinphoneManager {
     
     static var lc: COpaquePointer?
-    static var iterateTimer: NSTimer!
+    static var iterateTimer: NSTimer?
     static var isInit: Bool = false
     
     var lct: LinphoneCoreVTable = LinphoneCoreVTable()
-
+    
     func startLinphone() {
         if LinphoneManager.isInit {
             NSLog("Linphone already init")
@@ -151,7 +173,8 @@ class LinphoneManager {
         linphone_address_destroy(from); /*release resource*/
         
         linphone_proxy_config_set_server_addr(proxy_cfg, server_addr!); /* we assume domain = proxy server address*/
-        linphone_proxy_config_enable_register(proxy_cfg, 0); /* activate registration for this proxy config*/
+        //        linphone_proxy_config_enable_register(proxy_cfg, 0); /* activate registration for this proxy config*/
+        linphone_proxy_config_set_expires(proxy_cfg, 60)
         linphone_core_add_proxy_config(LinphoneManager.getLc(), proxy_cfg); /*add proxy config to linphone core*/
         linphone_core_set_default_proxy_config(LinphoneManager.getLc(), proxy_cfg); /*set to default proxy*/
         
@@ -166,7 +189,9 @@ class LinphoneManager {
     static func unregister(){
         NSLog("Linphone unregister()..")
         
-        LinphoneManager.iterateTimer.invalidate()
+        if let timer = LinphoneManager.iterateTimer{
+            timer.invalidate()
+        }
         
         let proxy_cfg = linphone_core_get_default_proxy_config(LinphoneManager.getLc()); /* get default proxy config*/
         linphone_proxy_config_edit(proxy_cfg); /*start editing proxy configuration*/
@@ -174,8 +199,8 @@ class LinphoneManager {
         linphone_proxy_config_done(proxy_cfg); /*initiate REGISTER with expire = 0*/
         while(linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationCleared && linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationFailed
             && linphone_proxy_config_get_state(proxy_cfg) != LinphoneRegistrationNone){
-            linphone_core_iterate(LinphoneManager.getLc()); /*to make sure we receive call backs before shutting down*/
-            ms_usleep(50000);
+                linphone_core_iterate(LinphoneManager.getLc()); /*to make sure we receive call backs before shutting down*/
+                ms_usleep(50000);
         }
         
         linphone_core_destroy(LinphoneManager.getLc());

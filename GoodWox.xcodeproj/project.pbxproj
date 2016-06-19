@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		62D958190217ECD6C13112EB /* Pods_GoodWox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */; };
+		A96B651C1D16D54B00BF2436 /* ReceiveCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */; };
 		A9842BAC1D0DA1170062A35B /* libantlr3c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B851D0DA0D00062A35B /* libantlr3c.a */; };
 		A9842BAD1D0DA1170062A35B /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B861D0DA0D00062A35B /* libavcodec.a */; };
 		A9842BAE1D0DA1170062A35B /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B871D0DA0D00062A35B /* libavutil.a */; };
@@ -86,6 +87,7 @@
 
 /* Begin PBXFileReference section */
 		111C376739DFF46C34F969C9 /* Pods-GoodWox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.release.xcconfig"; sourceTree = "<group>"; };
+		A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveCallController.swift; sourceTree = "<group>"; };
 		A9842B851D0DA0D00062A35B /* libantlr3c.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libantlr3c.a; path = "liblinphone-sdk/apple-darwin/lib/libantlr3c.a"; sourceTree = "<group>"; };
 		A9842B861D0DA0D00062A35B /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = "liblinphone-sdk/apple-darwin/lib/libavcodec.a"; sourceTree = "<group>"; };
 		A9842B871D0DA0D00062A35B /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = "liblinphone-sdk/apple-darwin/lib/libavutil.a"; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				A9863C121D03BB1C003FE7B3 /* ProfileController.swift */,
 				A99663211D0591D4003B5EEE /* TabController.swift */,
 				A9842BF61D0EA1730062A35B /* OutgoingCallController.swift */,
+				A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A96B651C1D16D54B00BF2436 /* ReceiveCallController.swift in Sources */,
 				A9842BFD1D0FA45D0062A35B /* exception.m in Sources */,
 				A99663291D05A81B003B5EEE /* ContactCell.swift in Sources */,
 				A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */,
