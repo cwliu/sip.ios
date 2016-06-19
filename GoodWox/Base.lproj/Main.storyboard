@@ -291,17 +291,6 @@
                                     <action selector="answerCall" destination="IUv-uk-iz6" eventType="touchUpInside" id="HlG-V6-8TC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxH-kA-Wo3">
-                                <rect key="frame" x="416" y="432" width="40" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="Cqc-1a-wqr"/>
-                                    <constraint firstAttribute="height" constant="80" id="OU9-hu-a1X"/>
-                                </constraints>
-                                <state key="normal" image="minus_red_20dp"/>
-                                <connections>
-                                    <action selector="hangUp" destination="IUv-uk-iz6" eventType="touchUpInside" id="0gD-QV-bI7"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEz-pD-oWO">
                                 <rect key="frame" x="320" y="424" width="96" height="96"/>
                                 <state key="normal" image="call_end_red_96dp"/>
@@ -313,8 +302,6 @@
                         <color key="backgroundColor" red="0.41176471110000001" green="0.77254903320000001" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hcN-P3-Phq" firstAttribute="centerX" secondItem="Ogq-Ao-mU4" secondAttribute="centerX" id="CO5-sh-xdH"/>
-                            <constraint firstItem="FxH-kA-Wo3" firstAttribute="leading" secondItem="DEz-pD-oWO" secondAttribute="trailing" id="DFn-6a-xbi"/>
-                            <constraint firstItem="FxH-kA-Wo3" firstAttribute="centerY" secondItem="DEz-pD-oWO" secondAttribute="centerY" id="M3h-6H-lac"/>
                             <constraint firstItem="hcN-P3-Phq" firstAttribute="top" secondItem="Vv2-6B-wl6" secondAttribute="bottom" constant="24" id="PMj-yQ-l4K"/>
                             <constraint firstItem="DEz-pD-oWO" firstAttribute="leading" secondItem="4Du-y9-SyX" secondAttribute="trailing" constant="40" id="WmS-WK-m1g"/>
                             <constraint firstItem="Vv2-6B-wl6" firstAttribute="top" secondItem="4RS-X9-yq1" secondAttribute="bottom" constant="24" id="bIO-cG-dCx"/>
@@ -593,7 +580,6 @@
         <image name="info_gray_16dp" width="16" height="16"/>
         <image name="logo_150dp" width="150" height="200"/>
         <image name="logout_gray_16dp" width="16" height="16"/>
-        <image name="minus_red_20dp" width="20" height="20"/>
         <image name="more_gray_25dp" width="25" height="25"/>
         <image name="phone_green_96dp" width="96" height="96"/>
         <image name="recents_gray_25dp" width="25" height="25"/>
