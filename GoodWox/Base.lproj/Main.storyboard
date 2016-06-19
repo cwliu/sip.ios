@@ -405,7 +405,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="nameLabel" destination="jPv-ms-DJq" id="3SP-Uz-L5D"/>
-                                    <segue destination="tiK-IN-xw8" kind="show" identifier="makeCall" id="y1q-DI-aOp"/>
+                                    <segue destination="tiK-IN-xw8" kind="presentation" identifier="makeCall" id="y1q-DI-aOp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

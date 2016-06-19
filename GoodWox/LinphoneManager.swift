@@ -172,7 +172,8 @@ class LinphoneManager {
         linphone_proxy_config_edit(proxy_cfg); /*start editing proxy configuration*/
         linphone_proxy_config_enable_register(proxy_cfg, 0); /*de-activate registration for this proxy config*/
         linphone_proxy_config_done(proxy_cfg); /*initiate REGISTER with expire = 0*/
-        while(linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationCleared && linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationFailed ){
+        while(linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationCleared && linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationFailed
+            && linphone_proxy_config_get_state(proxy_cfg) != LinphoneRegistrationNone){
             linphone_core_iterate(LinphoneManager.getLc()); /*to make sure we receive call backs before shutting down*/
             ms_usleep(50000);
         }

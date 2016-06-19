@@ -56,7 +56,8 @@ class OutgoingCallController: UIViewController{
     
     func finish(){
         linphone_core_terminate_all_calls(LinphoneManager.getLc())
-        navigationController?.popViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
+//        navigationController?.popViewControllerAnimated(true)
     }
     
     
@@ -68,5 +69,9 @@ class OutgoingCallController: UIViewController{
     
     override func viewDidDisappear(animated: Bool) {
         linphone_core_remove_listener(LinphoneManager.getLc(), &lct)
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
 }
