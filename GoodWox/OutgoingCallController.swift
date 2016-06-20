@@ -1,6 +1,6 @@
 import Foundation
 
-var thisNavigationController: UINavigationController?
+var outgoingCallController: OutgoingCallController?
 
 var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
     (lc: COpaquePointer, call: COpaquePointer, callSate: LinphoneCallState,  message) in
@@ -8,11 +8,11 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
     switch callSate{
     case LinphoneCallError: /**<The call encountered an error*/
         NSLog("outgoingCallStateChanged: LinphoneCallError")
-        thisNavigationController?.popViewControllerAnimated(true)
+        outgoingCallController?.dismissViewControllerAnimated(true, completion: nil)
         
     case LinphoneCallEnd:
         NSLog("outgoingCallStateChanged: LinphoneCallEnd")
-        thisNavigationController?.popViewControllerAnimated(true)
+        outgoingCallController?.dismissViewControllerAnimated(true, completion: nil)
         
     default:
         NSLog("outgoingCallStateChanged: Default call state")
@@ -32,7 +32,7 @@ class OutgoingCallController: UIViewController{
     override func viewDidLoad() {
         NSLog("OutgoingCallController.viewDidLoad()")
         
-        thisNavigationController = navigationController
+        outgoingCallController = self
         
         self.navigationItem.hidesBackButton = true
         
