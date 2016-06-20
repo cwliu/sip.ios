@@ -100,9 +100,14 @@ class InitController: UIViewController{
         }
     }
     
-    func finish(){
+    func finish(success: Bool){
         loadingUI(show: false)
-        self.performSegueWithIdentifier("main", sender: nil)
+        
+        if success {
+            self.performSegueWithIdentifier("main", sender: nil)
+        }else{
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     func errorHandle(){

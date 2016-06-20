@@ -41,7 +41,6 @@ class OutgoingCallController: UIViewController{
             nameLabel.text = calleeName!
             linphone_core_invite(lc, calleeSipAccount)
         }
-        
     }
         
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -57,15 +56,12 @@ class OutgoingCallController: UIViewController{
     func finish(){
         linphone_core_terminate_all_calls(LinphoneManager.getLc())
         self.dismissViewControllerAnimated(true, completion: nil)
-//        navigationController?.popViewControllerAnimated(true)
     }
-    
     
     override func viewWillAppear(animated: Bool) {
         lct.call_state_changed = outgoingCallStateChanged
         linphone_core_add_listener(LinphoneManager.getLc(),  &lct)
     }
-    
     
     override func viewDidDisappear(animated: Bool) {
         linphone_core_remove_listener(LinphoneManager.getLc(), &lct)

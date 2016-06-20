@@ -3,18 +3,18 @@ import Alamofire
 
 class SipApiClient {
     
-    func initSip(completionHandler: ()-> Void){
+    func initSip(completionHandler: (Bool)-> Void){
      
         if UserData.getSipAccount() != nil {
             dispatch_async(dispatch_get_main_queue(), {
                 self.startLinphone()
             })
-            completionHandler()
+            completionHandler(true)
         }else{
             login(completionHandler)
         }
     }
-    func login(completionHandler: (()-> Void)){
+    func login(completionHandler: ((Bool)-> Void)){
         
         let authentication: Authentication = Authentication()
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
@@ -39,6 +39,9 @@ class SipApiClient {
             case .Failure(let error):
                 // Logout 
                 NSLog("\(error)")
+                UserData.clear()
+                completionHandler(false)
+                return
             }
             
             // Save sip account information to NSUserdefaults
@@ -69,7 +72,7 @@ class SipApiClient {
             }
             
             self.startLinphone()
-            completionHandler()
+            completionHandler(true)
         }
     }
     
