@@ -23,6 +23,7 @@
 		A96B65371D16E1E000BF2436 /* oldphone-mono-30s.caf in Resources */ = {isa = PBXBuildFile; fileRef = A96B652F1D16E1E000BF2436 /* oldphone-mono-30s.caf */; };
 		A96B65381D16E1E000BF2436 /* oldphone-mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = A96B65301D16E1E000BF2436 /* oldphone-mono.wav */; };
 		A96B65391D16E1E000BF2436 /* soft_as_snow.mkv in Resources */ = {isa = PBXBuildFile; fileRef = A96B65311D16E1E000BF2436 /* soft_as_snow.mkv */; };
+		A96B653B1D16F81600BF2436 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A96B653A1D16F81600BF2436 /* CoreMedia.framework */; };
 		A9842BAC1D0DA1170062A35B /* libantlr3c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B851D0DA0D00062A35B /* libantlr3c.a */; };
 		A9842BAD1D0DA1170062A35B /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B861D0DA0D00062A35B /* libavcodec.a */; };
 		A9842BAE1D0DA1170062A35B /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B871D0DA0D00062A35B /* libavutil.a */; };
@@ -116,6 +117,7 @@
 		A96B652F1D16E1E000BF2436 /* oldphone-mono-30s.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "oldphone-mono-30s.caf"; path = "liblinphone-sdk/apple-darwin/share/sounds/linphone/rings/oldphone-mono-30s.caf"; sourceTree = "<group>"; };
 		A96B65301D16E1E000BF2436 /* oldphone-mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "oldphone-mono.wav"; path = "liblinphone-sdk/apple-darwin/share/sounds/linphone/rings/oldphone-mono.wav"; sourceTree = "<group>"; };
 		A96B65311D16E1E000BF2436 /* soft_as_snow.mkv */ = {isa = PBXFileReference; lastKnownFileType = file; name = soft_as_snow.mkv; path = "liblinphone-sdk/apple-darwin/share/sounds/linphone/rings/soft_as_snow.mkv"; sourceTree = "<group>"; };
+		A96B653A1D16F81600BF2436 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		A9842B851D0DA0D00062A35B /* libantlr3c.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libantlr3c.a; path = "liblinphone-sdk/apple-darwin/lib/libantlr3c.a"; sourceTree = "<group>"; };
 		A9842B861D0DA0D00062A35B /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = "liblinphone-sdk/apple-darwin/lib/libavcodec.a"; sourceTree = "<group>"; };
 		A9842B871D0DA0D00062A35B /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = "liblinphone-sdk/apple-darwin/lib/libavutil.a"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				A9842BE41D0DA4400062A35B /* libresolv.tbd in Frameworks */,
 				A9842BE21D0DA4370062A35B /* libsqlite3.tbd in Frameworks */,
 				A9842BE01D0DA42F0062A35B /* libz.tbd in Frameworks */,
+				A96B653B1D16F81600BF2436 /* CoreMedia.framework in Frameworks */,
 				A9842BDA1D0DA1AC0062A35B /* CoreAudio.framework in Frameworks */,
 				A9842BD81D0DA1A40062A35B /* CoreData.framework in Frameworks */,
 				A9842BD61D0DA19D0062A35B /* CoreFoundation.framework in Frameworks */,
@@ -263,6 +266,7 @@
 		19B95BF27E40B9AD490BDCB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A96B653A1D16F81600BF2436 /* CoreMedia.framework */,
 				A9842BEB1D0DA48C0062A35B /* libstdc++.6.0.9.tbd */,
 				A9842BEC1D0DA48C0062A35B /* libstdc++.6.tbd */,
 				A9842BE91D0DA4640062A35B /* libc++abi.tbd */,
@@ -762,6 +766,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = GoodWox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -774,7 +779,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoodWox/GoodWox-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/liblinphone-sdk/apple-darwin/include $(SRCROOT)/Pods/MSGraphSDK/** $(SRCROOT)/Pods/NXOAuth2Client/**";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/liblinphone-sdk/apple-darwin/include $(SRCROOT)/Pods/MSGraphSDK/** $(SRCROOT)/Pods/NXOAuth2Client/** $(SRCROOT)/Pods/MSGraphSDK-NXOAuth2Adapter/**";
 			};
 			name = Debug;
 		};
@@ -786,6 +791,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = GoodWox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -798,7 +804,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoodWox/GoodWox-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/liblinphone-sdk/apple-darwin/include $(SRCROOT)/Pods/MSGraphSDK/** $(SRCROOT)/Pods/NXOAuth2Client/**";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/liblinphone-sdk/apple-darwin/include $(SRCROOT)/Pods/MSGraphSDK/** $(SRCROOT)/Pods/NXOAuth2Client/** $(SRCROOT)/Pods/MSGraphSDK-NXOAuth2Adapter/**";
 			};
 			name = Release;
 		};
