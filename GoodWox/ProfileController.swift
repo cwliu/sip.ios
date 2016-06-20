@@ -30,7 +30,35 @@ class ProfileController: UIViewController{
 // MARK: Actions
 private extension ProfileController{
     @IBAction func logout(sender: AnyObject){
-        self.disconnect()
+        
+        let logoutConfirmMenu = UIAlertController(title: nil, message: "確定要登出嗎？", preferredStyle:  .Alert)
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+        let okAction = UIAlertAction(title: "確認", style: .Default, handler: {
+            (action: UIAlertAction) -> Void in
+            self.disconnect()
+        })
+        
+        logoutConfirmMenu.addAction(cancelAction)
+        logoutConfirmMenu.addAction(okAction)
+        
+        self.presentViewController(logoutConfirmMenu, animated: true, completion: nil)
+    }
+    
+    @IBAction func information(sender: AnyObject){
+        
+        let versionNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
+
+        
+        let versionAndBuildNumber: String = "\(versionNumber) (\(buildNumber))"
+
+        let infoDialog = UIAlertController(title: nil, message: "版本: \(versionAndBuildNumber)", preferredStyle:  .Alert)        
+        let okAction = UIAlertAction(title: "關閉", style: .Default, handler: nil)
+        
+        infoDialog.addAction(okAction)
+
+        self.presentViewController(infoDialog, animated: true, completion: nil)
     }
 }
 
