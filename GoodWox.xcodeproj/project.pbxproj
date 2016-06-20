@@ -778,6 +778,17 @@
 					"$(PROJECT_DIR)/liblinphone-sdk/apple-darwin/lib",
 					"$(PROJECT_DIR)/liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"MSGraphSDK\"",
+					"-framework",
+					"\"MSGraphSDK_NXOAuth2Adapter\"",
+					"-framework",
+					"\"NXOAuth2Client\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiadvance.GoodWox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -803,11 +814,23 @@
 					"$(PROJECT_DIR)/liblinphone-sdk/apple-darwin/lib",
 					"$(PROJECT_DIR)/liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"MSGraphSDK\"",
+					"-framework",
+					"\"MSGraphSDK_NXOAuth2Adapter\"",
+					"-framework",
+					"\"NXOAuth2Client\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiadvance.GoodWox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoodWox/GoodWox-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/liblinphone-sdk/apple-darwin/include $(SRCROOT)/Pods/MSGraphSDK/** $(SRCROOT)/Pods/NXOAuth2Client/** $(SRCROOT)/Pods/MSGraphSDK-NXOAuth2Adapter/**";
 			};
 			name = Release;
