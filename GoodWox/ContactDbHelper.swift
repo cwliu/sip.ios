@@ -55,6 +55,43 @@ class ContactDbHelper {
         return nil
     }
     
+    static func getContactByType(type: ContactType) -> [Contact] {
+        var contacts: [Contact] = []
+        
+        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
+            do {
+                let fetchRequest = NSFetchRequest(entityName: "Contact")
+                fetchRequest.predicate = NSPredicate(format: "type == %d", type.hashValue)
+                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+            } catch {
+                print(error)
+            }
+        }
+        return contacts
+    }
+    
+    static func addContect(name: String, sip: String?, type: ContactType) -> Void {
+        
+        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
+            
+            let contact = NSEntityDescription.insertNewObjectForEntityForName("Contact", inManagedObjectContext: managedObjectContext) as! Contact
+            do {
+                try Exception.catchException {
+                    
+                    contact.name = name
+                    contact.sip = sip
+                    contact.type = type.hashValue
+                }
+                
+                try managedObjectContext.save()
+                
+            } catch let error{
+                NSLog("NSError ocurred: \(error)")
+                managedObjectContext.deleteObject(contact)
+            }
+        }
+    }
+    
     static func save(){
         if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
             do {
@@ -62,7 +99,7 @@ class ContactDbHelper {
             } catch {
                 print(error)
             }
-
+            
         }
     }
 }

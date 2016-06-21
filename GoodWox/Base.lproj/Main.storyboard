@@ -526,7 +526,7 @@
         <scene sceneID="8VM-LQ-Mvy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y2A-jK-rMB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" enabled="NO" title="連絡人" image="contacts_gray_25dp" id="MCf-aC-4dj"/>
+                    <tabBarItem key="tabBarItem" title="連絡人" image="contacts_gray_25dp" id="MCf-aC-4dj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ted-Hr-6OM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
