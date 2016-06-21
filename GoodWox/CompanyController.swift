@@ -17,15 +17,7 @@ class CompanyController: UITableViewController{
     
         modifyTableStyle()
         
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
-            let fetchRequest = NSFetchRequest(entityName: "Contact")
-            do {
-                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
-                tableView.reloadData()
-            } catch {
-                print(error)
-            }
-        }
+        contacts = ContactDbHelper.getContactByType(ContactType.COMPANY)
         
         let nib = UINib(nibName: "ContactCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
