@@ -25,6 +25,7 @@
 		A96B65391D16E1E000BF2436 /* soft_as_snow.mkv in Resources */ = {isa = PBXBuildFile; fileRef = A96B65311D16E1E000BF2436 /* soft_as_snow.mkv */; };
 		A96B653B1D16F81600BF2436 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A96B653A1D16F81600BF2436 /* CoreMedia.framework */; };
 		A96B653D1D1791AF00BF2436 /* ViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96B653C1D1791AF00BF2436 /* ViewControllerHelper.swift */; };
+		A96B65471D18D56100BF2436 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A96B65461D18D56100BF2436 /* ContactCell.xib */; };
 		A9842BAC1D0DA1170062A35B /* libantlr3c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B851D0DA0D00062A35B /* libantlr3c.a */; };
 		A9842BAD1D0DA1170062A35B /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B861D0DA0D00062A35B /* libavcodec.a */; };
 		A9842BAE1D0DA1170062A35B /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842B871D0DA0D00062A35B /* libavutil.a */; };
@@ -120,6 +121,7 @@
 		A96B65311D16E1E000BF2436 /* soft_as_snow.mkv */ = {isa = PBXFileReference; lastKnownFileType = file; name = soft_as_snow.mkv; path = "liblinphone-sdk/apple-darwin/share/sounds/linphone/rings/soft_as_snow.mkv"; sourceTree = "<group>"; };
 		A96B653A1D16F81600BF2436 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		A96B653C1D1791AF00BF2436 /* ViewControllerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerHelper.swift; sourceTree = "<group>"; };
+		A96B65461D18D56100BF2436 /* ContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
 		A9842B851D0DA0D00062A35B /* libantlr3c.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libantlr3c.a; path = "liblinphone-sdk/apple-darwin/lib/libantlr3c.a"; sourceTree = "<group>"; };
 		A9842B861D0DA0D00062A35B /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = "liblinphone-sdk/apple-darwin/lib/libavcodec.a"; sourceTree = "<group>"; };
 		A9842B871D0DA0D00062A35B /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = "liblinphone-sdk/apple-darwin/lib/libavutil.a"; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 		A9863C111D03B938003FE7B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A96B65461D18D56100BF2436 /* ContactCell.xib */,
 				A9863C361D0579C0003FE7B3 /* LaunchScreen.storyboard */,
 				A9AAE48F1D0273C20034B564 /* Main.storyboard */,
 			);
@@ -568,6 +571,7 @@
 				A9842BDE1D0DA2500062A35B /* Secret.plist in Resources */,
 				A9863C371D0579C0003FE7B3 /* LaunchScreen.storyboard in Resources */,
 				A96B65391D16E1E000BF2436 /* soft_as_snow.mkv in Resources */,
+				A96B65471D18D56100BF2436 /* ContactCell.xib in Resources */,
 				A96B65281D16E1CE00BF2436 /* ringback.wav in Resources */,
 				A96B65271D16E1CE00BF2436 /* incoming_chat.wav in Resources */,
 				A96B65291D16E1CE00BF2436 /* toy-mono.wav in Resources */,

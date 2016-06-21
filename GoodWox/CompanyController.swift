@@ -26,6 +26,9 @@ class CompanyController: UITableViewController{
                 print(error)
             }
         }
+        
+        let nib = UINib(nibName: "ContactCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
     }
     
     
@@ -37,18 +40,13 @@ class CompanyController: UITableViewController{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let contact = self.contacts[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("company", forIndexPath: indexPath)as! ContactCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)as! ContactCell
 
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-
-    // MARK: Style
     private func modifyTableStyle(){
         // Set tableView padding
         let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
@@ -59,7 +57,13 @@ class CompanyController: UITableViewController{
         self.navigationController?.navigationBar.barStyle = .Black
     }
     
+    
     // MARK: Segue
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("makeCall", sender: nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         NSLog("prepareForSegue: \(segue.identifier)")
         
