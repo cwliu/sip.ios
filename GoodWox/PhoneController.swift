@@ -100,8 +100,9 @@ extension PhoneController {
             
             let controller = segue.destinationViewController as! OutgoingCallController
             
-            if let sip = self.contacts[indexPath!.row].sip{
-                controller.sipNumber = sip
+            let contact = self.contacts[indexPath!.row]
+            if contact.phones.count > 0{
+                controller.sipNumber = contact.phones[0]
                 controller.calleeName = self.contacts[indexPath!.row].name
                 
             }else{
