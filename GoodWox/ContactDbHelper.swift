@@ -101,8 +101,9 @@ class ContactDbHelper {
                     
                     contact.name = name
                     contact.type = type.hashValue
-                    contact.phones = phoneList.description
                 }
+                
+                contact.phones = phoneList
                 
                 try managedObjectContext.save()
                 
