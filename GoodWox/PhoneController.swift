@@ -47,7 +47,7 @@ class PhoneController: UITableViewController{
                         let phoneList = contact["phone_list"] as! [String]
                         NSLog("Name: \(name)," + "PhoneList: \(phoneList)")
                         
-                        ContactDbHelper.addContect(name, sip: nil, type: ContactType.MANUAL)
+                        ContactDbHelper.addContect(name, phoneList: phoneList, type: ContactType.MANUAL)
                     }
                     
                     self.contacts = ContactDbHelper.getContactByType(ContactType.MANUAL)
@@ -79,5 +79,36 @@ class PhoneController: UITableViewController{
         tableView.scrollIndicatorInsets = insets
         
         self.navigationController?.navigationBar.barStyle = .Black
+    }
+}
+
+extension PhoneController {
+    
+    // MARK: Segue
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("makeCall", sender: nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        NSLog("prepareForSegue: \(segue.identifier)")
+        
+        
+        let indexPath = self.tableView.indexPathForSelectedRow
+        
+        if(segue.identifier == "makeCall"){
+            
+            let controller = segue.destinationViewController as! OutgoingCallController
+            
+            if let sip = self.contacts[indexPath!.row].sip{
+                controller.sipNumber = sip
+                controller.calleeName = self.contacts[indexPath!.row].name
+                
+            }else{
+                let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no SIP number", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+        }
     }
 }

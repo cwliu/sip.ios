@@ -252,6 +252,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="連絡人" id="W2z-7b-US4"/>
+                    <connections>
+                        <segue destination="tiK-IN-xw8" kind="presentation" identifier="makeCall" id="vYb-8p-al7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3E-h9-z5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -321,7 +324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTH-JT-Qi5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2726" y="-776"/>
+            <point key="canvasLocation" x="1478" y="-880"/>
         </scene>
         <!--Outgoing-->
         <scene sceneID="3YP-Nw-bit">
@@ -395,7 +398,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bFP-Ac-fg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2748" y="-4"/>
+            <point key="canvasLocation" x="516" y="876"/>
         </scene>
         <!--公司通訊-->
         <scene sceneID="3rF-yh-IeV">
@@ -560,4 +563,7 @@
         <image name="star_blue_25dp" width="25" height="25"/>
         <image name="star_gray_16dp" width="16" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="vYb-8p-al7"/>
+    </inferredMetricsTieBreakers>
 </document>

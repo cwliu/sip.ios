@@ -70,7 +70,7 @@ class ContactDbHelper {
         return contacts
     }
     
-    static func addContect(name: String, sip: String?, type: ContactType) -> Void {
+    static func addContect(name: String, type: ContactType) -> Void {
         
         if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
             
@@ -79,8 +79,29 @@ class ContactDbHelper {
                 try Exception.catchException {
                     
                     contact.name = name
-                    contact.sip = sip
                     contact.type = type.hashValue
+                }
+                
+                try managedObjectContext.save()
+                
+            } catch let error{
+                NSLog("NSError ocurred: \(error)")
+                managedObjectContext.deleteObject(contact)
+            }
+        }
+    }
+    
+    static func addContect(name: String, phoneList: [String], type: ContactType) -> Void {
+        
+        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
+            
+            let contact = NSEntityDescription.insertNewObjectForEntityForName("Contact", inManagedObjectContext: managedObjectContext) as! Contact
+            do {
+                try Exception.catchException {
+                    
+                    contact.name = name
+                    contact.type = type.hashValue
+                    contact.phones = phoneList.description
                 }
                 
                 try managedObjectContext.save()

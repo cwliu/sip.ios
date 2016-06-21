@@ -65,37 +65,23 @@ class InitController: UIViewController{
             NSLog("Contact data loaded successful")
             if let users = collection {
                 
-                if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
-                    for user: MSGraphUser in users.value as! [MSGraphUser] {
-                        
-                        let contact = NSEntityDescription.insertNewObjectForEntityForName("Contact", inManagedObjectContext: managedObjectContext) as! Contact
-                        do {
-                            try Exception.catchException {
-                                
-                                contact.name = user.displayName
-                                contact.email = user.mail
-                                contact.uid = user.entityId
-                                contact.type = ContactType.COMPANY.hashValue
-                            }
-                            
-                            if user.mail == UserData.getGraphAccount()!{
-                                managedObjectContext.deleteObject(contact)
-                            }
-                            
-                        } catch let error{
-                            NSLog("NSError ocurred: \(error)")
-                            managedObjectContext.deleteObject(contact)
-                        }
-                    }
-                    
+                for user: MSGraphUser in users.value as! [MSGraphUser] {
                     do {
-                        try managedObjectContext.save()
-                    } catch let error {
+                        try Exception.catchException {
+                            
+                            if user.mail != UserData.getGraphAccount()!{
+                                ContactDbHelper.addContect(user.displayName, type: ContactType.COMPANY)
+                                
+                            }
+                        }
+                        
+                    } catch let error{
                         NSLog("NSError ocurred: \(error)")
+                        
                     }
-                    
                     SipApiClient().initSip(self.finish)
                 }
+                
             }
         }
     }
@@ -127,3 +113,4 @@ private extension InitController {
         }
     }
 }
+
