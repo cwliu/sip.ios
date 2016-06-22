@@ -128,7 +128,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="check_circle_green_14dp" translatesAutoresizingMaskIntoConstraints="NO" id="pTJ-eN-kFv">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="sync_circle_blue_14dp" translatesAutoresizingMaskIntoConstraints="NO" id="pTJ-eN-kFv">
                                 <rect key="frame" x="348" y="282" width="14" height="14"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YEW-07-SFR">
@@ -199,6 +199,7 @@
                     <connections>
                         <outlet property="avatarImage" destination="1SX-oK-rJ6" id="QEc-De-spO"/>
                         <outlet property="nameLabel" destination="876-IF-FGj" id="Oq5-SX-TQy"/>
+                        <outlet property="statusImage" destination="pTJ-eN-kFv" id="2dT-KK-XDl"/>
                         <segue destination="LWE-0U-cKc" kind="unwind" unwindAction="prepareForUnwind:" id="1bL-rt-n4X"/>
                     </connections>
                 </viewController>
@@ -551,7 +552,6 @@
         <image name="avatar_gray_30dp" width="30" height="30"/>
         <image name="avatar_light_48dp" width="48" height="48"/>
         <image name="call_end_red_96dp" width="96" height="96"/>
-        <image name="check_circle_green_14dp" width="14" height="14"/>
         <image name="connect_gray_25dp" width="25" height="25"/>
         <image name="contacts_gray_25dp" width="25" height="25"/>
         <image name="info_gray_16dp" width="16" height="16"/>
@@ -563,6 +563,7 @@
         <image name="sip_white_18dp" width="18" height="18"/>
         <image name="star_blue_25dp" width="25" height="25"/>
         <image name="star_gray_16dp" width="16" height="16"/>
+        <image name="sync_circle_blue_14dp" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vYb-8p-al7"/>

@@ -1,23 +1,30 @@
 import Foundation
 
+var sipRegistrationStatus: SipRegistrationStatus = SipRegistrationStatus.UNKNOWN
+
 var registrationStateChanged: LinphoneCoreRegistrationStateChangedCb = {
     (lc: COpaquePointer, proxyConfig: COpaquePointer, state: LinphoneRegistrationState, message: UnsafePointer<Int8>) in
     
     switch state{
     case LinphoneRegistrationNone: /**<Initial state for registrations */
         NSLog("LinphoneRegistrationNone")
+        sipRegistrationStatus = .UNKNOWN
         
     case LinphoneRegistrationProgress:
         NSLog("LinphoneRegistrationProgress")
-        
+        sipRegistrationStatus = .UNKNOWN
+                
     case LinphoneRegistrationOk:
         NSLog("LinphoneRegistrationOk")
+        sipRegistrationStatus = .OK
         
     case LinphoneRegistrationCleared:
         NSLog("LinphoneRegistrationCleared")
+        sipRegistrationStatus = .UNKNOWN
         
     case LinphoneRegistrationFailed:
         NSLog("LinphoneRegistrationFailed")
+        sipRegistrationStatus = .FAIL
         
     default:
         NSLog("Unkown registration state")

@@ -2,10 +2,12 @@ import Foundation
 import UIKit
 import Haneke
 
+
 class ProfileController: UIViewController{
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var avatarImage: UIImageView!
+    @IBOutlet var statusImage: UIImageView!
     
     
     let authentication: Authentication = Authentication()
@@ -27,7 +29,6 @@ class ProfileController: UIViewController{
         authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
             
             let token = request.valueForHTTPHeaderField("Authorization")!
-//            UserData.setGraphAccesssToken(token)
 
             let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!, token: token)
 
@@ -44,6 +45,22 @@ class ProfileController: UIViewController{
         return .LightContent
     }
     
+    override func viewWillAppear(animated: Bool) {
+        switch sipRegistrationStatus {
+        case .OK:
+            NSLog("sipRegistrationStatus: OK")
+            statusImage.image = UIImage(named: "check_circle_green_14dp")
+            
+        case .FAIL:
+            NSLog("sipRegistrationStatus: FAIL")
+            statusImage.image = UIImage(named: "cross_circle_red_14dp")
+            
+        case .UNKNOWN:
+            NSLog("sipRegistrationStatus: UNKNOWN")
+            statusImage.image = UIImage(named: "sync_circle_blue_14dp")
+            
+        }
+    }
 }
 
 // MARK: Actions
@@ -89,6 +106,8 @@ private extension ProfileController{
         authentication.disconnect()
         
         UserData.clear()
+        
+        Haneke.Shared.imageCache.removeAll()
         
         // Delete DB
         ContactDbHelper.deleteAll()
