@@ -11,9 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let userInfo = notification.userInfo {
             let account = userInfo["NXOAuth2AccountStoreNewAccountUserInfoKey"] as? NXOAuth2Account
             let accessToken = account?.accessToken.accessToken
-            NSLog("accessToken: \(accessToken)")
-            
-            UserData.setGraphAccesssToken(accessToken!)
+            NSLog("accessToken: \(accessToken)")            
         }
     }
     

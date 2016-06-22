@@ -22,12 +22,6 @@
                             <constraint firstAttribute="width" constant="30" id="Wok-Ix-zgE"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qdq-Ic-48i">
-                        <rect key="frame" x="68" y="45" width="45" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arror_right_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="3au-1O-Rb3">
                         <rect key="frame" x="326" y="47" width="16" height="16"/>
                         <constraints>
@@ -38,6 +32,12 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="1ry-0p-Wio">
                         <rect key="frame" x="290" y="47" width="16" height="16"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qdq-Ic-48i">
+                        <rect key="frame" x="68" y="44" width="45" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Qdq-Ic-48i" firstAttribute="centerY" secondItem="YoY-MH-yUD" secondAttribute="centerY" id="0fZ-ZV-xF0"/>
@@ -57,6 +57,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="avatarImage" destination="YoY-MH-yUD" id="Xxx-NS-uVx"/>
                 <outlet property="nameLabel" destination="Qdq-Ic-48i" id="vFQ-VV-rHA"/>
             </connections>
             <point key="canvasLocation" x="235.5" y="306.5"/>

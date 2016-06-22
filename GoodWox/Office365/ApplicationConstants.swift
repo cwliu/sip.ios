@@ -8,6 +8,11 @@ struct ApplicationConstants {
 struct MicrosoftGraphApi {
     static let apiBaseURL = "https://graph.microsoft.com/v1.0/"
     static let myPhotoURL = MicrosoftGraphApi.apiBaseURL + "me/photo/$value"
+    static let userPhotoURL = MicrosoftGraphApi.apiBaseURL + "Users('%@')/photo/$value"
+}
+
+struct SipServerBackend{
+    static let sipURL = "https://sipphone-web-staging.azurewebsites.net/api/v1/sips/"
 }
 
 /**

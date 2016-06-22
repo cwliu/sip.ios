@@ -3,7 +3,6 @@ import Foundation
 class UserData {
     static let preference = NSUserDefaults.standardUserDefaults()
     
-    static private let ACCESS_TOKEN_KEY: String = "ACCESS_TOKEN_KEY"
     static private let GRAPH_ACCOUNT_KEY: String = "GRAPH_ACCOUNT_KEY"
     static private let GRAPH_NAME_KEY: String = "GRAPH_NAME_KEY"
     static private let SIP_ACCOUNT_KEY: String = "SIP_ACCOUNT_KEY"
@@ -11,15 +10,6 @@ class UserData {
     static private let SIP_PROXY_ADDRESS_KEY: String = "SIP_PROXY_ADDRESS_KEY"
     static private let SIP_PROXY_PORT_KEY: String = "SIP_PROXY_PORT_KEY"
     static private let SIP_BACKEND_ACCESS_TOKEN_KEY: String = "SIP_BACKEND_ACCESS_TOKEN_KEY"
-    
-    static func setGraphAccesssToken(accessToken: String){
-        preference.setValue(accessToken, forKey: ACCESS_TOKEN_KEY)
-        preference.synchronize()
-    }
-    
-    static func getGraphAccessToken() -> String? {
-        return preference.stringForKey(ACCESS_TOKEN_KEY)
-    }
     
     static func setGraphAccount(graphAccount: String){
         preference.setValue(graphAccount, forKey: GRAPH_ACCOUNT_KEY)

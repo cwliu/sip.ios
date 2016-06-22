@@ -18,15 +18,24 @@ class ProfileController: UIViewController{
     override func viewDidLoad(){
         
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
-        //        self.getMeInfo()
         
         self.nameLabel.text = UserData.getGraphName()
-
+        
         let url = NSURL(string: MicrosoftGraphApi.myPhotoURL)
-        let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!)
-        self.avatarImage.hnk_setImageFromFetcher(fetcher)
-        self.avatarImage.layer.cornerRadius = 60
-        self.avatarImage.clipsToBounds = true
+        let request = NSMutableURLRequest(URL: url!)        
+  
+        authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
+            
+            let token = request.valueForHTTPHeaderField("Authorization")!
+//            UserData.setGraphAccesssToken(token)
+
+            let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!, token: token)
+
+            self.avatarImage.hnk_setImageFromFetcher(fetcher)
+            self.avatarImage.layer.cornerRadius = 60
+            self.avatarImage.clipsToBounds = true
+
+        })
         
         self.navigationController?.navigationBar.barStyle = .Black
     }
@@ -59,15 +68,15 @@ private extension ProfileController{
         
         let versionNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
         let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
-
+        
         
         let versionAndBuildNumber: String = "\(versionNumber) (\(buildNumber))"
-
-        let infoDialog = UIAlertController(title: nil, message: "版本: \(versionAndBuildNumber)", preferredStyle:  .Alert)        
+        
+        let infoDialog = UIAlertController(title: nil, message: "版本: \(versionAndBuildNumber)", preferredStyle:  .Alert)
         let okAction = UIAlertAction(title: "關閉", style: .Default, handler: nil)
         
         infoDialog.addAction(okAction)
-
+        
         self.presentViewController(infoDialog, animated: true, completion: nil)
     }
 }
@@ -89,36 +98,6 @@ private extension ProfileController{
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
-        self.presentViewController(vc, animated: true, completion: nil)        
-    }
-}
-
-extension UIImageView {
-    public func imageFromUrl(urlString: String) {
-        if let url = NSURL(string: urlString) {
-            let request = NSMutableURLRequest(URL: url)
-            request.setValue("Bearer " + UserData.getGraphAccessToken()!, forHTTPHeaderField: "Authorization")
-            NSURLSession.sharedSession().dataTaskWithRequest(request) {
-                (data, response, error) in
-                guard let data = data where error == nil else{
-                    NSLog("Image download error: \(error)")
-                    return
-                }
-                
-                if let httpResponse = response as? NSHTTPURLResponse{
-                    if httpResponse.statusCode > 400 {
-                        let errorMsg = NSString(data: data, encoding: NSUTF8StringEncoding)
-                        NSLog("Image download error, statusCode: \(httpResponse.statusCode), error: \(errorMsg!)")
-                        return
-                    }
-                }
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    NSLog("Image download success")
-                    self.image = UIImage(data: data)
-                })
-
-            }.resume()
-        }
+        self.presentViewController(vc, animated: true, completion: nil)
     }
 }

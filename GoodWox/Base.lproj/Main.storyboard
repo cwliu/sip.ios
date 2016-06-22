@@ -223,9 +223,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="avatar_gray_30dp" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-r9-UEH">
-                                            <rect key="frame" x="21" y="8" width="30" height="30"/>
-                                        </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arror_right_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="1Gh-62-car">
                                             <rect key="frame" x="552" y="14" width="16" height="16"/>
                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
@@ -239,6 +236,9 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="avatar_gray_30dp" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-r9-UEH">
+                                            <rect key="frame" x="21" y="8" width="30" height="30"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="1Gh-62-car" firstAttribute="leading" secondItem="uH9-Nu-g9P" secondAttribute="trailing" constant="20" id="Sca-9A-sKD"/>
@@ -565,6 +565,6 @@
         <image name="star_gray_16dp" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sqX-yI-AWM"/>
+        <segue reference="vYb-8p-al7"/>
     </inferredMetricsTieBreakers>
 </document>

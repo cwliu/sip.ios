@@ -2,17 +2,28 @@ import Foundation
 import Haneke
 
 public class BearerHeaderNetworkFetcher<T: DataConvertible> : NetworkFetcher<T> {
+    
+    var token: String
+    
     public override var session : NSURLSession {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        if let token = UserData.getGraphAccessToken() {
-            configuration.HTTPAdditionalHeaders = [
-                "Authorization": "Bearer " + token
-            ];
-        }
+        configuration.HTTPAdditionalHeaders = [
+            "Authorization": self.token
+        ];
+        
         return NSURLSession(configuration: configuration)
     }
     
-    public override init(URL : NSURL) {
+    override init(URL : NSURL) {
+        self.token = ""
+        
         super.init(URL: URL)
     }
+    
+    convenience init(URL : NSURL, token: String) {
+        self.init(URL: URL)
+        
+        self.token = token
+    }
+    
 }

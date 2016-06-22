@@ -1,5 +1,6 @@
 import Foundation
 import CoreData
+import Haneke
 
 class CompanyController: UITableViewController{
     
@@ -35,6 +36,25 @@ class CompanyController: UITableViewController{
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)as! ContactCell
 
         cell.nameLabel.text = "\(contact.name ?? "No name")"
+        
+    
+        // Display contact 
+        
+        let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
+        let request = NSMutableURLRequest(URL: url!)
+    
+        authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
+            
+            let token = request.valueForHTTPHeaderField("Authorization")!            
+            let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!, token: token)
+            
+            cell.avatarImage.hnk_setImageFromFetcher(fetcher)
+            
+            // Circular image
+            cell.avatarImage.layer.cornerRadius = 15
+            cell.avatarImage.clipsToBounds = true
+            
+        })
         
         return cell
     }
