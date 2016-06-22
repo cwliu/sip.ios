@@ -7,7 +7,7 @@ class TabController: UITabBarController{
     override func viewWillAppear(animated: Bool) {
         if freshLaunch == true {
             freshLaunch = false
-            self.selectedIndex = 4 // Set default tab to being profile page
+            self.selectedIndex = 3 // Set default tab to being profile page
         }
     }
 }

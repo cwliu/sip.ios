@@ -10,4 +10,5 @@ target 'GoodWox' do
   pod 'MSGraphSDK'
   pod 'MSGraphSDK-NXOAuth2Adapter'
   pod 'Alamofire', '~> 3.4'
+  pod 'HanekeSwift'
 end

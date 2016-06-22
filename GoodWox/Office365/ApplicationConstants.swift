@@ -7,7 +7,7 @@ struct ApplicationConstants {
 
 struct MicrosoftGraphApi {
     static let apiBaseURL = "https://graph.microsoft.com/v1.0/"
-    static let myPhoneURL = MicrosoftGraphApi.apiBaseURL + "me/photo/$value"
+    static let myPhotoURL = MicrosoftGraphApi.apiBaseURL + "me/photo/$value"
 }
 
 /**

@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Haneke
 
 class ProfileController: UIViewController{
     
@@ -20,8 +21,10 @@ class ProfileController: UIViewController{
         //        self.getMeInfo()
         
         self.nameLabel.text = UserData.getGraphName()
-        
-        self.avatarImage.imageFromUrl(MicrosoftGraphApi.myPhoneURL)
+
+        let url = NSURL(string: MicrosoftGraphApi.myPhotoURL)
+        let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!)
+        self.avatarImage.hnk_setImageFromFetcher(fetcher)
         self.avatarImage.layer.cornerRadius = 60
         self.avatarImage.clipsToBounds = true
         
