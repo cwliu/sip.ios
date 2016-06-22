@@ -84,6 +84,7 @@ class CompanyController: UITableViewController{
             if let sip = self.contacts[indexPath!.row].sip{
                 controller.phoneNumber = sip
                 controller.calleeName = self.contacts[indexPath!.row].name
+                controller.phoneType = .SIP
                 
             }else{
                 let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no SIP number", preferredStyle: UIAlertControllerStyle.Alert)

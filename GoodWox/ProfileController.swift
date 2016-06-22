@@ -9,7 +9,6 @@ class ProfileController: UIViewController{
     @IBOutlet var avatarImage: UIImageView!
     @IBOutlet var statusImage: UIImageView!
     
-    
     let authentication: Authentication = Authentication()
     
     lazy var graphClient: MSGraphClient = {

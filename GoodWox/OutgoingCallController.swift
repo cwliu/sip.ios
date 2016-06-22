@@ -2,9 +2,9 @@ import Foundation
 
 var outgoingCallController: OutgoingCallController?
 
-enum PhoneType {
-    case sip
-    case nonSip
+enum CallPhoneType {
+    case SIP
+    case NONSIP
 }
 
 var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
@@ -28,10 +28,11 @@ class OutgoingCallController: UIViewController{
     
     var phoneNumber: String?
     var calleeName: String?
-    var phoneType: PhoneType?
+    var phoneType: CallPhoneType = .SIP
     
-    @IBOutlet var sipNumberLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var statusLabel: UILabel!
+    @IBOutlet var sipIcon: UIImageView!
     
     var lct: LinphoneCoreVTable = LinphoneCoreVTable()
     
@@ -42,13 +43,23 @@ class OutgoingCallController: UIViewController{
         
         self.navigationItem.hidesBackButton = true
         
-        if let calleeSipAccount = phoneNumber, lc = LinphoneManager.lc {
-            sipNumberLabel.text = phoneNumber!
+        
+        switch phoneType {
+        case .SIP:
+            sipIcon.hidden = false
+            statusLabel.text = "SIP Dialing..."
+            
+        case .NONSIP:
+            sipIcon.hidden = true
+            statusLabel.text = "Dialing to \(phoneNumber)..."
+        }
+
+        if let phone = phoneNumber, lc = LinphoneManager.lc {
             nameLabel.text = calleeName!
-            linphone_core_invite(lc, calleeSipAccount)
+            linphone_core_invite(lc, phone)
         }
     }
-        
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         NSLog("OutgoingCallController.prepareForSegue()")
     }

@@ -125,7 +125,7 @@ extension PhoneController {
             if let phone = targetPhone, index = targetContactIndex {
                 controller.phoneNumber = phone
                 controller.calleeName = self.contacts[index].name
-                controller.phoneType = .nonSip
+                controller.phoneType = .NONSIP
                 
             }else{
                 let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no SIP number", preferredStyle: UIAlertControllerStyle.Alert)
