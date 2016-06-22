@@ -82,7 +82,7 @@ class CompanyController: UITableViewController{
             let controller = segue.destinationViewController as! OutgoingCallController
             
             if let sip = self.contacts[indexPath!.row].sip{
-                controller.sipNumber = sip
+                controller.phoneNumber = sip
                 controller.calleeName = self.contacts[indexPath!.row].name
                 
             }else{

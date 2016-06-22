@@ -5,11 +5,14 @@ class PhoneController: UITableViewController{
     
     var contacts = [Contact]()
     
+    var targetPhone: String?
+    var targetContactIndex: Int?
+    
     override func viewDidLoad() {
         self.navigationController?.navigationBar.barStyle = .Black
         
         modifyTableStyle()
-
+        
         let nib = UINib(nibName: "ContactCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
         
@@ -83,24 +86,46 @@ extension PhoneController {
     
     // MARK: Segue
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("makeCall", sender: nil)
+        let phones = self.contacts[indexPath.row].phones
+        if phones.count == 0 {
+            let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no phone number available", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            
+        }else if phones.count == 1 {
+            self.targetPhone = phones[0]
+            self.performSegueWithIdentifier("makeCall", sender: nil)
+            
+        }else{
+            let alertController = UIAlertController(title: "Select Phone Number", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
+            
+            for phone in phones {
+                alertController.addAction(UIAlertAction(title: "Call: " + phone, style: UIAlertActionStyle.Default, handler: {(UIAlertAction) -> Void in
+                    self.targetPhone = phone
+                    self.performSegueWithIdentifier("makeCall", sender: nil)
+                }))
+                
+            }
+            alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+        }
+        targetContactIndex = indexPath.row
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         NSLog("prepareForSegue: \(segue.identifier)")
-        
-        
-        let indexPath = self.tableView.indexPathForSelectedRow
-        
+
         if(segue.identifier == "makeCall"){
             
             let controller = segue.destinationViewController as! OutgoingCallController
             
-            let contact = self.contacts[indexPath!.row]
-            if contact.phones.count > 0{
-                controller.sipNumber = contact.phones[0]
-                controller.calleeName = self.contacts[indexPath!.row].name
+            if let phone = targetPhone, index = targetContactIndex {
+                controller.phoneNumber = phone
+                controller.calleeName = self.contacts[index].name
+                controller.phoneType = .nonSip
                 
             }else{
                 let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no SIP number", preferredStyle: UIAlertControllerStyle.Alert)

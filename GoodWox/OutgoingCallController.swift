@@ -2,6 +2,11 @@ import Foundation
 
 var outgoingCallController: OutgoingCallController?
 
+enum PhoneType {
+    case sip
+    case nonSip
+}
+
 var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
     (lc: COpaquePointer, call: COpaquePointer, callSate: LinphoneCallState,  message) in
     
@@ -21,8 +26,9 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
 
 class OutgoingCallController: UIViewController{
     
-    var sipNumber: String?
+    var phoneNumber: String?
     var calleeName: String?
+    var phoneType: PhoneType?
     
     @IBOutlet var sipNumberLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
@@ -36,8 +42,8 @@ class OutgoingCallController: UIViewController{
         
         self.navigationItem.hidesBackButton = true
         
-        if let calleeSipAccount = sipNumber, lc = LinphoneManager.lc {
-            sipNumberLabel.text = sipNumber!
+        if let calleeSipAccount = phoneNumber, lc = LinphoneManager.lc {
+            sipNumberLabel.text = phoneNumber!
             nameLabel.text = calleeName!
             linphone_core_invite(lc, calleeSipAccount)
         }
