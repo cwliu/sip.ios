@@ -201,9 +201,11 @@ class LinphoneManager {
         }
         
         let proxy_cfg = linphone_core_get_default_proxy_config(LinphoneManager.getLc()); /* get default proxy config*/
+        
         linphone_proxy_config_edit(proxy_cfg); /*start editing proxy configuration*/
         linphone_proxy_config_enable_register(proxy_cfg, 0); /*de-activate registration for this proxy config*/
         linphone_proxy_config_done(proxy_cfg); /*initiate REGISTER with expire = 0*/
+        
         while(linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationCleared && linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationFailed
             && linphone_proxy_config_get_state(proxy_cfg) != LinphoneRegistrationNone){
                 linphone_core_iterate(LinphoneManager.getLc()); /*to make sure we receive call backs before shutting down*/
@@ -211,6 +213,7 @@ class LinphoneManager {
         }
         
         linphone_core_destroy(LinphoneManager.getLc());
+        
         LinphoneManager.isInit = false
     }
     
@@ -219,43 +222,3 @@ class LinphoneManager {
             0.02, target: self, selector: #selector(iterate), userInfo: nil, repeats: true)
     }
 }
-
-
-//var answerCall: Bool = false
-//if answerCall{
-//    ms_usleep(3 * 1000 * 1000); // Wait 3 seconds to pickup
-//    linphone_core_accept_call(lc, call)
-//}
-//func makeCall(){
-//    let calleeAccount = "0702552520"
-//
-//    setIdentify()
-//    linphone_core_invite(LinphoneManager.lc, calleeAccount)
-//    mainLoop(10)
-//    shutdown()
-//}
-//
-//func receiveCall(){
-//    let proxyConfig = setIdentify()
-//    register(proxyConfig)
-//    mainLoop(60)
-//    shutdown()
-//}
-//
-//func idle(){
-//    let proxyConfig = setIdentify()
-//    register(proxyConfig)
-//    mainLoop(100)
-//    //        shutdown()
-//}
-//func mainLoop(sec: Int){
-//
-//    let time = sec * 100
-//    /* main loop for receiving notifications and doing background linphonecore work: */
-//    for _ in 1...time{
-//        linphone_core_iterate(LinphoneManager.lc); /* first iterate initiates registration */
-//        ms_usleep(10000);
-//    }
-//}
-
-        

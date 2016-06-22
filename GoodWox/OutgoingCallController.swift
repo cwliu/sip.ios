@@ -51,7 +51,7 @@ class OutgoingCallController: UIViewController{
             
         case .NONSIP:
             sipIcon.hidden = true
-            statusLabel.text = "Dialing to \(phoneNumber)..."
+            statusLabel.text = "Dialing to \(phoneNumber!)..."
         }
 
         if let phone = phoneNumber, lc = LinphoneManager.lc {
