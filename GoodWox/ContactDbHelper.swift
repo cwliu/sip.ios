@@ -10,6 +10,29 @@ class ContactDbHelper {
         
         if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
             let fetchRequest = NSFetchRequest(entityName: ENTITY)
+            
+            let sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+            fetchRequest.sortDescriptors = sortDescriptors
+
+            do {
+                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+            } catch {
+                print(error)
+            }
+        }
+        return contacts
+    }
+    
+    static func getCompnayContacts() -> [Contact] {
+        var contacts: [Contact] = []
+        
+        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+            fetchRequest.predicate = NSPredicate(format: "type == %d", ContactType.COMPANY.hashValue)
+            
+            let sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+            fetchRequest.sortDescriptors = sortDescriptors
+            
             do {
                 contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
             } catch {
@@ -62,7 +85,12 @@ class ContactDbHelper {
             do {
                 let fetchRequest = NSFetchRequest(entityName: "Contact")
                 fetchRequest.predicate = NSPredicate(format: "type == %d", type.hashValue)
-                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+                
+                let sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+                fetchRequest.sortDescriptors = sortDescriptors
+
+                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]                
+                
             } catch {
                 print(error)
             }
@@ -70,7 +98,7 @@ class ContactDbHelper {
         return contacts
     }
     
-    static func addContect(name: String, type: ContactType) -> Void {
+    static func addContect(name: String, email: String, type: ContactType) -> Void {
         
         if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
             
@@ -79,6 +107,7 @@ class ContactDbHelper {
                 try Exception.catchException {
                     
                     contact.name = name
+                    contact.email = email
                     contact.type = type.hashValue
                 }
                 

@@ -48,7 +48,7 @@ class InitController: UIViewController{
     func downloadCompanyContact(){
         
         // Already downloaded
-        if ContactDbHelper.getAll().count != 0{
+        if ContactDbHelper.getCompnayContacts().count != 0{
             SipApiClient().initSip(self.finish)
             return
         }
@@ -70,7 +70,7 @@ class InitController: UIViewController{
                         try Exception.catchException {
                             
                             if user.mail != UserData.getGraphAccount()!{
-                                ContactDbHelper.addContect(user.displayName, type: ContactType.COMPANY)
+                                ContactDbHelper.addContect(user.displayName, email: user.mail, type: ContactType.COMPANY)
                                 
                             }
                         }

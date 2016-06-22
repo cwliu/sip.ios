@@ -4,6 +4,8 @@ import UIKit
 class ProfileController: UIViewController{
     
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var avatarImage: UIImageView!
+    
     
     let authentication: Authentication = Authentication()
     
@@ -19,12 +21,17 @@ class ProfileController: UIViewController{
         
         self.nameLabel.text = UserData.getGraphName()
         
+        self.avatarImage.imageFromUrl(MicrosoftGraphApi.myPhoneURL)
+        self.avatarImage.layer.cornerRadius = 60
+        self.avatarImage.clipsToBounds = true
+        
         self.navigationController?.navigationBar.barStyle = .Black
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
+    
 }
 
 // MARK: Actions
@@ -80,5 +87,35 @@ private extension ProfileController{
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
         self.presentViewController(vc, animated: true, completion: nil)        
+    }
+}
+
+extension UIImageView {
+    public func imageFromUrl(urlString: String) {
+        if let url = NSURL(string: urlString) {
+            let request = NSMutableURLRequest(URL: url)
+            request.setValue("Bearer " + UserData.getGraphAccessToken()!, forHTTPHeaderField: "Authorization")
+            NSURLSession.sharedSession().dataTaskWithRequest(request) {
+                (data, response, error) in
+                guard let data = data where error == nil else{
+                    NSLog("Image download error: \(error)")
+                    return
+                }
+                
+                if let httpResponse = response as? NSHTTPURLResponse{
+                    if httpResponse.statusCode > 400 {
+                        let errorMsg = NSString(data: data, encoding: NSUTF8StringEncoding)
+                        NSLog("Image download error, statusCode: \(httpResponse.statusCode), error: \(errorMsg!)")
+                        return
+                    }
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    NSLog("Image download success")
+                    self.image = UIImage(data: data)
+                })
+
+            }.resume()
+        }
     }
 }

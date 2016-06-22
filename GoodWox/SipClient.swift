@@ -65,7 +65,6 @@ class SipApiClient {
                     
                     if let contact = ContactDbHelper.getContact(account["email"] as! String) {
                         contact.sip = (account["sip_account"]! as! String)
-                        // NSLog(String(account["phone"]!))
                     }
                 }
                 ContactDbHelper.save()

@@ -88,7 +88,7 @@
 		A986216A1D15495E00BA767D /* ContactDbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98621691D15495E00BA767D /* ContactDbHelper.swift */; };
 		A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C121D03BB1C003FE7B3 /* ProfileController.swift */; };
 		A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */; };
-		A9863C171D03BD6D003FE7B3 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C161D03BD6D003FE7B3 /* Authentication.swift */; };
+		A9863C171D03BD6D003FE7B3 /* MircosoftGraphAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C161D03BD6D003FE7B3 /* MircosoftGraphAuthentication.swift */; };
 		A9863C371D0579C0003FE7B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9863C361D0579C0003FE7B3 /* LaunchScreen.storyboard */; };
 		A99663221D0591D4003B5EEE /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99663211D0591D4003B5EEE /* TabController.swift */; };
 		A99663251D05A105003B5EEE /* CompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99663241D05A105003B5EEE /* CompanyController.swift */; };
@@ -184,8 +184,8 @@
 		A98621671D15293C00BA767D /* GoodWox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodWox.xcdatamodel; sourceTree = "<group>"; };
 		A98621691D15495E00BA767D /* ContactDbHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDbHelper.swift; sourceTree = "<group>"; };
 		A9863C121D03BB1C003FE7B3 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
-		A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
-		A9863C161D03BD6D003FE7B3 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationConstants.swift; path = Office365/ApplicationConstants.swift; sourceTree = "<group>"; };
+		A9863C161D03BD6D003FE7B3 /* MircosoftGraphAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MircosoftGraphAuthentication.swift; path = Office365/MircosoftGraphAuthentication.swift; sourceTree = "<group>"; };
 		A9863C361D0579C0003FE7B3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A99663211D0591D4003B5EEE /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		A99663241D05A105003B5EEE /* CompanyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyController.swift; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 		A9AAE4901D0273C20034B564 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9AAE4921D0273C20034B564 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9AAE4971D0273C20034B564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9AAE4B11D02D1A20034B564 /* GoodWox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoodWox-Bridging-Header.h"; sourceTree = "<group>"; };
+		A9AAE4B11D02D1A20034B564 /* GoodWox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GoodWox-Bridging-Header.h"; path = "GoodWox/GoodWox-Bridging-Header.h"; sourceTree = "<group>"; };
 		A9C249031D12A00F00430C92 /* PhoneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneController.swift; sourceTree = "<group>"; };
 		A9C249271D13EB2D00430C92 /* InitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitController.swift; sourceTree = "<group>"; };
 		B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodWox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -391,13 +391,14 @@
 			name = config;
 			sourceTree = "<group>";
 		};
-		A9842BFF1D0FA4FC0062A35B /* ObjC */ = {
+		A9842BFF1D0FA4FC0062A35B /* ObjectiveC */ = {
 			isa = PBXGroup;
 			children = (
+				A9AAE4B11D02D1A20034B564 /* GoodWox-Bridging-Header.h */,
 				A9842BFE1D0FA4860062A35B /* exception.h */,
 				A9842BFC1D0FA45D0062A35B /* exception.m */,
 			);
-			name = ObjC;
+			name = ObjectiveC;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -422,6 +423,7 @@
 		A9863C101D03B92A003FE7B3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A9863C161D03BD6D003FE7B3 /* MircosoftGraphAuthentication.swift */,
 				A9AAE48B1D0273C20034B564 /* AppDelegate.swift */,
 				A9AAE48D1D0273C20034B564 /* LoginController.swift */,
 				A9C249271D13EB2D00430C92 /* InitController.swift */,
@@ -481,26 +483,15 @@
 		A9AAE48A1D0273C20034B564 /* GoodWox */ = {
 			isa = PBXGroup;
 			children = (
+				A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */,
 				A9863C111D03B938003FE7B3 /* View */,
 				A9842C001D0FE0460062A35B /* Service */,
 				A99663231D05A0B0003B5EEE /* Model */,
 				A9863C101D03B92A003FE7B3 /* Controller */,
 				A9863C0F1D03B919003FE7B3 /* Resource */,
-				A9842BFF1D0FA4FC0062A35B /* ObjC */,
-				A9AAE4A71D02C9A20034B564 /* MicrosoftGraph */,
-				A9AAE4B11D02D1A20034B564 /* GoodWox-Bridging-Header.h */,
+				A9842BFF1D0FA4FC0062A35B /* ObjectiveC */,
 			);
 			path = GoodWox;
-			sourceTree = "<group>";
-		};
-		A9AAE4A71D02C9A20034B564 /* MicrosoftGraph */ = {
-			isa = PBXGroup;
-			children = (
-				A9863C161D03BD6D003FE7B3 /* Authentication.swift */,
-				A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */,
-			);
-			name = MicrosoftGraph;
-			path = Office365;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -658,7 +649,7 @@
 				A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */,
 				A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */,
 				A9C249281D13EB2D00430C92 /* InitController.swift in Sources */,
-				A9863C171D03BD6D003FE7B3 /* Authentication.swift in Sources */,
+				A9863C171D03BD6D003FE7B3 /* MircosoftGraphAuthentication.swift in Sources */,
 				A9842BDC1D0DA1E20062A35B /* LinphoneManager.swift in Sources */,
 				A98621681D15293C00BA767D /* GoodWox.xcdatamodeld in Sources */,
 				A99663251D05A105003B5EEE /* CompanyController.swift in Sources */,

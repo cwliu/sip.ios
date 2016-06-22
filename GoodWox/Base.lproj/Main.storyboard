@@ -197,6 +197,7 @@
                     <navigationItem key="navigationItem" title="更多" id="ia6-TE-hAy"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="avatarImage" destination="1SX-oK-rJ6" id="QEc-De-spO"/>
                         <outlet property="nameLabel" destination="876-IF-FGj" id="Oq5-SX-TQy"/>
                         <segue destination="LWE-0U-cKc" kind="unwind" unwindAction="prepareForUnwind:" id="1bL-rt-n4X"/>
                     </connections>
