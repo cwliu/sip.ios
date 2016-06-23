@@ -48,7 +48,7 @@ class InitController: UIViewController{
     func downloadCompanyContact(){
         
         // Already downloaded
-        if ContactDbHelper.getCompnayContacts().count != 0{
+        if ContactDbHelper.getContactsByType(.COMPANY).count != 0{
             SipApiClient().initSip(self.finish)
             return
         }

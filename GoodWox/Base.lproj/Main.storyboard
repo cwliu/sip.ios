@@ -323,6 +323,9 @@
                             <constraint firstItem="4RS-X9-yq1" firstAttribute="centerX" secondItem="Ogq-Ao-mU4" secondAttribute="centerX" id="xMv-sE-X2V"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="Vv2-6B-wl6" id="BGg-QR-d9F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTH-JT-Qi5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

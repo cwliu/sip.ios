@@ -1,5 +1,7 @@
 import Foundation
 import Alamofire
+import Contacts
+
 
 class PhoneController: UITableViewController{
     
@@ -17,11 +19,12 @@ class PhoneController: UITableViewController{
         tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
         
         loadManualContact()
+        loadPhoneContact()
     }
     
     func loadManualContact(){
         
-        self.contacts = ContactDbHelper.getContactByType(ContactType.MANUAL)
+        self.contacts = ContactDbHelper.getContactsByType(ContactType.MANUAL)
         if self.contacts.count > 0{
             NSLog("Load manual contact from DB")
             self.tableView.reloadData()
@@ -53,7 +56,7 @@ class PhoneController: UITableViewController{
                         ContactDbHelper.addContect(name, phoneList: phoneList, type: ContactType.MANUAL)
                     }
                     
-                    self.contacts = ContactDbHelper.getContactByType(ContactType.MANUAL)
+                    self.contacts = ContactDbHelper.getContactsByType(ContactType.MANUAL)
                     self.tableView.reloadData()
                 }
         }
@@ -81,6 +84,7 @@ class PhoneController: UITableViewController{
         self.navigationController?.navigationBar.barStyle = .Black
     }
 }
+
 
 extension PhoneController {
     
@@ -117,7 +121,7 @@ extension PhoneController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         NSLog("prepareForSegue: \(segue.identifier)")
-
+        
         if(segue.identifier == "makeCall"){
             
             let controller = segue.destinationViewController as! OutgoingCallController
@@ -133,5 +137,64 @@ extension PhoneController {
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
+    }
+}
+
+
+extension PhoneController {
+    
+    func loadPhoneContact(){
+        
+        let savedPhoneContact = ContactDbHelper.getContactsByType(ContactType.PHONE)
+        if(savedPhoneContact.count > 0){
+            contacts += savedPhoneContact
+            self.tableView.reloadData()
+            return
+        }
+        
+        let store = CNContactStore()
+        store.requestAccessForEntityType(.Contacts, completionHandler: {
+            granted, error in
+            
+            guard granted else {
+                let alert = UIAlertController(title: "無法存取本機連絡人", message: "請至「設定」-> 「GoodWox」開啟連絡人權限", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+                return
+            }
+            
+            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName), CNContactPhoneNumbersKey]
+            let request = CNContactFetchRequest(keysToFetch: keysToFetch)
+            var cnContacts = [CNContact]()
+            
+            do {
+                try store.enumerateContactsWithFetchRequest(request){
+                    (contact, cursor) -> Void in
+                    cnContacts.append(contact)
+                }
+            } catch let error {
+                NSLog("Fetch contact error: \(error)")
+            }
+            
+            NSLog(">>>> Contact list:")
+            for contact in cnContacts {
+                let fullName = CNContactFormatter.stringFromContact(contact, style: .FullName) ?? "No Name"
+                
+                var phones = [String]()
+                
+                for phoneLabeled in contact.phoneNumbers{
+                    phones.append((phoneLabeled.value as! CNPhoneNumber).valueForKey("digits") as! String)
+                }
+                
+                ContactDbHelper.addContect(fullName, phoneList: phones, type: ContactType.PHONE)
+                NSLog("\(fullName): \(contact.phoneNumbers.description)")
+            }
+            
+            ContactDbHelper.save()
+            
+            self.contacts += ContactDbHelper.getContactsByType(ContactType.PHONE)
+        })
+        
+        self.tableView.reloadData()
     }
 }

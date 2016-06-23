@@ -18,7 +18,7 @@ class CompanyController: UITableViewController{
     
         modifyTableStyle()
         
-        contacts = ContactDbHelper.getContactByType(ContactType.COMPANY)
+        contacts = ContactDbHelper.getContactsByType(ContactType.COMPANY)
         
         let nib = UINib(nibName: "ContactCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "Cell")

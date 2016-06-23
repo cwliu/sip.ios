@@ -13,16 +13,13 @@ var receiveCallStateChanged: LinphoneCoreCallStateChangedCb = {
         receiveNavigationController!.dismissViewControllerAnimated(true, completion: nil)
     case LinphoneCallEnd:
         NSLog("outgoingCallStateChanged: LinphoneCallEnd")
-        receiveNavigationController!.dismissViewControllerAnimated(true, completion: nil)        
+        receiveNavigationController!.dismissViewControllerAnimated(true, completion: nil)
     default:
         NSLog("outgoingCallStateChanged: Default call state")
     }
 }
 
 class ReceiveCallController: UIViewController{
-    
-    var sipNumber: String?
-    var calleeName: String?
     
     @IBOutlet var sipNumberLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
@@ -31,16 +28,15 @@ class ReceiveCallController: UIViewController{
     
     override func viewDidLoad() {
         NSLog("ReceiveCallController.viewDidLoad()")
-                
+        
         receiveNavigationController = self
         
         self.navigationItem.hidesBackButton = true
         
-        if let calleeSipAccount = sipNumber, lc = LinphoneManager.lc {
-            sipNumberLabel.text = sipNumber!
-            nameLabel.text = calleeName!
-            linphone_core_invite(lc, calleeSipAccount)
-        }
+        let call = linphone_core_get_current_call(LinphoneManager.getLc())
+        let address = linphone_call_get_remote_address_as_string(call)
+        nameLabel.text = getUsernameFromAddress(String.fromCString(address)!)
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		62D958190217ECD6C13112EB /* Pods_GoodWox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */; };
 		A934E1A81D1A826400427A2D /* ApplicaitonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E1A71D1A826400427A2D /* ApplicaitonStatus.swift */; };
+		A934E1AA1D1AA6E500427A2D /* LinphoneUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E1A91D1AA6E500427A2D /* LinphoneUtil.swift */; };
 		A96B651C1D16D54B00BF2436 /* ReceiveCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */; };
 		A96B65241D16E1CE00BF2436 /* dont_wait_too_long.mkv in Resources */ = {isa = PBXBuildFile; fileRef = A96B651E1D16E1CE00BF2436 /* dont_wait_too_long.mkv */; };
 		A96B65251D16E1CE00BF2436 /* hello8000.wav in Resources */ = {isa = PBXBuildFile; fileRef = A96B651F1D16E1CE00BF2436 /* hello8000.wav */; };
@@ -107,6 +108,7 @@
 /* Begin PBXFileReference section */
 		111C376739DFF46C34F969C9 /* Pods-GoodWox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.release.xcconfig"; sourceTree = "<group>"; };
 		A934E1A71D1A826400427A2D /* ApplicaitonStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicaitonStatus.swift; sourceTree = "<group>"; };
+		A934E1A91D1AA6E500427A2D /* LinphoneUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinphoneUtil.swift; sourceTree = "<group>"; };
 		A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveCallController.swift; sourceTree = "<group>"; };
 		A96B651E1D16E1CE00BF2436 /* dont_wait_too_long.mkv */ = {isa = PBXFileReference; lastKnownFileType = file; name = dont_wait_too_long.mkv; path = "liblinphone-sdk/apple-darwin/share/sounds/linphone/dont_wait_too_long.mkv"; sourceTree = "<group>"; };
 		A96B651F1D16E1CE00BF2436 /* hello8000.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hello8000.wav; path = "liblinphone-sdk/apple-darwin/share/sounds/linphone/hello8000.wav"; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */,
 				A96B653C1D1791AF00BF2436 /* ViewControllerHelper.swift */,
 				A9CD72BB1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift */,
+				A934E1A91D1AA6E500427A2D /* LinphoneUtil.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				A934E1A81D1A826400427A2D /* ApplicaitonStatus.swift in Sources */,
 				A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */,
 				A9842C241D1183340062A35B /* UserData.swift in Sources */,
+				A934E1AA1D1AA6E500427A2D /* LinphoneUtil.swift in Sources */,
 				A996632D1D064916003B5EEE /* Contact.swift in Sources */,
 				A9842BF71D0EA1730062A35B /* OutgoingCallController.swift in Sources */,
 				A99663221D0591D4003B5EEE /* TabController.swift in Sources */,
@@ -773,7 +777,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = GoodWox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -792,7 +796,7 @@
 					"-framework",
 					"\"NXOAuth2Client\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wiadvance.GoodWox;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wiadvance.GoodWoxComm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoodWox/GoodWox-Bridging-Header.h";
@@ -809,7 +813,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = GoodWox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -828,7 +832,7 @@
 					"-framework",
 					"\"NXOAuth2Client\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wiadvance.GoodWox;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wiadvance.GoodWoxComm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoodWox/GoodWox-Bridging-Header.h";
