@@ -10,8 +10,6 @@ class CompanyController: UITableViewController{
     
     var sipNumber: String? = nil
     
-    @IBOutlet var favoriteImage: UIImageView!
-    
     override func viewDidLoad() {
         NSLog("CompanyController.viewDidLoad()")
         
@@ -24,9 +22,6 @@ class CompanyController: UITableViewController{
         
         let nib = UINib(nibName: "ContactCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
-        
-        
-        
     }
     
     func favoriteClick(sender: UITapGestureRecognizer) {
@@ -133,3 +128,4 @@ class CompanyController: UITableViewController{
         }
     }
 }
+

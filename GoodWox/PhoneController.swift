@@ -77,6 +77,23 @@ class PhoneController: UITableViewController{
         
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         
+        
+        cell.favoriteImage.userInteractionEnabled = true
+        let singleTap = UITapGestureRecognizer(target: self, action:#selector(PhoneController.favoriteClick))
+        singleTap.numberOfTapsRequired = 1
+        cell.favoriteImage.addGestureRecognizer(singleTap)
+        cell.favoriteImage.tag = indexPath.row
+        
+        
+        if (contact.isFavorite == true) {
+            cell.favoriteImage.image = UIImage(named: "star_red_16dp")
+            cell.nameLabel.textColor = UIColor(hex: "#E0454B")
+        }else{
+            cell.favoriteImage.image = UIImage(named: "star_gray_16dp")
+            cell.nameLabel.textColor = UIColor(hex: "#2B2725")
+        }
+        
+        
         return cell
     }
     
@@ -85,6 +102,26 @@ class PhoneController: UITableViewController{
         self.navigationController?.navigationBar.translucent = true
         
         self.navigationController?.navigationBar.barStyle = .Black
+    }
+    
+    
+    func favoriteClick(sender: UITapGestureRecognizer) {
+        NSLog("Single Tap on favoriteClick")
+        
+        
+        if let index = sender.view?.tag{
+            let contact = self.contacts[index]
+            
+            if(contact.isFavorite == true){
+                contact.isFavorite = false
+            }else{
+                contact.isFavorite = true
+            }
+            
+            ContactDbHelper.updateContact(self.contacts[index])
+        }
+        
+        self.tableView.reloadData()
     }
 }
 
@@ -202,4 +239,6 @@ extension PhoneController {
             })
         })
     }
+    
+
 }
