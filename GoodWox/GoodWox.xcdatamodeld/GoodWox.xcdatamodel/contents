@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
     <entity name="Contact" representedClassName=".Contact" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phones" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -10,6 +11,6 @@
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="-45" positionY="0" width="128" height="150"/>
+        <element name="Contact" positionX="-45" positionY="0" width="128" height="165"/>
     </elements>
 </model>

@@ -2,7 +2,6 @@ import Foundation
 import Alamofire
 import Contacts
 
-
 class PhoneController: UITableViewController{
     
     var contacts = [Contact]()

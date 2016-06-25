@@ -35,7 +35,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qdq-Ic-48i">
                         <rect key="frame" x="68" y="44" width="45" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.16862745583057404" green="0.15294118225574493" blue="0.14509804546833038" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -58,6 +58,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarImage" destination="YoY-MH-yUD" id="Xxx-NS-uVx"/>
+                <outlet property="favoriteImage" destination="1ry-0p-Wio" id="z39-mP-zKv"/>
                 <outlet property="nameLabel" destination="Qdq-Ic-48i" id="vFQ-VV-rHA"/>
             </connections>
             <point key="canvasLocation" x="235.5" y="306.5"/>

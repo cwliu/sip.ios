@@ -94,7 +94,6 @@
 		A99663221D0591D4003B5EEE /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99663211D0591D4003B5EEE /* TabController.swift */; };
 		A99663251D05A105003B5EEE /* CompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99663241D05A105003B5EEE /* CompanyController.swift */; };
 		A99663291D05A81B003B5EEE /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99663281D05A81B003B5EEE /* ContactCell.swift */; };
-		A996632D1D064916003B5EEE /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996632C1D064916003B5EEE /* Contact.swift */; };
 		A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48B1D0273C20034B564 /* AppDelegate.swift */; };
 		A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48D1D0273C20034B564 /* LoginController.swift */; };
 		A9AAE4911D0273C20034B564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE48F1D0273C20034B564 /* Main.storyboard */; };
@@ -102,6 +101,10 @@
 		A9C249041D12A00F00430C92 /* PhoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C249031D12A00F00430C92 /* PhoneController.swift */; };
 		A9C249281D13EB2D00430C92 /* InitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C249271D13EB2D00430C92 /* InitController.swift */; };
 		A9CD72BC1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD72BB1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift */; };
+		A9D4698E1D1EB707007C5B2B /* GoodWox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9D4698C1D1EB707007C5B2B /* GoodWox.xcdatamodeld */; };
+		A9D469951D1EB7C7007C5B2B /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469931D1EB7C7007C5B2B /* Contact+CoreDataProperties.swift */; };
+		A9D469961D1EB7C7007C5B2B /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469941D1EB7C7007C5B2B /* Contact.swift */; };
+		A9D469981D1EC9DB007C5B2B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469971D1EC9DA007C5B2B /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -193,7 +196,6 @@
 		A99663211D0591D4003B5EEE /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		A99663241D05A105003B5EEE /* CompanyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyController.swift; sourceTree = "<group>"; };
 		A99663281D05A81B003B5EEE /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
-		A996632C1D064916003B5EEE /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		A9AAE4881D0273C20034B564 /* GoodWox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodWox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AAE48B1D0273C20034B564 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9AAE48D1D0273C20034B564 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -204,6 +206,10 @@
 		A9C249031D12A00F00430C92 /* PhoneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneController.swift; sourceTree = "<group>"; };
 		A9C249271D13EB2D00430C92 /* InitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitController.swift; sourceTree = "<group>"; };
 		A9CD72BB1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BearerHeaderNetworkFetcher.swift; sourceTree = "<group>"; };
+		A9D4698D1D1EB707007C5B2B /* GoodWox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodWox.xcdatamodel; sourceTree = "<group>"; };
+		A9D469931D1EB7C7007C5B2B /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Contact+CoreDataProperties.swift"; path = "../Pods/Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A9D469941D1EB7C7007C5B2B /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ../Pods/Contact.swift; sourceTree = "<group>"; };
+		A9D469971D1EC9DA007C5B2B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodWox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -458,11 +464,14 @@
 		A99663231D05A0B0003B5EEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A99663281D05A81B003B5EEE /* ContactCell.swift */,
-				A996632C1D064916003B5EEE /* Contact.swift */,
-				A9842C231D1183340062A35B /* UserData.swift */,
+				A9D4698C1D1EB707007C5B2B /* GoodWox.xcdatamodeld */,
+				A9D469931D1EB7C7007C5B2B /* Contact+CoreDataProperties.swift */,
+				A9D469941D1EB7C7007C5B2B /* Contact.swift */,
 				A98621691D15495E00BA767D /* ContactDbHelper.swift */,
+				A99663281D05A81B003B5EEE /* ContactCell.swift */,
+				A9842C231D1183340062A35B /* UserData.swift */,
 				A934E1A71D1A826400427A2D /* ApplicaitonStatus.swift */,
+				A9D469971D1EC9DA007C5B2B /* UIColor.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -642,6 +651,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A96B653D1D1791AF00BF2436 /* ViewControllerHelper.swift in Sources */,
+				A9D4698E1D1EB707007C5B2B /* GoodWox.xcdatamodeld in Sources */,
+				A9D469961D1EB7C7007C5B2B /* Contact.swift in Sources */,
 				A96B651C1D16D54B00BF2436 /* ReceiveCallController.swift in Sources */,
 				A9842BFD1D0FA45D0062A35B /* exception.m in Sources */,
 				A99663291D05A81B003B5EEE /* ContactCell.swift in Sources */,
@@ -649,15 +660,16 @@
 				A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */,
 				A9842C241D1183340062A35B /* UserData.swift in Sources */,
 				A934E1AA1D1AA6E500427A2D /* LinphoneUtil.swift in Sources */,
-				A996632D1D064916003B5EEE /* Contact.swift in Sources */,
 				A9842BF71D0EA1730062A35B /* OutgoingCallController.swift in Sources */,
 				A99663221D0591D4003B5EEE /* TabController.swift in Sources */,
+				A9D469951D1EB7C7007C5B2B /* Contact+CoreDataProperties.swift in Sources */,
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
 				A986216A1D15495E00BA767D /* ContactDbHelper.swift in Sources */,
 				A9CD72BC1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift in Sources */,
 				A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */,
 				A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */,
 				A9C249281D13EB2D00430C92 /* InitController.swift in Sources */,
+				A9D469981D1EC9DB007C5B2B /* UIColor.swift in Sources */,
 				A9863C171D03BD6D003FE7B3 /* MircosoftGraphAuthentication.swift in Sources */,
 				A9842BDC1D0DA1E20062A35B /* LinphoneManager.swift in Sources */,
 				A99663251D05A105003B5EEE /* CompanyController.swift in Sources */,
@@ -860,6 +872,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A9D4698C1D1EB707007C5B2B /* GoodWox.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A9D4698D1D1EB707007C5B2B /* GoodWox.xcdatamodel */,
+			);
+			currentVersion = A9D4698D1D1EB707007C5B2B /* GoodWox.xcdatamodel */;
+			path = GoodWox.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A9AAE4801D0273C20034B564 /* Project object */;
 }

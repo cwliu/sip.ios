@@ -78,7 +78,7 @@ class ContactDbHelper {
         return nil
     }
     
-    static func addContect(name: String, email: String, type: ContactType) -> Void {
+    static func addContect(name: String, email: String, type: ContactType){
         
         if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
             
@@ -111,21 +111,21 @@ class ContactDbHelper {
                 }
                 
                 contact.phones = phoneList
-//
-//                dispatch_async(dispatch_get_main_queue(), {() -> Void in
-//                    
-//                    do {
-//                        try managedObjectContext.save()
-//                    } catch {
-//                        NSLog("Error ocurred: \(error)")
-//                    }
-//                })
-
 
             } catch let error{
                 NSLog("NSError ocurred: \(error)")
                 managedObjectContext.deleteObject(contact)
             }
+        }
+    }
+    
+    static func updateContact(contact: Contact){
+        
+        do {
+            try contact.managedObjectContext?.save()
+        } catch {
+            let saveError = error as NSError
+            NSLog("Save error: \(saveError)")
         }
     }
     

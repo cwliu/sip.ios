@@ -601,6 +601,8 @@
 		A8BDD0E309BF3F65D7063AED26E6EE76 /* MSGraphUserOwnedDevicesCollectionReferencesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 150168B454932132438E150D28CB5D62 /* MSGraphUserOwnedDevicesCollectionReferencesRequest.m */; };
 		A8CF635DBE430F95FB17D371B918B3FB /* UIImage+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F2F2EB81353E07FF8B2C09F395C46A /* UIImage+Haneke.swift */; };
 		A97FC71449C5FBA2CC2C95BA946764C5 /* MSQueryParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F7D59C9E4D51212EC48D703A359B9E7 /* MSQueryParameters.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9D469911D1EB7AE007C5B2B /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4698F1D1EB7AE007C5B2B /* Contact+CoreDataProperties.swift */; };
+		A9D469921D1EB7AE007C5B2B /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469901D1EB7AE007C5B2B /* Contact.swift */; };
 		A9D63AD831ECA9ACF4F874B357293372 /* NSData+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB4B31F2F6EAA7B1AF494BA37D76F73 /* NSData+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A9FB50E441D309755F3D8B43082C9EA4 /* MSGraphDirectoryObjectWithReferenceRequestBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = D0B5F7B9C1E295E7BB547AA80D371057 /* MSGraphDirectoryObjectWithReferenceRequestBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA0106900380658D9847F8920E5AB053 /* MSGraphThumbnailSet+CustomThumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 44D6B7132F53B2A5B0B6ED80DB6D48CC /* MSGraphThumbnailSet+CustomThumbnail.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1620,6 +1622,8 @@
 		A9AA1CF4E9B33B2F8CFA46CEC64577A9 /* MSURLSessionTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSURLSessionTask.m; path = MSGraphSDK/MSGraphCoreSDK/Core/MSURLSession/MSURLSessionTask.m; sourceTree = "<group>"; };
 		A9AC8AB95A7974E147A3703A50507A74 /* MSGraphPermission.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphPermission.m; path = MSGraphSDK/MSGraphCoreSDK/model/MSGraphPermission.m; sourceTree = "<group>"; };
 		A9BEF3669DC565DFE3E135549C2A2595 /* MSGraphItemAttachmentRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphItemAttachmentRequest.m; path = MSGraphSDK/MSGraphCoreSDK/requests/MSGraphItemAttachmentRequest.m; sourceTree = "<group>"; };
+		A9D4698F1D1EB7AE007C5B2B /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A9D469901D1EB7AE007C5B2B /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		AABFC45D7EF805512E96EA6583D2F33E /* MSGraphPasswordProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphPasswordProfile.m; path = MSGraphSDK/MSGraphCoreSDK/model/MSGraphPasswordProfile.m; sourceTree = "<group>"; };
 		AB033F9E5C39A13CBDE63EFA3E344D88 /* MSGraphGraphServiceDirectoryRoleTemplatesCollectionRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphGraphServiceDirectoryRoleTemplatesCollectionRequest.m; path = MSGraphSDK/MSGraphCoreSDK/requests/MSGraphGraphServiceDirectoryRoleTemplatesCollectionRequest.m; sourceTree = "<group>"; };
 		AB08E7977B2CD9E28F026399A7E506FE /* MSGraphReferenceAttachment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSGraphReferenceAttachment.h; path = MSGraphSDK/MSGraphCoreSDK/model/MSGraphReferenceAttachment.h; sourceTree = "<group>"; };
@@ -2207,6 +2211,8 @@
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
+				A9D4698F1D1EB7AE007C5B2B /* Contact+CoreDataProperties.swift */,
+				A9D469901D1EB7AE007C5B2B /* Contact.swift */,
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				436A920C93F0496C1839882FC33BCE09 /* Frameworks */,
 				F5CBEABD7222BE02343CD07F43E1C73F /* Pods */,
@@ -4265,12 +4271,14 @@
 				5CB05FBCB32D21E194B5ECF680CB6AE0 /* Download.swift in Sources */,
 				095406039B4D371E48D08B38A2975AC8 /* Error.swift in Sources */,
 				4081EA628AF0B73AC51FFB9D7AB3B89E /* Manager.swift in Sources */,
+				A9D469911D1EB7AE007C5B2B /* Contact+CoreDataProperties.swift in Sources */,
 				C7B6DD7C0456C50289A2C381DFE9FA3F /* MultipartFormData.swift in Sources */,
 				34CCDCA848A701466256BC2927DA8856 /* NetworkReachabilityManager.swift in Sources */,
 				BE41196F6A3903E59C3306FE3F8B43FE /* Notifications.swift in Sources */,
 				C0DB70AB368765DC64BFB5FEA75E0696 /* ParameterEncoding.swift in Sources */,
 				EFE92E8D3813DD26E78E93EEAF6D7E7E /* Request.swift in Sources */,
 				62E8346F03C03E7F4D631361F325689E /* Response.swift in Sources */,
+				A9D469921D1EB7AE007C5B2B /* Contact.swift in Sources */,
 				3EA8F215C9C1432D74E5CCA4834AA8C0 /* ResponseSerialization.swift in Sources */,
 				AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */,
 				7B48852C4D848FA2DA416A98F6425869 /* ServerTrustPolicy.swift in Sources */,
