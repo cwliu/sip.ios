@@ -86,7 +86,6 @@
 		A9842BFD1D0FA45D0062A35B /* exception.m in Sources */ = {isa = PBXBuildFile; fileRef = A9842BFC1D0FA45D0062A35B /* exception.m */; };
 		A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9842C031D0FE7FE0062A35B /* SipClient.swift */; };
 		A9842C241D1183340062A35B /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9842C231D1183340062A35B /* UserData.swift */; };
-		A98621681D15293C00BA767D /* GoodWox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A98621661D15293C00BA767D /* GoodWox.xcdatamodeld */; };
 		A986216A1D15495E00BA767D /* ContactDbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98621691D15495E00BA767D /* ContactDbHelper.swift */; };
 		A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C121D03BB1C003FE7B3 /* ProfileController.swift */; };
 		A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */; };
@@ -186,7 +185,6 @@
 		A9842BFE1D0FA4860062A35B /* exception.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
 		A9842C031D0FE7FE0062A35B /* SipClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SipClient.swift; sourceTree = "<group>"; };
 		A9842C231D1183340062A35B /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
-		A98621671D15293C00BA767D /* GoodWox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodWox.xcdatamodel; sourceTree = "<group>"; };
 		A98621691D15495E00BA767D /* ContactDbHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDbHelper.swift; sourceTree = "<group>"; };
 		A9863C121D03BB1C003FE7B3 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationConstants.swift; path = Office365/ApplicationConstants.swift; sourceTree = "<group>"; };
@@ -463,7 +461,6 @@
 				A99663281D05A81B003B5EEE /* ContactCell.swift */,
 				A996632C1D064916003B5EEE /* Contact.swift */,
 				A9842C231D1183340062A35B /* UserData.swift */,
-				A98621661D15293C00BA767D /* GoodWox.xcdatamodeld */,
 				A98621691D15495E00BA767D /* ContactDbHelper.swift */,
 				A934E1A71D1A826400427A2D /* ApplicaitonStatus.swift */,
 			);
@@ -663,7 +660,6 @@
 				A9C249281D13EB2D00430C92 /* InitController.swift in Sources */,
 				A9863C171D03BD6D003FE7B3 /* MircosoftGraphAuthentication.swift in Sources */,
 				A9842BDC1D0DA1E20062A35B /* LinphoneManager.swift in Sources */,
-				A98621681D15293C00BA767D /* GoodWox.xcdatamodeld in Sources */,
 				A99663251D05A105003B5EEE /* CompanyController.swift in Sources */,
 				A9C249041D12A00F00430C92 /* PhoneController.swift in Sources */,
 				A9863C131D03BB1C003FE7B3 /* ProfileController.swift in Sources */,
@@ -864,19 +860,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		A98621661D15293C00BA767D /* GoodWox.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A98621671D15293C00BA767D /* GoodWox.xcdatamodel */,
-			);
-			currentVersion = A98621671D15293C00BA767D /* GoodWox.xcdatamodel */;
-			path = GoodWox.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = A9AAE4801D0273C20034B564 /* Project object */;
 }

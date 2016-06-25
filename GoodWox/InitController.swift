@@ -79,10 +79,11 @@ class InitController: UIViewController{
                         NSLog("NSError ocurred: \(error)")
                         
                     }
-                    SipApiClient().initSip(self.finish)
                 }
-                
+                ContactDbHelper.save()
             }
+            
+            SipApiClient().initSip(self.finish)
         }
     }
     

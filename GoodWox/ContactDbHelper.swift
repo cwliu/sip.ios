@@ -91,8 +91,6 @@ class ContactDbHelper {
                     contact.type = type.hashValue
                 }
                 
-                try managedObjectContext.save()
-                
             } catch let error{
                 NSLog("NSError ocurred: \(error)")
                 managedObjectContext.deleteObject(contact)
@@ -113,9 +111,17 @@ class ContactDbHelper {
                 }
                 
                 contact.phones = phoneList
-                
-                try managedObjectContext.save()
-                
+//
+//                dispatch_async(dispatch_get_main_queue(), {() -> Void in
+//                    
+//                    do {
+//                        try managedObjectContext.save()
+//                    } catch {
+//                        NSLog("Error ocurred: \(error)")
+//                    }
+//                })
+
+
             } catch let error{
                 NSLog("NSError ocurred: \(error)")
                 managedObjectContext.deleteObject(contact)
@@ -128,7 +134,7 @@ class ContactDbHelper {
             do {
                 try managedObjectContext.save()
             } catch {
-                print(error)
+                NSLog("Error ocurred: \(error)")
             }
             
         }

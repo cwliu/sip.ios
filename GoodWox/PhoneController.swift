@@ -8,7 +8,7 @@ class PhoneController: UITableViewController{
     var contacts = [Contact]()
     
     var targetPhone: String?
-    var targetContactIndex: Int?
+    var selectContactIndex: Int?
     
     override func viewDidLoad() {
         self.navigationController?.navigationBar.barStyle = .Black
@@ -24,9 +24,10 @@ class PhoneController: UITableViewController{
     
     func loadManualContact(){
         
-        self.contacts = ContactDbHelper.getContactsByType(ContactType.MANUAL)
-        if self.contacts.count > 0{
+        let manualContacts = ContactDbHelper.getContactsByType(ContactType.MANUAL)
+        if manualContacts.count > 0{
             NSLog("Load manual contact from DB")
+            self.contacts.appendContentsOf(manualContacts)
             self.tableView.reloadData()
             return
         }
@@ -55,9 +56,12 @@ class PhoneController: UITableViewController{
                         
                         ContactDbHelper.addContect(name, phoneList: phoneList, type: ContactType.MANUAL)
                     }
+                    ContactDbHelper.save()
                     
-                    self.contacts = ContactDbHelper.getContactsByType(ContactType.MANUAL)
-                    self.tableView.reloadData()
+                    self.contacts.appendContentsOf(ContactDbHelper.getContactsByType(ContactType.MANUAL))
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tableView.reloadData()
+                    })
                 }
         }
     }
@@ -91,6 +95,7 @@ extension PhoneController {
     // MARK: Segue
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let phones = self.contacts[indexPath.row].phones
+        selectContactIndex = indexPath.row
         if phones.count == 0 {
             let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no phone number available", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -115,7 +120,6 @@ extension PhoneController {
             self.presentViewController(alertController, animated: true, completion: nil)
             
         }
-        targetContactIndex = indexPath.row
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
@@ -126,7 +130,7 @@ extension PhoneController {
             
             let controller = segue.destinationViewController as! OutgoingCallController
             
-            if let phone = targetPhone, index = targetContactIndex {
+            if let phone = targetPhone, index = selectContactIndex {
                 controller.phoneNumber = phone
                 controller.calleeName = self.contacts[index].name
                 controller.phoneType = .NONSIP
@@ -193,8 +197,10 @@ extension PhoneController {
             ContactDbHelper.save()
             
             self.contacts += ContactDbHelper.getContactsByType(ContactType.PHONE)
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
         })
-        
-        self.tableView.reloadData()
     }
 }
