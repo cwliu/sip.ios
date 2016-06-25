@@ -65,25 +65,6 @@
             </objects>
             <point key="canvasLocation" x="-2439" y="-880"/>
         </scene>
-        <!--我的最愛-->
-        <scene sceneID="edC-8s-aH2">
-            <objects>
-                <viewController id="8dd-aL-YHN" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fC4-Oc-cyK"/>
-                        <viewControllerLayoutGuide type="bottom" id="Qu1-ui-plu"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Mro-9W-GU1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" enabled="NO" title="我的最愛" image="star_blue_25dp" id="r1N-Tv-igj"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FSu-aH-BrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1606" y="-2"/>
-        </scene>
         <!--聯絡記錄-->
         <scene sceneID="a75-ga-StP">
             <objects>
@@ -101,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYr-2o-waw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-972" y="-2"/>
+            <point key="canvasLocation" x="-240" y="3"/>
         </scene>
         <!--更多-->
         <scene sceneID="uTy-CW-4v6">
@@ -260,7 +241,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3E-h9-z5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="516" y="3"/>
+            <point key="canvasLocation" x="1328" y="3"/>
         </scene>
         <!--接聽-->
         <scene sceneID="Ue8-l0-yqH">
@@ -430,7 +411,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTO-hf-kPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1976" y="-4"/>
+            <point key="canvasLocation" x="2788" y="-4"/>
         </scene>
         <!--Init Controller-->
         <scene sceneID="d5a-rh-n7k">
@@ -463,6 +444,38 @@
             </objects>
             <point key="canvasLocation" x="-1606" y="-880"/>
         </scene>
+        <!--我的最愛-->
+        <scene sceneID="Idt-mx-oiV">
+            <objects>
+                <tableViewController id="Xze-Sf-l6z" customClass="FavoriteController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qT7-bl-y68">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="wNv-MA-yne">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wNv-MA-yne" id="a9h-uJ-YlC">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Xze-Sf-l6z" id="yOf-yX-ngL"/>
+                            <outlet property="delegate" destination="Xze-Sf-l6z" id="K5n-WI-AIU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="我的最愛" id="XPR-qj-kdF"/>
+                    <connections>
+                        <segue destination="tiK-IN-xw8" kind="presentation" identifier="makeCall" id="qAN-Io-LlL"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i5W-oA-S8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1585" y="-30"/>
+        </scene>
         <!--連絡人-->
         <scene sceneID="tmO-SX-CbP">
             <objects>
@@ -473,7 +486,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="8dd-aL-YHN" kind="relationship" relationship="viewControllers" id="F8U-L2-KMQ"/>
+                        <segue destination="iZc-ab-8VQ" kind="relationship" relationship="viewControllers" id="F8U-L2-KMQ"/>
                         <segue destination="r0k-ZH-0g6" kind="relationship" relationship="viewControllers" id="mnr-Ju-Yad"/>
                         <segue destination="Y2A-jK-rMB" kind="relationship" relationship="viewControllers" id="lSd-jh-XiU"/>
                         <segue destination="BCJ-3Z-Utf" kind="relationship" relationship="viewControllers" id="yea-EI-qOF"/>
@@ -521,7 +534,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2g-cl-f5v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1164" y="-4"/>
+            <point key="canvasLocation" x="1976" y="-4"/>
         </scene>
         <!--連絡人-->
         <scene sceneID="8VM-LQ-Mvy">
@@ -540,7 +553,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0h9-AM-BZy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-296" y="3"/>
+            <point key="canvasLocation" x="516" y="3"/>
+        </scene>
+        <!--我的最愛-->
+        <scene sceneID="hEp-jK-0Io">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iZc-ab-8VQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="我的最愛" image="star_blue_25dp" id="r1N-Tv-igj"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ig2-BJ-utz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Xze-Sf-l6z" kind="relationship" relationship="rootViewController" id="SoK-oC-c4n"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Bt-Tt-KcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2439" y="-30"/>
         </scene>
     </scenes>
     <resources>
@@ -562,6 +594,6 @@
         <image name="sync_circle_blue_14dp" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sqX-yI-AWM"/>
+        <segue reference="qAN-Io-LlL"/>
     </inferredMetricsTieBreakers>
 </document>

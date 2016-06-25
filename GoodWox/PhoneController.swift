@@ -172,7 +172,7 @@ extension PhoneController {
                 controller.phoneType = .NONSIP
                 
             }else{
-                let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no SIP number", preferredStyle: UIAlertControllerStyle.Alert)
+                let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no phone number", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
@@ -240,5 +240,9 @@ extension PhoneController {
         })
     }
     
-
+    override func viewWillAppear(animated: Bool) {
+        contacts = ContactDbHelper.getContactsByType(ContactType.MANUAL)
+        contacts.appendContentsOf(ContactDbHelper.getContactsByType(ContactType.PHONE))
+        self.tableView.reloadData()
+    }
 }

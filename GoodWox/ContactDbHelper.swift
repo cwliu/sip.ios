@@ -16,8 +16,8 @@ class ContactDbHelper {
 
             do {
                 contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
-            } catch {
-                print(error)
+            } catch let error{
+                NSLog("\(error)")
             }
         }
         return contacts
@@ -54,8 +54,8 @@ class ContactDbHelper {
             
             do {
                 contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
-            } catch {
-                print(error)
+            } catch let error{
+                NSLog("\(error)")
             }
         }
         return contacts
@@ -71,11 +71,31 @@ class ContactDbHelper {
                 if contacts.count > 0 {
                     return contacts[0]
                 }
-            } catch {
-                print(error)
+            } catch let error{
+                NSLog("\(error)")
             }
         }
         return nil
+    }
+    
+    static func getFavoriteContact() -> [Contact] {
+        var contacts: [Contact] = []
+        
+        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+            fetchRequest.predicate = NSPredicate(format: "isFavorite == 1")
+            
+            let sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+            fetchRequest.sortDescriptors = sortDescriptors
+            
+            do {
+                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+            } catch let error{
+                NSLog("\(error)")
+            }
+        }
+        
+        return contacts
     }
     
     static func addContect(name: String, email: String, type: ContactType){

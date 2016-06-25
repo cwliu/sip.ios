@@ -105,6 +105,7 @@
 		A9D469951D1EB7C7007C5B2B /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469931D1EB7C7007C5B2B /* Contact+CoreDataProperties.swift */; };
 		A9D469961D1EB7C7007C5B2B /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469941D1EB7C7007C5B2B /* Contact.swift */; };
 		A9D469981D1EC9DB007C5B2B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469971D1EC9DA007C5B2B /* UIColor.swift */; };
+		A9D4699A1D1ECE49007C5B2B /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469991D1ECE49007C5B2B /* FavoriteController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +211,7 @@
 		A9D469931D1EB7C7007C5B2B /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Contact+CoreDataProperties.swift"; path = "../Pods/Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A9D469941D1EB7C7007C5B2B /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ../Pods/Contact.swift; sourceTree = "<group>"; };
 		A9D469971D1EC9DA007C5B2B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		A9D469991D1ECE49007C5B2B /* FavoriteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
 		B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodWox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -447,6 +449,7 @@
 				A96B653C1D1791AF00BF2436 /* ViewControllerHelper.swift */,
 				A9CD72BB1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift */,
 				A934E1A91D1AA6E500427A2D /* LinphoneUtil.swift */,
+				A9D469991D1ECE49007C5B2B /* FavoriteController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				A986216A1D15495E00BA767D /* ContactDbHelper.swift in Sources */,
 				A9CD72BC1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift in Sources */,
 				A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */,
+				A9D4699A1D1ECE49007C5B2B /* FavoriteController.swift in Sources */,
 				A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */,
 				A9C249281D13EB2D00430C92 /* InitController.swift in Sources */,
 				A9D469981D1EC9DB007C5B2B /* UIColor.swift in Sources */,

@@ -127,5 +127,10 @@ class CompanyController: UITableViewController{
             }
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        contacts = ContactDbHelper.getContactsByType(ContactType.COMPANY)
+        self.tableView.reloadData()
+    }
 }
 
