@@ -8,12 +8,19 @@ var receiveCallStateChanged: LinphoneCoreCallStateChangedCb = {
     (lc: COpaquePointer, call: COpaquePointer, callSate: LinphoneCallState,  message) in
     
     switch callSate{
+    case LinphoneCallConnected: /**<The call encountered an error*/
+        NSLog("outgoingCallStateChanged: LinphoneCallConnected")
+        receiveNavigationController?.statusLabel.text = "Connected"
+        receiveNavigationController?.showEndButton()
+        
     case LinphoneCallError: /**<The call encountered an error*/
         NSLog("outgoingCallStateChanged: LinphoneCallError")
         receiveNavigationController!.dismissViewControllerAnimated(true, completion: nil)
+    
     case LinphoneCallEnd:
         NSLog("outgoingCallStateChanged: LinphoneCallEnd")
         receiveNavigationController!.dismissViewControllerAnimated(true, completion: nil)
+    
     default:
         NSLog("outgoingCallStateChanged: Default call state")
     }
@@ -23,12 +30,19 @@ class ReceiveCallController: UIViewController{
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var avatarImage: UIImageView!
+    @IBOutlet var statusLabel: UILabel!
+    
+    @IBOutlet var acceptButton: UIButton!
+    @IBOutlet var declineButton: UIButton!
+    @IBOutlet var endButton: UIButton!
+    
     
     var lct: LinphoneCoreVTable = LinphoneCoreVTable()
     
     override func viewDidLoad() {
         NSLog("ReceiveCallController.viewDidLoad()")
         
+            endButton.hidden = true
         receiveNavigationController = self
         
         self.navigationItem.hidesBackButton = true
@@ -67,7 +81,7 @@ class ReceiveCallController: UIViewController{
         NSLog("ReceiveCallController.prepareForSegue()")
     }
     
-    @IBAction func declineCall(){
+    @IBAction func endCall(){
         let call = linphone_core_get_current_call(LinphoneManager.getLc())
         if call != nil {
             linphone_core_decline_call(LinphoneManager.getLc(), call, LinphoneReasonDeclined)
@@ -101,6 +115,13 @@ class ReceiveCallController: UIViewController{
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    func showEndButton(){
+        
+        acceptButton.hidden = true
+        declineButton.hidden = true
+        endButton.hidden = false
     }
 }
 

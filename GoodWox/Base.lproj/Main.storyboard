@@ -285,15 +285,24 @@
                                 <rect key="frame" x="320" y="424" width="96" height="96"/>
                                 <state key="normal" image="call_end_red_96dp"/>
                                 <connections>
-                                    <action selector="declineCall" destination="IUv-uk-iz6" eventType="touchUpInside" id="Dcq-Jl-vbL"/>
+                                    <action selector="endCall" destination="IUv-uk-iz6" eventType="touchUpInside" id="8ZD-Dh-649"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Te6-Wi-Ztc">
+                                <rect key="frame" x="252" y="424" width="96" height="96"/>
+                                <state key="normal" image="call_end_red_96dp"/>
+                                <connections>
+                                    <action selector="endCall" destination="IUv-uk-iz6" eventType="touchUpInside" id="BqT-7x-dpt"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.41176471110000001" green="0.77254903320000001" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hcN-P3-Phq" firstAttribute="centerX" secondItem="Ogq-Ao-mU4" secondAttribute="centerX" id="CO5-sh-xdH"/>
+                            <constraint firstItem="Te6-Wi-Ztc" firstAttribute="centerX" secondItem="Ogq-Ao-mU4" secondAttribute="centerX" id="Kiq-O3-Lc1"/>
                             <constraint firstItem="hcN-P3-Phq" firstAttribute="top" secondItem="Vv2-6B-wl6" secondAttribute="bottom" constant="24" id="PMj-yQ-l4K"/>
                             <constraint firstItem="DEz-pD-oWO" firstAttribute="leading" secondItem="4Du-y9-SyX" secondAttribute="trailing" constant="40" id="WmS-WK-m1g"/>
+                            <constraint firstItem="txi-om-PJe" firstAttribute="top" secondItem="Te6-Wi-Ztc" secondAttribute="bottom" constant="80" id="YLd-lv-GLA"/>
                             <constraint firstItem="Vv2-6B-wl6" firstAttribute="top" secondItem="4RS-X9-yq1" secondAttribute="bottom" constant="24" id="bIO-cG-dCx"/>
                             <constraint firstItem="hcN-P3-Phq" firstAttribute="centerX" secondItem="Ogq-Ao-mU4" secondAttribute="centerX" id="c9v-xi-N66"/>
                             <constraint firstItem="4RS-X9-yq1" firstAttribute="top" secondItem="Sew-OY-Syh" secondAttribute="bottom" constant="80" id="cQL-5a-zHY"/>
@@ -305,8 +314,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="acceptButton" destination="4Du-y9-SyX" id="EDU-E6-YKV"/>
                         <outlet property="avatarImage" destination="4RS-X9-yq1" id="XVn-Tc-NJc"/>
+                        <outlet property="declineButton" destination="DEz-pD-oWO" id="UYP-Nw-V4r"/>
+                        <outlet property="endButton" destination="Te6-Wi-Ztc" id="HcZ-9t-eR4"/>
                         <outlet property="nameLabel" destination="Vv2-6B-wl6" id="BGg-QR-d9F"/>
+                        <outlet property="statusLabel" destination="hcN-P3-Phq" id="VrJ-5q-pnq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTH-JT-Qi5" userLabel="First Responder" sceneMemberID="firstResponder"/>
