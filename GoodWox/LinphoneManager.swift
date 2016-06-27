@@ -119,12 +119,13 @@ class LinphoneManager {
         LinphoneManager.lc = linphone_core_new_with_config(&lct, lpConfig, nil)
         LinphoneManager.isInit = true
         
-        // Set ring asset
-        let ringbackPath = NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath).URLByAppendingPathComponent("ringback.wav").absoluteString
-        linphone_core_set_ringback(LinphoneManager.getLc(), ringbackPath)
+        // Set ringtone
+
+        let ringbackPath = NSBundle.mainBundle().pathForResource("ringback", ofType: "wav")
+        linphone_core_set_ringback(LinphoneManager.getLc(), ringbackPath!)
         
-        let localRing = NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath).URLByAppendingPathComponent("toy-mono.wav").absoluteString
-        linphone_core_set_ring(LinphoneManager.getLc(), localRing)
+        let localRingPath = NSBundle.mainBundle().pathForResource("toy-mono", ofType: "wav")
+        linphone_core_set_ring(LinphoneManager.getLc(), localRingPath!)
         
     }
     

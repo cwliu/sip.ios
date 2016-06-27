@@ -11,10 +11,14 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
     (lc: COpaquePointer, call: COpaquePointer, callSate: LinphoneCallState,  message) in
     
     switch callSate{
+    case LinphoneCallConnected:
+        NSLog("outgoingCallStateChanged: LinphoneCallConnected")
+        outgoingCallController?.statusLabel.text = "Connected"
+    
     case LinphoneCallError: /**<The call encountered an error*/
         NSLog("outgoingCallStateChanged: LinphoneCallError")
         outgoingCallController?.dismissViewControllerAnimated(true, completion: nil)
-        
+    
     case LinphoneCallEnd:
         NSLog("outgoingCallStateChanged: LinphoneCallEnd")
         outgoingCallController?.dismissViewControllerAnimated(true, completion: nil)
