@@ -78,6 +78,23 @@ class ContactDbHelper {
         return nil
     }
     
+    static func getContactBySip(sip: String) -> Contact?{
+        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+            fetchRequest.predicate = NSPredicate(format: "sip == %@", sip)
+            
+            do {
+                let contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+                if contacts.count > 0 {
+                    return contacts[0]
+                }
+            } catch let error{
+                NSLog("\(error)")
+            }
+        }
+        return nil
+    }
+    
     static func getFavoriteContact() -> [Contact] {
         var contacts: [Contact] = []
         

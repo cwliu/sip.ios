@@ -425,6 +425,7 @@
 		A9863C0F1D03B919003FE7B3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A9B72B1A1D214A7000FDA9EE /* Ringtone */,
 				A9842BDD1D0DA2500062A35B /* Secret.plist */,
 				A9AAE4971D0273C20034B564 /* Info.plist */,
 				A9AAE4921D0273C20034B564 /* Assets.xcassets */,
@@ -510,6 +511,13 @@
 				A9842BFF1D0FA4FC0062A35B /* ObjectiveC */,
 			);
 			path = GoodWox;
+			sourceTree = "<group>";
+		};
+		A9B72B1A1D214A7000FDA9EE /* Ringtone */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Ringtone;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -120,10 +120,10 @@ class LinphoneManager {
         LinphoneManager.isInit = true
         
         // Set ring asset
-        let ringbackPath = NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath).URLByAppendingPathComponent("/ringback.wav").absoluteString
+        let ringbackPath = NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath).URLByAppendingPathComponent("ringback.wav").absoluteString
         linphone_core_set_ringback(LinphoneManager.getLc(), ringbackPath)
         
-        let localRing = NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath).URLByAppendingPathComponent("/toy-mono.wav").absoluteString
+        let localRing = NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath).URLByAppendingPathComponent("toy-mono.wav").absoluteString
         linphone_core_set_ring(LinphoneManager.getLc(), localRing)
         
     }
@@ -133,7 +133,10 @@ class LinphoneManager {
     }
     
     @objc func iterate(){
-        linphone_core_iterate(LinphoneManager.getLc()); /* first iterate initiates registration */
+        let lc = LinphoneManager.getLc()
+        if  lc != nil{
+            linphone_core_iterate(lc); /* first iterate initiates registration */
+        }
     }
     
     private func bundleFile(file: NSString) -> NSString{

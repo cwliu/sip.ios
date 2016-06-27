@@ -77,6 +77,7 @@ class CompanyController: UITableViewController{
         let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
         let request = NSMutableURLRequest(URL: url!)
         
+        
         authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
             
             let token = request.valueForHTTPHeaderField("Authorization")!

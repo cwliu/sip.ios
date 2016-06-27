@@ -21,8 +21,8 @@ var receiveCallStateChanged: LinphoneCoreCallStateChangedCb = {
 
 class ReceiveCallController: UIViewController{
     
-    @IBOutlet var sipNumberLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var avatarImage: UIImageView!
     
     var lct: LinphoneCoreVTable = LinphoneCoreVTable()
     
@@ -35,8 +35,32 @@ class ReceiveCallController: UIViewController{
         
         let call = linphone_core_get_current_call(LinphoneManager.getLc())
         let address = linphone_call_get_remote_address_as_string(call)
-        nameLabel.text = getUsernameFromAddress(String.fromCString(address)!)
+        let account = getUsernameFromAddress(String.fromCString(address)!)
         
+        nameLabel.text = account
+        if let contact = ContactDbHelper.getContactBySip(account){
+            nameLabel.text = contact.name
+            
+            
+            let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
+            let request = NSMutableURLRequest(URL: url!)
+
+            let authentication: Authentication = Authentication()
+            MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
+            authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
+                
+                let token = request.valueForHTTPHeaderField("Authorization")!
+                let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!, token: token)
+                
+                self.avatarImage.hnk_setImageFromFetcher(fetcher)
+                
+                // Circular image
+                self.avatarImage.layer.cornerRadius = 60
+                self.avatarImage.clipsToBounds = true
+                
+            })
+            
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

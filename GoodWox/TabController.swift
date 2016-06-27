@@ -7,7 +7,12 @@ class TabController: UITabBarController{
     override func viewWillAppear(animated: Bool) {
         if freshLaunch == true {
             freshLaunch = false
-            self.selectedIndex = 3 // Set default tab to being profile page
+            
+            if ContactDbHelper.getFavoriteContact().count > 0 {
+                self.selectedIndex = 0 // Set default tab to being favorite tab
+            }else{
+                self.selectedIndex = 3 // Set default tab to being company tab
+            }
         }
     }
 }
