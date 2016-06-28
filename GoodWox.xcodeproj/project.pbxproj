@@ -98,6 +98,26 @@
 		A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAE48D1D0273C20034B564 /* LoginController.swift */; };
 		A9AAE4911D0273C20034B564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE48F1D0273C20034B564 /* Main.storyboard */; };
 		A9AAE4931D0273C20034B564 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9AAE4921D0273C20034B564 /* Assets.xcassets */; };
+		A9B72B331D221BC200FDA9EE /* Appfile in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B1C1D221BC200FDA9EE /* Appfile */; };
+		A9B72B341D221BC200FDA9EE /* Deliverfile in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B1D1D221BC200FDA9EE /* Deliverfile */; };
+		A9B72B351D221BC200FDA9EE /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B1E1D221BC200FDA9EE /* Fastfile */; };
+		A9B72B361D221BC200FDA9EE /* copyright.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B201D221BC200FDA9EE /* copyright.txt */; };
+		A9B72B371D221BC200FDA9EE /* primary_category.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B211D221BC200FDA9EE /* primary_category.txt */; };
+		A9B72B381D221BC200FDA9EE /* primary_first_sub_category.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B221D221BC200FDA9EE /* primary_first_sub_category.txt */; };
+		A9B72B391D221BC200FDA9EE /* primary_second_sub_category.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B231D221BC200FDA9EE /* primary_second_sub_category.txt */; };
+		A9B72B3A1D221BC200FDA9EE /* secondary_category.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B241D221BC200FDA9EE /* secondary_category.txt */; };
+		A9B72B3B1D221BC200FDA9EE /* secondary_first_sub_category.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B251D221BC200FDA9EE /* secondary_first_sub_category.txt */; };
+		A9B72B3C1D221BC200FDA9EE /* secondary_second_sub_category.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B261D221BC200FDA9EE /* secondary_second_sub_category.txt */; };
+		A9B72B3D1D221BC200FDA9EE /* description.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B281D221BC200FDA9EE /* description.txt */; };
+		A9B72B3E1D221BC200FDA9EE /* keywords.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B291D221BC200FDA9EE /* keywords.txt */; };
+		A9B72B3F1D221BC200FDA9EE /* marketing_url.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B2A1D221BC200FDA9EE /* marketing_url.txt */; };
+		A9B72B401D221BC200FDA9EE /* name.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B2B1D221BC200FDA9EE /* name.txt */; };
+		A9B72B411D221BC200FDA9EE /* privacy_url.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B2C1D221BC200FDA9EE /* privacy_url.txt */; };
+		A9B72B421D221BC200FDA9EE /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B2D1D221BC200FDA9EE /* release_notes.txt */; };
+		A9B72B431D221BC200FDA9EE /* support_url.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B2E1D221BC200FDA9EE /* support_url.txt */; };
+		A9B72B441D221BC200FDA9EE /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A9B72B2F1D221BC200FDA9EE /* README.md */; };
+		A9B72B451D221BC200FDA9EE /* report.xml in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B301D221BC200FDA9EE /* report.xml */; };
+		A9B72B461D221BC200FDA9EE /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B321D221BC200FDA9EE /* README.txt */; };
 		A9C249041D12A00F00430C92 /* PhoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C249031D12A00F00430C92 /* PhoneController.swift */; };
 		A9C249281D13EB2D00430C92 /* InitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C249271D13EB2D00430C92 /* InitController.swift */; };
 		A9CD72BC1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD72BB1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift */; };
@@ -204,6 +224,26 @@
 		A9AAE4921D0273C20034B564 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9AAE4971D0273C20034B564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9AAE4B11D02D1A20034B564 /* GoodWox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GoodWox-Bridging-Header.h"; path = "GoodWox/GoodWox-Bridging-Header.h"; sourceTree = "<group>"; };
+		A9B72B1C1D221BC200FDA9EE /* Appfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
+		A9B72B1D1D221BC200FDA9EE /* Deliverfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Deliverfile; sourceTree = "<group>"; };
+		A9B72B1E1D221BC200FDA9EE /* Fastfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
+		A9B72B201D221BC200FDA9EE /* copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
+		A9B72B211D221BC200FDA9EE /* primary_category.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = primary_category.txt; sourceTree = "<group>"; };
+		A9B72B221D221BC200FDA9EE /* primary_first_sub_category.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = primary_first_sub_category.txt; sourceTree = "<group>"; };
+		A9B72B231D221BC200FDA9EE /* primary_second_sub_category.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = primary_second_sub_category.txt; sourceTree = "<group>"; };
+		A9B72B241D221BC200FDA9EE /* secondary_category.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = secondary_category.txt; sourceTree = "<group>"; };
+		A9B72B251D221BC200FDA9EE /* secondary_first_sub_category.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = secondary_first_sub_category.txt; sourceTree = "<group>"; };
+		A9B72B261D221BC200FDA9EE /* secondary_second_sub_category.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = secondary_second_sub_category.txt; sourceTree = "<group>"; };
+		A9B72B281D221BC200FDA9EE /* description.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
+		A9B72B291D221BC200FDA9EE /* keywords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
+		A9B72B2A1D221BC200FDA9EE /* marketing_url.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
+		A9B72B2B1D221BC200FDA9EE /* name.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
+		A9B72B2C1D221BC200FDA9EE /* privacy_url.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = privacy_url.txt; sourceTree = "<group>"; };
+		A9B72B2D1D221BC200FDA9EE /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
+		A9B72B2E1D221BC200FDA9EE /* support_url.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = support_url.txt; sourceTree = "<group>"; };
+		A9B72B2F1D221BC200FDA9EE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A9B72B301D221BC200FDA9EE /* report.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = report.xml; sourceTree = "<group>"; };
+		A9B72B321D221BC200FDA9EE /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		A9C249031D12A00F00430C92 /* PhoneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneController.swift; sourceTree = "<group>"; };
 		A9C249271D13EB2D00430C92 /* InitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitController.swift; sourceTree = "<group>"; };
 		A9CD72BB1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BearerHeaderNetworkFetcher.swift; sourceTree = "<group>"; };
@@ -483,6 +523,7 @@
 		A9AAE47F1D0273C20034B564 = {
 			isa = PBXGroup;
 			children = (
+				A9B72B1B1D221BC200FDA9EE /* fastlane */,
 				A9842B5E1D0DA0510062A35B /* Linphone */,
 				A9AAE48A1D0273C20034B564 /* GoodWox */,
 				A9AAE4891D0273C20034B564 /* Products */,
@@ -518,6 +559,57 @@
 			children = (
 			);
 			name = Ringtone;
+			sourceTree = "<group>";
+		};
+		A9B72B1B1D221BC200FDA9EE /* fastlane */ = {
+			isa = PBXGroup;
+			children = (
+				A9B72B1C1D221BC200FDA9EE /* Appfile */,
+				A9B72B1D1D221BC200FDA9EE /* Deliverfile */,
+				A9B72B1E1D221BC200FDA9EE /* Fastfile */,
+				A9B72B1F1D221BC200FDA9EE /* metadata */,
+				A9B72B2F1D221BC200FDA9EE /* README.md */,
+				A9B72B301D221BC200FDA9EE /* report.xml */,
+				A9B72B311D221BC200FDA9EE /* screenshots */,
+			);
+			path = fastlane;
+			sourceTree = "<group>";
+		};
+		A9B72B1F1D221BC200FDA9EE /* metadata */ = {
+			isa = PBXGroup;
+			children = (
+				A9B72B201D221BC200FDA9EE /* copyright.txt */,
+				A9B72B211D221BC200FDA9EE /* primary_category.txt */,
+				A9B72B221D221BC200FDA9EE /* primary_first_sub_category.txt */,
+				A9B72B231D221BC200FDA9EE /* primary_second_sub_category.txt */,
+				A9B72B241D221BC200FDA9EE /* secondary_category.txt */,
+				A9B72B251D221BC200FDA9EE /* secondary_first_sub_category.txt */,
+				A9B72B261D221BC200FDA9EE /* secondary_second_sub_category.txt */,
+				A9B72B271D221BC200FDA9EE /* zh-Hant */,
+			);
+			path = metadata;
+			sourceTree = "<group>";
+		};
+		A9B72B271D221BC200FDA9EE /* zh-Hant */ = {
+			isa = PBXGroup;
+			children = (
+				A9B72B281D221BC200FDA9EE /* description.txt */,
+				A9B72B291D221BC200FDA9EE /* keywords.txt */,
+				A9B72B2A1D221BC200FDA9EE /* marketing_url.txt */,
+				A9B72B2B1D221BC200FDA9EE /* name.txt */,
+				A9B72B2C1D221BC200FDA9EE /* privacy_url.txt */,
+				A9B72B2D1D221BC200FDA9EE /* release_notes.txt */,
+				A9B72B2E1D221BC200FDA9EE /* support_url.txt */,
+			);
+			path = "zh-Hant";
+			sourceTree = "<group>";
+		};
+		A9B72B311D221BC200FDA9EE /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				A9B72B321D221BC200FDA9EE /* README.txt */,
+			);
+			path = screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -583,25 +675,44 @@
 			buildActionMask = 2147483647;
 			files = (
 				A96B65261D16E1CE00BF2436 /* hello16000.wav in Resources */,
+				A9B72B3F1D221BC200FDA9EE /* marketing_url.txt in Resources */,
+				A9B72B3D1D221BC200FDA9EE /* description.txt in Resources */,
+				A9B72B451D221BC200FDA9EE /* report.xml in Resources */,
 				A96B65281D16E1CE00BF2436 /* ringback.wav in Resources */,
+				A9B72B331D221BC200FDA9EE /* Appfile in Resources */,
 				A96B65271D16E1CE00BF2436 /* incoming_chat.wav in Resources */,
+				A9B72B431D221BC200FDA9EE /* support_url.txt in Resources */,
 				A9842BF21D0DA5340062A35B /* linphonerc in Resources */,
 				A96B65321D16E1E000BF2436 /* four_hands_together.mkv in Resources */,
+				A9B72B391D221BC200FDA9EE /* primary_second_sub_category.txt in Resources */,
+				A9B72B401D221BC200FDA9EE /* name.txt in Resources */,
+				A9B72B351D221BC200FDA9EE /* Fastfile in Resources */,
+				A9B72B3B1D221BC200FDA9EE /* secondary_first_sub_category.txt in Resources */,
+				A9B72B461D221BC200FDA9EE /* README.txt in Resources */,
 				A9842BDE1D0DA2500062A35B /* Secret.plist in Resources */,
 				A9863C371D0579C0003FE7B3 /* LaunchScreen.storyboard in Resources */,
 				A96B65391D16E1E000BF2436 /* soft_as_snow.mkv in Resources */,
 				A96B65471D18D56100BF2436 /* ContactCell.xib in Resources */,
+				A9B72B371D221BC200FDA9EE /* primary_category.txt in Resources */,
+				A9B72B411D221BC200FDA9EE /* privacy_url.txt in Resources */,
 				A96B65291D16E1CE00BF2436 /* toy-mono.wav in Resources */,
+				A9B72B3C1D221BC200FDA9EE /* secondary_second_sub_category.txt in Resources */,
+				A9B72B3A1D221BC200FDA9EE /* secondary_category.txt in Resources */,
 				A9842BF31D0DA5340062A35B /* linphonerc-factory in Resources */,
 				A96B65371D16E1E000BF2436 /* oldphone-mono-30s.caf in Resources */,
 				A9AAE4931D0273C20034B564 /* Assets.xcassets in Resources */,
+				A9B72B361D221BC200FDA9EE /* copyright.txt in Resources */,
 				A96B65251D16E1CE00BF2436 /* hello8000.wav in Resources */,
 				A96B65331D16E1E000BF2436 /* house_keeping.mkv in Resources */,
+				A9B72B421D221BC200FDA9EE /* release_notes.txt in Resources */,
+				A9B72B381D221BC200FDA9EE /* primary_first_sub_category.txt in Resources */,
 				A9AAE4911D0273C20034B564 /* Main.storyboard in Resources */,
 				A96B65361D16E1E000BF2436 /* notes_of_the_optimistic.mkv in Resources */,
+				A9B72B341D221BC200FDA9EE /* Deliverfile in Resources */,
 				A96B65381D16E1E000BF2436 /* oldphone-mono.wav in Resources */,
 				A96B65241D16E1CE00BF2436 /* dont_wait_too_long.mkv in Resources */,
 				A96B65341D16E1E000BF2436 /* its_a_game.mkv in Resources */,
+				A9B72B3E1D221BC200FDA9EE /* keywords.txt in Resources */,
 				A96B65351D16E1E000BF2436 /* leaving_dreams.mkv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -676,6 +787,7 @@
 				A9D469951D1EB7C7007C5B2B /* Contact+CoreDataProperties.swift in Sources */,
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
 				A986216A1D15495E00BA767D /* ContactDbHelper.swift in Sources */,
+				A9B72B441D221BC200FDA9EE /* README.md in Sources */,
 				A9CD72BC1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift in Sources */,
 				A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */,
 				A9D4699A1D1ECE49007C5B2B /* FavoriteController.swift in Sources */,
@@ -797,6 +909,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1002;
+				DYLIB_CURRENT_VERSION = 1002;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = GoodWox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -833,6 +947,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1002;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = GoodWox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
