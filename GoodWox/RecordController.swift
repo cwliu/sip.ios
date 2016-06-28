@@ -1,14 +1,17 @@
 
 import UIKit
 
-class RecordController: UITableViewController {
 
+class RecordController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     var contacts: [Contact] = []
     
     let authentication: Authentication = Authentication()
-
+    
     var selectContactIndex: Int?
     var targetPhone: String?
+    
+    @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         NSLog("RecordController.viewDidLoad()")
@@ -20,8 +23,10 @@ class RecordController: UITableViewController {
         
         contacts = ContactDbHelper.getMostContacted()
         
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         let nib = UINib(nibName: "ContactCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
+        self.tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -49,11 +54,11 @@ class RecordController: UITableViewController {
     }
     
     // MARK: Style
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.contacts.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let contact = self.contacts[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)as! ContactCell
@@ -98,7 +103,7 @@ class RecordController: UITableViewController {
             cell.avatarImage.image = UIImage(named: "avatar_gray_30dp")
             
         }
-
+        
         return cell
     }
     
@@ -109,7 +114,7 @@ class RecordController: UITableViewController {
     
     
     // MARK: Segue
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let contact = self.contacts[indexPath.row]
         let phones = contact.phones
         selectContactIndex = indexPath.row

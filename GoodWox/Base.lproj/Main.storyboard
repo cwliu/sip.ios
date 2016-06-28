@@ -178,6 +178,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Bbx-qz-UGt">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
@@ -208,6 +209,7 @@
                                         <constraint firstItem="4tF-Tf-dBa" firstAttribute="leading" secondItem="Eea-r9-UEH" secondAttribute="trailing" constant="15" id="oAA-2N-iDd"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -448,6 +450,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="wNv-MA-yne">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
@@ -582,46 +585,75 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="4rl-Ve-BiG" kind="relationship" relationship="rootViewController" id="F3F-u6-He9"/>
+                        <segue destination="cor-nL-MM2" kind="relationship" relationship="rootViewController" id="fxL-Ov-PjG"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tJV-QV-vmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-851" y="-30"/>
         </scene>
-        <!--聯絡記錄-->
-        <scene sceneID="hoa-KP-MwR">
+        <!--連絡記錄-->
+        <scene sceneID="qPX-cD-oXR">
             <objects>
-                <tableViewController id="4rl-Ve-BiG" customClass="RecordController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PTm-B7-QAE">
+                <viewController title="連絡記錄" id="cor-nL-MM2" customClass="RecordController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GBS-Io-m9z"/>
+                        <viewControllerLayoutGuide type="bottom" id="OGQ-aS-nt1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RrY-mf-djd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Ka-mi-T2q">
+                                <rect key="frame" x="28" y="72" width="544" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="aBf-0g-WCJ"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="經常聯絡"/>
+                                    <segment title="歷史記錄"/>
+                                </segments>
+                                <color key="tintColor" red="0.41176471110000001" green="0.77254903320000001" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gEB-S4-deB">
+                                <rect key="frame" x="10" y="108" width="582" height="443"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot_red_6dp" translatesAutoresizingMaskIntoConstraints="NO" id="y16-qr-UfB">
+                                <rect key="frame" x="521" y="83" width="6" height="6"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9ly-fD-piz">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9ly-fD-piz" id="Ds3-KD-7n3">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="4rl-Ve-BiG" id="vet-zd-XvW"/>
-                            <outlet property="delegate" destination="4rl-Ve-BiG" id="wIf-kF-Q3w"/>
-                        </connections>
-                    </tableView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="聯絡記錄" id="Q3Q-ot-ZZS"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                        <constraints>
+                            <constraint firstItem="gEB-S4-deB" firstAttribute="leading" secondItem="RrY-mf-djd" secondAttribute="leadingMargin" constant="-10" id="9RC-MF-pU0"/>
+                            <constraint firstItem="0Ka-mi-T2q" firstAttribute="leading" secondItem="RrY-mf-djd" secondAttribute="leadingMargin" constant="8" id="CCf-i9-1gS"/>
+                            <constraint firstItem="0Ka-mi-T2q" firstAttribute="leading" secondItem="RrY-mf-djd" secondAttribute="leadingMargin" constant="8" id="Iij-R8-InY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gEB-S4-deB" secondAttribute="trailing" constant="-12" id="JKq-NL-Zh0"/>
+                            <constraint firstItem="0Ka-mi-T2q" firstAttribute="centerX" secondItem="RrY-mf-djd" secondAttribute="centerX" id="PfW-T0-SSl"/>
+                            <constraint firstItem="0Ka-mi-T2q" firstAttribute="top" secondItem="GBS-Io-m9z" secondAttribute="bottom" constant="8" id="SSH-2s-PpV"/>
+                            <constraint firstItem="y16-qr-UfB" firstAttribute="trailing" secondItem="0Ka-mi-T2q" secondAttribute="trailing" constant="-45" id="YmQ-5z-qIi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0Ka-mi-T2q" secondAttribute="trailing" constant="8" id="cAG-CJ-HcA"/>
+                            <constraint firstItem="OGQ-aS-nt1" firstAttribute="top" secondItem="gEB-S4-deB" secondAttribute="bottom" id="gae-of-Ptl"/>
+                            <constraint firstItem="gEB-S4-deB" firstAttribute="top" secondItem="0Ka-mi-T2q" secondAttribute="bottom" constant="8" id="hUh-hj-jwQ"/>
+                            <constraint firstItem="y16-qr-UfB" firstAttribute="centerY" secondItem="0Ka-mi-T2q" secondAttribute="centerY" id="v9l-JO-J7M"/>
+                            <constraint firstItem="y16-qr-UfB" firstAttribute="centerX" secondItem="0Ka-mi-T2q" secondAttribute="centerX" id="za0-vr-fMD"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="za0-vr-fMD"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="聯絡記錄" id="R0M-FP-JJm"/>
                     <connections>
-                        <segue destination="tiK-IN-xw8" kind="presentation" identifier="makeCall" id="HKW-Od-J8i"/>
+                        <outlet property="tableView" destination="gEB-S4-deB" id="mYO-yO-Hml"/>
+                        <segue destination="tiK-IN-xw8" kind="presentation" identifier="makeCall" id="UQ5-13-Rm6"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gUc-MV-IUq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8u6-Ii-RCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-28" y="-30"/>
+            <point key="canvasLocation" x="-59" y="-30"/>
         </scene>
     </scenes>
     <resources>
@@ -633,6 +665,7 @@
         <image name="connect_gray_25dp" width="25" height="25"/>
         <image name="contacts_blue_25dp" width="25" height="25"/>
         <image name="contacts_gray_25dp" width="25" height="25"/>
+        <image name="dot_red_6dp" width="6" height="6"/>
         <image name="info_gray_16dp" width="16" height="16"/>
         <image name="logo_150dp" width="150" height="200"/>
         <image name="logout_gray_16dp" width="16" height="16"/>
@@ -647,6 +680,6 @@
         <image name="sync_circle_blue_14dp" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HKW-Od-J8i"/>
+        <segue reference="UQ5-13-Rm6"/>
     </inferredMetricsTieBreakers>
 </document>
