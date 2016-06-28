@@ -118,6 +118,7 @@
 		A9B72B441D221BC200FDA9EE /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A9B72B2F1D221BC200FDA9EE /* README.md */; };
 		A9B72B451D221BC200FDA9EE /* report.xml in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B301D221BC200FDA9EE /* report.xml */; };
 		A9B72B461D221BC200FDA9EE /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B321D221BC200FDA9EE /* README.txt */; };
+		A9B72B481D2279E900FDA9EE /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B72B471D2279E900FDA9EE /* RecordController.swift */; };
 		A9C249041D12A00F00430C92 /* PhoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C249031D12A00F00430C92 /* PhoneController.swift */; };
 		A9C249281D13EB2D00430C92 /* InitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C249271D13EB2D00430C92 /* InitController.swift */; };
 		A9CD72BC1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD72BB1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift */; };
@@ -244,6 +245,7 @@
 		A9B72B2F1D221BC200FDA9EE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A9B72B301D221BC200FDA9EE /* report.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = report.xml; sourceTree = "<group>"; };
 		A9B72B321D221BC200FDA9EE /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		A9B72B471D2279E900FDA9EE /* RecordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordController.swift; sourceTree = "<group>"; };
 		A9C249031D12A00F00430C92 /* PhoneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneController.swift; sourceTree = "<group>"; };
 		A9C249271D13EB2D00430C92 /* InitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitController.swift; sourceTree = "<group>"; };
 		A9CD72BB1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BearerHeaderNetworkFetcher.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 				A9CD72BB1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift */,
 				A934E1A91D1AA6E500427A2D /* LinphoneUtil.swift */,
 				A9D469991D1ECE49007C5B2B /* FavoriteController.swift */,
+				A9B72B471D2279E900FDA9EE /* RecordController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -788,6 +791,7 @@
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
 				A986216A1D15495E00BA767D /* ContactDbHelper.swift in Sources */,
 				A9B72B441D221BC200FDA9EE /* README.md in Sources */,
+				A9B72B481D2279E900FDA9EE /* RecordController.swift in Sources */,
 				A9CD72BC1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift in Sources */,
 				A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */,
 				A9D4699A1D1ECE49007C5B2B /* FavoriteController.swift in Sources */,

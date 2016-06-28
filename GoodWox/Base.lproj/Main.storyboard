@@ -65,25 +65,6 @@
             </objects>
             <point key="canvasLocation" x="-2439" y="-880"/>
         </scene>
-        <!--聯絡記錄-->
-        <scene sceneID="a75-ga-StP">
-            <objects>
-                <viewController id="r0k-ZH-0g6" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Epu-gU-dcT"/>
-                        <viewControllerLayoutGuide type="bottom" id="RKU-rj-zGo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Xrk-cA-Ggh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" enabled="NO" title="聯絡記錄" image="recents_gray_25dp" selectedImage="recents_blue_25dp" id="D8O-qn-2bI"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WYr-2o-waw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-240" y="3"/>
-        </scene>
         <!--更多-->
         <scene sceneID="uTy-CW-4v6">
             <objects>
@@ -241,7 +222,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3E-h9-z5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1328" y="3"/>
+            <point key="canvasLocation" x="1452" y="-13"/>
         </scene>
         <!--接聽-->
         <scene sceneID="Ue8-l0-yqH">
@@ -426,7 +407,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTO-hf-kPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2788" y="-4"/>
+            <point key="canvasLocation" x="2952" y="-4"/>
         </scene>
         <!--Init Controller-->
         <scene sceneID="d5a-rh-n7k">
@@ -502,7 +483,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="iZc-ab-8VQ" kind="relationship" relationship="viewControllers" id="F8U-L2-KMQ"/>
-                        <segue destination="r0k-ZH-0g6" kind="relationship" relationship="viewControllers" id="mnr-Ju-Yad"/>
+                        <segue destination="Ahd-0V-7jx" kind="relationship" relationship="viewControllers" id="mnr-Ju-Yad"/>
                         <segue destination="Y2A-jK-rMB" kind="relationship" relationship="viewControllers" id="lSd-jh-XiU"/>
                         <segue destination="BCJ-3Z-Utf" kind="relationship" relationship="viewControllers" id="yea-EI-qOF"/>
                         <segue destination="YNi-eE-xKJ" kind="relationship" relationship="viewControllers" id="yxr-Y2-7Pr"/>
@@ -549,7 +530,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2g-cl-f5v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1976" y="-4"/>
+            <point key="canvasLocation" x="2196" y="4"/>
         </scene>
         <!--連絡人-->
         <scene sceneID="8VM-LQ-Mvy">
@@ -568,7 +549,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0h9-AM-BZy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="516" y="3"/>
+            <point key="canvasLocation" x="728" y="-13"/>
         </scene>
         <!--我的最愛-->
         <scene sceneID="hEp-jK-0Io">
@@ -588,6 +569,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Bt-Tt-KcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2439" y="-30"/>
+        </scene>
+        <!--聯絡記錄-->
+        <scene sceneID="BWH-WT-09e">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ahd-0V-7jx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="聯絡記錄" image="recents_gray_25dp" selectedImage="recents_blue_25dp" id="D8O-qn-2bI"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pwj-is-26p">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4rl-Ve-BiG" kind="relationship" relationship="rootViewController" id="F3F-u6-He9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tJV-QV-vmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-851" y="-30"/>
+        </scene>
+        <!--聯絡記錄-->
+        <scene sceneID="hoa-KP-MwR">
+            <objects>
+                <tableViewController id="4rl-Ve-BiG" customClass="RecordController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PTm-B7-QAE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9ly-fD-piz">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9ly-fD-piz" id="Ds3-KD-7n3">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4rl-Ve-BiG" id="vet-zd-XvW"/>
+                            <outlet property="delegate" destination="4rl-Ve-BiG" id="wIf-kF-Q3w"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="聯絡記錄" id="Q3Q-ot-ZZS"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="tiK-IN-xw8" kind="presentation" identifier="makeCall" id="HKW-Od-J8i"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gUc-MV-IUq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-28" y="-30"/>
         </scene>
     </scenes>
     <resources>
@@ -613,6 +647,6 @@
         <image name="sync_circle_blue_14dp" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qAN-Io-LlL"/>
+        <segue reference="HKW-Od-J8i"/>
     </inferredMetricsTieBreakers>
 </document>

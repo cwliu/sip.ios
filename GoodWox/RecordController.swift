@@ -1,35 +1,51 @@
-import Foundation
 
-class FavoriteController: UITableViewController {
+import UIKit
+
+class RecordController: UITableViewController {
 
     var contacts: [Contact] = []
+    
+    let authentication: Authentication = Authentication()
 
     var selectContactIndex: Int?
     var targetPhone: String?
     
-    let authentication: Authentication = Authentication()
-
     override func viewDidLoad() {
-        NSLog("FavoriteController.viewDidLoad()")
+        NSLog("RecordController.viewDidLoad()")
         
+        //Init Microsoft Graph
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
         
         modifyTableStyle()
         
-        contacts = ContactDbHelper.getFavoriteContact()
+        contacts = ContactDbHelper.getMostContacted()
         
         let nib = UINib(nibName: "ContactCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
     }
     
     override func viewWillAppear(animated: Bool) {
-        contacts = ContactDbHelper.getFavoriteContact()
+        contacts = ContactDbHelper.getMostContacted()
         self.tableView.reloadData()
     }
     
-    private func modifyTableStyle(){
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.barStyle = .Black
+    func favoriteClick(sender: UITapGestureRecognizer) {
+        NSLog("Single Tap on favoriteClick")
+        
+        
+        if let index = sender.view?.tag{
+            let contact = self.contacts[index]
+            
+            if(contact.isFavorite == true){
+                contact.isFavorite = false
+            }else{
+                contact.isFavorite = true
+            }
+            
+            ContactDbHelper.updateContact(self.contacts[index])
+        }
+        
+        self.tableView.reloadData()
     }
     
     // MARK: Style
@@ -46,7 +62,7 @@ class FavoriteController: UITableViewController {
         
         
         cell.favoriteImage.userInteractionEnabled = true
-        let singleTap = UITapGestureRecognizer(target: self, action:#selector(FavoriteController.favoriteClick))
+        let singleTap = UITapGestureRecognizer(target: self, action:#selector(RecordController.favoriteClick))
         singleTap.numberOfTapsRequired = 1
         cell.favoriteImage.addGestureRecognizer(singleTap)
         cell.favoriteImage.tag = indexPath.row
@@ -62,7 +78,6 @@ class FavoriteController: UITableViewController {
         
         
         // Display contact
-        
         if(contact.type ==  ContactType.COMPANY.hashValue) {
             let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
             let request = NSMutableURLRequest(URL: url!)
@@ -83,29 +98,15 @@ class FavoriteController: UITableViewController {
             cell.avatarImage.image = UIImage(named: "avatar_gray_30dp")
             
         }
-        
+
         return cell
     }
-
-    func favoriteClick(sender: UITapGestureRecognizer) {
-        NSLog("Single Tap on favoriteClick")
-        
-        
-        if let index = sender.view?.tag{
-            let contact = self.contacts[index]
-            
-            if(contact.isFavorite == true){
-                contact.isFavorite = false
-            }else{
-                contact.isFavorite = true
-            }
-            
-            ContactDbHelper.updateContact(self.contacts[index])
-        }
-        
-        contacts = ContactDbHelper.getFavoriteContact()
-        self.tableView.reloadData()
+    
+    private func modifyTableStyle(){
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.barStyle = .Black
     }
+    
     
     // MARK: Segue
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -115,7 +116,7 @@ class FavoriteController: UITableViewController {
         
         if contact.type == ContactType.COMPANY.hashValue {
             self.performSegueWithIdentifier("makeCall", sender: nil)
-        
+            
         } else if phones.count == 0 {
             let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no phone number available", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -142,7 +143,6 @@ class FavoriteController: UITableViewController {
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         NSLog("prepareForSegue: \(segue.identifier)")

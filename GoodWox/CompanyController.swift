@@ -121,6 +121,10 @@ class CompanyController: UITableViewController{
                 controller.calleeName = self.contacts[indexPath!.row].name
                 controller.phoneType = .SIP
                 
+                let contact = self.contacts[indexPath!.row]
+                contact.usageCount = (contact.usageCount?.floatValue)! + 1
+                ContactDbHelper.updateContact(contact)
+                
             }else{
                 let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no SIP number", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))

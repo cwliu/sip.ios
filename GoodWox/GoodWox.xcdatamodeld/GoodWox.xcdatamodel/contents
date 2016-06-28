@@ -9,8 +9,9 @@
         <attribute name="sip" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usageCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="-45" positionY="0" width="128" height="165"/>
+        <element name="Contact" positionX="-45" positionY="0" width="128" height="180"/>
     </elements>
 </model>

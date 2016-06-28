@@ -22,5 +22,6 @@ extension Contact {
     @NSManaged var sip: String?
     @NSManaged var type: NSNumber?
     @NSManaged var isFavorite: NSNumber?
+    @NSManaged var usageCount: NSNumber?
     
 }

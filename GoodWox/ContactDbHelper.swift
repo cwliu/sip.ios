@@ -115,6 +115,26 @@ class ContactDbHelper {
         return contacts
     }
     
+    static func getMostContacted() -> [Contact] {
+        var contacts: [Contact] = []
+        
+        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+            fetchRequest.predicate = NSPredicate(format: "usageCount > 0")
+            
+            let sortDescriptors = [NSSortDescriptor(key: "usageCount", ascending: false)]
+            fetchRequest.sortDescriptors = sortDescriptors
+            
+            do {
+                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+            } catch let error{
+                NSLog("\(error)")
+            }
+        }
+        
+        return contacts
+    }
+    
     static func addContect(name: String, email: String, type: ContactType){
         
         if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
