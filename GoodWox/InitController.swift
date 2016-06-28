@@ -1,6 +1,18 @@
 import Foundation
 import CoreData
 
+extension MSGraphUser {
+    var optMail: String? {
+        let obj = dictionaryFromItem()["mail"]
+        if let validResult = obj as? String {
+            return validResult
+        }
+        else {
+            return nil
+        }
+    }
+}
+
 class InitController: UIViewController{
     
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
@@ -66,18 +78,11 @@ class InitController: UIViewController{
             if let users = collection {
                 
                 for user: MSGraphUser in users.value as! [MSGraphUser] {
-                    do {
-                        try Exception.catchException {
-                            
-                            if user.mail != UserData.getGraphAccount()!{
-                                ContactDbHelper.addContect(user.displayName, email: user.mail, type: ContactType.COMPANY)
-                                
-                            }
+                    
+                    if let mail = user.optMail {
+                        if mail != UserData.getGraphAccount()!{
+                            ContactDbHelper.addContect(user.displayName, email: mail, type: ContactType.COMPANY)
                         }
-                        
-                    } catch let error{
-                        NSLog("NSError ocurred: \(error)")
-                        
                     }
                 }
                 ContactDbHelper.save()
