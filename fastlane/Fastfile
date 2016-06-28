@@ -17,7 +17,7 @@ default_platform :ios
 
 platform :ios do
   before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
     cocoapods
     
   end
@@ -35,6 +35,10 @@ platform :ios do
     gym(scheme: "GoodWox") # Build your app - more options available
     pilot
 
+    # Post Slack notification
+    slack(
+      message: "Successfully deployed new app to testflight."
+    )
     # sh "your_script.sh"
     # You can also use other beta testing services here (run `fastlane actions`)
   end

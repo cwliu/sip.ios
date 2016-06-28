@@ -78,7 +78,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" enabled="NO" title="聯絡記錄" image="recents_gray_25dp" id="D8O-qn-2bI"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="聯絡記錄" image="recents_gray_25dp" selectedImage="recents_blue_25dp" id="D8O-qn-2bI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYr-2o-waw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -202,7 +202,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bbx-qz-UGt" id="aYp-JV-b2b">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arror_right_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="1Gh-62-car">
@@ -408,7 +408,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfh-vJ-1MW" id="8n9-xg-cV5">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -472,7 +472,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wNv-MA-yne" id="a9h-uJ-YlC">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -516,7 +516,7 @@
         <scene sceneID="4x1-Cd-wmX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YNi-eE-xKJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="更多" image="more_gray_25dp" id="Bye-Q5-8Mj"/>
+                    <tabBarItem key="tabBarItem" title="更多" image="more_gray_25dp" selectedImage="more_blue_25dp" id="Bye-Q5-8Mj"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qba-9l-VUc">
@@ -536,7 +536,7 @@
         <scene sceneID="Ff0-bI-CMO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BCJ-3Z-Utf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="公司通訊" image="connect_gray_25dp" id="lvO-Vn-67U"/>
+                    <tabBarItem key="tabBarItem" title="公司通訊" image="connect_gray_25dp" selectedImage="connect_blue_25dp" id="lvO-Vn-67U"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pbx-hj-bv0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -555,7 +555,7 @@
         <scene sceneID="8VM-LQ-Mvy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y2A-jK-rMB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="連絡人" image="contacts_gray_25dp" id="MCf-aC-4dj"/>
+                    <tabBarItem key="tabBarItem" title="連絡人" image="contacts_gray_25dp" selectedImage="contacts_blue_25dp" id="MCf-aC-4dj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ted-Hr-6OM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -574,7 +574,7 @@
         <scene sceneID="hEp-jK-0Io">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iZc-ab-8VQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的最愛" image="star_blue_25dp" id="r1N-Tv-igj"/>
+                    <tabBarItem key="tabBarItem" title="我的最愛" image="star_blue_25dp" selectedImage="star_blue_25dp" id="r1N-Tv-igj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ig2-BJ-utz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -595,13 +595,17 @@
         <image name="avatar_gray_30dp" width="30" height="30"/>
         <image name="avatar_light_48dp" width="48" height="48"/>
         <image name="call_end_red_96dp" width="96" height="96"/>
+        <image name="connect_blue_25dp" width="25" height="25"/>
         <image name="connect_gray_25dp" width="25" height="25"/>
+        <image name="contacts_blue_25dp" width="25" height="25"/>
         <image name="contacts_gray_25dp" width="25" height="25"/>
         <image name="info_gray_16dp" width="16" height="16"/>
         <image name="logo_150dp" width="150" height="200"/>
         <image name="logout_gray_16dp" width="16" height="16"/>
+        <image name="more_blue_25dp" width="25" height="25"/>
         <image name="more_gray_25dp" width="25" height="25"/>
         <image name="phone_green_96dp" width="96" height="96"/>
+        <image name="recents_blue_25dp" width="25" height="25"/>
         <image name="recents_gray_25dp" width="25" height="25"/>
         <image name="sip_white_18dp" width="18" height="18"/>
         <image name="star_blue_25dp" width="25" height="25"/>
