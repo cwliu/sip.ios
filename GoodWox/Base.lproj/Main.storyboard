@@ -614,6 +614,9 @@
                                     <segment title="歷史記錄"/>
                                 </segments>
                                 <color key="tintColor" red="0.41176471110000001" green="0.77254903320000001" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="segmentControlIndexChanged:" destination="cor-nL-MM2" eventType="valueChanged" id="0aX-ZF-asW"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gEB-S4-deB">
                                 <rect key="frame" x="10" y="108" width="582" height="443"/>
@@ -647,6 +650,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="聯絡記錄" id="R0M-FP-JJm"/>
                     <connections>
+                        <outlet property="segmentControl" destination="0Ka-mi-T2q" id="k1A-9m-l0y"/>
                         <outlet property="tableView" destination="gEB-S4-deB" id="mYO-yO-Hml"/>
                         <segue destination="tiK-IN-xw8" kind="presentation" identifier="makeCall" id="UQ5-13-Rm6"/>
                     </connections>

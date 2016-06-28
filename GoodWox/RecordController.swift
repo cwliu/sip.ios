@@ -12,6 +12,7 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
     var targetPhone: String?
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var segmentControl: UISegmentedControl!
     
     override func viewDidLoad() {
         NSLog("RecordController.viewDidLoad()")
@@ -178,5 +179,19 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
+    }
+    
+    @IBAction func segmentControlIndexChanged(sender: UISegmentedControl){
+        switch segmentControl.selectedSegmentIndex
+        {
+        case 0:
+            contacts = ContactDbHelper.getMostContacted()
+        case 1:
+            contacts = []
+        default:
+            contacts = []
+        }
+        
+        self.tableView.reloadData()
     }
 }
