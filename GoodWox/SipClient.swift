@@ -12,6 +12,7 @@ class SipApiClient {
             login(completionHandler)
         }
     }
+    
     func login(completionHandler: ((Bool)-> Void)){
         
         let authentication: Authentication = Authentication()

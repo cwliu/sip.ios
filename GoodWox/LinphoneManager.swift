@@ -60,6 +60,7 @@ var callStateChanged: LinphoneCoreCallStateChangedCb = {
     }}
 
 
+
 class LinphoneManager {
     
     static var lc: COpaquePointer?
