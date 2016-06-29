@@ -162,7 +162,7 @@
                         <outlet property="avatarImage" destination="1SX-oK-rJ6" id="QEc-De-spO"/>
                         <outlet property="nameLabel" destination="876-IF-FGj" id="Oq5-SX-TQy"/>
                         <outlet property="statusImage" destination="pTJ-eN-kFv" id="2dT-KK-XDl"/>
-                        <segue destination="LWE-0U-cKc" kind="unwind" unwindAction="prepareForUnwind:" id="1bL-rt-n4X"/>
+                        <segue destination="LWE-0U-cKc" kind="unwind" identifier="exit" unwindAction="prepareForUnwind:" id="1bL-rt-n4X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4P5-2i-NmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,34 +180,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Bbx-qz-UGt">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Bbx-qz-UGt">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bbx-qz-UGt" id="aYp-JV-b2b">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arror_right_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="1Gh-62-car">
-                                            <rect key="frame" x="552" y="14" width="16" height="16"/>
-                                            <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="star_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="uH9-Nu-g9P">
-                                            <rect key="frame" x="528" y="14" width="16" height="16"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tF-Tf-dBa">
-                                            <rect key="frame" x="59" y="11" width="46" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="avatar_gray_30dp" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-r9-UEH">
-                                            <rect key="frame" x="21" y="8" width="30" height="30"/>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="1Gh-62-car" firstAttribute="leading" secondItem="uH9-Nu-g9P" secondAttribute="trailing" constant="20" id="Sca-9A-sKD"/>
-                                        <constraint firstItem="4tF-Tf-dBa" firstAttribute="leading" secondItem="Eea-r9-UEH" secondAttribute="trailing" constant="15" id="oAA-2N-iDd"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
@@ -403,7 +381,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="公司通訊" id="4rc-hT-lgE"/>
                     <connections>
-                        <segue destination="IUv-uk-iz6" kind="presentation" id="Ilk-zj-vlv"/>
+                        <segue destination="IUv-uk-iz6" kind="presentation" identifier="receiveCall" id="Ilk-zj-vlv"/>
                         <segue destination="tiK-IN-xw8" kind="presentation" identifier="makeCall" id="sqX-yI-AWM"/>
                     </connections>
                 </tableViewController>
@@ -452,7 +430,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="wNv-MA-yne">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="wNv-MA-yne">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wNv-MA-yne" id="a9h-uJ-YlC">
@@ -661,8 +639,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arror_right_gray_16dp" width="16" height="16"/>
-        <image name="avatar_gray_30dp" width="30" height="30"/>
         <image name="avatar_light_48dp" width="48" height="48"/>
         <image name="call_end_red_96dp" width="96" height="96"/>
         <image name="connect_blue_25dp" width="25" height="25"/>
@@ -680,7 +656,6 @@
         <image name="recents_gray_25dp" width="25" height="25"/>
         <image name="sip_white_18dp" width="18" height="18"/>
         <image name="star_blue_25dp" width="25" height="25"/>
-        <image name="star_gray_16dp" width="16" height="16"/>
         <image name="sync_circle_blue_14dp" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
