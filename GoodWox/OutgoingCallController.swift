@@ -63,7 +63,6 @@ class OutgoingCallController: UIViewController{
             nameLabel.text = calleeName!
             linphone_core_invite(LinphoneManager.getLc(), phone)
             
-            
             if let contact = ContactDbHelper.getContactBySip(phone){
                 
                 if contact.type == ContactType.COMPANY.hashValue {
@@ -102,7 +101,11 @@ class OutgoingCallController: UIViewController{
     }
     
     func finish(){
-        linphone_core_terminate_all_calls(LinphoneManager.getLc())
+        let call = linphone_core_get_current_call(LinphoneManager.getLc())
+        if call != nil {
+            let result = linphone_core_terminate_call(LinphoneManager.getLc(), call)
+            NSLog("Terminated call result(outgoing): \(result)")
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
