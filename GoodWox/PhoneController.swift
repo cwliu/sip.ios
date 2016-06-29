@@ -152,6 +152,7 @@ extension PhoneController {
                 }))
                 
             }
+            alertController.popoverPresentationController?.sourceView = view
             alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
             
@@ -167,9 +168,15 @@ extension PhoneController {
             let controller = segue.destinationViewController as! OutgoingCallController
             
             if let phone = targetPhone, index = selectContactIndex {
+                let contact = self.contacts[index]
+
                 controller.phoneNumber = phone
-                controller.calleeName = self.contacts[index].name
+                controller.calleeName = contact.name
                 controller.phoneType = .NONSIP
+                
+                contact.usageCount = (contact.usageCount?.floatValue)! + 1
+                ContactDbHelper.updateContact(contact)
+
                 
             }else{
                 let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no phone number", preferredStyle: UIAlertControllerStyle.Alert)

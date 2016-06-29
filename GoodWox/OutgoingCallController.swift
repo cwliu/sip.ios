@@ -14,11 +14,11 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
     case LinphoneCallConnected:
         NSLog("outgoingCallStateChanged: LinphoneCallConnected")
         outgoingCallController?.statusLabel.text = "Connected"
-    
+        
     case LinphoneCallError: /**<The call encountered an error*/
         NSLog("outgoingCallStateChanged: LinphoneCallError")
         outgoingCallController?.dismissViewControllerAnimated(true, completion: nil)
-    
+        
     case LinphoneCallEnd:
         NSLog("outgoingCallStateChanged: LinphoneCallEnd")
         outgoingCallController?.dismissViewControllerAnimated(true, completion: nil)
@@ -37,6 +37,7 @@ class OutgoingCallController: UIViewController{
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var statusLabel: UILabel!
     @IBOutlet var sipIcon: UIImageView!
+    @IBOutlet var avatarImage: UIImageView!
     
     var lct: LinphoneCoreVTable = LinphoneCoreVTable()
     
@@ -57,11 +58,36 @@ class OutgoingCallController: UIViewController{
             sipIcon.hidden = true
             statusLabel.text = "Dialing to \(phoneNumber!)..."
         }
-
-        if let phone = phoneNumber, lc = LinphoneManager.lc {
+        
+        if let phone = phoneNumber {
             nameLabel.text = calleeName!
-            linphone_core_invite(lc, phone)
+            linphone_core_invite(LinphoneManager.getLc(), phone)
+            
+            if let contact = ContactDbHelper.getContactBySip(phone){
+                
+                if contact.type == ContactType.COMPANY.hashValue {
+                    let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
+                    let request = NSMutableURLRequest(URL: url!)
+                    
+                    let authentication: Authentication = Authentication()
+                    MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
+                    authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
+                        
+                        let token = request.valueForHTTPHeaderField("Authorization")!
+                        let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!, token: token)
+                        
+                        self.avatarImage.hnk_setImageFromFetcher(fetcher)
+                        
+                        // Circular image
+                        self.avatarImage.layer.cornerRadius = 60
+                        self.avatarImage.clipsToBounds = true
+                        
+                    })
+                }
+                
+            }
         }
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -75,7 +101,11 @@ class OutgoingCallController: UIViewController{
     }
     
     func finish(){
-        linphone_core_terminate_all_calls(LinphoneManager.getLc())
+        let call = linphone_core_get_current_call(LinphoneManager.getLc())
+        if call != nil {
+            let result = linphone_core_terminate_call(LinphoneManager.getLc(), call)
+            NSLog("Terminated call result(outgoing): \(result)")
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

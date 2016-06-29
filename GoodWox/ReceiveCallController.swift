@@ -9,20 +9,20 @@ var receiveCallStateChanged: LinphoneCoreCallStateChangedCb = {
     
     switch callSate{
     case LinphoneCallConnected: /**<The call encountered an error*/
-        NSLog("outgoingCallStateChanged: LinphoneCallConnected")
+        NSLog("receiveCallStateChanged: LinphoneCallConnected")
         receiveNavigationController?.statusLabel.text = "Connected"
         receiveNavigationController?.showEndButton()
         
     case LinphoneCallError: /**<The call encountered an error*/
-        NSLog("outgoingCallStateChanged: LinphoneCallError")
+        NSLog("receiveCallStateChanged: LinphoneCallError")
         receiveNavigationController!.dismissViewControllerAnimated(true, completion: nil)
     
     case LinphoneCallEnd:
-        NSLog("outgoingCallStateChanged: LinphoneCallEnd")
+        NSLog("receiveCallStateChanged: LinphoneCallEnd")
         receiveNavigationController!.dismissViewControllerAnimated(true, completion: nil)
     
     default:
-        NSLog("outgoingCallStateChanged: Default call state")
+        NSLog("receiveCallStateChanged: Default call state")
     }
 }
 
@@ -99,17 +99,23 @@ class ReceiveCallController: UIViewController{
     }
     
     func finish(){
-        linphone_core_terminate_all_calls(LinphoneManager.getLc())
+        let call = linphone_core_get_current_call(LinphoneManager.getLc())
+        if call != nil {
+            let result = linphone_core_terminate_call(LinphoneManager.getLc(), call)
+            NSLog("Terminated call result(receive): \(result)")
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
+        NSLog("viewWillAppear: ")
         lct.call_state_changed = receiveCallStateChanged
         linphone_core_add_listener(LinphoneManager.getLc(),  &lct)
     }
     
     
     override func viewDidDisappear(animated: Bool) {
+        NSLog("viewDidDisappear: ")
         linphone_core_remove_listener(LinphoneManager.getLc(), &lct)
     }
     
@@ -118,7 +124,6 @@ class ReceiveCallController: UIViewController{
     }
     
     func showEndButton(){
-        
         acceptButton.hidden = true
         declineButton.hidden = true
         endButton.hidden = false

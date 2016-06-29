@@ -77,6 +77,7 @@ class CompanyController: UITableViewController{
         let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
         let request = NSMutableURLRequest(URL: url!)
         
+        cell.avatarImage.image = UIImage(named: "avatar_gray_30dp")
         
         authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
             

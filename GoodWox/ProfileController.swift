@@ -22,7 +22,7 @@ class ProfileController: UIViewController{
         
         self.nameLabel.text = UserData.getGraphName()
         
-        let url = NSURL(string: MicrosoftGraphApi.myPhotoURL)
+        let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, UserData.getGraphAccount()!))
         let request = NSMutableURLRequest(URL: url!)        
   
         authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in

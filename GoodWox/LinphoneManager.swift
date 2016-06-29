@@ -38,35 +38,14 @@ var callStateChanged: LinphoneCoreCallStateChangedCb = {
     case LinphoneCallIncomingReceived: /**<This is a new incoming call */
         NSLog("callStateChanged: LinphoneCallIncomingReceived")
         
-        //        if var topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
-        //            while let presentedViewController = topController.presentedViewController {
-        //                topController = presentedViewController
-        //            }
-        
-        // topController should now be your topmost view controller
-        
-        //            let controller = topController as! U
-        //            UI
-        
-        //            topController.
-        //            topController.
-        
-        
-        //receiveCall
-        //        }
-        
-        //        UIApplication.sharedApplication().keyWindow?.rootViewController.
         if var controller = UIApplication.sharedApplication().keyWindow?.rootViewController{
             while let presentedViewController = controller.presentedViewController {
                 controller = presentedViewController
             }
-            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("receiveCall")
             controller.presentViewController(vc, animated: true, completion: nil)
         }
-        
-        
         
     case LinphoneCallStreamsRunning: /**<The media streams are established and running*/
         NSLog("callStateChanged: LinphoneCallStreamsRunning")
@@ -76,16 +55,19 @@ var callStateChanged: LinphoneCoreCallStateChangedCb = {
         
     default:
         NSLog("Default call state")
-    }}
+    }
+}
 
+
+struct LinephoneCore {
+    static var lc: COpaquePointer?
+    static var lct: LinphoneCoreVTable?
+}
 
 class LinphoneManager {
     
-    static var lc: COpaquePointer?
     static var iterateTimer: NSTimer?
     static var isInit: Bool = false
-    
-    var lct: LinphoneCoreVTable = LinphoneCoreVTable()
     
     func startLinphone() {
         if LinphoneManager.isInit {
@@ -113,10 +95,11 @@ class LinphoneManager {
         let lpConfig = lp_config_new_with_factory(configFilenamePtr, factoryConfigFilenamePtr)
         
         // Set Callback
-        lct.registration_state_changed = registrationStateChanged
-        lct.call_state_changed = callStateChanged
+        LinephoneCore.lct = LinphoneCoreVTable()
+        LinephoneCore.lct!.registration_state_changed = registrationStateChanged
+        LinephoneCore.lct!.call_state_changed = callStateChanged
         
-        LinphoneManager.lc = linphone_core_new_with_config(&lct, lpConfig, nil)
+        LinephoneCore.lc = linphone_core_new_with_config(&LinephoneCore.lct!, lpConfig, nil)
         LinphoneManager.isInit = true
         
         // Set ringtone
@@ -130,12 +113,13 @@ class LinphoneManager {
     }
     
     static func getLc() -> COpaquePointer {
-        return LinphoneManager.lc!
+        return LinephoneCore.lc!
     }
     
     @objc func iterate(){
         let lc = LinphoneManager.getLc()
         if  lc != nil{
+            
             linphone_core_iterate(lc); /* first iterate initiates registration */
         }
     }
@@ -205,7 +189,6 @@ class LinphoneManager {
         }
         
         let proxy_cfg = linphone_core_get_default_proxy_config(LinphoneManager.getLc()); /* get default proxy config*/
-        
         linphone_proxy_config_edit(proxy_cfg); /*start editing proxy configuration*/
         linphone_proxy_config_enable_register(proxy_cfg, 0); /*de-activate registration for this proxy config*/
         linphone_proxy_config_done(proxy_cfg); /*initiate REGISTER with expire = 0*/
@@ -216,6 +199,7 @@ class LinphoneManager {
                 ms_usleep(50000);
         }
         
+        linphone_core_remove_listener(LinphoneManager.getLc(), &LinephoneCore.lct!)
         linphone_core_destroy(LinphoneManager.getLc());
         
         LinphoneManager.isInit = false

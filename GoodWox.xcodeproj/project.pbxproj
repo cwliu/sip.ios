@@ -456,14 +456,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		A9842C001D0FE0460062A35B /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				A9842C031D0FE7FE0062A35B /* SipClient.swift */,
-			);
-			name = Service;
-			sourceTree = "<group>";
-		};
 		A9863C0F1D03B919003FE7B3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,6 +470,7 @@
 		A9863C101D03B92A003FE7B3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A9842C031D0FE7FE0062A35B /* SipClient.swift */,
 				A9AAE48B1D0273C20034B564 /* AppDelegate.swift */,
 				A9AAE48D1D0273C20034B564 /* LoginController.swift */,
 				A9C249271D13EB2D00430C92 /* InitController.swift */,
@@ -548,7 +541,6 @@
 			children = (
 				A9863C141D03BD4D003FE7B3 /* ApplicationConstants.swift */,
 				A9863C111D03B938003FE7B3 /* View */,
-				A9842C001D0FE0460062A35B /* Service */,
 				A99663231D05A0B0003B5EEE /* Model */,
 				A9863C101D03B92A003FE7B3 /* Controller */,
 				A9863C0F1D03B919003FE7B3 /* Resource */,
@@ -913,8 +905,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1008;
-				DYLIB_CURRENT_VERSION = 1008;
+				CURRENT_PROJECT_VERSION = 1013;
+				DYLIB_CURRENT_VERSION = 1013;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = GoodWox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -951,7 +943,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1008;
+				CURRENT_PROJECT_VERSION = 1013;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = GoodWox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
