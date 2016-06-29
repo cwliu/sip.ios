@@ -104,7 +104,7 @@ class ReceiveCallController: UIViewController{
             let result = linphone_core_terminate_call(LinphoneManager.getLc(), call)
             NSLog("Terminated call result(receive): \(result)")
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
