@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		62D958190217ECD6C13112EB /* Pods_GoodWox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */; };
+		A909B8C01D241A7400166EFF /* CallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A909B8BF1D241A7400166EFF /* CallLog.swift */; };
+		A909B8C21D241B8400166EFF /* CallLogDbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A909B8C11D241B8400166EFF /* CallLogDbHelper.swift */; };
 		A934E1A81D1A826400427A2D /* ApplicaitonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E1A71D1A826400427A2D /* ApplicaitonStatus.swift */; };
 		A934E1AA1D1AA6E500427A2D /* LinphoneUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E1A91D1AA6E500427A2D /* LinphoneUtil.swift */; };
 		A96B651C1D16D54B00BF2436 /* ReceiveCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */; };
@@ -131,6 +133,8 @@
 
 /* Begin PBXFileReference section */
 		111C376739DFF46C34F969C9 /* Pods-GoodWox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.release.xcconfig"; sourceTree = "<group>"; };
+		A909B8BF1D241A7400166EFF /* CallLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallLog.swift; sourceTree = "<group>"; };
+		A909B8C11D241B8400166EFF /* CallLogDbHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallLogDbHelper.swift; sourceTree = "<group>"; };
 		A934E1A71D1A826400427A2D /* ApplicaitonStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicaitonStatus.swift; sourceTree = "<group>"; };
 		A934E1A91D1AA6E500427A2D /* LinphoneUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinphoneUtil.swift; sourceTree = "<group>"; };
 		A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveCallController.swift; sourceTree = "<group>"; };
@@ -512,6 +516,8 @@
 				A9842C231D1183340062A35B /* UserData.swift */,
 				A934E1A71D1A826400427A2D /* ApplicaitonStatus.swift */,
 				A9D469971D1EC9DA007C5B2B /* UIColor.swift */,
+				A909B8BF1D241A7400166EFF /* CallLog.swift */,
+				A909B8C11D241B8400166EFF /* CallLogDbHelper.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -775,6 +781,7 @@
 				A99663291D05A81B003B5EEE /* ContactCell.swift in Sources */,
 				A934E1A81D1A826400427A2D /* ApplicaitonStatus.swift in Sources */,
 				A9AAE48E1D0273C20034B564 /* LoginController.swift in Sources */,
+				A909B8C21D241B8400166EFF /* CallLogDbHelper.swift in Sources */,
 				A9842C241D1183340062A35B /* UserData.swift in Sources */,
 				A9B72B4A1D22961A00FDA9EE /* RecordController.swift in Sources */,
 				A934E1AA1D1AA6E500427A2D /* LinphoneUtil.swift in Sources */,
@@ -791,6 +798,7 @@
 				A9C249281D13EB2D00430C92 /* InitController.swift in Sources */,
 				A9D469981D1EC9DB007C5B2B /* UIColor.swift in Sources */,
 				A9863C171D03BD6D003FE7B3 /* MircosoftGraphAuthentication.swift in Sources */,
+				A909B8C01D241A7400166EFF /* CallLog.swift in Sources */,
 				A9842BDC1D0DA1E20062A35B /* LinphoneManager.swift in Sources */,
 				A99663251D05A105003B5EEE /* CompanyController.swift in Sources */,
 				A9C249041D12A00F00430C92 /* PhoneController.swift in Sources */,
