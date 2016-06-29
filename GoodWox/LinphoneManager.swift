@@ -38,29 +38,10 @@ var callStateChanged: LinphoneCoreCallStateChangedCb = {
     case LinphoneCallIncomingReceived: /**<This is a new incoming call */
         NSLog("callStateChanged: LinphoneCallIncomingReceived")
         
-        //        if var topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
-        //            while let presentedViewController = topController.presentedViewController {
-        //                topController = presentedViewController
-        //            }
-        
-        // topController should now be your topmost view controller
-        
-        //            let controller = topController as! U
-        //            UI
-        
-        //            topController.
-        //            topController.
-        
-        
-        //receiveCall
-        //        }
-        
-        //        UIApplication.sharedApplication().keyWindow?.rootViewController.
         if var controller = UIApplication.sharedApplication().keyWindow?.rootViewController{
             while let presentedViewController = controller.presentedViewController {
                 controller = presentedViewController
             }
-            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("receiveCall")
             controller.presentViewController(vc, animated: true, completion: nil)
@@ -136,6 +117,9 @@ class LinphoneManager {
     @objc func iterate(){
         let lc = LinphoneManager.getLc()
         if  lc != nil{
+            
+//            let state = String.fromCString(linphone_global_state_to_string(linphone_core_get_global_state(lc)))
+//            NSLog("GlobalStatue: \(state)")
             linphone_core_iterate(lc); /* first iterate initiates registration */
         }
     }

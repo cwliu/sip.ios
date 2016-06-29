@@ -118,7 +118,6 @@ class ReceiveCallController: UIViewController{
     }
     
     func showEndButton(){
-        
         acceptButton.hidden = true
         declineButton.hidden = true
         endButton.hidden = false

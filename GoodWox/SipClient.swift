@@ -6,9 +6,7 @@ class SipApiClient {
     func initSip(completionHandler: (Bool)-> Void){
      
         if UserData.getSipAccount() != nil {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.startLinphone()
-            })
+            self.startLinphone()
             completionHandler(true)
         }else{
             login(completionHandler)
@@ -83,7 +81,9 @@ class SipApiClient {
     }
     
     func startLinphone(){
-        let lm = LinphoneManager()
-        lm.startLinphone()
+        dispatch_async(dispatch_get_main_queue(), {
+            let lm = LinphoneManager()
+            lm.startLinphone()
+        })
     }
 }

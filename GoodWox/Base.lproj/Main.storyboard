@@ -367,6 +367,7 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="avatarImage" destination="mHp-mo-adD" id="g33-Cd-SqC"/>
                         <outlet property="nameLabel" destination="oyt-Ws-PRZ" id="4TO-j3-xdZ"/>
                         <outlet property="sipIcon" destination="RkI-pV-4BL" id="Xa2-Tr-lYp"/>
                         <outlet property="statusLabel" destination="WrO-sg-PXJ" id="lXZ-hm-TkU"/>
