@@ -182,7 +182,8 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func segmentControlIndexChanged(sender: UISegmentedControl){
-        switch segmentControl.selectedSegmentIndex
+        
+        switch sender.selectedSegmentIndex
         {
         case 0:
             contacts = ContactDbHelper.getMostContacted()

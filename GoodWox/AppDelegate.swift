@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let userInfo = notification.userInfo {
             let account = userInfo["NXOAuth2AccountStoreNewAccountUserInfoKey"] as? NXOAuth2Account
             let accessToken = account?.accessToken.accessToken
-            NSLog("accessToken: \(accessToken)")            
+            NSLog("accessToken: \(accessToken)")
         }
     }
     
@@ -31,7 +31,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         UITabBar.appearance().tintColor = UIColor(colorLiteralRed: 122/255, green: 207/255, blue: 226/255, alpha: 1)
-
+        
+        
+        
+        // Save call log
+        
+        let entityDescription = NSEntityDescription.entityForName("CallLog", inManagedObjectContext:  self.managedObjectContext)
+        let newLog = NSManagedObject(entity: entityDescription!, insertIntoManagedObjectContext:self.managedObjectContext)
+        
+        let contactEntityDescription = NSEntityDescription.entityForName("Contact", inManagedObjectContext: self.managedObjectContext)
+        let newContact = NSManagedObject(entity: contactEntityDescription!, insertIntoManagedObjectContext:self.managedObjectContext)
+        newContact.setValue("a@a.com", forKey: "email")
+        newContact.setValue("Buzz", forKey: "name")
+        
+        newLog.setValue(1, forKey: "type")
+        newLog.setValue(NSDate(), forKey: "callTime")
+        newLog.setValue(6, forKey: "callDuration")
+        newLog.setValue(newContact, forKey: "contact")
+        do {
+            try newLog.managedObjectContext?.save()
+        }catch {
+            NSLog("\(error)")
+        }
+        
+        
+        // Fetch
+        let fetchRequest = NSFetchRequest()
+        fetchRequest.entity = entityDescription
+        
+        do {
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            NSLog("\(result)")
+            let a = 1
+            
+            NSLog(">>>>>>>>>>>>>")
+            if (result.count > 0) {
+                let callLog = result[0] as! NSManagedObject
+                
+                print("1 - \(callLog)")
+                NSLog(">>>>>>>>>>>>>")
+                
+                if let c = callLog.valueForKey("contact"), time = callLog.valueForKey("callTime") {
+                    print("\(c) \(time)")
+                }
+                
+                print("2 - \(callLog)")
+                NSLog(">>>>>>>>>>>>>")
+            }
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+        
         return true
     }
     
@@ -79,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("GoodWox")
+        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("GoodWox.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
