@@ -275,7 +275,6 @@
                                 <rect key="frame" x="252" y="424" width="96" height="96"/>
                                 <state key="normal" image="call_end_red_96dp"/>
                                 <connections>
-                                    <action selector="declineCall" destination="IUv-uk-iz6" eventType="touchUpInside" id="rox-am-aG6"/>
                                     <action selector="endCall" destination="IUv-uk-iz6" eventType="touchUpInside" id="BqT-7x-dpt"/>
                                 </connections>
                             </button>
