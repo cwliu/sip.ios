@@ -1,0 +1,66 @@
+############################################################################
+# BelleSIPConfig.cmake
+# Copyright (C) 2015  Belledonne Communications, Grenoble France
+#
+############################################################################
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+############################################################################
+#
+# Config file for the belle-sip package.
+# It defines the following variables:
+#
+#  BELLESIP_FOUND - system has belle-sip
+#  BELLESIP_INCLUDE_DIRS - the belle-sip include directory
+#  BELLESIP_LIBRARIES - The libraries needed to use belle-sip
+#  BELLESIP_LDFLAGS - The linking flags needed to use belle-sip
+
+if(NOT LINPHONE_BUILDER_GROUP_EXTERNAL_SOURCE_PATH_BUILDERS)
+	include("${CMAKE_CURRENT_LIST_DIR}/BelleSIPTargets.cmake")
+endif()
+
+if(LINPHONE_BUILDER_GROUP_EXTERNAL_SOURCE_PATH_BUILDERS)
+	include("${EP_bctoolbox_CONFIG_DIR}/BcToolboxConfig.cmake")
+else()
+	find_package(BcToolbox 0.0.3 REQUIRED COMPONENTS core)
+endif()
+if(OFF)
+	if(LINPHONE_BUILDER_GROUP_EXTERNAL_SOURCE_PATH_BUILDERS)
+		include("${EP_tunnel_CONFIG_DIR}/TunnelConfig.cmake")
+	else()
+		find_package(Tunnel)
+	endif()
+endif()
+
+get_filename_component(BELLESIP_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+if(LINPHONE_BUILDER_GROUP_EXTERNAL_SOURCE_PATH_BUILDERS)
+	set(BELLESIP_INCLUDE_DIRS "${EP_bellesip_INCLUDE_DIR}")
+else()
+	set(BELLESIP_INCLUDE_DIRS "${BELLESIP_CMAKE_DIR}/../../../include")
+endif()
+if(NO)
+	set(BELLESIP_LIBRARIES bellesip)
+else()
+	set(BELLESIP_LIBRARIES bellesip-static)
+endif()
+list(APPEND BELLESIP_INCLUDE_DIRS ${BCTOOLBOX_CORE_INCLUDE_DIRS})
+list(APPEND BELLESIP_LIBRARIES ${BCTOOLBOX_CORE_LIBRARIES})
+set(BELLESIP_LDFLAGS "-framework Foundation -framework CoreFoundation -framework CFNetwork -framework UIKit")
+if(TUNNEL_FOUND)
+	list(APPEND BELLESIP_INCLUDE_DIRS ${TUNNEL_INCLUDE_DIRS})
+	list(APPEND BELLESIP_LIBRARIES ${TUNNEL_LIBRARIES})
+endif()
+set(BELLESIP_FOUND 1)

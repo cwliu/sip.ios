@@ -61,6 +61,8 @@ class OutgoingCallController: UIViewController{
         
         if let phone = phoneNumber {
             nameLabel.text = calleeName!
+////            phone = "sip:0702552517@210.202.37.33:5060"
+//            let cphone = "0702552517"
             linphone_core_invite(LinphoneManager.getLc(), phone)
             
             if let contact = ContactDbHelper.getContactBySip(phone){

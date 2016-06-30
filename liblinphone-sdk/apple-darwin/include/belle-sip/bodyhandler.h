@@ -52,6 +52,8 @@ BELLESIP_EXPORT belle_sip_memory_body_handler_t *belle_sip_memory_body_handler_n
 
 BELLESIP_EXPORT void *belle_sip_memory_body_handler_get_buffer(const belle_sip_memory_body_handler_t *obj);
 BELLESIP_EXPORT void belle_sip_memory_body_handler_set_buffer(belle_sip_memory_body_handler_t *obj, void *buffer);
+BELLESIP_EXPORT void belle_sip_memory_body_handler_apply_encoding(belle_sip_memory_body_handler_t *obj, const char *encoding);
+BELLESIP_EXPORT int belle_sip_memory_body_handler_unapply_encoding(belle_sip_memory_body_handler_t *obj, const char *encoding);
 
 /*
  * body handler that get/puts data from application.
@@ -86,6 +88,7 @@ BELLESIP_EXPORT belle_sip_file_body_handler_t *belle_sip_file_body_handler_new(c
 #define BELLE_SIP_MULTIPART_BODY_HANDLER(obj)	BELLE_SIP_CAST(obj,belle_sip_multipart_body_handler_t)
 
 BELLESIP_EXPORT belle_sip_multipart_body_handler_t *belle_sip_multipart_body_handler_new(belle_sip_body_handler_progress_callback_t progress_cb, void *data, belle_sip_body_handler_t *first_part, const char *boundary);
+BELLESIP_EXPORT belle_sip_multipart_body_handler_t *belle_sip_multipart_body_handler_new_from_buffer(void *buffer, size_t bufsize, const char *boundary);
 BELLESIP_EXPORT void belle_sip_multipart_body_handler_add_part(belle_sip_multipart_body_handler_t *obj, belle_sip_body_handler_t *part);
 BELLESIP_EXPORT const belle_sip_list_t* belle_sip_multipart_body_handler_get_parts(const belle_sip_multipart_body_handler_t *obj);
 

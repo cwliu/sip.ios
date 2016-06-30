@@ -249,8 +249,12 @@ const char * ortp_strerror(DWORD value);
 #endif
 
 ORTP_PUBLIC const char *getWinSocketError(int error);
+#ifndef getSocketErrorCode
 #define getSocketErrorCode() WSAGetLastError()
+#endif
+#ifndef getSocketError
 #define getSocketError() getWinSocketError(WSAGetLastError())
+#endif
 
 #define snprintf _snprintf
 #define strcasecmp _stricmp
@@ -274,7 +278,10 @@ char * WSAAPI gai_strerror(int errnum);
 
 #endif
 
+#ifndef _BOOL_T_
+#define _BOOL_T_
 typedef unsigned char bool_t;
+#endif /* _BOOL_T_ */
 #undef TRUE
 #undef FALSE
 #define TRUE 1
