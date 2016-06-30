@@ -24,7 +24,7 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
         outgoingCallController?.dismissViewControllerAnimated(true, completion: nil)
         
     default:
-        NSLog("outgoingCallStateChanged: Default call state")
+        NSLog("outgoingCallStateChanged: Default call state \(callSate)")
     }
 }
 
@@ -61,9 +61,10 @@ class OutgoingCallController: UIViewController{
         
         if let phone = phoneNumber {
             nameLabel.text = calleeName!
-////            phone = "sip:0702552517@210.202.37.33:5060"
-//            let cphone = "0702552517"
-            linphone_core_invite(LinphoneManager.getLc(), phone)
+            
+            if let lc = theLinphone.lc {
+                linphone_core_invite(lc, phone)
+            }
             
             if let contact = ContactDbHelper.getContactBySip(phone){
                 
@@ -103,9 +104,9 @@ class OutgoingCallController: UIViewController{
     }
     
     func finish(){
-        let call = linphone_core_get_current_call(LinphoneManager.getLc())
+        let call = linphone_core_get_current_call(theLinphone.lc!)
         if call != nil {
-            let result = linphone_core_terminate_call(LinphoneManager.getLc(), call)
+            let result = linphone_core_terminate_call(theLinphone.lc!, call)
             NSLog("Terminated call result(outgoing): \(result)")
         }
         self.dismissViewControllerAnimated(false, completion: nil)
@@ -113,11 +114,11 @@ class OutgoingCallController: UIViewController{
     
     override func viewWillAppear(animated: Bool) {
         lct.call_state_changed = outgoingCallStateChanged
-        linphone_core_add_listener(LinphoneManager.getLc(),  &lct)
+        linphone_core_add_listener(theLinphone.lc!,  &lct)
     }
     
     override func viewDidDisappear(animated: Bool) {
-        linphone_core_remove_listener(LinphoneManager.getLc(), &lct)
+        linphone_core_remove_listener(theLinphone.lc!, &lct)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

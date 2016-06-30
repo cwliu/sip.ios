@@ -1,5 +1,11 @@
 import Foundation
 
+struct theLinphone {
+    static var lc: COpaquePointer?
+    static var lct: LinphoneCoreVTable?
+    static var manager: LinphoneManager?
+}
+
 var sipRegistrationStatus: SipRegistrationStatus = SipRegistrationStatus.UNKNOWN
 
 var registrationStateChanged: LinphoneCoreRegistrationStateChangedCb = {
@@ -54,15 +60,12 @@ var callStateChanged: LinphoneCoreCallStateChangedCb = {
         NSLog("callStateChanged: LinphoneCallError")
         
     default:
-        NSLog("Default call state")
+        NSLog("Default call state: \(callSate)")
     }
 }
 
 
-struct LinephoneCore {
-    static var lc: COpaquePointer?
-    static var lct: LinphoneCoreVTable?
-}
+
 
 class LinphoneManager {
     
@@ -95,31 +98,25 @@ class LinphoneManager {
         let lpConfig = lp_config_new_with_factory(configFilenamePtr, factoryConfigFilenamePtr)
         
         // Set Callback
-        LinephoneCore.lct = LinphoneCoreVTable()
-        LinephoneCore.lct!.registration_state_changed = registrationStateChanged
-        LinephoneCore.lct!.call_state_changed = callStateChanged
+        theLinphone.lct = LinphoneCoreVTable()
+        theLinphone.lct!.registration_state_changed = registrationStateChanged
+        theLinphone.lct!.call_state_changed = callStateChanged
         
-        LinephoneCore.lc = linphone_core_new_with_config(&LinephoneCore.lct!, lpConfig, nil)
+        theLinphone.lc = linphone_core_new_with_config(&theLinphone.lct!, lpConfig, nil)
         LinphoneManager.isInit = true
         
         // Set ringtone
 
         let ringbackPath = NSBundle.mainBundle().pathForResource("ringback", ofType: "wav")
-        linphone_core_set_ringback(LinphoneManager.getLc(), ringbackPath!)
+        linphone_core_set_ringback(theLinphone.lc!, ringbackPath!)
         
         let localRingPath = NSBundle.mainBundle().pathForResource("toy-mono", ofType: "wav")
-        linphone_core_set_ring(LinphoneManager.getLc(), localRingPath!)
+        linphone_core_set_ring(theLinphone.lc!, localRingPath!)
         
-    }
-    
-    static func getLc() -> COpaquePointer {
-        return LinephoneCore.lc!
     }
     
     @objc func iterate(){
-        let lc = LinphoneManager.getLc()
-        if  lc != nil{
-            
+        if let lc = theLinphone.lc{
             linphone_core_iterate(lc); /* first iterate initiates registration */
         }
     }
@@ -159,7 +156,7 @@ class LinphoneManager {
         }
         
         let info=linphone_auth_info_new(linphone_address_get_username(from), nil, password, nil, nil, nil); /*create authentication structure from identity*/
-        linphone_core_add_auth_info(LinphoneManager.getLc(), info); /*add authentication info to LinphoneCore*/
+        linphone_core_add_auth_info(theLinphone.lc!, info); /*add authentication info to LinphoneCore*/
         
         // configure proxy entries
         linphone_proxy_config_set_identity(proxy_cfg, identity); /*set identity with user name and domain*/
@@ -170,8 +167,8 @@ class LinphoneManager {
         linphone_proxy_config_set_server_addr(proxy_cfg, server_addr!); /* we assume domain = proxy server address*/
         //        linphone_proxy_config_enable_register(proxy_cfg, 0); /* activate registration for this proxy config*/
         linphone_proxy_config_set_expires(proxy_cfg, 60)
-        linphone_core_add_proxy_config(LinphoneManager.getLc(), proxy_cfg); /*add proxy config to linphone core*/
-        linphone_core_set_default_proxy_config(LinphoneManager.getLc(), proxy_cfg); /*set to default proxy*/
+        linphone_core_add_proxy_config(theLinphone.lc!, proxy_cfg); /*add proxy config to linphone core*/
+        linphone_core_set_default_proxy_config(theLinphone.lc!, proxy_cfg); /*set to default proxy*/
         
         return proxy_cfg
     }
@@ -181,26 +178,26 @@ class LinphoneManager {
     }
     
     
-    static func unregister(){
+    func unregister(){
         NSLog("Linphone unregister()..")
         
         if let timer = LinphoneManager.iterateTimer{
             timer.invalidate()
         }
         
-        let proxy_cfg = linphone_core_get_default_proxy_config(LinphoneManager.getLc()); /* get default proxy config*/
+        let proxy_cfg = linphone_core_get_default_proxy_config(theLinphone.lc!); /* get default proxy config*/
         linphone_proxy_config_edit(proxy_cfg); /*start editing proxy configuration*/
         linphone_proxy_config_enable_register(proxy_cfg, 0); /*de-activate registration for this proxy config*/
         linphone_proxy_config_done(proxy_cfg); /*initiate REGISTER with expire = 0*/
         
         while(linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationCleared && linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationFailed
             && linphone_proxy_config_get_state(proxy_cfg) != LinphoneRegistrationNone){
-                linphone_core_iterate(LinphoneManager.getLc()); /*to make sure we receive call backs before shutting down*/
+                linphone_core_iterate(theLinphone.lc!); /*to make sure we receive call backs before shutting down*/
                 ms_usleep(50000);
         }
         
-        linphone_core_remove_listener(LinphoneManager.getLc(), &LinephoneCore.lct!)
-        linphone_core_destroy(LinphoneManager.getLc());
+        linphone_core_remove_listener(theLinphone.lc!, &theLinphone.lct!)
+        linphone_core_destroy(theLinphone.lc!);
         
         LinphoneManager.isInit = false
     }

@@ -112,7 +112,7 @@ private extension ProfileController{
         ContactDbHelper.deleteAll()
         
         // linphone unregister
-        LinphoneManager.unregister()
+        theLinphone.manager!.unregister()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("LoginController") as! LoginController

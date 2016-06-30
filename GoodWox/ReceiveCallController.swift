@@ -47,7 +47,7 @@ class ReceiveCallController: UIViewController{
         
         self.navigationItem.hidesBackButton = true
         
-        let call = linphone_core_get_current_call(LinphoneManager.getLc())
+        let call = linphone_core_get_current_call(theLinphone.lc!)
         let address = linphone_call_get_remote_address_as_string(call)
         let account = getUsernameFromAddress(String.fromCString(address)!)
         
@@ -82,26 +82,26 @@ class ReceiveCallController: UIViewController{
     }
     
     @IBAction func endCall(){
-        let call = linphone_core_get_current_call(LinphoneManager.getLc())
+        let call = linphone_core_get_current_call(theLinphone.lc!)
         if call != nil {
-            linphone_core_decline_call(LinphoneManager.getLc(), call, LinphoneReasonDeclined)
+            linphone_core_decline_call(theLinphone.lc!, call, LinphoneReasonDeclined)
         }
         finish()
     }
     
     @IBAction func answerCall(){
-        let call = linphone_core_get_current_call(LinphoneManager.getLc())
+        let call = linphone_core_get_current_call(theLinphone.lc!)
         if call != nil {
-            linphone_core_accept_call(LinphoneManager.getLc(), call)
+            linphone_core_accept_call(theLinphone.lc!, call)
         }else{
             finish()
         }
     }
     
     func finish(){
-        let call = linphone_core_get_current_call(LinphoneManager.getLc())
+        let call = linphone_core_get_current_call(theLinphone.lc!)
         if call != nil {
-            let result = linphone_core_terminate_call(LinphoneManager.getLc(), call)
+            let result = linphone_core_terminate_call(theLinphone.lc!, call)
             NSLog("Terminated call result(receive): \(result)")
         }
         self.dismissViewControllerAnimated(false, completion: nil)
@@ -110,13 +110,13 @@ class ReceiveCallController: UIViewController{
     override func viewWillAppear(animated: Bool) {
         NSLog("viewWillAppear: ")
         lct.call_state_changed = receiveCallStateChanged
-        linphone_core_add_listener(LinphoneManager.getLc(),  &lct)
+        linphone_core_add_listener(theLinphone.lc!,  &lct)
     }
     
     
     override func viewDidDisappear(animated: Bool) {
         NSLog("viewDidDisappear: ")
-        linphone_core_remove_listener(LinphoneManager.getLc(), &lct)
+        linphone_core_remove_listener(theLinphone.lc!, &lct)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
