@@ -19,7 +19,7 @@ platform :ios do
   before_all do
     ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
     cocoapods
-    
+
   end
 
   desc "Runs all the tests"
@@ -33,7 +33,7 @@ platform :ios do
     increment_build_number
     # match(type: "appstore") # more information: https://codesigning.guide
     gym(scheme: "GoodWox") # Build your app - more options available
-    pilot
+    pilot(skip_waiting_for_build_processing: true)
 
     # Post Slack notification
     slack(
