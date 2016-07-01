@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
-    <entity name="CallLog" syncable="YES">
+    <entity name="CallLog" representedClassName=".CallLog" syncable="YES">
         <attribute name="callDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="callTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -19,7 +19,7 @@
         <relationship name="callLog" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CallLog" inverseName="contact" inverseEntity="CallLog" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="-344" positionY="-36" width="128" height="193"/>
         <element name="CallLog" positionX="-119" positionY="129" width="128" height="105"/>
+        <element name="Contact" positionX="-344" positionY="-36" width="128" height="193"/>
     </elements>
 </model>

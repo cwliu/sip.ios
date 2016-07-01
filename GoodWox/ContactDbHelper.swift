@@ -23,8 +23,8 @@ class ContactDbHelper {
         return contacts
     }
     
-    static func deleteAll()
-    {
+    static func deleteAll(){
+        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: ENTITY)
@@ -71,6 +71,19 @@ class ContactDbHelper {
                 if contacts.count > 0 {
                     return contacts[0]
                 }
+            } catch let error{
+                NSLog("\(error)")
+            }
+        }
+        return nil
+    }
+    
+    static func getContactById(id: NSManagedObjectID) -> Contact? {
+        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {            
+            do {
+                let contact = try managedObjectContext.existingObjectWithID(id) as? Contact
+                return contact
+                    
             } catch let error{
                 NSLog("\(error)")
             }

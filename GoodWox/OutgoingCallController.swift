@@ -1,6 +1,11 @@
 import Foundation
+import CoreData
 
-var outgoingCallController: OutgoingCallController?
+struct OutgoingCallData{
+    static var controller: OutgoingCallController?
+    static var callee: Contact?
+    static var callType: CallLogType = CallLogType.OUTGOING_CALL_NO_ANSWER
+}
 
 enum CallPhoneType {
     case SIP
@@ -13,19 +18,31 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
     switch callSate{
     case LinphoneCallConnected:
         NSLog("outgoingCallStateChanged: LinphoneCallConnected")
-        outgoingCallController?.statusLabel.text = "Connected"
+        OutgoingCallData.callType = CallLogType.OUTGOING_CALL_ANSWERED
+        OutgoingCallData.controller?.statusLabel.text = "Connected"
         
     case LinphoneCallError: /**<The call encountered an error*/
+        OutgoingCallData.callType = CallLogType.OUTGOING_CALL_NO_ANSWER
         NSLog("outgoingCallStateChanged: LinphoneCallError")
-        outgoingCallController?.dismissViewControllerAnimated(true, completion: nil)
+        close()
         
     case LinphoneCallEnd:
         NSLog("outgoingCallStateChanged: LinphoneCallEnd")
-        outgoingCallController?.dismissViewControllerAnimated(true, completion: nil)
+        close()
         
     default:
         NSLog("outgoingCallStateChanged: Default call state")
     }
+}
+
+func close(){
+    
+    if let callee = OutgoingCallData.callee {
+        CallLogDbHelper.addCallLog(callee, callTime: NSDate(), callDuration: 50, callType: OutgoingCallData.callType)
+    }
+
+    OutgoingCallData.controller?.dismissViewControllerAnimated(true, completion: nil)
+
 }
 
 class OutgoingCallController: UIViewController{
@@ -33,6 +50,7 @@ class OutgoingCallController: UIViewController{
     var phoneNumber: String?
     var calleeName: String?
     var phoneType: CallPhoneType = .SIP
+    var calleeID: NSManagedObjectID?
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var statusLabel: UILabel!
@@ -44,70 +62,19 @@ class OutgoingCallController: UIViewController{
     override func viewDidLoad() {
         NSLog("OutgoingCallController.viewDidLoad()")
         
-        outgoingCallController = self
+        OutgoingCallData.controller = self
+        
+        if let calleeID = calleeID{
+            OutgoingCallData.callee = ContactDbHelper.getContactById(calleeID)
+        }else{
+            OutgoingCallData.callee = nil
+        }
         
         self.navigationItem.hidesBackButton = true
         
-        
-        switch phoneType {
-        case .SIP:
-            sipIcon.hidden = false
-            statusLabel.text = "SIP Dialing..."
-            
-        case .NONSIP:
-            sipIcon.hidden = true
-            statusLabel.text = "Dialing to \(phoneNumber!)..."
-        }
-        
-        if let phone = phoneNumber {
-            nameLabel.text = calleeName!
-            linphone_core_invite(LinphoneManager.getLc(), phone)
-            
-            if let contact = ContactDbHelper.getContactBySip(phone){
-                
-                if contact.type == ContactType.COMPANY.hashValue {
-                    let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
-                    let request = NSMutableURLRequest(URL: url!)
-                    
-                    let authentication: Authentication = Authentication()
-                    MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
-                    authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
-                        
-                        let token = request.valueForHTTPHeaderField("Authorization")!
-                        let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!, token: token)
-                        
-                        self.avatarImage.hnk_setImageFromFetcher(fetcher)
-                        
-                        // Circular image
-                        self.avatarImage.layer.cornerRadius = 60
-                        self.avatarImage.clipsToBounds = true
-                        
-                    })
-                }
-                
-            }
-        }
-        
+        makeCall()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        NSLog("OutgoingCallController.prepareForSegue()")
-    }
-    
-    @IBAction func hangUp(){
-        NSLog("OutgoingCallController.hangUp()")
-        finish()
-        
-    }
-    
-    func finish(){
-        let call = linphone_core_get_current_call(LinphoneManager.getLc())
-        if call != nil {
-            let result = linphone_core_terminate_call(LinphoneManager.getLc(), call)
-            NSLog("Terminated call result(outgoing): \(result)")
-        }
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
     
     override func viewWillAppear(animated: Bool) {
         lct.call_state_changed = outgoingCallStateChanged
@@ -120,5 +87,67 @@ class OutgoingCallController: UIViewController{
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        NSLog("OutgoingCallController.prepareForSegue()")
+    }
+    
+    @IBAction func hangUp(){
+        NSLog("OutgoingCallController.hangUp()")
+        finish()
+    }
+    func makeCall(){
+        switch phoneType {
+        case .SIP:
+            sipIcon.hidden = false
+            statusLabel.text = "SIP Dialing..."
+            
+        case .NONSIP:
+            sipIcon.hidden = true
+            statusLabel.text = "Dialing to \(phoneNumber!)..."
+        }
+        
+        if let phone = phoneNumber {
+            nameLabel.text = calleeName!
+
+            linphone_core_invite(LinphoneManager.getLc(), phone)
+            showAvatar(phone)
+        }
+    }
+    
+    func showAvatar(phone: String){
+        if let contact = ContactDbHelper.getContactBySip(phone){
+            
+            if contact.type == ContactType.COMPANY.hashValue {
+                let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
+                let request = NSMutableURLRequest(URL: url!)
+                
+                let authentication: Authentication = Authentication()
+                MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
+                authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
+                    
+                    let token = request.valueForHTTPHeaderField("Authorization")!
+                    let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!, token: token)
+                    
+                    self.avatarImage.hnk_setImageFromFetcher(fetcher)
+                    
+                    // Circular image
+                    self.avatarImage.layer.cornerRadius = 60
+                    self.avatarImage.clipsToBounds = true
+                    
+                })
+            }
+        }
+    }
+    
+    func finish(){
+        let call = linphone_core_get_current_call(LinphoneManager.getLc())
+        if call != nil {
+            let result = linphone_core_terminate_call(LinphoneManager.getLc(), call)
+            NSLog("Terminated call result(outgoing): \(result)")
+        }
+        
+        close()
     }
 }

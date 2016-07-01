@@ -17,12 +17,9 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
     override func viewDidLoad() {
         NSLog("RecordController.viewDidLoad()")
         
-        //Init Microsoft Graph
-        MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
-        
         modifyTableStyle()
         
-        contacts = ContactDbHelper.getMostContacted()
+        updateTable()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -31,7 +28,7 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     override func viewWillAppear(animated: Bool) {
-        contacts = ContactDbHelper.getMostContacted()
+        updateTable()
         self.tableView.reloadData()
     }
     
@@ -182,13 +179,22 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func segmentControlIndexChanged(sender: UISegmentedControl){
-        
-        switch sender.selectedSegmentIndex
+        updateTable()
+    }
+    
+    func updateTable(){
+        switch segmentControl.selectedSegmentIndex
         {
         case 0:
             contacts = ContactDbHelper.getMostContacted()
         case 1:
             contacts = []
+            let logs = CallLogDbHelper.getAll()
+            for log in logs{
+                if let contact = log.contact {
+                    contacts.append(contact)
+                }
+            }
         default:
             contacts = []
         }

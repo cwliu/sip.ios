@@ -116,11 +116,12 @@ class CompanyController: UITableViewController{
         if(segue.identifier == "makeCall"){
             
             let controller = segue.destinationViewController as! OutgoingCallController
-            
-            if let sip = self.contacts[indexPath!.row].sip{
+            let contact = self.contacts[indexPath!.row]
+            if let sip = contact.sip{
                 controller.phoneNumber = sip
                 controller.calleeName = self.contacts[indexPath!.row].name
                 controller.phoneType = .SIP
+                controller.calleeID = contact.objectID
                 
                 let contact = self.contacts[indexPath!.row]
                 contact.usageCount = (contact.usageCount?.floatValue)! + 1

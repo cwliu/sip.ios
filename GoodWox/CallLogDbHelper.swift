@@ -9,11 +9,12 @@ enum CallLogType {
 }
 
 class CallLogDbHelper {
-
-    func addCallLog(contact: Contact, callTime: NSDate, callDuration: Int, callType: CallLogType){
+    static var ENTITY = "CallLog"
+    
+    static func addCallLog(contact: Contact, callTime: NSDate, callDuration: Int, callType: CallLogType){
         if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
             
-            let callLog = NSEntityDescription.insertNewObjectForEntityForName("CallLog", inManagedObjectContext: managedObjectContext) as! CallLog
+            let callLog = NSEntityDescription.insertNewObjectForEntityForName(ENTITY, inManagedObjectContext: managedObjectContext) as! CallLog
             
             do {
                 try Exception.catchException {
@@ -30,8 +31,25 @@ class CallLogDbHelper {
             }
         }
     }
+    
+    static func getAll() -> [CallLog]{
+        var logs: [CallLog] = []
+        
+        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+            
+            let sortDescriptors = [NSSortDescriptor(key: "callTime", ascending: false)]
+            fetchRequest.sortDescriptors = sortDescriptors
+            
+            do {
+                logs = try managedObjectContext.executeFetchRequest(fetchRequest) as! [CallLog]
+            } catch let error{
+                NSLog("\(error)")
+            }
+        }
+        return logs
+    }
 }
-
 
 //// Save call log
 //
