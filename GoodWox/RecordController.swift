@@ -1,6 +1,4 @@
-
 import UIKit
-
 
 class RecordController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -16,25 +14,19 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
     
     override func viewDidLoad() {
         NSLog("RecordController.viewDidLoad()")
-        
-        modifyTableStyle()
-        
-        updateTable()
-        
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        let nib = UINib(nibName: "ContactCell", bundle: nil)
-        self.tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
+
+        modifyTableStyle()
     }
     
     override func viewWillAppear(animated: Bool) {
         updateTable()
-        self.tableView.reloadData()
     }
     
     func favoriteClick(sender: UITapGestureRecognizer) {
         NSLog("Single Tap on favoriteClick")
-        
         
         if let index = sender.view?.tag{
             let contact = self.contacts[index]
@@ -53,13 +45,21 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
     
     // MARK: Style
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.contacts.count
+        return contacts.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let contact = self.contacts[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)as! ContactCell
+        
+        var cellID = ""
+        if segmentControl.selectedSegmentIndex == 0 {
+            cellID = "ContactCell"
+        }else{
+            cellID = "CallLogCell"
+        }
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellID, forIndexPath: indexPath)as! ContactCell
         
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         
@@ -79,6 +79,9 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.nameLabel.textColor = UIColor(hex: "#2B2725")
         }
         
+//        if segmentControl.selectedSegmentIndex == 1 {
+//            cell.messageLabel.text = "fake message"
+//        }
         
         // Display contact
         if(contact.type ==  ContactType.COMPANY.hashValue) {
@@ -99,7 +102,6 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
             })
         }else{
             cell.avatarImage.image = UIImage(named: "avatar_gray_30dp")
-            
         }
         
         return cell
@@ -183,11 +185,15 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func updateTable(){
-        switch segmentControl.selectedSegmentIndex
-        {
+        switch segmentControl.selectedSegmentIndex{
         case 0:
+            let nib = UINib(nibName: "ContactCell", bundle: nil)
+            self.tableView.registerNib(nib, forCellReuseIdentifier: "ContactCell")
             contacts = ContactDbHelper.getMostContacted()
         case 1:
+            let nib = UINib(nibName: "CallLogCell", bundle: nil)
+            self.tableView.registerNib(nib, forCellReuseIdentifier: "CallLogCell")
+            
             contacts = []
             let logs = CallLogDbHelper.getAll()
             for log in logs{

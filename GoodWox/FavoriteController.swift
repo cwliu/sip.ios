@@ -19,7 +19,7 @@ class FavoriteController: UITableViewController {
         contacts = ContactDbHelper.getFavoriteContact()
         
         let nib = UINib(nibName: "ContactCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
+        tableView.registerNib(nib, forCellReuseIdentifier: "ContactCell")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -40,7 +40,7 @@ class FavoriteController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let contact = self.contacts[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)as! ContactCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath)as! ContactCell
         
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         

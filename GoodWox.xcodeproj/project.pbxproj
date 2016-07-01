@@ -138,6 +138,7 @@
 		A9D469961D1EB7C7007C5B2B /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469941D1EB7C7007C5B2B /* Contact.swift */; };
 		A9D469981D1EC9DB007C5B2B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469971D1EC9DA007C5B2B /* UIColor.swift */; };
 		A9D4699A1D1ECE49007C5B2B /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469991D1ECE49007C5B2B /* FavoriteController.swift */; };
+		A9F9CA4A1D265A59005B8874 /* CallLogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F9CA491D265A59005B8874 /* CallLogCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -276,6 +277,7 @@
 		A9D469941D1EB7C7007C5B2B /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ../Pods/Contact.swift; sourceTree = "<group>"; };
 		A9D469971D1EC9DA007C5B2B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A9D469991D1ECE49007C5B2B /* FavoriteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
+		A9F9CA491D265A59005B8874 /* CallLogCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallLogCell.xib; sourceTree = "<group>"; };
 		B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodWox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -535,6 +537,7 @@
 			isa = PBXGroup;
 			children = (
 				A96B65461D18D56100BF2436 /* ContactCell.xib */,
+				A9F9CA491D265A59005B8874 /* CallLogCell.xib */,
 				A9863C361D0579C0003FE7B3 /* LaunchScreen.storyboard */,
 				A9AAE48F1D0273C20034B564 /* Main.storyboard */,
 			);
@@ -732,6 +735,7 @@
 				A96B65471D18D56100BF2436 /* ContactCell.xib in Resources */,
 				A9B72B371D221BC200FDA9EE /* primary_category.txt in Resources */,
 				A9B72B411D221BC200FDA9EE /* privacy_url.txt in Resources */,
+				A9F9CA4A1D265A59005B8874 /* CallLogCell.xib in Resources */,
 				A96B65291D16E1CE00BF2436 /* toy-mono.wav in Resources */,
 				A9B72B3C1D221BC200FDA9EE /* secondary_second_sub_category.txt in Resources */,
 				A9B72B3A1D221BC200FDA9EE /* secondary_category.txt in Resources */,

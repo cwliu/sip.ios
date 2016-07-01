@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="-33" id="8EO-cP-avu" customClass="ContactCell" customModule="GoodWox" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" rowHeight="-33" id="8EO-cP-avu" customClass="ContactCell" customModule="GoodWox" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="365" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8EO-cP-avu" id="A1z-C9-cq3">
@@ -29,19 +29,19 @@
                             <constraint firstAttribute="height" constant="16" id="rER-Oc-lGL"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="1ry-0p-Wio">
-                        <rect key="frame" x="275" y="-0.5" width="60" height="44.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="60" id="5ma-jJ-OgL"/>
-                            <constraint firstAttribute="height" constant="44" id="qBZ-fx-0VX"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qdq-Ic-48i">
                         <rect key="frame" x="68" y="11" width="45" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.16862745583057404" green="0.15294118225574493" blue="0.14509804546833038" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_gray_16dp" translatesAutoresizingMaskIntoConstraints="NO" id="1ry-0p-Wio">
+                        <rect key="frame" x="275" y="-1" width="60" height="44.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="5ma-jJ-OgL"/>
+                            <constraint firstAttribute="height" constant="44" id="qBZ-fx-0VX"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Qdq-Ic-48i" firstAttribute="centerY" secondItem="YoY-MH-yUD" secondAttribute="centerY" id="0fZ-ZV-xF0"/>
