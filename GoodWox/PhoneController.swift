@@ -173,7 +173,8 @@ extension PhoneController {
                 controller.phoneNumber = phone
                 controller.calleeName = contact.name
                 controller.phoneType = .NONSIP
-                
+                controller.calleeID = contact.objectID
+
                 contact.usageCount = (contact.usageCount?.floatValue)! + 1
                 ContactDbHelper.updateContact(contact)
 

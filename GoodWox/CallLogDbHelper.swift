@@ -17,13 +17,12 @@ class CallLogDbHelper {
             let callLog = NSEntityDescription.insertNewObjectForEntityForName(ENTITY, inManagedObjectContext: managedObjectContext) as! CallLog
             
             do {
-                try Exception.catchException {
-                    
-                    callLog.callTime = callTime
-                    callLog.callDuration = callDuration
-                    callLog.type = callType.hashValue
-                    callLog.contact = contact
-                }
+                callLog.callTime = callTime
+                callLog.callDuration = callDuration
+                callLog.type = callType.hashValue
+                callLog.contact = contact
+                
+                try managedObjectContext.save()
                 
             } catch let error{
                 NSLog("NSError ocurred: \(error)")

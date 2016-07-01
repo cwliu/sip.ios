@@ -3,6 +3,7 @@ import UIKit
 class RecordController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var contacts: [Contact] = []
+    var calllLogs: [CallLog] = []
     
     let authentication: Authentication = Authentication()
     
@@ -79,9 +80,33 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.nameLabel.textColor = UIColor(hex: "#2B2725")
         }
         
-//        if segmentControl.selectedSegmentIndex == 1 {
-//            cell.messageLabel.text = "fake message"
-//        }
+        if segmentControl.selectedSegmentIndex == 1 {
+            var message: String = ""
+            
+            let callLog = calllLogs[indexPath.row]
+
+            if let timeString = getNaturalDateString(callLog.callTime) {
+                message += timeString
+            }
+
+            if callLog.type == CallLogType.INCOMING_CALL_NO_ANSWER.hashValue {
+                message += " Missed Call"
+            }
+
+            if callLog.type == CallLogType.INCOMING_CALL_ANSWERED.hashValue {
+                message += ", " + (callLog.callDuration?.stringValue)! + "sec"
+            }
+
+            if callLog.type == CallLogType.OUTGOING_CALL_NO_ANSWER.hashValue {
+                message += ", no answer"
+            }
+            
+            if callLog.type == CallLogType.OUTGOING_CALL_ANSWERED.hashValue {
+                message += ", " + (callLog.callDuration?.stringValue)! + "sec"
+            }
+            
+            cell.messageLabel.text = message
+        }
         
         // Display contact
         if(contact.type ==  ContactType.COMPANY.hashValue) {
@@ -159,6 +184,7 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
         if(segue.identifier == "makeCall"){
             
             let controller = segue.destinationViewController as! OutgoingCallController
+            controller.calleeID = contact.objectID
             
             if contact.type == ContactType.COMPANY.hashValue, let sip = self.contacts[indexPath!.row].sip{
                 controller.phoneNumber = sip
@@ -195,8 +221,8 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
             self.tableView.registerNib(nib, forCellReuseIdentifier: "CallLogCell")
             
             contacts = []
-            let logs = CallLogDbHelper.getAll()
-            for log in logs{
+            calllLogs = CallLogDbHelper.getAll()
+            for log in calllLogs{
                 if let contact = log.contact {
                     contacts.append(contact)
                 }

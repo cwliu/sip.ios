@@ -154,7 +154,9 @@ class FavoriteController: UITableViewController {
         if(segue.identifier == "makeCall"){
             
             let controller = segue.destinationViewController as! OutgoingCallController
-            
+
+            controller.calleeID = contact.objectID
+
             if contact.type == ContactType.COMPANY.hashValue, let sip = self.contacts[indexPath!.row].sip{
                 controller.phoneNumber = sip
                 controller.calleeName = contact.name
@@ -167,6 +169,7 @@ class FavoriteController: UITableViewController {
                 controller.phoneNumber = phone
                 controller.calleeName = contact.name
                 controller.phoneType = .NONSIP
+                
             }else{
                 let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no phone number", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))

@@ -41,6 +41,7 @@ func close(){
         CallLogDbHelper.addCallLog(callee, callTime: NSDate(), callDuration: 50, callType: OutgoingCallData.callType)
     }
     
+    OutgoingCallData.callType = CallLogType.OUTGOING_CALL_NO_ANSWER // Reset state
     OutgoingCallData.controller?.dismissViewControllerAnimated(true, completion: nil)
 }
 
