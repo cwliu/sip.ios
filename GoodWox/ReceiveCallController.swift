@@ -26,6 +26,10 @@ var receiveCallStateChanged: LinphoneCoreCallStateChangedCb = {
     }
 }
 
+struct ReceiveCallVT {
+    static var lct: LinphoneCoreVTable = LinphoneCoreVTable()
+}
+
 class ReceiveCallController: UIViewController{
     
     @IBOutlet var nameLabel: UILabel!
@@ -35,9 +39,6 @@ class ReceiveCallController: UIViewController{
     @IBOutlet var acceptButton: UIButton!
     @IBOutlet var declineButton: UIButton!
     @IBOutlet var endButton: UIButton!
-    
-    
-    var lct: LinphoneCoreVTable = LinphoneCoreVTable()
     
     override func viewDidLoad() {
         NSLog("ReceiveCallController.viewDidLoad()")
@@ -109,14 +110,14 @@ class ReceiveCallController: UIViewController{
     
     override func viewWillAppear(animated: Bool) {
         NSLog("viewWillAppear: ")
-        lct.call_state_changed = receiveCallStateChanged
-        linphone_core_add_listener(theLinphone.lc!,  &lct)
+        ReceiveCallVT.lct.call_state_changed = receiveCallStateChanged
+        linphone_core_add_listener(theLinphone.lc!,  &ReceiveCallVT.lct)
     }
     
     
     override func viewDidDisappear(animated: Bool) {
         NSLog("viewDidDisappear: ")
-        linphone_core_remove_listener(theLinphone.lc!, &lct)
+        linphone_core_remove_listener(theLinphone.lc!, &ReceiveCallVT.lct)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

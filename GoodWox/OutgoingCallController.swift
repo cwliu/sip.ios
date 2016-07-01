@@ -28,6 +28,10 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
     }
 }
 
+struct OutgoingCallVT{
+    static var lct: LinphoneCoreVTable = LinphoneCoreVTable()
+}
+
 class OutgoingCallController: UIViewController{
     
     var phoneNumber: String?
@@ -38,8 +42,6 @@ class OutgoingCallController: UIViewController{
     @IBOutlet var statusLabel: UILabel!
     @IBOutlet var sipIcon: UIImageView!
     @IBOutlet var avatarImage: UIImageView!
-    
-    var lct: LinphoneCoreVTable = LinphoneCoreVTable()
     
     override func viewDidLoad() {
         NSLog("OutgoingCallController.viewDidLoad()")
@@ -113,12 +115,12 @@ class OutgoingCallController: UIViewController{
     }
     
     override func viewWillAppear(animated: Bool) {
-        lct.call_state_changed = outgoingCallStateChanged
-        linphone_core_add_listener(theLinphone.lc!,  &lct)
+        OutgoingCallVT.lct.call_state_changed = outgoingCallStateChanged
+        linphone_core_add_listener(theLinphone.lc!,  &OutgoingCallVT.lct)
     }
     
     override func viewDidDisappear(animated: Bool) {
-        linphone_core_remove_listener(theLinphone.lc!, &lct)
+        linphone_core_remove_listener(theLinphone.lc!, &OutgoingCallVT.lct)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
