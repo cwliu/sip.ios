@@ -1,11 +1,15 @@
 libopenh264
+libbelr
+libpolarssl
 libopencore-amrwb
 libvo-amrwbenc
 libtunnel
 libmsbcg729
+libbv16
 libmsamr
 libbcg729
 libx264
 libmsopenh264
+libbelcard
 libopencore-amrnb
 libmsx264

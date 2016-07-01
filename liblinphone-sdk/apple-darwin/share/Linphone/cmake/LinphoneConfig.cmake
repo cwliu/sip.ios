@@ -1,0 +1,73 @@
+############################################################################
+# LinphoneConfig.cmake
+# Copyright (C) 2015  Belledonne Communications, Grenoble France
+#
+############################################################################
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+############################################################################
+#
+# Config file for the belle-sip package.
+# It defines the following variables:
+#
+#  LINPHONE_FOUND - system has linphone
+#  LINPHONE_INCLUDE_DIRS - the linphone include directory
+#  LINPHONE_LIBRARIES - The libraries needed to use linphone
+#  LINPHONE_CPPFLAGS - The compilation flags needed to use linphone
+#  LINPHONE_LDFLAGS - The linking flags needed to use linphone
+
+if(NOT LINPHONE_BUILDER_GROUP_EXTERNAL_SOURCE_PATH_BUILDERS)
+	include("${CMAKE_CURRENT_LIST_DIR}/LinphoneTargets.cmake")
+endif()
+
+find_package(Mediastreamer2 REQUIRED)
+find_package(BelleSIP REQUIRED)
+if(OFF)
+	if(LINPHONE_BUILDER_GROUP_EXTERNAL_SOURCE_PATH_BUILDERS)
+		include("${EP_tunnel_CONFIG_DIR}/TunnelConfig.cmake")
+	else()
+		find_package(Tunnel)
+	endif()
+endif()
+if(OFF)
+	if(LINPHONE_BUILDER_GROUP_EXTERNAL_SOURCE_PATH_BUILDERS)
+		include("${EP_belcard_CONFIG_DIR}/BelcardConfig.cmake")
+	else()
+		find_package(Belcard)
+	endif()
+endif()
+
+get_filename_component(LINPHONE_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(LINPHONE_INCLUDE_DIRS "${LINPHONE_CMAKE_DIR}/../../../include")
+if(NO)
+	set(LINPHONE_LIBRARIES linphone)
+else()
+	set(LINPHONE_LIBRARIES linphone-static)
+endif()
+set(LINPHONE_LDFLAGS )
+list(APPEND LINPHONE_INCLUDE_DIRS ${MEDIASTREAMER2_INCLUDE_DIRS} ${BELLESIP_INCLUDE_DIRS})
+list(APPEND LINPHONE_LIBRARIES ${MEDIASTREAMER2_LIBRARIES} ${BELLESIP_LIBRARIES})
+set(LINPHONE_CPPFLAGS "${MEDIASTREAMER2_CPPFLAGS}")
+set(LINPHONE_LDFLAGS "${MEDIASTREAMER2_LDFLAGS} ${BELLESIP_LDFLAGS}")
+if(TUNNEL_FOUND)
+	list(APPEND LINPHONE_INCLUDE_DIRS ${TUNNEL_INCLUDE_DIRS})
+	list(APPEND LINPHONE_LIBRARIES ${TUNNEL_LIBRARIES})
+endif()
+if(BELCARD_FOUND)
+	list(APPEND LINPHONE_INCLUDE_DIRS ${BELCARD_INCLUDE_DIRS})
+	list(APPEND LINPHONE_LIBRARIES ${BELCARD_LIBRARIES})
+endif()
+set(LINPHONE_FOUND 1)

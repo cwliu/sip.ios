@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: #selector(graphAccountChange),
@@ -31,7 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         UITabBar.appearance().tintColor = UIColor(colorLiteralRed: 122/255, green: 207/255, blue: 226/255, alpha: 1)
-        
+
+        theLinphone.manager = LinphoneManager()
         return true
     }
     
@@ -61,8 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("AppDelegate:applicationWillTerminate")
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         
-        linphone_core_terminate_all_calls(LinphoneManager.getLc());
-        LinphoneManager.unregister()
+        linphone_core_terminate_all_calls(theLinphone.lc!);
+        theLinphone.manager!.unregister()
     }
     
     // MARK: - Core Data

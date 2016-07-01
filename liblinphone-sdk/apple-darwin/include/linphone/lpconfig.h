@@ -201,6 +201,26 @@ LINPHONE_PUBLIC int lp_config_has_section(const LpConfig *lpconfig, const char *
 LINPHONE_PUBLIC void lp_config_clean_section(LpConfig *lpconfig, const char *section);
 
 /**
+ * Returns 1 if a given section  with a given key is present in the configuration.
+ * @param[in] lpconfig The LpConfig object
+ * @param[in] section
+ * @param[in] key
+ *
+ * @ingroup misc
+ **/
+LINPHONE_PUBLIC int lp_config_has_entry(const LpConfig *lpconfig, const char *section, const char *key);
+
+/**
+ * Removes entries for key,value in a section.
+ * @param[in] lpconfig The LpConfig object
+ * @param[in] section
+ * @param[in] key
+ *
+ * @ingroup misc
+ **/
+LINPHONE_PUBLIC void lp_config_clean_entry(LpConfig *lpconfig, const char *section, const char *key);
+	
+/**
  * Returns the list of sections' names in the LpConfig.
  * @param[in] lpconfig The LpConfig object
  * @return a null terminated static array of strings
@@ -306,10 +326,19 @@ LINPHONE_PUBLIC bool_t lp_config_relative_file_exists(const LpConfig *lpconfig, 
  * Dumps the LpConfig as XML into a buffer
  * @param[in] lpconfig The LpConfig object
  * @return The buffer that contains the XML dump
- * 
+ *
  * @ingroup misc
 **/
 LINPHONE_PUBLIC char* lp_config_dump_as_xml(const LpConfig *lpconfig);
+
+/**
+ * Dumps the LpConfig as INI into a buffer
+ * @param[in] lpconfig The LpConfig object
+ * @return The buffer that contains the config dump
+ *
+ * @ingroup misc
+**/
+LINPHONE_PUBLIC char* lp_config_dump(const LpConfig *lpconfig);
 
 /**
  * Retrieves the overwrite flag for a config item
@@ -338,6 +367,34 @@ LINPHONE_PUBLIC bool_t lp_config_get_overwrite_flag_for_section(const LpConfig *
  * @ingroup misc
 **/
 LINPHONE_PUBLIC void lp_config_set_overwrite_flag_for_section(LpConfig *lpconfig, const char *section, bool_t value);
+
+/**
+ * Retrieves the skip flag for a config item
+ *
+ * @ingroup misc
+**/
+LINPHONE_PUBLIC bool_t lp_config_get_skip_flag_for_entry(const LpConfig *lpconfig, const char *section, const char *key);
+
+/**
+ * Sets the skip flag for a config item (used when dumping config as xml)
+ *
+ * @ingroup misc
+**/
+LINPHONE_PUBLIC void lp_config_set_skip_flag_for_entry(LpConfig *lpconfig, const char *section, const char *key, bool_t value);
+
+/**
+ * Retrieves the skip flag for a config section
+ *
+ * @ingroup misc
+**/
+LINPHONE_PUBLIC bool_t lp_config_get_skip_flag_for_section(const LpConfig *lpconfig, const char *section);
+
+/**
+ * Sets the skip flag for a config section (used when dumping config as xml)
+ *
+ * @ingroup misc
+**/
+LINPHONE_PUBLIC void lp_config_set_skip_flag_for_section(LpConfig *lpconfig, const char *section, bool_t value);
 
 #ifdef __cplusplus
 }

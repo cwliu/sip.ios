@@ -47,6 +47,9 @@ extern "C"{
 #define	PAYLOAD_TYPE_USER_FLAG_4 (1<<8)
 /* ask for more if you need*/
 
+#define PAYLOAD_TYPE_FLAG_CAN_RECV PAYLOAD_TYPE_USER_FLAG_1
+#define PAYLOAD_TYPE_FLAG_CAN_SEND PAYLOAD_TYPE_USER_FLAG_2
+
 #define PAYLOAD_AUDIO_CONTINUOUS 0
 #define PAYLOAD_AUDIO_PACKETIZED 1
 #define PAYLOAD_VIDEO 2
@@ -162,6 +165,7 @@ ORTP_VAR_PUBLIC PayloadType payload_type_opus;
 ORTP_VAR_PUBLIC PayloadType payload_type_isac;
 ORTP_VAR_PUBLIC PayloadType payload_type_gsm_efr;
 ORTP_VAR_PUBLIC PayloadType payload_type_codec2;
+ORTP_VAR_PUBLIC PayloadType payload_type_bv16;
 
 /* video */
 ORTP_VAR_PUBLIC PayloadType payload_type_mpv;

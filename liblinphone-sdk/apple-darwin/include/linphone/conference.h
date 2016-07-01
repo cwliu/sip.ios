@@ -55,23 +55,27 @@ typedef struct _LinphoneCorferenceParams LinphoneConferenceParams;
  * @return A freshly allocated #LinphoneConferenceParams
  */
 LINPHONE_PUBLIC LinphoneConferenceParams *linphone_conference_params_new(const LinphoneCore *core);
+
 /**
  * Free a #LinphoneConferenceParams
  * @param params #LinphoneConferenceParams to free
  */
 LINPHONE_PUBLIC void linphone_conference_params_free(LinphoneConferenceParams *params);
+
 /**
  * Clone a #LinphoneConferenceParams
- * @param params The #LinphoneConfrenceParams to clone
+ * @param params The #LinphoneConferenceParams to clone
  * @return An allocated #LinphoneConferenceParams with the same parameters than params
  */
 LINPHONE_PUBLIC LinphoneConferenceParams *linphone_conference_params_clone(const LinphoneConferenceParams *params);
+
 /**
  * Enable video when starting a conference
- * @param params A #LinphoneConnferenceParams
+ * @param params A #LinphoneConferenceParams
  * @param enable If true, video will be enabled during conference
  */
 LINPHONE_PUBLIC void linphone_conference_params_enable_video(LinphoneConferenceParams *params, bool_t enable);
+
 /**
  * Check whether video will be enable at conference starting
  * @return if true, the video will be enable at conference starting
@@ -86,9 +90,11 @@ LINPHONE_PUBLIC bool_t linphone_conference_params_video_requested(const Linphone
  * Remove a participant from a conference
  * @param obj A #LinphoneConference
  * @param uri SIP URI of the participant to remove
+ * @warning The passed SIP URI must be one of the URIs returned by linphone_conference_get_participants()
  * @return 0 if succeeded, -1 if failed
  */
 LINPHONE_PUBLIC int linphone_conference_remove_participant(LinphoneConference *obj, const LinphoneAddress *uri);
+
 /**
  * Get URIs of all participants of one conference
  * The returned MSList contains URIs of all participant. That list must be

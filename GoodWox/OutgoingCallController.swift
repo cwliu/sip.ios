@@ -31,7 +31,7 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
         close()
         
     default:
-        NSLog("outgoingCallStateChanged: Default call state")
+        NSLog("outgoingCallStateChanged: Default call state \(callSate)")
     }
 }
 
@@ -40,9 +40,12 @@ func close(){
     if let callee = OutgoingCallData.callee {
         CallLogDbHelper.addCallLog(callee, callTime: NSDate(), callDuration: 50, callType: OutgoingCallData.callType)
     }
-
+    
     OutgoingCallData.controller?.dismissViewControllerAnimated(true, completion: nil)
+}
 
+struct OutgoingCallVT{
+    static var lct: LinphoneCoreVTable = LinphoneCoreVTable()
 }
 
 class OutgoingCallController: UIViewController{
@@ -56,8 +59,6 @@ class OutgoingCallController: UIViewController{
     @IBOutlet var statusLabel: UILabel!
     @IBOutlet var sipIcon: UIImageView!
     @IBOutlet var avatarImage: UIImageView!
-    
-    var lct: LinphoneCoreVTable = LinphoneCoreVTable()
     
     override func viewDidLoad() {
         NSLog("OutgoingCallController.viewDidLoad()")
@@ -77,12 +78,12 @@ class OutgoingCallController: UIViewController{
     
     
     override func viewWillAppear(animated: Bool) {
-        lct.call_state_changed = outgoingCallStateChanged
-        linphone_core_add_listener(LinphoneManager.getLc(),  &lct)
+        OutgoingCallVT.lct.call_state_changed = outgoingCallStateChanged
+        linphone_core_add_listener(theLinphone.lc!,  &OutgoingCallVT.lct)
     }
     
     override func viewDidDisappear(animated: Bool) {
-        linphone_core_remove_listener(LinphoneManager.getLc(), &lct)
+        linphone_core_remove_listener(theLinphone.lc!, &OutgoingCallVT.lct)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -95,8 +96,13 @@ class OutgoingCallController: UIViewController{
     
     @IBAction func hangUp(){
         NSLog("OutgoingCallController.hangUp()")
-        finish()
+        let call = linphone_core_get_current_call(theLinphone.lc!)
+        if call != nil {
+            let result = linphone_core_terminate_call(theLinphone.lc!, call)
+            NSLog("Terminated call result(outgoing): \(result)")
+        }
     }
+
     func makeCall(){
         switch phoneType {
         case .SIP:
@@ -110,15 +116,15 @@ class OutgoingCallController: UIViewController{
         
         if let phone = phoneNumber {
             nameLabel.text = calleeName!
-
-            linphone_core_invite(LinphoneManager.getLc(), phone)
+            if let lc = theLinphone.lc {
+                linphone_core_invite(lc, phone)
+            }
             showAvatar(phone)
         }
     }
     
     func showAvatar(phone: String){
         if let contact = ContactDbHelper.getContactBySip(phone){
-            
             if contact.type == ContactType.COMPANY.hashValue {
                 let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
                 let request = NSMutableURLRequest(URL: url!)
@@ -139,15 +145,5 @@ class OutgoingCallController: UIViewController{
                 })
             }
         }
-    }
-    
-    func finish(){
-        let call = linphone_core_get_current_call(LinphoneManager.getLc())
-        if call != nil {
-            let result = linphone_core_terminate_call(LinphoneManager.getLc(), call)
-            NSLog("Terminated call result(outgoing): \(result)")
-        }
-        
-        close()
     }
 }

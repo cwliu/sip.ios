@@ -86,7 +86,8 @@
 #define ZRTP_SRTP_SECRETS_FOR_RECEIVER	0x02
 
 /**
- * brief The data structure containing the keys and algorithms to be used by srtp */
+ * brief The data structure containing the keys and algorithms to be used by srtp
+ * Also stores SAS and informations about the crypto algorithms selected during ZRTP negotiation */
 typedef struct bzrtpSrtpSecrets_struct  {
 	uint8_t *selfSrtpKey; /**< The key used by local part to encrypt */
 	uint8_t selfSrtpKeyLength; /**< The length in byte of the key */
@@ -96,11 +97,14 @@ typedef struct bzrtpSrtpSecrets_struct  {
 	uint8_t peerSrtpKeyLength; /**< The length in byte of the key */
 	uint8_t *peerSrtpSalt; /**< The salt used by local part to decrypt */
 	uint8_t peerSrtpSaltLength; /**< The length in byte of the salt */
-	uint8_t cipherAlgo; /**< The cipher block algorithm used by srtp */
+	uint8_t cipherAlgo; /**< The cipher block algorithm selected durign ZRTP negotiation and used by srtp */
 	uint8_t cipherKeyLength; /**< The key length in bytes for the cipher block algorithm used by srtp */
 	uint8_t authTagAlgo; /**< srtp authentication tag algorithm agreed on after Hello packet exchange */
 	char *sas; /**< a null terminated char containing the Short Authentication String */
 	uint8_t sasLength; /**< The length of sas, including the termination character */
+	uint8_t hashAlgo; /**< The hash algo selected during ZRTP negotiation */
+	uint8_t keyAgreementAlgo; /**< The key agreement algo selected during ZRTP negotiation */
+	uint8_t sasAlgo; /**< The SAS rendering algo selected during ZRTP negotiation */
 } bzrtpSrtpSecrets_t;
 
 /**
@@ -112,18 +116,18 @@ typedef void (*zrtpFreeBuffer_callback)(void *);
  */
 typedef struct bzrtpCallbacks_struct {
 	/* cache related functions */
-	int (* bzrtp_loadCache)(void *clientData, uint8_t **cacheBuffer, uint32_t *cacheBufferSize, zrtpFreeBuffer_callback *callback); /**< Cache related function : load the whole cache file in a buffer allocated by the function, return the buffer and its size in bytes */
-	int (* bzrtp_writeCache)(void *clientData, const uint8_t *input, uint32_t size); /**< Cache related function : write size bytes to cache */
+	int (* bzrtp_loadCache)(void *ZIDCacheData, uint8_t **cacheBuffer, uint32_t *cacheBufferSize, zrtpFreeBuffer_callback *callback); /**< Cache related function : load the whole cache file in a buffer allocated by the function, return the buffer and its size in bytes */
+	int (* bzrtp_writeCache)(void *ZIDCacheData, const uint8_t *input, uint32_t size); /**< Cache related function : write size bytes to cache */
 
 	/* sending packets */
 	int (* bzrtp_sendData)(void *clientData, const uint8_t *packetString, uint16_t packetLength); /**< Send a ZRTP packet to peer. Shall return 0 on success */
 
 	/* dealing with SRTP session */
-	int (* bzrtp_srtpSecretsAvailable)(void *clientData, bzrtpSrtpSecrets_t *srtpSecrets, uint8_t part); /**< Send the srtp secrets to the client, for either sender, receiver or both according to the part parameter value. Client may wait for the end of ZRTP process before using it */
-	int (* bzrtp_startSrtpSession)(void *clientData, const char* sas, int32_t verified); /**< ZRTP process ended well, client is given the SAS and may start his SRTP session if not done when calling srtpSecretsAvailable */
+	int (* bzrtp_srtpSecretsAvailable)(void *clientData, const bzrtpSrtpSecrets_t *srtpSecrets, uint8_t part); /**< Send the srtp secrets to the client, for either sender, receiver or both according to the part parameter value. Client may wait for the end of ZRTP process before using it */
+	int (* bzrtp_startSrtpSession)(void *clientData, const bzrtpSrtpSecrets_t *srtpSecrets, int32_t verified); /**< ZRTP process ended well, client is given the SAS and informations about the crypto algo used during ZRTP negotiation. He may start his SRTP session if not done when calling srtpSecretsAvailable */
 
 	/* ready for exported keys */
-	int (* bzrtp_contextReadyForExportedKeys)(void *clientData, uint8_t peerZID[12], uint8_t role); /**< Tell the client that this is the time to create and store in cache any exported keys, client is given the peerZID to adress the correct node in cache and current role which is needed to set a pair of keys for IM encryption */
+	int (* bzrtp_contextReadyForExportedKeys)(void *ZIDCacheData, void *clientData, uint8_t peerZID[12], uint8_t role); /**< Tell the client that this is the time to create and store in cache any exported keys, client is given the peerZID to adress the correct node in cache and current role which is needed to set a pair of keys for IM encryption */
 } bzrtpCallbacks_t;
 
 #define ZRTP_MAGIC_COOKIE 0x5a525450
@@ -138,6 +142,17 @@ typedef struct bzrtpCallbacks_struct {
 #define BZRTP_ERROR_MULTICHANNELNOTSUPPORTEDBYPEER	0x0008
 #define BZRTP_ERROR_UNABLETOADDCHANNEL				0x0010
 #define BZRTP_ERROR_UNABLETOSTARTCHANNEL			0x0020
+#define BZRTP_ERROR_OUTPUTBUFFER_LENGTH				0x0040
+#define BZRTP_ERROR_HELLOHASH_MISMATCH				0x0080
+#define BZRTP_ERROR_CHANNELALREADYSTARTED			0x0100
+
+/* channel status definition */
+#define BZRTP_CHANNEL_NOTFOUND						0x1000
+#define BZRTP_CHANNEL_INITIALISED					0x1001
+#define BZRTP_CHANNEL_ONGOING						0x1002
+#define BZRTP_CHANNEL_SECURE						0x1004
+#define BZRTP_CHANNEL_ERROR							0x1008
+
 /**
  * @brief bzrtpContext_t The ZRTP engine context
  * Store current state, timers, HMAC and encryption keys
@@ -146,30 +161,29 @@ typedef struct bzrtpContext_struct bzrtpContext_t;
 
 /**
  * Create context structure and initialise it
- * A channel context is created when creating the zrtp context.
- *
- * @param[in]	selfSSRC	The SSRC given to the channel context created within the zrtpContext
  *
  * @return The ZRTP engine context data
  *                                                                        
 */
-BZRTP_EXPORT bzrtpContext_t *bzrtp_createBzrtpContext(uint32_t selfSSRC);
+BZRTP_EXPORT bzrtpContext_t *bzrtp_createBzrtpContext(void);
 
 /**
  * @brief Perform some initialisation which can't be done without some callback functions:
- * - get ZID
+ * - get ZID and create the first channel context
  *
- *   @param[in] 	context	The context to initialise
+ *   @param[in]		context		The context to initialise
+ *   @param[in]		selfSSRC	The SSRC given to the first channel context created within the zrtpContext
  */
-BZRTP_EXPORT void bzrtp_initBzrtpContext(bzrtpContext_t *context); 
+BZRTP_EXPORT void bzrtp_initBzrtpContext(bzrtpContext_t *context, uint32_t selfSSRC);
 
 /**
  * Free memory of context structure to a channel, if all channels are freed, free the global zrtp context
  * @param[in]	context		Context hosting the channel to be destroyed.(note: the context zrtp context itself is destroyed with the last channel)
  * @param[in]	selfSSRC	The SSRC identifying the channel to be destroyed
  *                                                                           
+ * @return the number of channel still active in this ZRTP context
 */
-BZRTP_EXPORT void bzrtp_destroyBzrtpContext(bzrtpContext_t *context, uint32_t selfSSRC);
+BZRTP_EXPORT int bzrtp_destroyBzrtpContext(bzrtpContext_t *context, uint32_t selfSSRC);
 
 /**
  * @brief Allocate a function pointer to the callback function identified by his id 
@@ -181,6 +195,17 @@ BZRTP_EXPORT void bzrtp_destroyBzrtpContext(bzrtpContext_t *context, uint32_t se
 */
 BZRTP_EXPORT int bzrtp_setCallbacks(bzrtpContext_t *context, const bzrtpCallbacks_t *cbs);
 
+/*
+ * @brief Set the ZID cache data pointer in the global zrtp context
+ * This pointer is returned to the client by the callbacks function linked to cache: bzrtp_loadCache, bzrtp_writeCache and bzrtp_contextReadyForExportedKeys
+ * @param[in/out]	zrtpContext		The ZRTP context we're dealing with
+ * @param[in]		selfSSRC		The SSRC identifying the channel to be linked to the client Data
+ * @param[in]		ZIDCacheData	The ZIDCacheData pointer, casted to a (void *)
+ *
+ * @return 0 on success
+ *
+*/
+BZRTP_EXPORT int bzrtp_setZIDCacheData(bzrtpContext_t *zrtpContext, void *ZIDCacheData);
 /**
  * @brief Set the client data pointer in a channel context
  * This pointer is returned to the client by the callbacks function, used to store associated contexts (RTP session)
@@ -194,9 +219,9 @@ BZRTP_EXPORT int bzrtp_setCallbacks(bzrtpContext_t *context, const bzrtpCallback
 BZRTP_EXPORT int bzrtp_setClientData(bzrtpContext_t *zrtpContext, uint32_t selfSSRC, void *clientData);
 
 /**
- * @brief Add a channel to an existing context, this can be done only if the first channel has concluded a DH key agreement
+ * @brief Add a channel to an existing context
  *
- * @param[in/out]	zrtpContext	The zrtp context who will get the additionnal channel. Must be in secure state.
+ * @param[in/out]	zrtpContext	The zrtp context who will get the additionnal channel
  * @param[in]		selfSSRC	The SSRC given to the channel context
  *
  * @return 0 on succes, error code otherwise
@@ -206,6 +231,7 @@ BZRTP_EXPORT int bzrtp_addChannel(bzrtpContext_t *zrtpContext, uint32_t selfSSRC
 
 /**
  * @brief Start the state machine of the specified channel
+ * To be able to start an addional channel, we must be in secure state
  *
  * @param[in/out]	zrtpContext			The ZRTP context hosting the channel to be started
  * @param[in]		selfSSRC			The SSRC identifying the channel to be started(will start sending Hello packets and listening for some)
@@ -224,18 +250,6 @@ BZRTP_EXPORT int bzrtp_startChannelEngine(bzrtpContext_t *zrtpContext, uint32_t 
  * @return			0 on succes, error code otherwise
  */
 BZRTP_EXPORT int bzrtp_iterate(bzrtpContext_t *zrtpContext, uint32_t selfSSRC, uint64_t timeReference);
-
-
-/**
- * @brief Return the status of current channel, 1 if SRTP secrets have been computed and confirmed, 0 otherwise
- * 
- * @param[in]		zrtpContext			The ZRTP context hosting the channel
- * @param[in]		selfSSRC			The SSRC identifying the channel
- *
- * @return			0 if this channel is not ready to secure SRTP communication, 1 if it is ready
- */
-BZRTP_EXPORT int bzrtp_isSecure(bzrtpContext_t *zrtpContext, uint32_t selfSSRC);
-
 
 /**
  * @brief Process a received message
@@ -297,6 +311,46 @@ BZRTP_EXPORT uint8_t bzrtp_getSupportedCryptoTypes(bzrtpContext_t *zrtpContext, 
  */
 BZRTP_EXPORT void bzrtp_setSupportedCryptoTypes(bzrtpContext_t *zrtpContext, uint8_t algoType, uint8_t supportedTypes[7], uint8_t supportedTypesCount);
 
+/**
+ * @brief Set the peer hello hash given by signaling to a ZRTP channel
+ *
+ * @param[in/out]	zrtpContext						The ZRTP context we're dealing with
+ * @param[in]		selfSSRC						The SSRC identifying the channel
+ * @param[in]		peerHelloHashHexString			A NULL terminated string containing the hexadecimal form of the hash received in signaling,
+ * 													may contain ZRTP version as header.
+ * @param[in]		peerHelloHashHexStringLength	Length of hash string (shall be at least 64 as the hash is a SHA256 so 32 bytes,
+ * 													more if it contains the version header)
+ *
+ * @return 	0 on success, errorcode otherwise
+ */
+BZRTP_EXPORT int bzrtp_setPeerHelloHash(bzrtpContext_t *zrtpContext, uint32_t selfSSRC, uint8_t *peerHelloHashHexString, size_t peerHelloHashHexStringLength);
+
+/**
+ * @brief Get the self hello hash from ZRTP channel
+ *
+ * @param[in/out]	zrtpContext			The ZRTP context we're dealing with
+ * @param[in]		selfSSRC			The SSRC identifying the channel
+ * @param[out]		output				A NULL terminated string containing the hexadecimal form of the hash received in signaling,
+ * 										contain ZRTP version as header. Buffer must be allocated by caller.
+ * @param[in]		outputLength		Length of output buffer, shall be at least 70 : 5 chars for version, 64 for the hash itself, SHA256), NULL termination
+ *
+ * @return 	0 on success, errorcode otherwise
+ */
+BZRTP_EXPORT int bzrtp_getSelfHelloHash(bzrtpContext_t *zrtpContext, uint32_t selfSSRC, uint8_t *output, size_t outputLength);
+
+/**
+ * @brief Get the channel status
+ *
+ * @param[in]		zrtpContext			The ZRTP context we're dealing with
+ * @param[in]		selfSSRC			The SSRC identifying the channel
+ *
+ * @return	BZRTP_CHANNEL_NOTFOUND 		no channel matching this SSRC doesn't exists in the zrtp context
+ * 			BZRTP_CHANNEL_INITIALISED	channel initialised but not started
+ * 			BZRTP_CHANNEL_ONGOING		ZRTP key exchange in ongoing
+ *			BZRTP_CHANNEL_SECURE		Channel is secure
+ *			BZRTP_CHANNEL_ERROR			An error occured on this channel
+ */
+BZRTP_EXPORT int bzrtp_getChannelStatus(bzrtpContext_t *zrtpContext, uint32_t selfSSRC);
 
 #define BZRTP_CUSTOMCACHE_USEKDF 	1
 #define BZRTP_CUSTOMCACHE_PLAINDATA 0
