@@ -40,40 +40,43 @@
                             <constraint firstAttribute="height" constant="44.5" id="vy8-eR-Vvj"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="call_made_green_12dp" translatesAutoresizingMaskIntoConstraints="NO" id="zTx-FX-k7j">
+                        <rect key="frame" x="23" y="26" width="12" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="Qml-m4-uv9"/>
+                            <constraint firstAttribute="height" constant="12" id="fSa-kv-fsO"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="xdp-g3-hrc" firstAttribute="leading" secondItem="0Nz-l1-txq" secondAttribute="trailing" constant="-9" id="1uU-hg-jbN"/>
                     <constraint firstItem="cro-gN-XZt" firstAttribute="leading" secondItem="PCc-DQ-5dj" secondAttribute="leadingMargin" constant="15" id="42L-dz-Zc9"/>
                     <constraint firstItem="cro-gN-XZt" firstAttribute="centerY" secondItem="PCc-DQ-5dj" secondAttribute="centerY" id="Fdk-bO-ulq"/>
-                    <constraint firstItem="xdp-g3-hrc" firstAttribute="leading" secondItem="0Nz-l1-txq" secondAttribute="trailing" constant="-9" id="eCI-WW-7eP"/>
                     <constraint firstItem="fQX-M8-EED" firstAttribute="centerY" secondItem="cro-gN-XZt" secondAttribute="centerY" constant="-7" id="mu2-yC-qKc"/>
                     <constraint firstItem="xdp-g3-hrc" firstAttribute="centerY" secondItem="PCc-DQ-5dj" secondAttribute="centerY" id="n5K-hz-FGc"/>
+                    <constraint firstItem="zTx-FX-k7j" firstAttribute="bottom" secondItem="cro-gN-XZt" secondAttribute="bottom" constant="1" id="q0s-If-WC4"/>
                     <constraint firstItem="LmY-Xx-qCP" firstAttribute="leading" secondItem="cro-gN-XZt" secondAttribute="trailing" constant="15" id="rqo-bC-6sU"/>
                     <constraint firstItem="LmY-Xx-qCP" firstAttribute="centerY" secondItem="cro-gN-XZt" secondAttribute="centerY" constant="11" id="sp4-0a-fwK"/>
                     <constraint firstItem="fQX-M8-EED" firstAttribute="leading" secondItem="cro-gN-XZt" secondAttribute="trailing" constant="15" id="tho-xO-qJd"/>
                     <constraint firstItem="0Nz-l1-txq" firstAttribute="centerY" secondItem="PCc-DQ-5dj" secondAttribute="centerY" id="tlb-iO-VRZ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="xdp-g3-hrc" secondAttribute="trailing" constant="15" id="uqS-qJ-6bj"/>
-                    <constraint firstItem="cro-gN-XZt" firstAttribute="top" secondItem="PCc-DQ-5dj" secondAttribute="topMargin" constant="15" id="vmH-dX-pbF"/>
+                    <constraint firstItem="zTx-FX-k7j" firstAttribute="leading" secondItem="cro-gN-XZt" secondAttribute="leading" id="wtj-0b-0xg"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="vmH-dX-pbF"/>
-                        <exclude reference="eCI-WW-7eP"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarImage" destination="cro-gN-XZt" id="VQj-g3-JcE"/>
+                <outlet property="callTypeIcon" destination="zTx-FX-k7j" id="aHv-WL-aft"/>
                 <outlet property="favoriteImage" destination="0Nz-l1-txq" id="T6I-Tw-mS5"/>
                 <outlet property="messageLabel" destination="LmY-Xx-qCP" id="7mK-cj-SbO"/>
                 <outlet property="nameLabel" destination="fQX-M8-EED" id="Khf-Lx-lt8"/>
             </connections>
-            <point key="canvasLocation" x="-28.5" y="23.5"/>
+            <point key="canvasLocation" x="-106.5" y="27"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="arror_right_gray_16dp" width="16" height="16"/>
         <image name="avatar_gray_30dp" width="30" height="30"/>
+        <image name="call_made_green_12dp" width="12" height="12"/>
         <image name="star_gray_16dp" width="16" height="16"/>
     </resources>
 </document>

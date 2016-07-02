@@ -15,10 +15,10 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
     
     override func viewDidLoad() {
         NSLog("RecordController.viewDidLoad()")
-
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
-
+        
         modifyTableStyle()
     }
     
@@ -64,7 +64,6 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
         
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         
-        
         cell.favoriteImage.userInteractionEnabled = true
         let singleTap = UITapGestureRecognizer(target: self, action:#selector(RecordController.favoriteClick))
         singleTap.numberOfTapsRequired = 1
@@ -84,19 +83,19 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
             var message: String = ""
             
             let callLog = calllLogs[indexPath.row]
-
+            
             if let timeString = getNaturalDateString(callLog.callTime) {
                 message += timeString + " ago"
             }
-
+            
             if callLog.type == CallLogType.INCOMING_CALL_NO_ANSWER.hashValue {
                 message += ", missed Call"
             }
-
+            
             if callLog.type == CallLogType.INCOMING_CALL_ANSWERED.hashValue {
-                message += ", " + (callLog.callDuration?.stringValue)! + "sec"
+                message += ", " + (callLog.callDuration?.stringValue)! + " sec"
             }
-
+            
             if callLog.type == CallLogType.OUTGOING_CALL_NO_ANSWER.hashValue {
                 message += ", no answer"
             }
@@ -106,6 +105,19 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
             }
             
             cell.messageLabel.text = message
+            
+            switch Int(callLog.type!) {
+            case CallLogType.INCOMING_CALL_ANSWERED.hashValue:
+                cell.callTypeIcon.image = UIImage(named: "call_received_blue_12dp")
+            case CallLogType.INCOMING_CALL_NO_ANSWER.hashValue:
+                cell.callTypeIcon.image = UIImage(named: "call_missed_red_12dp")
+            case CallLogType.OUTGOING_CALL_ANSWERED.hashValue:
+                cell.callTypeIcon.image = UIImage(named: "call_made_green_12dp")
+            case CallLogType.OUTGOING_CALL_NO_ANSWER.hashValue:
+                cell.callTypeIcon.image = UIImage(named: "call_made_green_12dp")
+            default:
+                cell.callTypeIcon.image = UIImage(named: "cell_made_green_12dp")
+            }
         }
         
         // Display contact
