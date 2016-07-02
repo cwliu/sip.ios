@@ -4,6 +4,7 @@ import CoreData
 struct OutgoingCallData{
     static var controller: OutgoingCallController?
     static var callee: Contact?
+    static var callTime: NSDate?
     static var callType: CallLogType = CallLogType.OUTGOING_CALL_NO_ANSWER
 }
 
@@ -12,18 +13,24 @@ enum CallPhoneType {
     case NONSIP
 }
 
+struct OutgoingCallVT{
+    static var lct: LinphoneCoreVTable = LinphoneCoreVTable()
+}
+
 var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
     (lc: COpaquePointer, call: COpaquePointer, callSate: LinphoneCallState,  message) in
     
     switch callSate{
     case LinphoneCallConnected:
         NSLog("outgoingCallStateChanged: LinphoneCallConnected")
+        
         OutgoingCallData.callType = CallLogType.OUTGOING_CALL_ANSWERED
         OutgoingCallData.controller?.statusLabel.text = "Connected"
         
-    case LinphoneCallError: /**<The call encountered an error*/
-        OutgoingCallData.callType = CallLogType.OUTGOING_CALL_NO_ANSWER
+    case LinphoneCallError: /**<The call encountered an error, will not call LinphoneCallEnd*/
         NSLog("outgoingCallStateChanged: LinphoneCallError")
+        
+        OutgoingCallData.callType = CallLogType.OUTGOING_CALL_NO_ANSWER
         close()
         
     case LinphoneCallEnd:
@@ -35,18 +42,23 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
     }
 }
 
-func close(){
-    
-    if let callee = OutgoingCallData.callee {
-        CallLogDbHelper.addCallLog(callee, callTime: NSDate(), callDuration: 50, callType: OutgoingCallData.callType)
-    }
-    
+func resetOutgoingCallData(){
     OutgoingCallData.callType = CallLogType.OUTGOING_CALL_NO_ANSWER // Reset state
-    OutgoingCallData.controller?.dismissViewControllerAnimated(true, completion: nil)
+    OutgoingCallData.callee = nil
+    OutgoingCallData.callTime = nil
 }
 
-struct OutgoingCallVT{
-    static var lct: LinphoneCoreVTable = LinphoneCoreVTable()
+func close(){
+    
+    if let callee = OutgoingCallData.callee, callTime = OutgoingCallData.callTime{
+        let callDuration =  Int(NSDate().timeIntervalSinceDate(callTime))
+        CallLogDbHelper.addCallLog(
+            callee, callTime: callTime, callDuration: callDuration, callType: OutgoingCallData.callType
+        )
+    }
+    
+    resetOutgoingCallData()
+    OutgoingCallData.controller?.dismissViewControllerAnimated(true, completion: nil)
 }
 
 class OutgoingCallController: UIViewController{
@@ -65,6 +77,7 @@ class OutgoingCallController: UIViewController{
         NSLog("OutgoingCallController.viewDidLoad()")
         
         OutgoingCallData.controller = self
+        OutgoingCallData.callTime = NSDate()
         
         if let calleeID = calleeID{
             OutgoingCallData.callee = ContactDbHelper.getContactById(calleeID)
@@ -91,10 +104,6 @@ class OutgoingCallController: UIViewController{
         return .LightContent
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        NSLog("OutgoingCallController.prepareForSegue()")
-    }
-    
     @IBAction func hangUp(){
         NSLog("OutgoingCallController.hangUp()")
         let call = linphone_core_get_current_call(theLinphone.lc!)
@@ -103,7 +112,7 @@ class OutgoingCallController: UIViewController{
             NSLog("Terminated call result(outgoing): \(result)")
         }
     }
-
+    
     func makeCall(){
         switch phoneType {
         case .SIP:

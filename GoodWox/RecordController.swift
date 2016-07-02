@@ -86,11 +86,11 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
             let callLog = calllLogs[indexPath.row]
 
             if let timeString = getNaturalDateString(callLog.callTime) {
-                message += timeString
+                message += timeString + " ago"
             }
 
             if callLog.type == CallLogType.INCOMING_CALL_NO_ANSWER.hashValue {
-                message += " Missed Call"
+                message += ", missed Call"
             }
 
             if callLog.type == CallLogType.INCOMING_CALL_ANSWERED.hashValue {
