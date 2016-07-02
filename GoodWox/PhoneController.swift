@@ -19,6 +19,10 @@ class PhoneController: UITableViewController{
         
         loadManualContact()
         loadPhoneContact()
+        
+        let rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(PhoneController.addClick))
+        
+        self.navigationItem.setRightBarButtonItems([rightAddBarButtonItem], animated: true)
     }
     
     func loadManualContact(){
@@ -122,6 +126,12 @@ class PhoneController: UITableViewController{
         }
         
         self.tableView.reloadData()
+    }
+    
+    func addClick(sender:UIButton){
+        NSLog("Add Tapped")
+        
+        self.performSegueWithIdentifier("addContact", sender: nil)
     }
 }
 

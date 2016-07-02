@@ -195,14 +195,33 @@
                             <outlet property="delegate" destination="JI9-Ph-iXv" id="9ko-3A-Tds"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="連絡人" id="W2z-7b-US4"/>
+                    <navigationItem key="navigationItem" title="連絡人" id="5TO-e8-iAM"/>
                     <connections>
                         <segue destination="tiK-IN-xw8" kind="presentation" identifier="makeCall" id="vYb-8p-al7"/>
+                        <segue destination="XQk-mv-cdI" kind="show" identifier="addContact" id="NKB-29-fV7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3E-h9-z5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1452" y="-13"/>
+        </scene>
+        <!--Add Contact Controller-->
+        <scene sceneID="3v9-9W-Kq6">
+            <objects>
+                <viewController id="XQk-mv-cdI" customClass="AddContactController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nP1-b7-z8f"/>
+                        <viewControllerLayoutGuide type="bottom" id="qDf-09-jGb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ygn-Ce-TL2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="23h-9N-1qx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1452" y="883"/>
         </scene>
         <!--接聽-->
         <scene sceneID="Ue8-l0-yqH">
@@ -659,6 +678,6 @@
         <image name="sync_circle_blue_14dp" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UQ5-13-Rm6"/>
+        <segue reference="sqX-yI-AWM"/>
     </inferredMetricsTieBreakers>
 </document>

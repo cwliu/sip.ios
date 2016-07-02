@@ -140,6 +140,7 @@
 		A9D4699A1D1ECE49007C5B2B /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D469991D1ECE49007C5B2B /* FavoriteController.swift */; };
 		A9F9CA4A1D265A59005B8874 /* CallLogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F9CA491D265A59005B8874 /* CallLogCell.xib */; };
 		A9F9CA4E1D268181005B8874 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F9CA4D1D268181005B8874 /* Util.swift */; };
+		A9F9CA501D276613005B8874 /* AddContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F9CA4F1D276613005B8874 /* AddContactController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -280,6 +281,7 @@
 		A9D469991D1ECE49007C5B2B /* FavoriteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
 		A9F9CA491D265A59005B8874 /* CallLogCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallLogCell.xib; sourceTree = "<group>"; };
 		A9F9CA4D1D268181005B8874 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		A9F9CA4F1D276613005B8874 /* AddContactController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactController.swift; sourceTree = "<group>"; };
 		B4CA356329D5254247DB2990 /* Pods_GoodWox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodWox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodWox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodWox/Pods-GoodWox.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -514,11 +516,12 @@
 		A9863C101D03B92A003FE7B3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A9F9CA4F1D276613005B8874 /* AddContactController.swift */,
 				A9842C031D0FE7FE0062A35B /* SipClient.swift */,
 				A9AAE48B1D0273C20034B564 /* AppDelegate.swift */,
-				A9AAE48D1D0273C20034B564 /* LoginController.swift */,
 				A9C249271D13EB2D00430C92 /* InitController.swift */,
 				A9842BDB1D0DA1E20062A35B /* LinphoneManager.swift */,
+				A9AAE48D1D0273C20034B564 /* LoginController.swift */,
 				A9C249031D12A00F00430C92 /* PhoneController.swift */,
 				A99663241D05A105003B5EEE /* CompanyController.swift */,
 				A9863C121D03BB1C003FE7B3 /* ProfileController.swift */,
@@ -830,6 +833,7 @@
 				A934E1AA1D1AA6E500427A2D /* LinphoneUtil.swift in Sources */,
 				A9842BF71D0EA1730062A35B /* OutgoingCallController.swift in Sources */,
 				A99663221D0591D4003B5EEE /* TabController.swift in Sources */,
+				A9F9CA501D276613005B8874 /* AddContactController.swift in Sources */,
 				A9D469951D1EB7C7007C5B2B /* Contact+CoreDataProperties.swift in Sources */,
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
 				A986216A1D15495E00BA767D /* ContactDbHelper.swift in Sources */,
