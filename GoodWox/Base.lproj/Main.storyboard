@@ -216,8 +216,72 @@
                     <view key="view" contentMode="scaleToFill" id="Ygn-Ce-TL2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="姓氏" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A59-FS-tp7">
+                                <rect key="frame" x="88" y="72" width="492" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="S8j-JA-6GF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="avatar_light_48dp" translatesAutoresizingMaskIntoConstraints="NO" id="jfs-XA-9d3">
+                                <rect key="frame" x="20" y="88" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="1fc-Qb-7Rg"/>
+                                    <constraint firstAttribute="width" constant="48" id="aFq-Ii-dBk"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="名字" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ORg-6l-KuH">
+                                <rect key="frame" x="88" y="119" width="492" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="wrQ-eK-Aj6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="電話" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N7l-SN-b2R">
+                                <rect key="frame" x="20" y="206" width="560" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="OYL-a8-lUM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9s-PF-nwf">
+                                <rect key="frame" x="20" y="173" width="92" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="   新增電話" image="plus_green_20dp">
+                                    <color key="titleColor" red="0.41176471110000001" green="0.77254903320000001" blue="0.85882353779999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addNewPhoneField" destination="XQk-mv-cdI" eventType="touchUpInside" id="0S3-nf-Mmt"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ORg-6l-KuH" firstAttribute="top" secondItem="A59-FS-tp7" secondAttribute="bottom" constant="9" id="7nh-Gx-h0H"/>
+                            <constraint firstItem="P9s-PF-nwf" firstAttribute="leading" secondItem="Ygn-Ce-TL2" secondAttribute="leadingMargin" id="9yl-2l-8dE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N7l-SN-b2R" secondAttribute="trailing" id="C9X-kL-m37"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ORg-6l-KuH" secondAttribute="trailing" id="N1t-eG-5NJ"/>
+                            <constraint firstItem="jfs-XA-9d3" firstAttribute="top" secondItem="nP1-b7-z8f" secondAttribute="bottom" constant="24" id="OAB-di-9Bj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="A59-FS-tp7" secondAttribute="trailing" id="PpJ-bd-axb"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="N7l-SN-b2R" secondAttribute="leading" id="SzL-Pl-OTM"/>
+                            <constraint firstItem="N7l-SN-b2R" firstAttribute="top" secondItem="P9s-PF-nwf" secondAttribute="bottom" constant="13" id="azo-lK-HL3"/>
+                            <constraint firstItem="ORg-6l-KuH" firstAttribute="leading" secondItem="A59-FS-tp7" secondAttribute="leading" id="c4J-IQ-I9X"/>
+                            <constraint firstItem="P9s-PF-nwf" firstAttribute="top" secondItem="ORg-6l-KuH" secondAttribute="bottom" constant="16" id="ceG-UL-Rvk"/>
+                            <constraint firstItem="A59-FS-tp7" firstAttribute="top" secondItem="nP1-b7-z8f" secondAttribute="bottom" constant="8" id="f9U-nh-eyh"/>
+                            <constraint firstItem="A59-FS-tp7" firstAttribute="leading" secondItem="jfs-XA-9d3" secondAttribute="trailing" constant="20" id="oME-ZW-TFb"/>
+                            <constraint firstItem="jfs-XA-9d3" firstAttribute="leading" secondItem="Ygn-Ce-TL2" secondAttribute="leadingMargin" id="p8e-LK-7nS"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addPhoneButton" destination="P9s-PF-nwf" id="Onm-jF-Mdp"/>
+                        <outlet property="firstnameTextfield" destination="ORg-6l-KuH" id="5GS-fw-CQj"/>
+                        <outlet property="lastnameTextfield" destination="A59-FS-tp7" id="TQB-bp-t7A"/>
+                        <outlet property="phoneTextField" destination="N7l-SN-b2R" id="L1l-HU-YgH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23h-9N-1qx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -671,6 +735,7 @@
         <image name="more_blue_25dp" width="25" height="25"/>
         <image name="more_gray_25dp" width="25" height="25"/>
         <image name="phone_green_96dp" width="96" height="96"/>
+        <image name="plus_green_20dp" width="20" height="20"/>
         <image name="recents_blue_25dp" width="25" height="25"/>
         <image name="recents_gray_25dp" width="25" height="25"/>
         <image name="sip_white_18dp" width="18" height="18"/>
