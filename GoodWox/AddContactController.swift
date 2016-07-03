@@ -1,5 +1,5 @@
 import Foundation
-
+import Alamofire
 
 extension UITextField {
     
@@ -38,6 +38,8 @@ class AddContactController: UIViewController {
     var phoneFieldList = [UITextField]()
     var deletePhoneFieldList = [UIButton]()
     
+    var MAX_PHONE_FIELD = 7
+    
     override func viewDidLoad() {
         let rightSaveBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "完成", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddContactController.saveClick))
         
@@ -61,6 +63,41 @@ class AddContactController: UIViewController {
     func saveClick(sender: UIButton){
         NSLog("Save click")
         
+        let name = firstnameTextfield.text! + lastnameTextfield.text!
+        if name == "" {
+            let alert = UIAlertController(title: nil, message: "姓名不得為空", preferredStyle: .Alert)
+            self.presentViewController(alert, animated: true, completion: nil)
+            let cancelAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alert.addAction(cancelAction)
+            return
+        }
+        
+        
+        var phoneList = [String]()
+        
+        if let phone = phoneTextField.text{
+            phoneList.append(phone)
+        }
+        
+        for phoneField in phoneFieldList{
+            if let phoneText = phoneField.text where phoneText != ""{
+                phoneList.append(phoneText)
+            }
+        }
+        
+        if phoneList.count == 0 {
+            let alert = UIAlertController(title: nil, message: "電話至少輸入一筆", preferredStyle: .Alert)
+            self.presentViewController(alert, animated: true, completion: nil)
+            let cancelAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alert.addAction(cancelAction)
+            return
+        }
+        
+        // Save contact
+        ContactDbHelper.addContect(name, phoneList: phoneList, type: ContactType.MANUAL)
+        
+        // Save contact to backend
+        saveContactToBackend(name, phoneList: phoneList)
         navigationController?.popViewControllerAnimated(true)
     }
     
@@ -79,13 +116,11 @@ class AddContactController: UIViewController {
         deletePhoneFieldButton.setImage(UIImage(named: "minus_red_20dp"), forState: UIControlState.Normal)
         deletePhoneFieldButton.addTarget(self, action: #selector(AddContactController.deletePhoneField(_:)), forControlEvents: .TouchUpInside)
         
-        //
         self.view.insertSubview(deletePhoneFieldButton, belowSubview: lastPhoneTextField)
         
         deletePhoneFieldList.append(deletePhoneFieldButton)
         
         // Add a new UITextField
-        
         let newPhoneTextField = UITextField(
             frame: CGRectMake(44, CGFloat(currentPhoneFieldPosition + PHONE_FIELD_HEIGHT * Int(phoneFieldList.count)), 315, 38)
         )
@@ -97,10 +132,12 @@ class AddContactController: UIViewController {
         newPhoneTextField.tag = phoneFieldList.count
         phoneFieldList.append(newPhoneTextField)
         
-        // addPhoneButton.frame = CGRectOffset(addPhoneButton.frame, 0, 48);
-        
         self.view.insertSubview(newPhoneTextField, belowSubview: lastPhoneTextField)
         lastPhoneTextField = newPhoneTextField
+        
+        if(phoneFieldList.count > MAX_PHONE_FIELD){
+            addPhoneButton.hidden = true
+        }
     }
     
     func deletePhoneField(button: UIButton){
@@ -118,7 +155,7 @@ class AddContactController: UIViewController {
             
             let deleteButton = deletePhoneFieldList[index]
             deleteButton.frame = CGRectOffset(deleteButton.frame, 0, -46);
-
+            
         }
         
         // Reset index
@@ -126,5 +163,49 @@ class AddContactController: UIViewController {
             phoneFieldList[index].tag = index
             deletePhoneFieldList[index].tag = index
         }
+        
+        
+        if(phoneFieldList.count <= MAX_PHONE_FIELD){
+            addPhoneButton.hidden = false
+        }
+    }
+    
+    func saveContactToBackend(name: String, phoneList: [String]){
+        
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: SipServerBackend.contactURL)!)
+        request.HTTPMethod = "POST"
+        
+        do {
+            let phoneListJson = try NSJSONSerialization.dataWithJSONObject(phoneList, options: NSJSONWritingOptions.PrettyPrinted)
+            
+            let parameters: [String: String] = [
+                "email": UserData.getGraphAccount()!,
+                "backend_access_token": UserData.getBackendAccessToken()!,
+                "contact_name": name,
+                "contact_phone_list": NSString(data: phoneListJson, encoding: NSUTF8StringEncoding)! as String
+            ]
+            
+            
+            Alamofire.request(.POST, request, parameters: parameters).responseJSON { response in
+                
+                NSLog("response.request: \(response.request)")  // original URL request
+                NSLog("esponse.response: \(response.response)") // URL response
+                
+                switch response.result {
+                case .Success:
+                    NSLog("Validation Successful")
+                case .Failure(let error):
+                    // Logout
+                    NSLog("\(error), \(String(data: response.data!, encoding: NSUTF8StringEncoding))")
+                    UserData.clear()
+                    return
+                }
+            }
+        }catch let error as NSError{
+            NSLog(error.description)
+            return
+        }
+        
     }
 }

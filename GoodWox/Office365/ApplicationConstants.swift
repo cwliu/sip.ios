@@ -13,6 +13,8 @@ struct MicrosoftGraphApi {
 
 struct SipServerBackend{
     static let sipURL = "https://sipphone-web-staging.azurewebsites.net/api/v1/sips/"
+    static let contactURL = "https://sipphone-web-staging.azurewebsites.net/api/v1/contacts/"
+    
 }
 
 /**
