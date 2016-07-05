@@ -1,16 +1,20 @@
 import Foundation
 import Alamofire
 import Contacts
+import CoreData
 
-class PhoneController: UITableViewController{
+class PhoneController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating{
     
     var contacts = [Contact]()
+    var searchContacts = [Contact]()
     
     var targetPhone: String?
     var selectContactIndex: Int?
     var searchController: UISearchController!
     
     override func viewDidLoad() {
+        addSearchBar()
+
         self.navigationController?.navigationBar.barStyle = .Black
         
         modifyTableStyle()
@@ -25,7 +29,6 @@ class PhoneController: UITableViewController{
         
         self.navigationItem.setRightBarButtonItems([rightAddBarButtonItem], animated: true)
         
-        addSearchBar()
     }
     
     func loadManualContact(){
@@ -74,12 +77,17 @@ class PhoneController: UITableViewController{
     
     // MARK: Style
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.contacts.count
+        if searchController.active {
+            return searchContacts.count
+        }else{
+            return contacts.count
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let contact = self.contacts[indexPath.row]
+        let contact = (searchController.active) ? searchContacts[indexPath.row] : contacts[indexPath.row]
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath)as! ContactCell
         cell.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
         
@@ -143,7 +151,23 @@ class PhoneController: UITableViewController{
     func addSearchBar(){
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.barTintColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
+        searchController.searchResultsUpdater = self
         tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func filterContacts(keyword: String){
+        searchContacts = self.contacts.filter({
+            (contact: Contact) -> Bool in
+            let nameMatch =  contact.name!.rangeOfString(keyword, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            return nameMatch != nil
+        })
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContacts(searchText)
+            tableView.reloadData()
+        }
     }
 }
 
