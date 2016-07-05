@@ -61,6 +61,7 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
         }
         
         let cell = tableView.dequeueReusableCellWithIdentifier(cellID, forIndexPath: indexPath)as! ContactCell
+        cell.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
         
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         
@@ -147,6 +148,8 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
     private func modifyTableStyle(){
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barStyle = .Black
+        tableView.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
+
     }
     
     

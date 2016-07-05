@@ -30,6 +30,8 @@ class FavoriteController: UITableViewController {
     private func modifyTableStyle(){
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barStyle = .Black
+        tableView.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
+
     }
     
     // MARK: Style
@@ -41,6 +43,7 @@ class FavoriteController: UITableViewController {
         
         let contact = self.contacts[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath)as! ContactCell
+        cell.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
         
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         

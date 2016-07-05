@@ -167,7 +167,11 @@ class PhoneController: UITableViewController, NSFetchedResultsControllerDelegate
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
-            filterContacts(searchText)
+            if searchText == ""{
+                searchContacts = contacts
+            }else{
+                filterContacts(searchText)
+            }
             tableView.reloadData()
         }
     }

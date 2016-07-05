@@ -2,16 +2,19 @@ import Foundation
 import CoreData
 import Haneke
 
-class CompanyController: UITableViewController{
+class CompanyController: UITableViewController, UISearchResultsUpdating{
     
     var contacts: [Contact] = []
+    var searchContacts: [Contact] = []
     
     let authentication: Authentication = Authentication()
     
     var sipNumber: String? = nil
-    
+    var searchController: UISearchController!
+
     override func viewDidLoad() {
         NSLog("CompanyController.viewDidLoad()")
+        addSearchBar()
         
         //Init Microsoft Graph
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
@@ -45,13 +48,19 @@ class CompanyController: UITableViewController{
     
     // MARK: Style
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.contacts.count
+        if searchController.active {
+            return searchContacts.count
+        }else{
+            return contacts.count
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let contact = self.contacts[indexPath.row]
+        let contact = (searchController.active) ? searchContacts[indexPath.row] : contacts[indexPath.row]
+
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath)as! ContactCell
+        cell.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
         
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         
@@ -98,6 +107,7 @@ class CompanyController: UITableViewController{
     private func modifyTableStyle(){
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barStyle = .Black
+        tableView.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
     }
     
     
@@ -139,5 +149,34 @@ class CompanyController: UITableViewController{
         contacts = ContactDbHelper.getContactsByType(ContactType.COMPANY)
         self.tableView.reloadData()
     }
+    
+    func addSearchBar(){
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.barTintColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.backgroundImage = UIImage()
+        
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func filterContacts(keyword: String){
+        searchContacts = self.contacts.filter({
+            (contact: Contact) -> Bool in
+            let nameMatch =  contact.name!.rangeOfString(keyword, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            return nameMatch != nil
+        })
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            if searchText == ""{
+                searchContacts = contacts
+            }else{
+                filterContacts(searchText)
+            }
+            tableView.reloadData()
+        }
+    }
+
 }
 
