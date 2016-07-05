@@ -33,7 +33,8 @@ platform :ios do
     increment_build_number
     # match(type: "appstore") # more information: https://codesigning.guide
     gym(scheme: "GoodWox") # Build your app - more options available
-    pilot(skip_waiting_for_build_processing: true)
+    # pilot(skip_waiting_for_build_processing: true)
+    pilot
 
     # Post Slack notification
     slack(

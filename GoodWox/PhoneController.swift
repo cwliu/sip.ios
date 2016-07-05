@@ -8,6 +8,7 @@ class PhoneController: UITableViewController{
     
     var targetPhone: String?
     var selectContactIndex: Int?
+    var searchController: UISearchController!
     
     override func viewDidLoad() {
         self.navigationController?.navigationBar.barStyle = .Black
@@ -23,6 +24,8 @@ class PhoneController: UITableViewController{
         let rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(PhoneController.addClick))
         
         self.navigationItem.setRightBarButtonItems([rightAddBarButtonItem], animated: true)
+        
+        addSearchBar()
     }
     
     func loadManualContact(){
@@ -78,6 +81,7 @@ class PhoneController: UITableViewController{
         
         let contact = self.contacts[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath)as! ContactCell
+        cell.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
         
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         
@@ -106,6 +110,8 @@ class PhoneController: UITableViewController{
         self.navigationController?.navigationBar.translucent = true
         
         self.navigationController?.navigationBar.barStyle = .Black
+        
+        tableView.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
     }
     
     
@@ -132,6 +138,12 @@ class PhoneController: UITableViewController{
         NSLog("Add Tapped")
         
         self.performSegueWithIdentifier("addContact", sender: nil)
+    }
+    
+    func addSearchBar(){
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.barTintColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
+        tableView.tableHeaderView = searchController.searchBar
     }
 }
 
