@@ -72,7 +72,6 @@ class AddContactController: UIViewController {
             return
         }
         
-        
         var phoneList = [String]()
         
         if let phone = phoneTextField.text where phone != ""{

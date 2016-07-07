@@ -12,6 +12,7 @@
 		A909B8C21D241B8400166EFF /* CallLogDbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A909B8C11D241B8400166EFF /* CallLogDbHelper.swift */; };
 		A934E1A81D1A826400427A2D /* ApplicaitonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E1A71D1A826400427A2D /* ApplicaitonStatus.swift */; };
 		A934E1AA1D1AA6E500427A2D /* LinphoneUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E1A91D1AA6E500427A2D /* LinphoneUtil.swift */; };
+		A94865B21D2CED4A00B4E99B /* ScanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94865B11D2CED4A00B4E99B /* ScanController.swift */; };
 		A96B651C1D16D54B00BF2436 /* ReceiveCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */; };
 		A96B65241D16E1CE00BF2436 /* dont_wait_too_long.mkv in Resources */ = {isa = PBXBuildFile; fileRef = A96B651E1D16E1CE00BF2436 /* dont_wait_too_long.mkv */; };
 		A96B65251D16E1CE00BF2436 /* hello8000.wav in Resources */ = {isa = PBXBuildFile; fileRef = A96B651F1D16E1CE00BF2436 /* hello8000.wav */; };
@@ -149,6 +150,7 @@
 		A909B8C11D241B8400166EFF /* CallLogDbHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallLogDbHelper.swift; sourceTree = "<group>"; };
 		A934E1A71D1A826400427A2D /* ApplicaitonStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicaitonStatus.swift; sourceTree = "<group>"; };
 		A934E1A91D1AA6E500427A2D /* LinphoneUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinphoneUtil.swift; sourceTree = "<group>"; };
+		A94865B11D2CED4A00B4E99B /* ScanController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanController.swift; sourceTree = "<group>"; };
 		A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveCallController.swift; sourceTree = "<group>"; };
 		A96B651E1D16E1CE00BF2436 /* dont_wait_too_long.mkv */ = {isa = PBXFileReference; lastKnownFileType = file; name = dont_wait_too_long.mkv; path = "liblinphone-sdk/apple-darwin/share/sounds/linphone/dont_wait_too_long.mkv"; sourceTree = "<group>"; };
 		A96B651F1D16E1CE00BF2436 /* hello8000.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hello8000.wav; path = "liblinphone-sdk/apple-darwin/share/sounds/linphone/hello8000.wav"; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 				A9B72B491D22961A00FDA9EE /* RecordController.swift */,
 				A9863C161D03BD6D003FE7B3 /* MircosoftGraphAuthentication.swift */,
 				A9F9CA4D1D268181005B8874 /* Util.swift */,
+				A94865B11D2CED4A00B4E99B /* ScanController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A96B653D1D1791AF00BF2436 /* ViewControllerHelper.swift in Sources */,
+				A94865B21D2CED4A00B4E99B /* ScanController.swift in Sources */,
 				A9D4698E1D1EB707007C5B2B /* GoodWox.xcdatamodeld in Sources */,
 				A9D469961D1EB7C7007C5B2B /* Contact.swift in Sources */,
 				A96B651C1D16D54B00BF2436 /* ReceiveCallController.swift in Sources */,

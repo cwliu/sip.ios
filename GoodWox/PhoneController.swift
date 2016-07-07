@@ -109,7 +109,6 @@ class PhoneController: UITableViewController, NSFetchedResultsControllerDelegate
             cell.nameLabel.textColor = UIColor(hex: "#2B2725")
         }
         
-        
         return cell
     }
     
@@ -145,7 +144,20 @@ class PhoneController: UITableViewController, NSFetchedResultsControllerDelegate
     func addClick(sender:UIButton){
         NSLog("Add Tapped")
         
-        self.performSegueWithIdentifier("addContact", sender: nil)
+        let contactMethodChooser = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        contactMethodChooser.addAction(UIAlertAction(title: "名片掃描", style: UIAlertActionStyle.Default, handler: {(UIAlertAction) -> Void in
+            self.performSegueWithIdentifier("scan", sender: nil)
+        }))
+        
+        contactMethodChooser.addAction(UIAlertAction(title: "手動輸入", style: UIAlertActionStyle.Default,
+            handler: {(UIAlertAction) -> Void in
+            self.performSegueWithIdentifier("addContact", sender: nil)
+            })
+        )
+        contactMethodChooser.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
+        
+        self.presentViewController(contactMethodChooser, animated: true, completion: nil)
     }
     
     func addSearchBar(){

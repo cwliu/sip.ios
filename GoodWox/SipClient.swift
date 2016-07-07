@@ -69,6 +69,9 @@ class SipApiClient {
                         
                         if let contact = ContactDbHelper.getContact(account["email"] as! String) {
                             contact.sip = (account["sip_account"]! as! String)
+                            if let phone = account["phone"]{
+                                contact.phones.append(phone as! String)                                
+                            }
                         }
                     }
                     ContactDbHelper.save()
