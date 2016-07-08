@@ -12,6 +12,7 @@ struct OutgoingCallData{
     static var sipIcon: UIImageView?
     static var calleeName: String?
     static var callConnected: Bool?
+    static var retry: Bool = false
 }
 
 enum CallPhoneType {
@@ -28,6 +29,11 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
     (lc: COpaquePointer, call: COpaquePointer, callSate: LinphoneCallState,  message) in
     
     switch callSate{
+    case LinphoneCallOutgoingProgress:
+        if OutgoingCallData.retry == true{
+            OutgoingCallData.retry = false
+        }
+        
     case LinphoneCallConnected:
         NSLog("outgoingCallStateChanged: LinphoneCallConnected")
         
@@ -39,13 +45,27 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
         NSLog("outgoingCallStateChanged: LinphoneCallError")
         
         OutgoingCallData.callType = CallLogType.OUTGOING_CALL_NO_ANSWER
+
+        if OutgoingCallData.phoneType == CallPhoneType.SIP && OutgoingCallData.callee?.phones.count != 0{
+            OutgoingCallData.retry = true
+            OutgoingCallData.phoneType = CallPhoneType.NONSIP
+            OutgoingCallData.phoneNumber = OutgoingCallData.callee?.phones[0]
+            makeCall()
+            return
+        }
         
         // If call type is SIP and phone number is available
-        close()
+        if OutgoingCallData.retry == false {
+            close()
+        }
         
     case LinphoneCallEnd:
         NSLog("outgoingCallStateChanged: LinphoneCallEnd")
-        close()
+        
+        
+        if OutgoingCallData.retry == false {
+            close()
+        }
         
     default:
         NSLog("outgoingCallStateChanged: Default call state \(callSate)")
@@ -57,17 +77,10 @@ func resetOutgoingCallData(){
     OutgoingCallData.callee = nil
     OutgoingCallData.callTime = nil
     OutgoingCallData.callConnected = false
+    OutgoingCallData.retry = false
 }
 
 func close(){
-    
-    if OutgoingCallData.phoneType == CallPhoneType.SIP && OutgoingCallData.callee?.phones.count != 0{
-        OutgoingCallData.phoneType = CallPhoneType.NONSIP
-        OutgoingCallData.phoneNumber = OutgoingCallData.callee?.phones[0]
-        
-        makeCall()
-        return
-    }
     
     if let callee = OutgoingCallData.callee, callTime = OutgoingCallData.callTime{
         let callDuration =  Int(NSDate().timeIntervalSinceDate(callTime))
@@ -90,7 +103,7 @@ func makeCall(){
     case CallPhoneType.NONSIP:
         OutgoingCallData.sipIcon!.hidden = true
         OutgoingCallData.statusLabel!.text = "Dialing to \(OutgoingCallData.phoneNumber!)..."
-
+        
     case CallPhoneType.CALL_END:
         OutgoingCallData.statusLabel!.text = "Call end"
     }
@@ -101,7 +114,7 @@ func makeCall(){
         }
         
         if OutgoingCallData.phoneType == CallPhoneType.SIP {
-            // Fire a timer to auto call mobile if not connect 
+            // Fire a timer to auto call mobile if not connect
             OutgoingCallController.addEndSipCallTimer()
         }
     }
@@ -123,7 +136,7 @@ class OutgoingCallController: UIViewController{
         NSLog("OutgoingCallController.viewDidLoad()")
         
         resetOutgoingCallData()
-
+        
         OutgoingCallData.controller = self
         OutgoingCallData.callTime = NSDate()
         OutgoingCallData.phoneType = phoneType
@@ -134,7 +147,7 @@ class OutgoingCallController: UIViewController{
         
         
         nameLabel.text = calleeName
-
+        
         if let calleeID = calleeID{
             OutgoingCallData.callee = ContactDbHelper.getContactById(calleeID)
         }else{
@@ -167,6 +180,10 @@ class OutgoingCallController: UIViewController{
         OutgoingCallData.phoneType = CallPhoneType.CALL_END
         
         NSLog("OutgoingCallController.hangUp()")
+        terminateCall()
+    }
+    
+    func terminateCall(){
         let call = linphone_core_get_current_call(theLinphone.lc!)
         if call != nil {
             let result = linphone_core_terminate_call(theLinphone.lc!, call)
@@ -199,13 +216,26 @@ class OutgoingCallController: UIViewController{
     
     static func addEndSipCallTimer(){
         NSTimer.scheduledTimerWithTimeInterval(
-            3, target: OutgoingCallController.self, selector: #selector(endCallIfNotConnect), userInfo: nil, repeats: false)
-        
+            11, target: OutgoingCallController.self, selector: #selector(callPhoneIfSipNotConnect), userInfo: nil, repeats: false)
     }
     
-    @objc static func endCallIfNotConnect(){
-        if OutgoingCallData.callConnected == false {
-            close()
+    @objc static func callPhoneIfSipNotConnect(){
+        if OutgoingCallData.callConnected == false &&
+            OutgoingCallData.phoneType == CallPhoneType.SIP
+            && OutgoingCallData.callee?.phones.count != 0{
+            
+            OutgoingCallData.retry = true
+            
+            let call = linphone_core_get_current_call(theLinphone.lc!)
+            if call != nil {
+                let result = linphone_core_terminate_call(theLinphone.lc!, call)
+                NSLog("Terminated call result(outgoing): \(result)")
+            }
+            
+            OutgoingCallData.phoneType = CallPhoneType.NONSIP
+            OutgoingCallData.phoneNumber = OutgoingCallData.callee?.phones[0]
+            makeCall()
+            return
         }
     }
 }
