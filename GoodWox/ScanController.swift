@@ -6,6 +6,9 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var imageView: UIImageView!
     
+    var contactName: String!
+    var phoneList = [String]()
+    
     override func viewDidLoad() {
         NSLog("ViewDidLoad()")
         
@@ -54,7 +57,7 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let bcrUser = dict?.objectForKey("bcrUser") as! String
         
         let url = NSURL(string: String(format: BcrServer.bcrServiceUrl, bcrUser, bcrPass))!
-        
+
         let resizedImage = resizeImage(imageView.image!, newWidth: 1024)
         
         Alamofire.upload(.POST, url, multipartFormData: { multipartFormData in
@@ -65,7 +68,7 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }, encodingCompletion: { encodingResult in
                 switch encodingResult {
                 case .Success(let upload, _, _):
-                    upload.responseString { response in
+                    upload.responseString(queue: nil, encoding: NSUTF8StringEncoding) { response in
                         NSLog(response.debugDescription)
                     
                         if let statusCode = response.response?.statusCode {
@@ -84,15 +87,16 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
                                 
                                 let targetContact = contacts[0] as! CNContact
                                 
-                                let fullName = CNContactFormatter.stringFromContact(targetContact, style: .FullName) ?? "No Name"
-                                
-                                var phoneList = [String]()
+                                self.contactName = CNContactFormatter.stringFromContact(targetContact, style: .FullName) ?? "No Name"
                                 
                                 for phone in (contacts[0]).phoneNumbers{
-                                    phoneList.append((phone.value as! CNPhoneNumber).valueForKey("digits") as! String)
+                                    self.phoneList.append((phone.value as! CNPhoneNumber).valueForKey("digits") as! String)
                                 }
                                 
-                                NSLog("Parsed contact name: \(fullName), \(phoneList.debugDescription)")
+                                NSLog("Parsed contact name: \(self.contactName), \(self.phoneList.debugDescription)")
+                                
+                                self.performSegueWithIdentifier("addContact", sender: nil)
+                                
                                 
                             } catch let error {
                                 NSLog("Parse error: \(error)")
@@ -106,5 +110,17 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
             }
         )
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        NSLog("prepareForSegue: \(segue.identifier)")
+        
+        if(segue.identifier == "addContact"){
+            let controller = segue.destinationViewController as! AddContactController
+            controller.nameString = contactName
+            for phone in phoneList{
+                controller.phoneList.append(phone)
+            }
+        }
     }
 }

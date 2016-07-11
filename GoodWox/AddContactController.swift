@@ -26,8 +26,7 @@ extension UIView
 
 class AddContactController: UIViewController {
     
-    @IBOutlet var firstnameTextfield: UITextField!
-    @IBOutlet var lastnameTextfield: UITextField!
+    @IBOutlet var nameTextfield: UITextField!
     
     @IBOutlet var phoneTextField: UITextField!
     @IBOutlet var addPhoneButton: UIButton!
@@ -39,6 +38,9 @@ class AddContactController: UIViewController {
     var deletePhoneFieldList = [UIButton]()
     
     var MAX_PHONE_FIELD = 7
+    
+    var nameString: String?
+    var phoneList = [String]()
     
     override func viewDidLoad() {
         let rightSaveBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "完成", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddContactController.saveClick))
@@ -53,17 +55,29 @@ class AddContactController: UIViewController {
         self.navigationItem.hidesBackButton = true
         self.title = "新增連絡人"
         
-        firstnameTextfield.useUnderline()
-        lastnameTextfield.useUnderline()
+        nameTextfield.useUnderline()
         phoneTextField.useUnderline()
         lastPhoneTextField = phoneTextField
         
+        nameTextfield.text = nameString
+        if phoneList.count > 0 {
+            phoneTextField.text = phoneList[0]
+        }
+        
+        if phoneList.count > 1 {
+            for i in 1 ..< phoneList.count {
+                addPhone(phoneList[i])
+                if phoneFieldList.count > 6 {
+                    break
+                }
+            }
+        }
     }
     
     func saveClick(sender: UIButton){
         NSLog("Save click")
         
-        let name = firstnameTextfield.text! + lastnameTextfield.text!
+        let name = nameTextfield?.text
         if name == "" {
             let alert = UIAlertController(title: nil, message: "姓名不得為空", preferredStyle: .Alert)
             self.presentViewController(alert, animated: true, completion: nil)
@@ -93,10 +107,10 @@ class AddContactController: UIViewController {
         }
         
         // Save contact
-        ContactDbHelper.addContect(name, phoneList: phoneList, type: ContactType.MANUAL)
+        ContactDbHelper.addContect(name!, phoneList: phoneList, type: ContactType.MANUAL)
         
         // Save contact to backend
-        saveContactToBackend(name, phoneList: phoneList)
+        saveContactToBackend(name!, phoneList: phoneList)
         navigationController?.popViewControllerAnimated(true)
     }
     
@@ -107,7 +121,10 @@ class AddContactController: UIViewController {
     }
     
     @IBAction func addNewPhoneField(){
-        
+        addPhone(nil)
+    }
+    
+    func addPhone(phoneNumber: String?){
         // Add phone delte button
         let deletePhoneFieldButton = UIButton()
         deletePhoneFieldButton.frame = CGRectMake( 16, CGFloat(currentPhoneFieldPosition + 10 + PHONE_FIELD_HEIGHT * Int(phoneFieldList.count)), 20, 20)
@@ -129,6 +146,11 @@ class AddContactController: UIViewController {
         newPhoneTextField.placeholder = "電話"
         newPhoneTextField.useUnderline()
         newPhoneTextField.tag = phoneFieldList.count
+        
+        if let number = phoneNumber {
+            newPhoneTextField.text = number
+        }
+        
         phoneFieldList.append(newPhoneTextField)
         
         self.view.insertSubview(newPhoneTextField, belowSubview: lastPhoneTextField)
@@ -163,7 +185,6 @@ class AddContactController: UIViewController {
             deletePhoneFieldList[index].tag = index
         }
         
-        
         if(phoneFieldList.count <= MAX_PHONE_FIELD){
             addPhoneButton.hidden = false
         }
@@ -185,7 +206,6 @@ class AddContactController: UIViewController {
                 "contact_phone_list": NSString(data: phoneListJson, encoding: NSUTF8StringEncoding)! as String
             ]
             
-            
             Alamofire.request(.POST, request, parameters: parameters).responseJSON { response in
                 
                 NSLog("response.request: \(response.request)")  // original URL request
@@ -205,6 +225,5 @@ class AddContactController: UIViewController {
             NSLog(error.description)
             return
         }
-        
     }
 }
