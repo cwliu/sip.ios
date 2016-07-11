@@ -9,11 +9,21 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var contactName: String!
     var phoneList = [String]()
     
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+
     override func viewDidLoad() {
         NSLog("ViewDidLoad()")
         
         imageView = UIImageView()
         
+        
+        let leftCancelBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ScanController.cancelClick))
+        
+        self.navigationItem.setLeftBarButtonItem(leftCancelBarButtonItem, animated: true)
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         takePicture()
     }
     
@@ -27,6 +37,7 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.delegate = self
         
         // Place image picker on the screen
+        loadingUI(show: true)
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
@@ -66,6 +77,7 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     data: imageData, name: "user_image", fileName: "file.jpg", mimeType: "image/jpg")
             }
             }, encodingCompletion: { encodingResult in
+                
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseString(queue: nil, encoding: NSUTF8StringEncoding) { response in
@@ -73,6 +85,7 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     
                         if let statusCode = response.response?.statusCode {
                             if statusCode >= 400{
+                                self.retake()
                                 return
                             }
                             
@@ -81,7 +94,8 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
                                 let vcardNSData = vcardString.dataUsingEncoding(NSUTF8StringEncoding)!
                                 let contacts =  try CNContactVCardSerialization.contactsWithData(vcardNSData)
                                 
-                                if contacts.count < 0{
+                                if contacts.count <= 0{
+                                    self.retake()
                                     return
                                 }
                                 
@@ -106,10 +120,15 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     }
                     
                 case .Failure(let encodingError):
+                    self.retake()
                     print(encodingError)
                 }
             }
         )
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController){
+        navigationController?.popViewControllerAnimated(true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -121,6 +140,31 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
             for phone in phoneList{
                 controller.phoneList.append(phone)
             }
+        }
+    }
+    
+    func cancelClick(sender: UIButton){
+        NSLog("Cancel click")
+        
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func retake(){
+        
+        let alert = UIAlertController(title: nil, message: "辨識失敗", preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .Default, handler: {(alert: UIAlertAction!) in self.takePicture()})
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+}
+
+private extension ScanController {
+    func loadingUI(show show: Bool) {
+        if show {
+            self.activityIndicator.startAnimating()
+        }
+        else {
+            self.activityIndicator.stopAnimating()
         }
     }
 }
