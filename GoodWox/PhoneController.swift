@@ -165,6 +165,7 @@ class PhoneController: UITableViewController, NSFetchedResultsControllerDelegate
         searchController.searchBar.barTintColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
         searchController.searchResultsUpdater = self
         searchController.searchBar.backgroundImage = UIImage()
+        searchController.dimsBackgroundDuringPresentation = false
         
         tableView.tableHeaderView = searchController.searchBar
     }
