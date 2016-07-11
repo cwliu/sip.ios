@@ -209,6 +209,7 @@
         <!--Scan Controller-->
         <scene sceneID="CD3-5P-Clb">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TKq-xL-zMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="zs4-Oy-nE5" customClass="ScanController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Yy-Wv-vxS"/>
@@ -217,36 +218,9 @@
                     <view key="view" contentMode="scaleToFill" id="mlv-cF-4xH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edv-5x-L6R">
-                                <rect key="frame" x="266" y="293" width="115" height="30"/>
-                                <state key="normal" title="Scan Name Card"/>
-                                <connections>
-                                    <action selector="takePicture" destination="zs4-Oy-nE5" eventType="touchUpInside" id="PZq-5j-hqf"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFK-vq-jAl">
-                                <rect key="frame" x="214" y="364" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="HCa-nF-hZ7"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Edv-5x-L6R" firstAttribute="centerY" secondItem="mlv-cF-4xH" secondAttribute="centerY" id="134-qt-VJW"/>
-                            <constraint firstItem="LFK-vq-jAl" firstAttribute="leading" secondItem="mlv-cF-4xH" secondAttribute="leading" constant="214" id="BDz-EZ-kvm"/>
-                            <constraint firstItem="Edv-5x-L6R" firstAttribute="centerX" secondItem="mlv-cF-4xH" secondAttribute="centerX" id="M5m-p8-WMe"/>
-                            <constraint firstItem="LFK-vq-jAl" firstAttribute="top" secondItem="Edv-5x-L6R" secondAttribute="bottom" constant="41" id="Nel-5t-rYY"/>
-                            <constraint firstItem="pL2-uD-zsQ" firstAttribute="top" secondItem="LFK-vq-jAl" secondAttribute="bottom" constant="59" id="iRL-AP-d0M"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="imageView" destination="LFK-vq-jAl" id="19A-Jw-Zge"/>
-                        <segue destination="XQk-mv-cdI" kind="show" id="6kV-oW-8Ad"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TKq-xL-zMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1452" y="876"/>
         </scene>
@@ -789,6 +763,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vYb-8p-al7"/>
-        <segue reference="6kV-oW-8Ad"/>
     </inferredMetricsTieBreakers>
 </document>

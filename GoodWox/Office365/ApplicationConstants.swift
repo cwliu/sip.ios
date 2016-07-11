@@ -17,6 +17,15 @@ struct SipServerBackend{
     
 }
 
+struct BcrServer {
+    static let bcrServiceUrl = "https://bcr1.intsig.net/BCRService/BCR_VCF2?user=%@&pass=%@&lang=7"
+    
+//    private static String BCR_SERVICE_URL_FORMAT = "http://bcr1.intsig.net/BCRService/BCR_VCF2?user=%s&pass=%s&lang=7";
+//    private static String BCR_SERVICE_URL = String.format(BCR_SERVICE_URL_FORMAT, BuildConfig.CAMCARD_API_EMAIL, BuildConfig.CAMCARD_API_KEY);
+
+    
+}
+
 /**
  Simple construct to encapsulate NSError. This could be expanded for more types of graph errors in future.
  */
