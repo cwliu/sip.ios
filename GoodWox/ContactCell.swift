@@ -7,4 +7,5 @@ class ContactCell: UITableViewCell {
     @IBOutlet var favoriteImage: UIImageView!
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var callTypeIcon: UIImageView!
+    
 }

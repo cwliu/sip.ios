@@ -42,6 +42,8 @@ class AddContactController: UIViewController {
     var nameString: String?
     var phoneList = [String]()
     
+    var jsonObject: [String: AnyObject] = [:]
+    
     override func viewDidLoad() {
         let rightSaveBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "完成", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddContactController.saveClick))
         
@@ -111,7 +113,10 @@ class AddContactController: UIViewController {
         
         // Save contact to backend
         saveContactToBackend(name!, phoneList: phoneList)
-        navigationController?.popViewControllerAnimated(true)
+        
+        getBizSocialRecommendation(phoneList)
+        
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     func cancelClick(sender: UIButton){
@@ -192,7 +197,6 @@ class AddContactController: UIViewController {
     
     func saveContactToBackend(name: String, phoneList: [String]){
         
-        
         let request = NSMutableURLRequest(URL: NSURL(string: SipServerBackend.contactURL)!)
         request.HTTPMethod = "POST"
         
@@ -226,4 +230,63 @@ class AddContactController: UIViewController {
             return
         }
     }
+    
+    func getBizSocialRecommendation(phoneList: [String]){
+        if phoneList.count == 0 {
+            return
+        }
+        
+        let phoneListString = phoneList.map{String($0)}.joinWithSeparator(",")
+        
+        let parameters: [String: String] = [
+            "email": UserData.getGraphAccount()!,
+            "backend_access_token": UserData.getBackendAccessToken()!,
+            "phone_list": phoneListString,
+        ]
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: SipServerBackend.bizSocalURL)!)
+        
+        Alamofire.request(.GET, request, parameters:  parameters).responseJSON { response in
+            
+            NSLog("response.request: \(response.request)")  // original URL request
+            NSLog("esponse.response: \(response.response)") // URL response
+            
+            switch response.result {
+            case .Success:
+                NSLog("Successful")
+                
+                if let j = response.result.value{
+                    self.jsonObject = j as! [String : AnyObject]
+                }
+                
+                if var controller = UIApplication.sharedApplication().keyWindow?.rootViewController {
+                    while let presentedViewController = controller.presentedViewController {
+                        controller = presentedViewController
+                    }
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewControllerWithIdentifier("recommend") as! UINavigationController
+                    
+                    let rc = vc.topViewController as! RecommendController
+                    rc.jsonObject = self.jsonObject
+                    
+                    controller.presentViewController(vc, animated: true, completion: nil)
+                }
+                
+            case .Failure(let error):
+                NSLog("Error: \(error)")
+                return
+            }
+        }
+    }
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        NSLog("prepareForSegue: \(segue.identifier)")
+//        
+//        if(segue.identifier == "recommendContact"){
+//            let controller = segue.destinationViewController as! RecommendController
+//            controller.jsonObject = self.jsonObject
+//
+//        }
+//    }
 }

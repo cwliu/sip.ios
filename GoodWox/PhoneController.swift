@@ -195,8 +195,11 @@ extension PhoneController {
     
     // MARK: Segue
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let phones = self.contacts[indexPath.row].phones
+        let contact = (searchController.active) ? searchContacts[indexPath.row] : contacts[indexPath.row]
+        let phones = contact.phones
+
         selectContactIndex = indexPath.row
+        
         if phones.count == 0 {
             let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no phone number available", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))

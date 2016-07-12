@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="RecommendCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecommendCell" id="eBp-JD-SpA" customClass="RecommendCell" customModule="GoodWox" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eBp-JD-SpA" id="3Of-Zs-bpG">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sahilu San" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGA-fJ-wlG">
+                        <rect key="frame" x="23" y="8" width="71.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.16862745583057404" green="0.15294118225574493" blue="0.14509804546833038" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7x-O7-iz0">
+                        <rect key="frame" x="274" y="7" width="30" height="30"/>
+                        <state key="normal" title="加入"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99% 持有率" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJj-0O-hAe">
+                        <rect key="frame" x="23" y="27" width="60" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="topMargin" secondItem="rGA-fJ-wlG" secondAttribute="top" id="4OU-gx-dmV"/>
+                    <constraint firstItem="mJj-0O-hAe" firstAttribute="leading" secondItem="3Of-Zs-bpG" secondAttribute="leadingMargin" constant="15" id="Rr0-mh-ZGc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="H7x-O7-iz0" secondAttribute="trailing" constant="8" id="X24-qF-8bO"/>
+                    <constraint firstItem="mJj-0O-hAe" firstAttribute="top" secondItem="rGA-fJ-wlG" secondAttribute="bottom" constant="1" id="gMa-Em-1tk"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="rGA-fJ-wlG" secondAttribute="leading" constant="-15" id="sxg-zQ-QPd"/>
+                    <constraint firstItem="H7x-O7-iz0" firstAttribute="top" secondItem="3Of-Zs-bpG" secondAttribute="topMargin" constant="-1" id="vyc-bs-JLc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addButton" destination="H7x-O7-iz0" id="1sa-Da-QlP"/>
+                <outlet property="nameLabel" destination="rGA-fJ-wlG" id="CCG-u9-vdG"/>
+                <outlet property="percentLabel" destination="mJj-0O-hAe" id="0sb-eQ-bEK"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

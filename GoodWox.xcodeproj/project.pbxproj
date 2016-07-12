@@ -12,6 +12,7 @@
 		A909B8C21D241B8400166EFF /* CallLogDbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A909B8C11D241B8400166EFF /* CallLogDbHelper.swift */; };
 		A934E1A81D1A826400427A2D /* ApplicaitonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E1A71D1A826400427A2D /* ApplicaitonStatus.swift */; };
 		A934E1AA1D1AA6E500427A2D /* LinphoneUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E1A91D1AA6E500427A2D /* LinphoneUtil.swift */; };
+		A93AB5661D34BEDA0024895A /* RecommendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AB5651D34BEDA0024895A /* RecommendController.swift */; };
 		A94865B21D2CED4A00B4E99B /* ScanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94865B11D2CED4A00B4E99B /* ScanController.swift */; };
 		A96B651C1D16D54B00BF2436 /* ReceiveCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */; };
 		A96B65241D16E1CE00BF2436 /* dont_wait_too_long.mkv in Resources */ = {isa = PBXBuildFile; fileRef = A96B651E1D16E1CE00BF2436 /* dont_wait_too_long.mkv */; };
@@ -31,6 +32,9 @@
 		A96B653B1D16F81600BF2436 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A96B653A1D16F81600BF2436 /* CoreMedia.framework */; };
 		A96B653D1D1791AF00BF2436 /* ViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96B653C1D1791AF00BF2436 /* ViewControllerHelper.swift */; };
 		A96B65471D18D56100BF2436 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A96B65461D18D56100BF2436 /* ContactCell.xib */; };
+		A96D42261D34D3B400BBB6EA /* RecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A96D42251D34D3B400BBB6EA /* RecommendCell.xib */; };
+		A96D42281D34D59A00BBB6EA /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D42271D34D59A00BBB6EA /* RecommendCell.swift */; };
+		A976DB391D350C5500D8BE3F /* RecommendContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A976DB381D350C5500D8BE3F /* RecommendContact.swift */; };
 		A9842BD21D0DA18D0062A35B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842BD11D0DA18D0062A35B /* AVFoundation.framework */; };
 		A9842BD41D0DA1940062A35B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842BD31D0DA1940062A35B /* AudioToolbox.framework */; };
 		A9842BD61D0DA19D0062A35B /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9842BD51D0DA19D0062A35B /* CoreFoundation.framework */; };
@@ -150,6 +154,7 @@
 		A909B8C11D241B8400166EFF /* CallLogDbHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallLogDbHelper.swift; sourceTree = "<group>"; };
 		A934E1A71D1A826400427A2D /* ApplicaitonStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicaitonStatus.swift; sourceTree = "<group>"; };
 		A934E1A91D1AA6E500427A2D /* LinphoneUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinphoneUtil.swift; sourceTree = "<group>"; };
+		A93AB5651D34BEDA0024895A /* RecommendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendController.swift; sourceTree = "<group>"; };
 		A94865B11D2CED4A00B4E99B /* ScanController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanController.swift; sourceTree = "<group>"; };
 		A96B651B1D16D54B00BF2436 /* ReceiveCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveCallController.swift; sourceTree = "<group>"; };
 		A96B651E1D16E1CE00BF2436 /* dont_wait_too_long.mkv */ = {isa = PBXFileReference; lastKnownFileType = file; name = dont_wait_too_long.mkv; path = "liblinphone-sdk/apple-darwin/share/sounds/linphone/dont_wait_too_long.mkv"; sourceTree = "<group>"; };
@@ -169,6 +174,9 @@
 		A96B653A1D16F81600BF2436 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		A96B653C1D1791AF00BF2436 /* ViewControllerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerHelper.swift; sourceTree = "<group>"; };
 		A96B65461D18D56100BF2436 /* ContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
+		A96D42251D34D3B400BBB6EA /* RecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendCell.xib; sourceTree = "<group>"; };
+		A96D42271D34D59A00BBB6EA /* RecommendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCell.swift; sourceTree = "<group>"; };
+		A976DB381D350C5500D8BE3F /* RecommendContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendContact.swift; sourceTree = "<group>"; };
 		A9842B851D0DA0D00062A35B /* libantlr3c.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libantlr3c.a; path = "liblinphone-sdk/apple-darwin/lib/libantlr3c.a"; sourceTree = "<group>"; };
 		A9842B861D0DA0D00062A35B /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = "liblinphone-sdk/apple-darwin/lib/libavcodec.a"; sourceTree = "<group>"; };
 		A9842B871D0DA0D00062A35B /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = "liblinphone-sdk/apple-darwin/lib/libavutil.a"; sourceTree = "<group>"; };
@@ -538,6 +546,7 @@
 				A9863C161D03BD6D003FE7B3 /* MircosoftGraphAuthentication.swift */,
 				A9F9CA4D1D268181005B8874 /* Util.swift */,
 				A94865B11D2CED4A00B4E99B /* ScanController.swift */,
+				A93AB5651D34BEDA0024895A /* RecommendController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -547,6 +556,7 @@
 			children = (
 				A96B65461D18D56100BF2436 /* ContactCell.xib */,
 				A9F9CA491D265A59005B8874 /* CallLogCell.xib */,
+				A96D42251D34D3B400BBB6EA /* RecommendCell.xib */,
 				A9863C361D0579C0003FE7B3 /* LaunchScreen.storyboard */,
 				A9AAE48F1D0273C20034B564 /* Main.storyboard */,
 			);
@@ -566,6 +576,8 @@
 				A9D469971D1EC9DA007C5B2B /* UIColor.swift */,
 				A909B8BF1D241A7400166EFF /* CallLog.swift */,
 				A909B8C11D241B8400166EFF /* CallLogDbHelper.swift */,
+				A96D42271D34D59A00BBB6EA /* RecommendCell.swift */,
+				A976DB381D350C5500D8BE3F /* RecommendContact.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -747,6 +759,7 @@
 				A9F9CA4A1D265A59005B8874 /* CallLogCell.xib in Resources */,
 				A96B65291D16E1CE00BF2436 /* toy-mono.wav in Resources */,
 				A9B72B3C1D221BC200FDA9EE /* secondary_second_sub_category.txt in Resources */,
+				A96D42261D34D3B400BBB6EA /* RecommendCell.xib in Resources */,
 				A9B72B3A1D221BC200FDA9EE /* secondary_category.txt in Resources */,
 				A9842BF31D0DA5340062A35B /* linphonerc-factory in Resources */,
 				A96B65371D16E1E000BF2436 /* oldphone-mono-30s.caf in Resources */,
@@ -839,13 +852,16 @@
 				A99663221D0591D4003B5EEE /* TabController.swift in Sources */,
 				A9F9CA501D276613005B8874 /* AddContactController.swift in Sources */,
 				A9D469951D1EB7C7007C5B2B /* Contact+CoreDataProperties.swift in Sources */,
+				A96D42281D34D59A00BBB6EA /* RecommendCell.swift in Sources */,
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
+				A976DB391D350C5500D8BE3F /* RecommendContact.swift in Sources */,
 				A986216A1D15495E00BA767D /* ContactDbHelper.swift in Sources */,
 				A9B72B441D221BC200FDA9EE /* README.md in Sources */,
 				A9CD72BC1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift in Sources */,
 				A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */,
 				A9D4699A1D1ECE49007C5B2B /* FavoriteController.swift in Sources */,
 				A9863C151D03BD4D003FE7B3 /* ApplicationConstants.swift in Sources */,
+				A93AB5661D34BEDA0024895A /* RecommendController.swift in Sources */,
 				A9C249281D13EB2D00430C92 /* InitController.swift in Sources */,
 				A9D469981D1EC9DB007C5B2B /* UIColor.swift in Sources */,
 				A9863C171D03BD6D003FE7B3 /* MircosoftGraphAuthentication.swift in Sources */,
@@ -965,8 +981,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1020;
-				DYLIB_CURRENT_VERSION = 1020;
+				CURRENT_PROJECT_VERSION = 1021;
+				DYLIB_CURRENT_VERSION = 1021;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = GoodWox/Info.plist;
@@ -1004,7 +1020,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1020;
+				CURRENT_PROJECT_VERSION = 1021;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = GoodWox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

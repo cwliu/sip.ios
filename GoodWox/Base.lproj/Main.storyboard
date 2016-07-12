@@ -209,7 +209,6 @@
         <!--Scan Controller-->
         <scene sceneID="CD3-5P-Clb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TKq-xL-zMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="zs4-Oy-nE5" customClass="ScanController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Yy-Wv-vxS"/>
@@ -234,6 +233,7 @@
                         <segue destination="XQk-mv-cdI" kind="show" identifier="addContact" id="0TV-ll-Pgs"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TKq-xL-zMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1452" y="876"/>
         </scene>
@@ -301,11 +301,59 @@
                         <outlet property="addPhoneButton" destination="P9s-PF-nwf" id="Onm-jF-Mdp"/>
                         <outlet property="nameTextfield" destination="A59-FS-tp7" id="oFo-tB-WAn"/>
                         <outlet property="phoneTextField" destination="N7l-SN-b2R" id="L1l-HU-YgH"/>
+                        <segue destination="qMZ-OC-JQi" kind="presentation" identifier="recommendContact" id="pyX-C5-ysA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23h-9N-1qx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2196" y="876"/>
+        </scene>
+        <!--Recommend Controller-->
+        <scene sceneID="XcG-UO-7JQ">
+            <objects>
+                <tableViewController id="uRq-e2-8ul" customClass="RecommendController" customModule="GoodWox" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zNV-65-0T8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="0.91764706373214722" green="0.89411765336990356" blue="0.88235294818878174" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="7NJ-oM-Fx6">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="持有 Mario 名片的人，也擁有以下名片: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJD-ti-fAQ">
+                                    <rect key="frame" x="21" y="12" width="300" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.91764706373214722" green="0.89411765336990356" blue="0.88235294818878174" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="CJD-ti-fAQ" firstAttribute="centerY" secondItem="7NJ-oM-Fx6" secondAttribute="centerY" id="MQd-mc-Q4e"/>
+                                <constraint firstItem="CJD-ti-fAQ" firstAttribute="leading" secondItem="7NJ-oM-Fx6" secondAttribute="leading" constant="21" id="Pdy-dU-Dav"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="RecommendCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecommendCell" id="zDo-kJ-Dhh">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zDo-kJ-Dhh" id="iaa-7P-v7Y">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uRq-e2-8ul" id="6b3-N0-gsI"/>
+                            <outlet property="delegate" destination="uRq-e2-8ul" id="BP5-Bx-gzU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="9Tr-lw-X4c"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nga-Nx-q9A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3764" y="876"/>
         </scene>
         <!--接聽-->
         <scene sceneID="Ue8-l0-yqH">
@@ -740,6 +788,24 @@
             </objects>
             <point key="canvasLocation" x="-59" y="-30"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Nsn-O7-PNV">
+            <objects>
+                <navigationController storyboardIdentifier="recommend" automaticallyAdjustsScrollViewInsets="NO" id="qMZ-OC-JQi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bv1-mZ-LaZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uRq-e2-8ul" kind="relationship" relationship="rootViewController" id="CAH-xf-n52"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Fc-Ta-Mrp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2952" y="876"/>
+        </scene>
     </scenes>
     <resources>
         <image name="avatar_light_48dp" width="48" height="48"/>
@@ -764,6 +830,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0TV-ll-Pgs"/>
-        <segue reference="vYb-8p-al7"/>
+        <segue reference="sqX-yI-AWM"/>
     </inferredMetricsTieBreakers>
 </document>
