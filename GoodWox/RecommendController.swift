@@ -3,6 +3,9 @@ import Foundation
 class RecommendController: UITableViewController {
     
     var jsonObject: [String: AnyObject] = [:]
+    var contactName: String = ""
+    
+    @IBOutlet var statusLabel: UILabel!
     
     var recommendList: [RecommendContact] = []
     
@@ -17,6 +20,7 @@ class RecommendController: UITableViewController {
         let nib = UINib(nibName: "RecommendCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: "RecommendCell")
         
+        statusLabel.text = "持有 \(contactName) 名片的人，也擁有以下名片:"
         
         for recommend in (jsonObject["recommend_list"] as! NSArray){
             var phoneList = [String]()

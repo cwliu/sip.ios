@@ -277,6 +277,7 @@ class AddContactController: UIViewController {
                     
                     let rc = vc.topViewController as! RecommendController
                     rc.jsonObject = self.jsonObject
+                    rc.contactName = self.nameTextfield.text!
                     
                     controller.presentViewController(vc, animated: true, completion: nil)
                 }

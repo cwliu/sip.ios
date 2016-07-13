@@ -353,6 +353,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="9Tr-lw-X4c"/>
+                    <connections>
+                        <outlet property="statusLabel" destination="CJD-ti-fAQ" id="17B-ww-FK4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nga-Nx-q9A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
