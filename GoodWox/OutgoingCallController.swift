@@ -62,7 +62,6 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
     case LinphoneCallEnd:
         NSLog("outgoingCallStateChanged: LinphoneCallEnd")
         
-        
         if OutgoingCallData.retry == false {
             close()
         }

@@ -75,12 +75,6 @@ class AddContactController: UIViewController {
             }
         }
         
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-//        
-//        view.addGestureRecognizer(tap)
-    }
-    func dismisskeybaord(){
-        view.endEditing(true)
     }
     
     func saveClick(sender: UIButton){
@@ -268,6 +262,11 @@ class AddContactController: UIViewController {
                     self.jsonObject = j as! [String : AnyObject]
                 }
                 
+                let user_list = self.jsonObject["recommend_list"] as! NSArray
+                if user_list.count == 0{
+                    return
+                }
+                
                 if var controller = UIApplication.sharedApplication().keyWindow?.rootViewController {
                     while let presentedViewController = controller.presentedViewController {
                         controller = presentedViewController
@@ -288,14 +287,4 @@ class AddContactController: UIViewController {
             }
         }
     }
-    
-    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //        NSLog("prepareForSegue: \(segue.identifier)")
-    //
-    //        if(segue.identifier == "recommendContact"){
-    //            let controller = segue.destinationViewController as! RecommendController
-    //            controller.jsonObject = self.jsonObject
-    //
-    //        }
-    //    }
 }
