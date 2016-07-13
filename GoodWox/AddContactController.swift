@@ -74,6 +74,13 @@ class AddContactController: UIViewController {
                 }
             }
         }
+        
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+//        
+//        view.addGestureRecognizer(tap)
+    }
+    func dismisskeybaord(){
+        view.endEditing(true)
     }
     
     func saveClick(sender: UIButton){
@@ -114,7 +121,7 @@ class AddContactController: UIViewController {
         // Save contact to backend
         saveContactToBackend(name!, phoneList: phoneList)
         
-        getBizSocialRecommendation(phoneList)
+         getBizSocialRecommendation(phoneList)
         
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -149,6 +156,7 @@ class AddContactController: UIViewController {
         newPhoneTextField.borderStyle = .RoundedRect
         newPhoneTextField.borderStyle = UITextBorderStyle.None
         newPhoneTextField.placeholder = "電話"
+        newPhoneTextField.keyboardType = .PhonePad
         newPhoneTextField.useUnderline()
         newPhoneTextField.tag = phoneFieldList.count
         
@@ -212,12 +220,13 @@ class AddContactController: UIViewController {
             
             Alamofire.request(.POST, request, parameters: parameters).responseJSON { response in
                 
-                NSLog("response.request: \(response.request)")  // original URL request
-                NSLog("esponse.response: \(response.response)") // URL response
                 
                 switch response.result {
                 case .Success:
+                    NSLog("response.request: \(response.request)")  // original URL request
+                    NSLog("esponse.response: \(response.response)") // URL response
                     NSLog("Validation Successful")
+                    
                 case .Failure(let error):
                     // Logout
                     NSLog("\(error), \(String(data: response.data!, encoding: NSUTF8StringEncoding))")
@@ -242,18 +251,18 @@ class AddContactController: UIViewController {
             "email": UserData.getGraphAccount()!,
             "backend_access_token": UserData.getBackendAccessToken()!,
             "phone_list": phoneListString,
-        ]
+            ]
         
         let request = NSMutableURLRequest(URL: NSURL(string: SipServerBackend.bizSocalURL)!)
         
         Alamofire.request(.GET, request, parameters:  parameters).responseJSON { response in
             
-            NSLog("response.request: \(response.request)")  // original URL request
-            NSLog("esponse.response: \(response.response)") // URL response
             
             switch response.result {
             case .Success:
                 NSLog("Successful")
+                NSLog("response.request: \(response.request)")  // original URL request
+                NSLog("esponse.response: \(response.response)") // URL response
                 
                 if let j = response.result.value{
                     self.jsonObject = j as! [String : AnyObject]
@@ -280,13 +289,13 @@ class AddContactController: UIViewController {
         }
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        NSLog("prepareForSegue: \(segue.identifier)")
-//        
-//        if(segue.identifier == "recommendContact"){
-//            let controller = segue.destinationViewController as! RecommendController
-//            controller.jsonObject = self.jsonObject
-//
-//        }
-//    }
+    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //        NSLog("prepareForSegue: \(segue.identifier)")
+    //
+    //        if(segue.identifier == "recommendContact"){
+    //            let controller = segue.destinationViewController as! RecommendController
+    //            controller.jsonObject = self.jsonObject
+    //
+    //        }
+    //    }
 }
