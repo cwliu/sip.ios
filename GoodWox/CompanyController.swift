@@ -58,7 +58,7 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let contact = (searchController.active) ? searchContacts[indexPath.row] : contacts[indexPath.row]
-
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath)as! ContactCell
         cell.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
         
@@ -122,14 +122,14 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
         
         
         let indexPath = self.tableView.indexPathForSelectedRow
-        
+
         if(segue.identifier == "makeCall"){
             
             let controller = segue.destinationViewController as! OutgoingCallController
-            let contact = self.contacts[indexPath!.row]
+            let contact = (searchController.active) ? searchContacts[indexPath!.row] : contacts[indexPath!.row]
             if let sip = contact.sip{
                 controller.phoneNumber = sip
-                controller.calleeName = self.contacts[indexPath!.row].name
+                controller.calleeName = contact.name
                 controller.phoneType = .SIP
                 controller.calleeID = contact.objectID
                 
@@ -178,6 +178,4 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
             tableView.reloadData()
         }
     }
-
 }
-
