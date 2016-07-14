@@ -255,8 +255,6 @@ class AddContactController: UIViewController {
             switch response.result {
             case .Success:
                 NSLog("Successful")
-                NSLog("response.request: \(response.request)")  // original URL request
-                NSLog("esponse.response: \(response.response)") // URL response
                 
                 if let j = response.result.value{
                     self.jsonObject = j as! [String : AnyObject]

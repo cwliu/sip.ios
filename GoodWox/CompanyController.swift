@@ -25,6 +25,8 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
         
         let nib = UINib(nibName: "ContactCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "ContactCell")
+        
+        self.definesPresentationContext = true
     }
     
     func favoriteClick(sender: UITapGestureRecognizer) {

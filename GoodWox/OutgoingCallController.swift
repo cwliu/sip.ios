@@ -101,7 +101,9 @@ func makeCall(){
         
     case CallPhoneType.NONSIP:
         OutgoingCallData.sipIcon!.hidden = true
-        OutgoingCallData.statusLabel!.text = "Dialing to \(OutgoingCallData.phoneNumber!)..."
+        if let phoneNumber = OutgoingCallData.phoneNumber{
+            OutgoingCallData.statusLabel!.text = "Dialing to \(phoneNumber)..."
+        }
         
     case CallPhoneType.CALL_END:
         OutgoingCallData.statusLabel!.text = "Call end"
@@ -160,7 +162,6 @@ class OutgoingCallController: UIViewController{
             showAvatar(OutgoingCallData.phoneNumber!)
         }
     }
-    
     
     override func viewWillAppear(animated: Bool) {
         OutgoingCallVT.lct.call_state_changed = outgoingCallStateChanged

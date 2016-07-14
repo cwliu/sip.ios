@@ -28,7 +28,8 @@ class PhoneController: UITableViewController, NSFetchedResultsControllerDelegate
         let rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(PhoneController.addClick))
         
         self.navigationItem.setRightBarButtonItems([rightAddBarButtonItem], animated: true)
-        
+     
+        self.definesPresentationContext = true
     }
     
     func loadManualContact(){
