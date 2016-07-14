@@ -237,7 +237,7 @@ extension PhoneController {
             let controller = segue.destinationViewController as! OutgoingCallController
             
             if let phone = targetPhone, index = selectContactIndex {
-                let contact = self.contacts[index]
+                let contact = (searchController.active) ? searchContacts[index] : contacts[index]
 
                 controller.phoneNumber = phone
                 controller.calleeName = contact.name

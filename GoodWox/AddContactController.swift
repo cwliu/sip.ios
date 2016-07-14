@@ -23,7 +23,6 @@ extension UIView
     }
 }
 
-
 class AddContactController: UIViewController {
     
     @IBOutlet var nameTextfield: UITextField!
@@ -74,7 +73,6 @@ class AddContactController: UIViewController {
                 }
             }
         }
-        
     }
     
     func saveClick(sender: UIButton){
@@ -115,7 +113,8 @@ class AddContactController: UIViewController {
         // Save contact to backend
         saveContactToBackend(name!, phoneList: phoneList)
         
-         getBizSocialRecommendation(phoneList)
+        // Get biz social recommendation 
+        getBizSocialRecommendation(phoneList)
         
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -217,8 +216,6 @@ class AddContactController: UIViewController {
                 
                 switch response.result {
                 case .Success:
-                    NSLog("response.request: \(response.request)")  // original URL request
-                    NSLog("esponse.response: \(response.response)") // URL response
                     NSLog("Validation Successful")
                     
                 case .Failure(let error):
