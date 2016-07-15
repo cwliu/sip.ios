@@ -76,10 +76,8 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
         
         if (contact.isFavorite == true) {
             cell.favoriteImage.image = UIImage(named: "star_red_16dp")
-            cell.nameLabel.textColor = UIColor(hex: "#E0454B")
         }else{
             cell.favoriteImage.image = UIImage(named: "star_gray_16dp")
-            cell.nameLabel.textColor = UIColor(hex: "#2B2725")
         }
         
         
