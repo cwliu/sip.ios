@@ -131,7 +131,7 @@
 		A9B72B411D221BC200FDA9EE /* privacy_url.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B2C1D221BC200FDA9EE /* privacy_url.txt */; };
 		A9B72B421D221BC200FDA9EE /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B2D1D221BC200FDA9EE /* release_notes.txt */; };
 		A9B72B431D221BC200FDA9EE /* support_url.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B2E1D221BC200FDA9EE /* support_url.txt */; };
-		A9B72B441D221BC200FDA9EE /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A9B72B2F1D221BC200FDA9EE /* README.md */; };
+		A9B72B441D221BC200FDA9EE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B2F1D221BC200FDA9EE /* README.md */; };
 		A9B72B451D221BC200FDA9EE /* report.xml in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B301D221BC200FDA9EE /* report.xml */; };
 		A9B72B461D221BC200FDA9EE /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B72B321D221BC200FDA9EE /* README.txt */; };
 		A9B72B4A1D22961A00FDA9EE /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B72B491D22961A00FDA9EE /* RecordController.swift */; };
@@ -735,6 +735,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9B72B441D221BC200FDA9EE /* README.md in Resources */,
 				A96B65261D16E1CE00BF2436 /* hello16000.wav in Resources */,
 				A9B72B3F1D221BC200FDA9EE /* marketing_url.txt in Resources */,
 				A9B72B3D1D221BC200FDA9EE /* description.txt in Resources */,
@@ -856,7 +857,6 @@
 				A9AAE48C1D0273C20034B564 /* AppDelegate.swift in Sources */,
 				A976DB391D350C5500D8BE3F /* RecommendContact.swift in Sources */,
 				A986216A1D15495E00BA767D /* ContactDbHelper.swift in Sources */,
-				A9B72B441D221BC200FDA9EE /* README.md in Sources */,
 				A9CD72BC1D1A4CF200F3C44D /* BearerHeaderNetworkFetcher.swift in Sources */,
 				A9842C041D0FE7FE0062A35B /* SipClient.swift in Sources */,
 				A9D4699A1D1ECE49007C5B2B /* FavoriteController.swift in Sources */,
@@ -977,7 +977,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F93D50A30AF320F2BB755C5A /* Pods-GoodWox.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -985,6 +985,10 @@
 				DYLIB_CURRENT_VERSION = 1024;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/liblinphone-sdk/apple-darwin/include",
+					"$(SRCROOT)/Pods/MSGraphSDK",
+				);
 				INFOPLIST_FILE = GoodWox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1017,12 +1021,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 111C376739DFF46C34F969C9 /* Pods-GoodWox.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1024;
 				ENABLE_BITCODE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/liblinphone-sdk/apple-darwin/include",
+					"$(SRCROOT)/Pods/MSGraphSDK",
+				);
 				INFOPLIST_FILE = GoodWox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
