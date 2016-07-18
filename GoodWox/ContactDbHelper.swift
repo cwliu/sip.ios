@@ -187,6 +187,7 @@ class ContactDbHelper {
                 managedObjectContext.deleteObject(contact)
             }
         }
+        save()
     }
     
     static func updateContact(contact: Contact){

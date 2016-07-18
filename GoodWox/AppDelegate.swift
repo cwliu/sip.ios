@@ -65,6 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         linphone_core_terminate_all_calls(theLinphone.lc!);
         theLinphone.manager!.unregister()
+
+        ContactDbHelper.save()
     }
     
     // MARK: - Core Data
