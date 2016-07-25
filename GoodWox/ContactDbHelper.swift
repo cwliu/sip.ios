@@ -168,6 +168,10 @@ class ContactDbHelper {
         }
     }
     
+    static func normalizePhone(phone: String) -> String{
+        return phone
+    }
+    
     static func addContect(name: String, phoneList: [String], type: ContactType) -> Void {
         
         if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
@@ -180,7 +184,11 @@ class ContactDbHelper {
                     contact.type = type.hashValue
                 }
                 
-                contact.phones = phoneList
+                var normalizedPhoneList = [String]()
+                for phone in phoneList{
+                    normalizedPhoneList.append(normalizePhone(phone))
+                }
+                contact.phones = normalizedPhoneList
 
             } catch let error{
                 NSLog("NSError ocurred: \(error)")

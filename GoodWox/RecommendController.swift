@@ -1,4 +1,5 @@
 import Foundation
+import Alamofire
 
 class RecommendController: UITableViewController {
     
@@ -59,6 +60,8 @@ class RecommendController: UITableViewController {
         let singleTap = UITapGestureRecognizer(target: self, action:#selector(RecommendController.addClick))
         singleTap.numberOfTapsRequired = 1
         cell.addButton.addGestureRecognizer(singleTap)
+        cell.addButton.layer.borderWidth = 0.8
+        cell.addButton.layer.borderColor = UIColor(colorLiteralRed: 125/255, green: 207/255, blue: 225/255, alpha: 1).CGColor
         cell.addButton.tag = indexPath.row
         
         return cell
@@ -78,9 +81,47 @@ class RecommendController: UITableViewController {
             
             let button = sender.view as! UIButton
             button.setTitle("已加入", forState: UIControlState.Normal)
+            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            button.backgroundColor = UIColor(colorLiteralRed: 125/255, green: 207/255, blue: 225/255, alpha: 1)
             button.enabled = false
             
+            saveContactToBackend(contact.name, phoneList: contact.phoneList)
             ContactDbHelper.addContect(contact.name, phoneList: contact.phoneList, type: ContactType.MANUAL)
+        }
+    }
+    
+    func saveContactToBackend(name: String, phoneList: [String]){
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: SipServerBackend.contactURL)!)
+        request.HTTPMethod = "POST"
+        
+        do {
+            let phoneListJson = try NSJSONSerialization.dataWithJSONObject(phoneList, options: NSJSONWritingOptions.PrettyPrinted)
+            
+            let parameters: [String: String] = [
+                "email": UserData.getGraphAccount()!,
+                "backend_access_token": UserData.getBackendAccessToken()!,
+                "contact_name": name,
+                "contact_phone_list": NSString(data: phoneListJson, encoding: NSUTF8StringEncoding)! as String
+            ]
+            
+            Alamofire.request(.POST, request, parameters: parameters).responseJSON { response in
+                
+                
+                switch response.result {
+                case .Success:
+                    NSLog("Validation Successful")
+                    
+                case .Failure(let error):
+                    // Logout
+                    NSLog("\(error), \(String(data: response.data!, encoding: NSUTF8StringEncoding))")
+                    UserData.clear()
+                    return
+                }
+            }
+        }catch let error as NSError{
+            NSLog(error.description)
+            return
         }
     }
 }

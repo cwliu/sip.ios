@@ -32,6 +32,17 @@ class PhoneController: UITableViewController, NSFetchedResultsControllerDelegate
         self.definesPresentationContext = true
     }
     
+    override func viewWillAppear(animated: Bool) {
+        reloadTable()
+    }
+    
+    func reloadTable(){
+        contacts = ContactDbHelper.getContactsByType(ContactType.MANUAL)
+        contacts.appendContentsOf(ContactDbHelper.getContactsByType(ContactType.PHONE))
+        self.tableView.reloadData()
+    }
+
+    
     func loadManualContact(){
         
         let manualContacts = ContactDbHelper.getContactsByType(ContactType.MANUAL)
@@ -313,11 +324,5 @@ extension PhoneController {
                 self.tableView.reloadData()
             })
         })
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        contacts = ContactDbHelper.getContactsByType(ContactType.MANUAL)
-        contacts.appendContentsOf(ContactDbHelper.getContactsByType(ContactType.PHONE))
-        self.tableView.reloadData()
     }
 }

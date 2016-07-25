@@ -14,5 +14,11 @@ class TabController: UITabBarController{
                 self.selectedIndex = 3 // Set default tab to being company tab
             }
         }
+        
+        let uiNavigationController = self.viewControllers![2] as! UINavigationController;
+        
+        if let controller = uiNavigationController.viewControllers[0] as? PhoneController {
+            controller.reloadTable()
+        }
     }
 }
