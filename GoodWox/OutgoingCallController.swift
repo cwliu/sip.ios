@@ -115,6 +115,14 @@ func close(){
     OutgoingCallData.controller?.dismissViewControllerAnimated(true, completion: nil)
 }
 
+func normalizePhone(phone: String) -> String{
+    var resultPhone = phone.stringByReplacingOccurrencesOfString("(02)", withString:"02")
+    resultPhone = resultPhone.stringByReplacingOccurrencesOfString("+886", withString: "0")
+    resultPhone = resultPhone.stringByReplacingOccurrencesOfString("(886)", withString: "0")
+    resultPhone = resultPhone.stringByReplacingOccurrencesOfString("886", withString: "0")
+    return resultPhone
+}
+
 func makeCall(){
     switch OutgoingCallData.phoneType! {
         
@@ -134,7 +142,7 @@ func makeCall(){
     
     if let phone = OutgoingCallData.phoneNumber {
         if let lc = theLinphone.lc {
-            linphone_core_invite(lc, phone)
+            linphone_core_invite(lc, normalizePhone(phone))
         }
         
         if OutgoingCallData.phoneType == CallPhoneType.SIP {
