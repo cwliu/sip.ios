@@ -47,39 +47,39 @@ var outgoingCallStateChanged: LinphoneCoreCallStateChangedCb = {
         let message = String.fromCString(message)
         NSLog(message!)
         
-        if message == "Busy Here"{
-            OutgoingCallData.retry = false
-            OutgoingCallData.phoneType = CallPhoneType.NONSIP
-            let alertController = UIAlertController(title: "", message: "使用者無法接聽", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "關閉", style: UIAlertActionStyle.Default, handler: {
-                (action: UIAlertAction!) in
-                close()
-            }))
-            OutgoingCallData.controller?.presentViewController(alertController, animated: true, completion: nil)
-            
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { () -> Void in
-                    alertController.dismissViewControllerAnimated(true, completion: nil)
-                    close()
-                })
-            }
-        }else{
+//        if message == "Busy Here"{
+//            OutgoingCallData.retry = false
+//            OutgoingCallData.phoneType = CallPhoneType.NONSIP
+//            let alertController = UIAlertController(title: "", message: "使用者無法接聽", preferredStyle: UIAlertControllerStyle.Alert)
+//            alertController.addAction(UIAlertAction(title: "關閉", style: UIAlertActionStyle.Default, handler: {
+//                (action: UIAlertAction!) in
+//                close()
+//            }))
+//            OutgoingCallData.controller?.presentViewController(alertController, animated: true, completion: nil)
+//            
+//            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+//                
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { () -> Void in
+//                    alertController.dismissViewControllerAnimated(true, completion: nil)
+//                    close()
+//                })
+//            }
+//        }else{
         
-            OutgoingCallData.callType = CallLogType.OUTGOING_CALL_NO_ANSWER
-
-            if OutgoingCallData.phoneType == CallPhoneType.SIP && OutgoingCallData.callee?.phones.count != 0{
-                OutgoingCallData.retry = true
-                OutgoingCallData.phoneType = CallPhoneType.NONSIP
-                OutgoingCallData.phoneNumber = OutgoingCallData.callee?.phones[0]
-                makeCall()
-                return
-            }
-            // If call type is SIP and phone number is available
-            if OutgoingCallData.retry == false {
-                close()
-            }
+        OutgoingCallData.callType = CallLogType.OUTGOING_CALL_NO_ANSWER
+        
+        if OutgoingCallData.phoneType == CallPhoneType.SIP && OutgoingCallData.callee?.phones.count != 0{
+            OutgoingCallData.retry = true
+            OutgoingCallData.phoneType = CallPhoneType.NONSIP
+            OutgoingCallData.phoneNumber = OutgoingCallData.callee?.phones[0]
+            makeCall()
+            return
         }
+        // If call type is SIP and phone number is available
+        if OutgoingCallData.retry == false {
+            close()
+        }
+//        }
 
         
     case LinphoneCallEnd:
