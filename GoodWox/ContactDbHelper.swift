@@ -189,13 +189,13 @@ class ContactDbHelper {
                     normalizedPhoneList.append(normalizePhone(phone))
                 }
                 contact.phones = normalizedPhoneList
-
+                
+                save()
             } catch let error{
                 NSLog("NSError ocurred: \(error)")
                 managedObjectContext.deleteObject(contact)
             }
         }
-        save()
     }
     
     static func updateContact(contact: Contact){

@@ -44,6 +44,13 @@ var callStateChanged: LinphoneCoreCallStateChangedCb = {
     case LinphoneCallIncomingReceived: /**<This is a new incoming call */
         NSLog("callStateChanged: LinphoneCallIncomingReceived")
         
+        
+//        let currentCall = linphone_core_get_current_call(theLinphone.lc!)
+//        if currentCall != nil{
+//            linphone_core_decline_call(theLinphone.lc!, call, LinphoneReasonDeclined)
+//            return
+//        }
+        
         if var controller = UIApplication.sharedApplication().keyWindow?.rootViewController{
             while let presentedViewController = controller.presentedViewController {
                 controller = presentedViewController
@@ -186,15 +193,18 @@ class LinphoneManager {
         }
         
         let proxy_cfg = linphone_core_get_default_proxy_config(theLinphone.lc!); /* get default proxy config*/
-        linphone_proxy_config_edit(proxy_cfg); /*start editing proxy configuration*/
-        linphone_proxy_config_enable_register(proxy_cfg, 0); /*de-activate registration for this proxy config*/
-        linphone_proxy_config_done(proxy_cfg); /*initiate REGISTER with expire = 0*/
         
-        while(linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationCleared && linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationFailed
-            && linphone_proxy_config_get_state(proxy_cfg) != LinphoneRegistrationNone){
-                linphone_core_iterate(theLinphone.lc!); /*to make sure we receive call backs before shutting down*/
-                ms_usleep(50000);
+        if linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationFailed {
+            linphone_proxy_config_edit(proxy_cfg); /*start editing proxy configuration*/
+            linphone_proxy_config_enable_register(proxy_cfg, 0); /*de-activate registration for this proxy config*/
+            linphone_proxy_config_done(proxy_cfg); /*initiate REGISTER with expire = 0*/
+            
+            while(linphone_proxy_config_get_state(proxy_cfg) !=  LinphoneRegistrationCleared){
+                    linphone_core_iterate(theLinphone.lc!); /*to make sure we receive call backs before shutting down*/
+                    ms_usleep(50000);
+            }
         }
+        
         
         linphone_core_remove_listener(theLinphone.lc!, &theLinphone.lct!)
         linphone_core_destroy(theLinphone.lc!);
