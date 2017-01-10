@@ -2,8 +2,8 @@ import Foundation
 
 
 enum SipRegistrationStatus {
-    case UNKNOWN
-    case OK
-    case FAIL
+    case unknown
+    case ok
+    case fail
 }
 

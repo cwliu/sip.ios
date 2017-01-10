@@ -8,14 +8,14 @@ class ContactDbHelper {
     static func getAll() -> [Contact]{
         var contacts: [Contact] = []
         
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
-            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY)
             
             let sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
             fetchRequest.sortDescriptors = sortDescriptors
 
             do {
-                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+                contacts = try managedObjectContext.fetch(fetchRequest) as! [Contact]
             } catch let error{
                 NSLog("\(error)")
             }
@@ -25,35 +25,35 @@ class ContactDbHelper {
     
     static func deleteAll(){
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: ENTITY)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY)
         fetchRequest.returnsObjectsAsFaults = false
         
         do{
-            let results = try managedContext.executeFetchRequest(fetchRequest)
+            let results = try managedContext.fetch(fetchRequest)
             for managedObject in results
             {
                 let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
-                managedContext.deleteObject(managedObjectData)
+                managedContext.delete(managedObjectData)
             }
         } catch let error as NSError {
             print("Detele all data in \(ENTITY) error : \(error) \(error.userInfo)")
         }
     }
     
-    static func getContactsByType(type: ContactType) -> [Contact] {
+    static func getContactsByType(_ type: ContactType) -> [Contact] {
         var contacts: [Contact] = []
         
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
-            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY)
             fetchRequest.predicate = NSPredicate(format: "type == %d", type.hashValue)
             
             let sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
             fetchRequest.sortDescriptors = sortDescriptors
             
             do {
-                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+                contacts = try managedObjectContext.fetch(fetchRequest) as! [Contact]
             } catch let error{
                 NSLog("\(error)")
             }
@@ -61,13 +61,13 @@ class ContactDbHelper {
         return contacts
     }
     
-    static func getContact(email: String) -> Contact? {
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
-            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+    static func getContact(_ email: String) -> Contact? {
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY)
             fetchRequest.predicate = NSPredicate(format: "email == %@", email)
             
             do {
-                let contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+                let contacts = try managedObjectContext.fetch(fetchRequest) as! [Contact]
                 if contacts.count > 0 {
                     return contacts[0]
                 }
@@ -78,10 +78,10 @@ class ContactDbHelper {
         return nil
     }
     
-    static func getContactById(id: NSManagedObjectID) -> Contact? {
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {            
+    static func getContactById(_ id: NSManagedObjectID) -> Contact? {
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext {            
             do {
-                let contact = try managedObjectContext.existingObjectWithID(id) as? Contact
+                let contact = try managedObjectContext.existingObject(with: id) as? Contact
                 return contact
                     
             } catch let error{
@@ -91,13 +91,13 @@ class ContactDbHelper {
         return nil
     }
     
-    static func getContactBySip(sip: String) -> Contact?{
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
-            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+    static func getContactBySip(_ sip: String) -> Contact?{
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY)
             fetchRequest.predicate = NSPredicate(format: "sip == %@", sip)
             
             do {
-                let contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+                let contacts = try managedObjectContext.fetch(fetchRequest) as! [Contact]
                 if contacts.count > 0 {
                     return contacts[0]
                 }
@@ -111,15 +111,15 @@ class ContactDbHelper {
     static func getFavoriteContact() -> [Contact] {
         var contacts: [Contact] = []
         
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
-            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY)
             fetchRequest.predicate = NSPredicate(format: "isFavorite == 1")
             
             let sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
             fetchRequest.sortDescriptors = sortDescriptors
             
             do {
-                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+                contacts = try managedObjectContext.fetch(fetchRequest) as! [Contact]
             } catch let error{
                 NSLog("\(error)")
             }
@@ -131,15 +131,15 @@ class ContactDbHelper {
     static func getMostContacted() -> [Contact] {
         var contacts: [Contact] = []
         
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
-            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY)
             fetchRequest.predicate = NSPredicate(format: "usageCount > 0")
             
             let sortDescriptors = [NSSortDescriptor(key: "usageCount", ascending: false)]
             fetchRequest.sortDescriptors = sortDescriptors
             
             do {
-                contacts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Contact]
+                contacts = try managedObjectContext.fetch(fetchRequest) as! [Contact]
             } catch let error{
                 NSLog("\(error)")
             }
@@ -148,40 +148,40 @@ class ContactDbHelper {
         return contacts
     }
     
-    static func addContect(name: String, email: String, type: ContactType){
+    static func addContect(_ name: String, email: String, type: ContactType){
         
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext{
             
-            let contact = NSEntityDescription.insertNewObjectForEntityForName("Contact", inManagedObjectContext: managedObjectContext) as! Contact
+            let contact = NSEntityDescription.insertNewObject(forEntityName: "Contact", into: managedObjectContext) as! Contact
             do {
-                try Exception.catchException {
+                try Exception.catch {
                     
                     contact.name = name
                     contact.email = email
-                    contact.type = type.hashValue
+                    contact.type = type.hashValue as NSNumber?
                 }
                 
             } catch let error{
                 NSLog("NSError ocurred: \(error)")
-                managedObjectContext.deleteObject(contact)
+                managedObjectContext.delete(contact)
             }
         }
     }
     
-    static func normalizePhone(phone: String) -> String{
+    static func normalizePhone(_ phone: String) -> String{
         return phone
     }
     
-    static func addContect(name: String, phoneList: [String], type: ContactType) -> Void {
+    static func addContect(_ name: String, phoneList: [String], type: ContactType) -> Void {
         
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext{
             
-            let contact = NSEntityDescription.insertNewObjectForEntityForName("Contact", inManagedObjectContext: managedObjectContext) as! Contact
+            let contact = NSEntityDescription.insertNewObject(forEntityName: "Contact", into: managedObjectContext) as! Contact
             do {
-                try Exception.catchException {
+                try Exception.catch {
                     
                     contact.name = name
-                    contact.type = type.hashValue
+                    contact.type = type.hashValue as NSNumber?
                 }
                 
                 var normalizedPhoneList = [String]()
@@ -193,12 +193,12 @@ class ContactDbHelper {
                 save()
             } catch let error{
                 NSLog("NSError ocurred: \(error)")
-                managedObjectContext.deleteObject(contact)
+                managedObjectContext.delete(contact)
             }
         }
     }
     
-    static func updateContact(contact: Contact){
+    static func updateContact(_ contact: Contact){
         
         do {
             try contact.managedObjectContext?.save()
@@ -209,7 +209,7 @@ class ContactDbHelper {
     }
     
     static func save(){
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext {
             do {
                 try managedObjectContext.save()
             } catch {

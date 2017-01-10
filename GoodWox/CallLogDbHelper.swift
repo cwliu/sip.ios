@@ -2,31 +2,31 @@ import Foundation
 import CoreData
 
 enum CallLogType {
-    case OUTGOING_CALL_ANSWERED
-    case OUTGOING_CALL_NO_ANSWER
-    case INCOMING_CALL_ANSWERED
-    case INCOMING_CALL_NO_ANSWER
+    case outgoing_CALL_ANSWERED
+    case outgoing_CALL_NO_ANSWER
+    case incoming_CALL_ANSWERED
+    case incoming_CALL_NO_ANSWER
 }
 
 class CallLogDbHelper {
     static var ENTITY = "CallLog"
     
-    static func addCallLog(contact: Contact, callTime: NSDate, callDuration: Int, callType: CallLogType){
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext{
+    static func addCallLog(_ contact: Contact, callTime: Date, callDuration: Int, callType: CallLogType){
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext{
             
-            let callLog = NSEntityDescription.insertNewObjectForEntityForName(ENTITY, inManagedObjectContext: managedObjectContext) as! CallLog
+            let callLog = NSEntityDescription.insertNewObject(forEntityName: ENTITY, into: managedObjectContext) as! CallLog
             
             do {
                 callLog.callTime = callTime
-                callLog.callDuration = callDuration
-                callLog.type = callType.hashValue
+                callLog.callDuration = callDuration as NSNumber?
+                callLog.type = callType.hashValue as NSNumber?
                 callLog.contact = contact
                 
                 try managedObjectContext.save()
                 
             } catch let error{
                 NSLog("NSError ocurred: \(error)")
-                managedObjectContext.deleteObject(contact)
+                managedObjectContext.delete(contact)
             }
         }
     }
@@ -34,14 +34,14 @@ class CallLogDbHelper {
     static func getAll() -> [CallLog]{
         var logs: [CallLog] = []
         
-        if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
-            let fetchRequest = NSFetchRequest(entityName: ENTITY)
+        if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY)
             
             let sortDescriptors = [NSSortDescriptor(key: "callTime", ascending: false)]
             fetchRequest.sortDescriptors = sortDescriptors
             
             do {
-                logs = try managedObjectContext.executeFetchRequest(fetchRequest) as! [CallLog]
+                logs = try managedObjectContext.fetch(fetchRequest) as! [CallLog]
             } catch let error{
                 NSLog("\(error)")
             }

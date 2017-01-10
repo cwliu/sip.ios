@@ -21,10 +21,10 @@ class InitController: UIViewController{
     
     lazy var graphClient: MSGraphClient = {
         let client = MSGraphClient.defaultClient()
-        return client
+        return client!
     }()
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
         
@@ -33,12 +33,12 @@ class InitController: UIViewController{
         initData()
     }
     
-    private func initData(){
+    fileprivate func initData(){
         self.graphClient.me().request().getWithCompletion {
             (user: MSGraphUser?, error: NSError?) in
             if let graphError = error {
                 print("Error:", graphError)
-                dispatch_async(dispatch_get_main_queue(),{
+                DispatchQueue.main.async(execute: {
                     NSLog("Graph Error")
                 })
                 self.errorHandle()
@@ -60,7 +60,7 @@ class InitController: UIViewController{
     func downloadCompanyContact(){
         
         // Already downloaded
-        if ContactDbHelper.getContactsByType(.COMPANY).count != 0{
+        if ContactDbHelper.getContactsByType(.company).count != 0{
             SipApiClient().initSip(self.finish)
             return
         }
@@ -81,7 +81,7 @@ class InitController: UIViewController{
                     
                     if let mail = user.optMail {
                         if mail != UserData.getGraphAccount()!{
-                            ContactDbHelper.addContect(user.displayName, email: mail, type: ContactType.COMPANY)
+                            ContactDbHelper.addContect(user.displayName, email: mail, type: ContactType.company)
                         }
                     }
                 }
@@ -92,25 +92,25 @@ class InitController: UIViewController{
         }
     }
     
-    func finish(success: Bool){
+    func finish(_ success: Bool){
         loadingUI(show: false)
         
         if success {
-            self.performSegueWithIdentifier("main", sender: nil)
+            self.performSegue(withIdentifier: "main", sender: nil)
         }else{
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
     func errorHandle(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
-        self.presentViewController(vc, animated: true, completion: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+        self.present(vc, animated: true, completion: nil)
     }
 }
 
 private extension InitController {
-    func loadingUI(show show: Bool) {
+    func loadingUI(show: Bool) {
         if show {
             self.activityIndicator.startAnimating()
         }

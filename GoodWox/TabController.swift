@@ -4,7 +4,7 @@ import UIKit
 class TabController: UITabBarController{
 
     var freshLaunch = true
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if freshLaunch == true {
             freshLaunch = false
             

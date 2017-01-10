@@ -3,7 +3,7 @@ import Alamofire
 
 class SipApiClient {
     
-    func initSip(completionHandler: (Bool)-> Void){
+    func initSip(_ completionHandler: @escaping (Bool)-> Void){
         
         if UserData.getSipAccount() != nil {
             self.startLinphone()
@@ -13,7 +13,7 @@ class SipApiClient {
         }
     }
     
-    func login(completionHandler: ((Bool)-> Void)){
+    func login(_ completionHandler: @escaping ((Bool)-> Void)){
         
         let authentication: Authentication = Authentication()
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
@@ -22,15 +22,15 @@ class SipApiClient {
             return
         }
         
-        let request = NSMutableURLRequest(URL: NSURL(string: SipServerBackend.sipURL)!)
-        request.HTTPMethod = "POST"
+        let request = NSMutableURLRequest(url: URL(string: SipServerBackend.sipURL)!)
+        request.httpMethod = "POST"
         
         authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
             
-            let token = request.valueForHTTPHeaderField("Authorization")!.stringByReplacingOccurrencesOfString("Bearer ", withString: "")
+            let token = request?.value(forHTTPHeaderField: "Authorization")!.replacingOccurrences(of: "Bearer ", with: "")
             
             let body = "email=\(email)&access_token=\(token)"
-            request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
+            request?.httpBody = body.data(using: String.Encoding.utf8)
             
             Alamofire.request(request).responseJSON { response in
                 
@@ -38,11 +38,11 @@ class SipApiClient {
                 NSLog("esponse.response: \(response.response)") // URL response
                 
                 switch response.result {
-                case .Success:
+                case .success:
                     NSLog("Validation Successful")
-                case .Failure(let error):
+                case .failure(let error):
                     // Logout
-                    NSLog("\(error), \(String(data: response.data!, encoding: NSUTF8StringEncoding))")
+                    NSLog("\(error), \(String(data: response.data!, encoding: String.Encoding.utf8))")
                     UserData.clear()
                     completionHandler(false)
                     return
@@ -84,7 +84,7 @@ class SipApiClient {
     }
     
     func startLinphone(){
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             let lm = LinphoneManager()
             lm.startLinphone()
         })

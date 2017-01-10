@@ -7,8 +7,8 @@ extension UITextField {
         
         let border = CALayer()
         let borderWidth = CGFloat(1.0)
-        border.borderColor = UIColor(colorLiteralRed: 201/255, green: 196/255, blue: 194/255, alpha: 1).CGColor
-        border.frame = CGRectMake(0, self.frame.size.height - borderWidth, self.frame.size.width, self.frame.size.height)
+        border.borderColor = UIColor(colorLiteralRed: 201/255, green: 196/255, blue: 194/255, alpha: 1).cgColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - borderWidth, width: self.frame.size.width, height: self.frame.size.height)
         border.borderWidth = borderWidth
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
@@ -19,7 +19,7 @@ extension UIView
 {
     func copyView() -> AnyObject
     {
-        return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self))!
+        return NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: self))! as AnyObject
     }
 }
 
@@ -44,15 +44,15 @@ class AddContactController: UIViewController {
     var jsonObject: [String: AnyObject] = [:]
     
     override func viewDidLoad() {
-        let rightSaveBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "完成", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddContactController.saveClick))
+        let rightSaveBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "完成", style: UIBarButtonItemStyle.plain, target: self, action: #selector(AddContactController.saveClick))
         
-        let leftCancelBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddContactController.cancelClick))
+        let leftCancelBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.plain, target: self, action: #selector(AddContactController.cancelClick))
         
         leftCancelBarButtonItem.width = -16
         rightSaveBarButtonItem.width = -16
         
-        self.navigationItem.setRightBarButtonItem(rightSaveBarButtonItem, animated: true)
-        self.navigationItem.setLeftBarButtonItem(leftCancelBarButtonItem, animated: true)
+        self.navigationItem.setRightBarButton(rightSaveBarButtonItem, animated: true)
+        self.navigationItem.setLeftBarButton(leftCancelBarButtonItem, animated: true)
         self.navigationItem.hidesBackButton = true
         self.title = "新增連絡人"
         
@@ -75,40 +75,40 @@ class AddContactController: UIViewController {
         }
     }
     
-    func saveClick(sender: UIButton){
+    func saveClick(_ sender: UIButton){
         NSLog("Save click")
         
         let name = nameTextfield?.text
         if name == "" {
-            let alert = UIAlertController(title: nil, message: "姓名不得為空", preferredStyle: .Alert)
-            self.presentViewController(alert, animated: true, completion: nil)
-            let cancelAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let alert = UIAlertController(title: nil, message: "姓名不得為空", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(cancelAction)
             return
         }
         
         var phoneList = [String]()
         
-        if let phone = phoneTextField.text where phone != ""{
+        if let phone = phoneTextField.text, phone != ""{
             phoneList.append(phone)
         }
         
         for phoneField in phoneFieldList{
-            if let phoneText = phoneField.text where phoneText != ""{
+            if let phoneText = phoneField.text, phoneText != ""{
                 phoneList.append(phoneText)
             }
         }
         
         if phoneList.count == 0 {
-            let alert = UIAlertController(title: nil, message: "電話至少輸入一筆", preferredStyle: .Alert)
-            self.presentViewController(alert, animated: true, completion: nil)
-            let cancelAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let alert = UIAlertController(title: nil, message: "電話至少輸入一筆", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(cancelAction)
             return
         }
         
         // Save contact
-        ContactDbHelper.addContect(name!, phoneList: phoneList, type: ContactType.MANUAL)
+        ContactDbHelper.addContect(name!, phoneList: phoneList, type: ContactType.manual)
         
         // Save contact to backend
         saveContactToBackend(name!, phoneList: phoneList)
@@ -116,26 +116,26 @@ class AddContactController: UIViewController {
         // Get biz social recommendation 
         getBizSocialRecommendation(phoneList)
         
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
-    func cancelClick(sender: UIButton){
+    func cancelClick(_ sender: UIButton){
         NSLog("Cancel click")
         
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func addNewPhoneField(){
         addPhone(nil)
     }
     
-    func addPhone(phoneNumber: String?){
+    func addPhone(_ phoneNumber: String?){
         // Add phone delte button
         let deletePhoneFieldButton = UIButton()
-        deletePhoneFieldButton.frame = CGRectMake( 16, CGFloat(currentPhoneFieldPosition + 10 + PHONE_FIELD_HEIGHT * Int(phoneFieldList.count)), 20, 20)
+        deletePhoneFieldButton.frame = CGRect( x: 16, y: CGFloat(currentPhoneFieldPosition + 10 + PHONE_FIELD_HEIGHT * Int(phoneFieldList.count)), width: 20, height: 20)
         deletePhoneFieldButton.tag = phoneFieldList.count
-        deletePhoneFieldButton.setImage(UIImage(named: "minus_red_20dp"), forState: UIControlState.Normal)
-        deletePhoneFieldButton.addTarget(self, action: #selector(AddContactController.deletePhoneField(_:)), forControlEvents: .TouchUpInside)
+        deletePhoneFieldButton.setImage(UIImage(named: "minus_red_20dp"), for: UIControlState())
+        deletePhoneFieldButton.addTarget(self, action: #selector(AddContactController.deletePhoneField(_:)), for: .touchUpInside)
         
         self.view.insertSubview(deletePhoneFieldButton, belowSubview: lastPhoneTextField)
         
@@ -143,13 +143,13 @@ class AddContactController: UIViewController {
         
         // Add a new UITextField
         let newPhoneTextField = UITextField(
-            frame: CGRectMake(44, CGFloat(currentPhoneFieldPosition + PHONE_FIELD_HEIGHT * Int(phoneFieldList.count)), 315, 38)
+            frame: CGRect(x: 44, y: CGFloat(currentPhoneFieldPosition + PHONE_FIELD_HEIGHT * Int(phoneFieldList.count)), width: 315, height: 38)
         )
         
-        newPhoneTextField.borderStyle = .RoundedRect
-        newPhoneTextField.borderStyle = UITextBorderStyle.None
+        newPhoneTextField.borderStyle = .roundedRect
+        newPhoneTextField.borderStyle = UITextBorderStyle.none
         newPhoneTextField.placeholder = "電話"
-        newPhoneTextField.keyboardType = .PhonePad
+        newPhoneTextField.keyboardType = .phonePad
         newPhoneTextField.useUnderline()
         newPhoneTextField.tag = phoneFieldList.count
         
@@ -163,25 +163,25 @@ class AddContactController: UIViewController {
         lastPhoneTextField = newPhoneTextField
         
         if(phoneFieldList.count > MAX_PHONE_FIELD){
-            addPhoneButton.hidden = true
+            addPhoneButton.isHidden = true
         }
     }
     
-    func deletePhoneField(button: UIButton){
+    func deletePhoneField(_ button: UIButton){
         let tag = button.tag
         let phoneField = phoneFieldList[tag]
         phoneField.removeFromSuperview()
         button.removeFromSuperview()
         
-        phoneFieldList.removeAtIndex(tag)
-        deletePhoneFieldList.removeAtIndex(tag)
+        phoneFieldList.remove(at: tag)
+        deletePhoneFieldList.remove(at: tag)
         
         for index in tag..<phoneFieldList.count{
             let phoneField = phoneFieldList[index]
-            phoneField.frame = CGRectOffset(phoneField.frame, 0, -46);
+            phoneField.frame = phoneField.frame.offsetBy(dx: 0, dy: -46);
             
             let deleteButton = deletePhoneFieldList[index]
-            deleteButton.frame = CGRectOffset(deleteButton.frame, 0, -46);
+            deleteButton.frame = deleteButton.frame.offsetBy(dx: 0, dy: -46);
             
         }
         
@@ -192,35 +192,35 @@ class AddContactController: UIViewController {
         }
         
         if(phoneFieldList.count <= MAX_PHONE_FIELD){
-            addPhoneButton.hidden = false
+            addPhoneButton.isHidden = false
         }
     }
     
-    func saveContactToBackend(name: String, phoneList: [String]){
+    func saveContactToBackend(_ name: String, phoneList: [String]){
         
-        let request = NSMutableURLRequest(URL: NSURL(string: SipServerBackend.contactURL)!)
-        request.HTTPMethod = "POST"
+        let request = NSMutableURLRequest(url: URL(string: SipServerBackend.contactURL)!)
+        request.httpMethod = "POST"
         
         do {
-            let phoneListJson = try NSJSONSerialization.dataWithJSONObject(phoneList, options: NSJSONWritingOptions.PrettyPrinted)
+            let phoneListJson = try JSONSerialization.data(withJSONObject: phoneList, options: JSONSerialization.WritingOptions.prettyPrinted)
             
             let parameters: [String: String] = [
                 "email": UserData.getGraphAccount()!,
                 "backend_access_token": UserData.getBackendAccessToken()!,
                 "contact_name": name,
-                "contact_phone_list": NSString(data: phoneListJson, encoding: NSUTF8StringEncoding)! as String
+                "contact_phone_list": NSString(data: phoneListJson, encoding: String.Encoding.utf8.rawValue)! as String
             ]
             
             Alamofire.request(.POST, request, parameters: parameters).responseJSON { response in
                 
                 
                 switch response.result {
-                case .Success:
+                case .success:
                     NSLog("Validation Successful")
                     
-                case .Failure(let error):
+                case .failure(let error):
                     // Logout
-                    NSLog("\(error), \(String(data: response.data!, encoding: NSUTF8StringEncoding))")
+                    NSLog("\(error), \(String(data: response.data!, encoding: String.Encoding.utf8))")
                     UserData.clear()
                     return
                 }
@@ -231,12 +231,12 @@ class AddContactController: UIViewController {
         }
     }
     
-    func getBizSocialRecommendation(phoneList: [String]){
+    func getBizSocialRecommendation(_ phoneList: [String]){
         if phoneList.count == 0 {
             return
         }
         
-        let phoneListString = phoneList.map{String($0)}.joinWithSeparator(",")
+        let phoneListString = phoneList.map{String($0)}.joined(separator: ",")
         
         let parameters: [String: String] = [
             "email": UserData.getGraphAccount()!,
@@ -244,13 +244,13 @@ class AddContactController: UIViewController {
             "phone_list": phoneListString,
             ]
         
-        let request = NSMutableURLRequest(URL: NSURL(string: SipServerBackend.bizSocalURL)!)
+        let request = NSMutableURLRequest(url: URL(string: SipServerBackend.bizSocalURL)!)
         
         Alamofire.request(.GET, request, parameters:  parameters).responseJSON { response in
             
             
             switch response.result {
-            case .Success:
+            case .success:
                 NSLog("Successful")
                 
                 if let j = response.result.value{
@@ -262,22 +262,22 @@ class AddContactController: UIViewController {
                     return
                 }
                 
-                if var controller = UIApplication.sharedApplication().keyWindow?.rootViewController {
+                if var controller = UIApplication.shared.keyWindow?.rootViewController {
                     while let presentedViewController = controller.presentedViewController {
                         controller = presentedViewController
                     }
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = storyboard.instantiateViewControllerWithIdentifier("recommend") as! UINavigationController
+                    let vc = storyboard.instantiateViewController(withIdentifier: "recommend") as! UINavigationController
                     
                     let rc = vc.topViewController as! RecommendController
                     rc.jsonObject = self.jsonObject
                     rc.contactName = self.nameTextfield.text!
                     
-                    controller.presentViewController(vc, animated: true, completion: nil)
+                    controller.present(vc, animated: true, completion: nil)
                 }
                 
-            case .Failure(let error):
+            case .failure(let error):
                 NSLog("Error: \(error)")
                 return
             }

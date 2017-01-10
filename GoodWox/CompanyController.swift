@@ -21,15 +21,15 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
         
         modifyTableStyle()
         
-        contacts = ContactDbHelper.getContactsByType(ContactType.COMPANY)
+        contacts = ContactDbHelper.getContactsByType(ContactType.company)
         
         let nib = UINib(nibName: "ContactCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "ContactCell")
+        tableView.register(nib, forCellReuseIdentifier: "ContactCell")
         
         self.definesPresentationContext = true
     }
     
-    func favoriteClick(sender: UITapGestureRecognizer) {
+    func favoriteClick(_ sender: UITapGestureRecognizer) {
         NSLog("Single Tap on favoriteClick")
         
         
@@ -49,25 +49,25 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
     }
     
     // MARK: Style
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.active {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive {
             return searchContacts.count
         }else{
             return contacts.count
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let contact = (searchController.active) ? searchContacts[indexPath.row] : contacts[indexPath.row]
+        let contact = (searchController.isActive) ? searchContacts[indexPath.row] : contacts[indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath)as! ContactCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath)as! ContactCell
         cell.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
         
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         
         
-        cell.favoriteImage.userInteractionEnabled = true
+        cell.favoriteImage.isUserInteractionEnabled = true
         let singleTap = UITapGestureRecognizer(target: self, action:#selector(CompanyController.favoriteClick))
         singleTap.numberOfTapsRequired = 1
         cell.favoriteImage.addGestureRecognizer(singleTap)
@@ -83,14 +83,14 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
         
         // Display contact
         
-        let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
-        let request = NSMutableURLRequest(URL: url!)
+        let url = URL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
+        let request = NSMutableURLRequest(url: url!)
         
         cell.avatarImage.image = UIImage(named: "avatar_gray_30dp")
         
         authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
             
-            let token = request.valueForHTTPHeaderField("Authorization")!
+            let token = request?.value(forHTTPHeaderField: "Authorization")!
             let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!, token: token)
             
             cell.avatarImage.hnk_setImageFromFetcher(fetcher)
@@ -104,20 +104,20 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
         return cell
     }
     
-    private func modifyTableStyle(){
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.barStyle = .Black
+    fileprivate func modifyTableStyle(){
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.barStyle = .black
         tableView.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
     }
     
     
     // MARK: Segue
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("makeCall", sender: nil)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "makeCall", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         NSLog("prepareForSegue: \(segue.identifier)")
         
         
@@ -125,12 +125,12 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
 
         if(segue.identifier == "makeCall"){
             
-            let controller = segue.destinationViewController as! OutgoingCallController
-            let contact = (searchController.active) ? searchContacts[indexPath!.row] : contacts[indexPath!.row]
+            let controller = segue.destination as! OutgoingCallController
+            let contact = (searchController.isActive) ? searchContacts[indexPath!.row] : contacts[indexPath!.row]
             if let sip = contact.sip{
                 controller.phoneNumber = sip
                 controller.calleeName = contact.name
-                controller.phoneType = .SIP
+                controller.phoneType = .sip
                 controller.calleeID = contact.objectID
                 
                 let contact = self.contacts[indexPath!.row]
@@ -138,15 +138,15 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
                 ContactDbHelper.updateContact(contact)
                 
             }else{
-                let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no SIP number", preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alertController, animated: true, completion: nil)
+                let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no SIP number", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        contacts = ContactDbHelper.getContactsByType(ContactType.COMPANY)
+    override func viewWillAppear(_ animated: Bool) {
+        contacts = ContactDbHelper.getContactsByType(ContactType.company)
         self.tableView.reloadData()
     }
     
@@ -160,15 +160,15 @@ class CompanyController: UITableViewController, UISearchResultsUpdating{
         tableView.tableHeaderView = searchController.searchBar
     }
     
-    func filterContacts(keyword: String){
+    func filterContacts(_ keyword: String){
         searchContacts = self.contacts.filter({
             (contact: Contact) -> Bool in
-            let nameMatch =  contact.name!.rangeOfString(keyword, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            let nameMatch =  contact.name!.range(of: keyword, options: NSString.CompareOptions.caseInsensitive)
             return nameMatch != nil
         })
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             if searchText == ""{
                 searchContacts = contacts

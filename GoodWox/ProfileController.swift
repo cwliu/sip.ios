@@ -13,7 +13,7 @@ class ProfileController: UIViewController{
     
     lazy var graphClient: MSGraphClient = {
         let client = MSGraphClient.defaultClient()
-        return client
+        return client!
     }()
     
     override func viewDidLoad(){
@@ -22,12 +22,12 @@ class ProfileController: UIViewController{
         
         self.nameLabel.text = UserData.getGraphName()
         
-        let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, UserData.getGraphAccount()!))
-        let request = NSMutableURLRequest(URL: url!)        
+        let url = URL(string: String(format: MicrosoftGraphApi.userPhotoURL, UserData.getGraphAccount()!))
+        let request = NSMutableURLRequest(url: url!)        
   
         authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
             
-            let token = request.valueForHTTPHeaderField("Authorization")!
+            let token = request?.value(forHTTPHeaderField: "Authorization")!
 
             let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!, token: token)
 
@@ -37,24 +37,24 @@ class ProfileController: UIViewController{
 
         })
         
-        self.navigationController?.navigationBar.barStyle = .Black
+        self.navigationController?.navigationBar.barStyle = .black
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         switch sipRegistrationStatus {
-        case .OK:
+        case .ok:
             NSLog("sipRegistrationStatus: OK")
             statusImage.image = UIImage(named: "check_circle_green_14dp")
             
-        case .FAIL:
+        case .fail:
             NSLog("sipRegistrationStatus: FAIL")
             statusImage.image = UIImage(named: "cross_circle_red_14dp")
             
-        case .UNKNOWN:
+        case .unknown:
             NSLog("sipRegistrationStatus: UNKNOWN")
             statusImage.image = UIImage(named: "sync_circle_blue_14dp")
             
@@ -64,12 +64,12 @@ class ProfileController: UIViewController{
 
 // MARK: Actions
 private extension ProfileController{
-    @IBAction func logout(sender: AnyObject){
+    @IBAction func logout(_ sender: AnyObject){
         
-        let logoutConfirmMenu = UIAlertController(title: nil, message: "確定要登出嗎？", preferredStyle:  .Alert)
+        let logoutConfirmMenu = UIAlertController(title: nil, message: "確定要登出嗎？", preferredStyle:  .alert)
         
-        let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
-        let okAction = UIAlertAction(title: "確認", style: .Default, handler: {
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "確認", style: .default, handler: {
             (action: UIAlertAction) -> Void in
             self.disconnect()
         })
@@ -77,23 +77,23 @@ private extension ProfileController{
         logoutConfirmMenu.addAction(cancelAction)
         logoutConfirmMenu.addAction(okAction)
         
-        self.presentViewController(logoutConfirmMenu, animated: true, completion: nil)
+        self.present(logoutConfirmMenu, animated: true, completion: nil)
     }
     
-    @IBAction func information(sender: AnyObject){
+    @IBAction func information(_ sender: AnyObject){
         
-        let versionNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
+        let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
         
         
         let versionAndBuildNumber: String = "\(versionNumber) (\(buildNumber))"
         
-        let infoDialog = UIAlertController(title: nil, message: "版本: \(versionAndBuildNumber)", preferredStyle:  .Alert)
-        let okAction = UIAlertAction(title: "關閉", style: .Default, handler: nil)
+        let infoDialog = UIAlertController(title: nil, message: "版本: \(versionAndBuildNumber)", preferredStyle:  .alert)
+        let okAction = UIAlertAction(title: "關閉", style: .default, handler: nil)
         
         infoDialog.addAction(okAction)
         
-        self.presentViewController(infoDialog, animated: true, completion: nil)
+        self.present(infoDialog, animated: true, completion: nil)
     }
 }
 
@@ -115,7 +115,7 @@ private extension ProfileController{
         theLinphone.manager!.unregister()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("LoginController") as! LoginController
-        self.presentViewController(vc, animated: true, completion: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+        self.present(vc, animated: true, completion: nil)
     }
 }

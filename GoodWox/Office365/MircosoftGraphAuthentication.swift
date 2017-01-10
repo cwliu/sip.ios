@@ -10,7 +10,7 @@ struct Authentication {
     var authenticationProvider: NXOAuth2AuthenticationProvider?
         {
         get {
-            return NXOAuth2AuthenticationProvider.sharedAuthProvider()
+            return NXOAuth2AuthenticationProvider.sharedAuth()
         }
     }
 }
@@ -24,23 +24,23 @@ extension Authentication {
      */
     func connectToGraph(withClientId clientId: String,
                                      scopes: [String],
-                                     completion:(error: MSGraphError?) -> Void) {
+                                     completion:@escaping (_ error: MSGraphError?) -> Void) {
         
         // Set client ID
         NXOAuth2AuthenticationProvider.setClientId(clientId, scopes: scopes)
         
         // Try silent log in. This will attempt to sign in if there is a previous successful
         // sign in user information.
-        if NXOAuth2AuthenticationProvider.sharedAuthProvider().loginSilent() == true {
-            completion(error: nil)
+        if NXOAuth2AuthenticationProvider.sharedAuth().loginSilent() == true {
+            completion(nil)
         }
             // Otherwise, present log in controller.
         else {
-            NXOAuth2AuthenticationProvider.sharedAuthProvider()
-                .loginWithViewController(nil) { (error: NSError?) in
+            NXOAuth2AuthenticationProvider.sharedAuth()
+                .login(with: nil) { (error: NSError?) in
                     
                     if let nserror = error {
-                        completion(error: MSGraphError.NSErrorType(error: nserror))
+                        completion(error: MSGraphError.nsErrorType(error: nserror))
                     }
                     else {
                         completion(error: nil)
@@ -50,12 +50,12 @@ extension Authentication {
     }
     
     func disconnect() {
-        NXOAuth2AuthenticationProvider.sharedAuthProvider().logout()
+        NXOAuth2AuthenticationProvider.sharedAuth().logout()
     }
     
     func getAccessToken() -> String {
         
-        return NXOAuth2AuthenticationProvider.sharedAuthProvider().tokenURL
+        return NXOAuth2AuthenticationProvider.sharedAuth().tokenURL
     }
 
 }

@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 enum ContactType {
-    case COMPANY
-    case PHONE
-    case MANUAL
-    case UNKNOWN
+    case company
+    case phone
+    case manual
+    case unknown
 }
 
 class Contact: NSManagedObject {

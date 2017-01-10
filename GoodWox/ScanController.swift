@@ -17,57 +17,57 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView = UIImageView()
         
         
-        let leftCancelBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ScanController.cancelClick))
+        let leftCancelBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ScanController.cancelClick))
         
-        self.navigationItem.setLeftBarButtonItem(leftCancelBarButtonItem, animated: true)
+        self.navigationItem.setLeftBarButton(leftCancelBarButtonItem, animated: true)
         self.navigationItem.hidesBackButton = true
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         takePicture()
     }
     
     func takePicture() {
         let imagePicker = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(.Camera){
-            imagePicker.sourceType = .Camera
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            imagePicker.sourceType = .camera
         }else{
-            imagePicker.sourceType = .PhotoLibrary
+            imagePicker.sourceType = .photoLibrary
         }
         imagePicker.delegate = self
         
         // Place image picker on the screen
         loadingUI(show: true)
-        presentViewController(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true, completion: nil)
     }
     
-    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+    func resizeImage(_ image: UIImage, newWidth: CGFloat) -> UIImage {
         
         let scale = newWidth / image.size.width
         let newHeight = image.size.height * scale
-        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
-        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         imageView.image = image
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
         
-        let path = NSBundle.mainBundle().pathForResource("Secret", ofType: "plist")
+        let path = Bundle.main.path(forResource: "Secret", ofType: "plist")
         let dict = NSDictionary(contentsOfFile: path!)
-        let bcrPass = dict?.objectForKey("bcrPass") as! String
-        let bcrUser = dict?.objectForKey("bcrUser") as! String
+        let bcrPass = dict?.object(forKey: "bcrPass") as! String
+        let bcrUser = dict?.object(forKey: "bcrUser") as! String
         
-        let url = NSURL(string: String(format: BcrServer.bcrServiceUrl, bcrUser, bcrPass))!
+        let url = URL(string: String(format: BcrServer.bcrServiceUrl, bcrUser, bcrPass))!
 
         let resizedImage = resizeImage(imageView.image!, newWidth: 1024)
         
@@ -79,8 +79,8 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }, encodingCompletion: { encodingResult in
                 
                 switch encodingResult {
-                case .Success(let upload, _, _):
-                    upload.responseString(queue: nil, encoding: NSUTF8StringEncoding) { response in
+                case .success(let upload, _, _):
+                    upload.responseString(queue: nil, encoding: String.Encoding.utf8) { response in
                         NSLog(response.debugDescription)
                     
                         if let statusCode = response.response?.statusCode {
@@ -91,8 +91,8 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
                             
                             do {
                                 let vcardString = response.result.value!
-                                let vcardNSData = vcardString.dataUsingEncoding(NSUTF8StringEncoding)!
-                                let contacts =  try CNContactVCardSerialization.contactsWithData(vcardNSData)
+                                let vcardNSData = vcardString.data(using: String.Encoding.utf8)!
+                                let contacts =  try CNContactVCardSerialization.contacts(with: vcardNSData)
                                 
                                 if contacts.count <= 0{
                                     self.retake()
@@ -101,15 +101,15 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
                                 
                                 let targetContact = contacts[0] as! CNContact
                                 
-                                self.contactName = CNContactFormatter.stringFromContact(targetContact, style: .FullName) ?? "No Name"
+                                self.contactName = CNContactFormatter.string(from: targetContact, style: .fullName) ?? "No Name"
                                 
                                 for phone in (contacts[0]).phoneNumbers{
-                                    self.phoneList.append((phone.value as! CNPhoneNumber).valueForKey("digits") as! String)
+                                    self.phoneList.append((phone.value as! CNPhoneNumber).value(forKey: "digits") as! String)
                                 }
                                 
                                 NSLog("Parsed contact name: \(self.contactName), \(self.phoneList.debugDescription)")
                                 
-                                self.performSegueWithIdentifier("addContact", sender: nil)
+                                self.performSegue(withIdentifier: "addContact", sender: nil)
                                 
                                 
                             } catch let error {
@@ -119,7 +119,7 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         
                     }
                     
-                case .Failure(let encodingError):
+                case .failure(let encodingError):
                     self.retake()
                     print(encodingError)
                 }
@@ -127,15 +127,15 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
         )
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController){
-        navigationController?.popViewControllerAnimated(true)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
+        navigationController?.popViewController(animated: true)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         NSLog("prepareForSegue: \(segue.identifier)")
         
         if(segue.identifier == "addContact"){
-            let controller = segue.destinationViewController as! AddContactController
+            let controller = segue.destination as! AddContactController
             controller.nameString = contactName
             for phone in phoneList{
                 controller.phoneList.append(phone)
@@ -143,23 +143,23 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    func cancelClick(sender: UIButton){
+    func cancelClick(_ sender: UIButton){
         NSLog("Cancel click")
         
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
     func retake(){
         
-        let alert = UIAlertController(title: nil, message: "辨識失敗", preferredStyle: .Alert)
-        let cancelAction = UIAlertAction(title: "OK", style: .Default, handler: {(alert: UIAlertAction!) in self.takePicture()})
+        let alert = UIAlertController(title: nil, message: "辨識失敗", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in self.takePicture()})
         alert.addAction(cancelAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
 private extension ScanController {
-    func loadingUI(show show: Bool) {
+    func loadingUI(show: Bool) {
         if show {
             self.activityIndicator.startAnimating()
         }

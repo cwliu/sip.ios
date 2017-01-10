@@ -8,16 +8,16 @@
 
 import Foundation
 
-func getNaturalDateString(date: NSDate?) -> String?{
+func getNaturalDateString(_ date: Date?) -> String?{
     
-    let formatter = NSDateComponentsFormatter()
-    formatter.unitsStyle = NSDateComponentsFormatterUnitsStyle.Full
+    let formatter = DateComponentsFormatter()
+    formatter.unitsStyle = DateComponentsFormatter.UnitsStyle.full
     formatter.includesTimeRemainingPhrase = false
-    formatter.allowedUnits = [.Year, .Month, .WeekOfMonth, .Day, .Hour, .Minute, .Second]
+    formatter.allowedUnits = [.year, .month, .weekOfMonth, .day, .hour, .minute, .second]
     formatter.maximumUnitCount = 1
     
     if let pastDate = date {
-        return formatter.stringFromDate(pastDate, toDate: NSDate())
+        return formatter.string(from: pastDate, to: Date())
     }else{
         return nil
     }

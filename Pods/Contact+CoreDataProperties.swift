@@ -18,7 +18,7 @@ extension Contact {
     @NSManaged var name: String?
     @NSManaged var email: String?
     @NSManaged var phones: [String]
-    @NSManaged var photo: NSData?
+    @NSManaged var photo: Data?
     @NSManaged var sip: String?
     @NSManaged var type: NSNumber?
     @NSManaged var isFavorite: NSNumber?

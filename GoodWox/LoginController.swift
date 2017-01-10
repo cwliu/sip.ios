@@ -13,19 +13,19 @@ class LoginController: UIViewController {
         setNeedsStatusBarAppearanceUpdate()
     }
 
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
     
     @IBAction func login(){
         authenticate()
     }
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+    @IBAction func prepareForUnwind(_ segue: UIStoryboardSegue){
         
     }
 }
@@ -46,14 +46,14 @@ private extension LoginController {
             if let graphError = error {
                 NSLog("Login failed")
                 switch graphError {
-                case .NSErrorType(let nsError):
+                case .nsErrorType(let nsError):
                     print("Error:", nsError.localizedDescription)
                     // self.showError(message: "Login failed, please try it again later")
                 }
             }
             else {
                 NSLog("Login successful")
-                self.performSegueWithIdentifier("login", sender: nil)
+                self.performSegue(withIdentifier: "login", sender: nil)
             }
         }
     }
@@ -61,25 +61,25 @@ private extension LoginController {
 
 // MARK: UI Helper
 private extension LoginController {
-    func loadingUI(show show: Bool) {
+    func loadingUI(show: Bool) {
         if show {
             self.activityIndicator.startAnimating()
-            self.connectButton.setTitle("Login...", forState: .Normal)
-            self.connectButton.enabled = false;
+            self.connectButton.setTitle("Login...", for: UIControlState())
+            self.connectButton.isEnabled = false;
         }
         else {
             self.activityIndicator.stopAnimating()
-            self.connectButton.setTitle("Login", forState: .Normal)
-            self.connectButton.enabled = true;
+            self.connectButton.setTitle("Login", for: UIControlState())
+            self.connectButton.isEnabled = true;
         }
     }
     
-    func showError(message message:String) {
-        dispatch_async(dispatch_get_main_queue(),{
-            let alertControl = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
-            alertControl.addAction(UIAlertAction(title: "Close", style: .Default, handler: nil))
+    func showError(message:String) {
+        DispatchQueue.main.async(execute: {
+            let alertControl = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            alertControl.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
             
-            self.presentViewController(alertControl, animated: true, completion: nil)
+            self.present(alertControl, animated: true, completion: nil)
         })
     }
 }

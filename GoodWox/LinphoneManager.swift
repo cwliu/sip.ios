@@ -1,44 +1,44 @@
 import Foundation
 
 struct theLinphone {
-    static var lc: COpaquePointer?
+    static var lc: OpaquePointer?
     static var lct: LinphoneCoreVTable?
     static var manager: LinphoneManager?
 }
 
-var sipRegistrationStatus: SipRegistrationStatus = SipRegistrationStatus.UNKNOWN
+var sipRegistrationStatus: SipRegistrationStatus = SipRegistrationStatus.unknown
 
 var registrationStateChanged: LinphoneCoreRegistrationStateChangedCb = {
-    (lc: COpaquePointer, proxyConfig: COpaquePointer, state: LinphoneRegistrationState, message: UnsafePointer<Int8>) in
+    (lc: OpaquePointer, proxyConfig: OpaquePointer, state: LinphoneRegistrationState, message: UnsafePointer<Int8>) in
     
     switch state{
     case LinphoneRegistrationNone: /**<Initial state for registrations */
         NSLog("LinphoneRegistrationNone")
-        sipRegistrationStatus = .UNKNOWN
+        sipRegistrationStatus = .unknown
         
     case LinphoneRegistrationProgress:
         NSLog("LinphoneRegistrationProgress")
-        sipRegistrationStatus = .UNKNOWN
+        sipRegistrationStatus = .unknown
                 
     case LinphoneRegistrationOk:
         NSLog("LinphoneRegistrationOk")
-        sipRegistrationStatus = .OK
+        sipRegistrationStatus = .ok
         
     case LinphoneRegistrationCleared:
         NSLog("LinphoneRegistrationCleared")
-        sipRegistrationStatus = .UNKNOWN
+        sipRegistrationStatus = .unknown
         
     case LinphoneRegistrationFailed:
         NSLog("LinphoneRegistrationFailed")
-        sipRegistrationStatus = .FAIL
+        sipRegistrationStatus = .fail
         
     default:
         NSLog("Unkown registration state")
     }
-}
+} as! LinphoneCoreRegistrationStateChangedCb
 
 var callStateChanged: LinphoneCoreCallStateChangedCb = {
-    (lc: COpaquePointer, call: COpaquePointer, callSate: LinphoneCallState,  message) in
+    (lc: OpaquePointer, call: OpaquePointer, callSate: LinphoneCallState,  message) in
     
     switch callSate{
     case LinphoneCallIncomingReceived: /**<This is a new incoming call */
@@ -51,13 +51,13 @@ var callStateChanged: LinphoneCoreCallStateChangedCb = {
 //            return
 //        }
         
-        if var controller = UIApplication.sharedApplication().keyWindow?.rootViewController{
+        if var controller = UIApplication.shared.keyWindow?.rootViewController{
             while let presentedViewController = controller.presentedViewController {
                 controller = presentedViewController
             }
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("receiveCall")
-            controller.presentViewController(vc, animated: true, completion: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "receiveCall")
+            controller.present(vc, animated: true, completion: nil)
         }
         
     case LinphoneCallStreamsRunning: /**<The media streams are established and running*/
@@ -76,7 +76,7 @@ var callStateChanged: LinphoneCoreCallStateChangedCb = {
 
 class LinphoneManager {
     
-    static var iterateTimer: NSTimer?
+    static var iterateTimer: Timer?
     static var isInit: Bool = false
     
     func startLinphone() {
@@ -100,8 +100,8 @@ class LinphoneManager {
         let configFilename = documentFile("linphonerc")
         let factoryConfigFilename = bundleFile("linphonerc-factory")
         
-        let configFilenamePtr: UnsafePointer<Int8> = configFilename.cStringUsingEncoding(NSUTF8StringEncoding)
-        let factoryConfigFilenamePtr: UnsafePointer<Int8> = factoryConfigFilename.cStringUsingEncoding(NSUTF8StringEncoding)
+        let configFilenamePtr: UnsafePointer<Int8> = configFilename.cString(using: String.Encoding.utf8.rawValue)!
+        let factoryConfigFilenamePtr: UnsafePointer<Int8> = factoryConfigFilename.cString(using: String.Encoding.utf8.rawValue)!
         let lpConfig = lp_config_new_with_factory(configFilenamePtr, factoryConfigFilenamePtr)
         
         // Set Callback
@@ -114,10 +114,10 @@ class LinphoneManager {
         
         // Set ringtone
 
-        let ringbackPath = NSBundle.mainBundle().pathForResource("ringback", ofType: "wav")
+        let ringbackPath = Bundle.main.path(forResource: "ringback", ofType: "wav")
         linphone_core_set_ringback(theLinphone.lc!, ringbackPath!)
         
-        let localRingPath = NSBundle.mainBundle().pathForResource("toy-mono", ofType: "wav")
+        let localRingPath = Bundle.main.path(forResource: "toy-mono", ofType: "wav")
         linphone_core_set_ring(theLinphone.lc!, localRingPath!)
         
     }
@@ -128,18 +128,18 @@ class LinphoneManager {
         }
     }
     
-    private func bundleFile(file: NSString) -> NSString{
-        return NSBundle.mainBundle().pathForResource(file.stringByDeletingPathExtension, ofType: file.pathExtension)!
+    fileprivate func bundleFile(_ file: NSString) -> NSString{
+        return Bundle.main.path(forResource: file.deletingPathExtension, ofType: file.pathExtension)! as NSString
     }
     
-    private func documentFile(file: NSString) -> NSString {
-        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+    fileprivate func documentFile(_ file: NSString) -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         
         let documentsPath: NSString = paths[0] as NSString
-        return documentsPath.stringByAppendingPathComponent(file as String)
+        return documentsPath.appendingPathComponent(file as String) as NSString
     }
     
-    private func setIdentify() -> COpaquePointer {
+    fileprivate func setIdentify() -> OpaquePointer {
         
         // Reference: http://www.linphone.org/docs/liblinphone/group__registration__tutorials.html
         
@@ -167,20 +167,20 @@ class LinphoneManager {
         
         // configure proxy entries
         linphone_proxy_config_set_identity(proxy_cfg, identity); /*set identity with user name and domain*/
-        let server_addr = String.fromCString(linphone_address_get_domain(from)); /*extract domain address from identity*/
+        let server_addr = String(cString: linphone_address_get_domain(from)); /*extract domain address from identity*/
         
         linphone_address_destroy(from); /*release resource*/
         
-        linphone_proxy_config_set_server_addr(proxy_cfg, server_addr!); /* we assume domain = proxy server address*/
+        linphone_proxy_config_set_server_addr(proxy_cfg, server_addr); /* we assume domain = proxy server address*/
         //        linphone_proxy_config_enable_register(proxy_cfg, 0); /* activate registration for this proxy config*/
         linphone_proxy_config_set_expires(proxy_cfg, 60)
         linphone_core_add_proxy_config(theLinphone.lc!, proxy_cfg); /*add proxy config to linphone core*/
         linphone_core_set_default_proxy_config(theLinphone.lc!, proxy_cfg); /*set to default proxy*/
         
-        return proxy_cfg
+        return proxy_cfg!
     }
     
-    private func register(proxy_cfg: COpaquePointer){
+    fileprivate func register(_ proxy_cfg: OpaquePointer){
         linphone_proxy_config_enable_register(proxy_cfg, 1); /* activate registration for this proxy config*/
     }
     
@@ -212,8 +212,8 @@ class LinphoneManager {
         LinphoneManager.isInit = false
     }
     
-    private func setTimer(){
-        LinphoneManager.iterateTimer = NSTimer.scheduledTimerWithTimeInterval(
-            0.02, target: self, selector: #selector(iterate), userInfo: nil, repeats: true)
+    fileprivate func setTimer(){
+        LinphoneManager.iterateTimer = Timer.scheduledTimer(
+            timeInterval: 0.02, target: self, selector: #selector(iterate), userInfo: nil, repeats: true)
     }
 }

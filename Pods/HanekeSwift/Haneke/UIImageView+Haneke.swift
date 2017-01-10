@@ -12,27 +12,27 @@ public extension UIImageView {
     
     public var hnk_format : Format<UIImage> {
         let viewSize = self.bounds.size
-            assert(viewSize.width > 0 && viewSize.height > 0, "[\(Mirror(reflecting: self).description) \(__FUNCTION__)]: UImageView size is zero. Set its frame, call sizeToFit or force layout first.")
+            assert(viewSize.width > 0 && viewSize.height > 0, "[\(Mirror(reflecting: self).description) \(#function)]: UImageView size is zero. Set its frame, call sizeToFit or force layout first.")
             let scaleMode = self.hnk_scaleMode
             return HanekeGlobals.UIKit.formatWithSize(viewSize, scaleMode: scaleMode)
     }
     
-    public func hnk_setImageFromURL(URL: NSURL, placeholder : UIImage? = nil, format : Format<UIImage>? = nil, failure fail : ((NSError?) -> ())? = nil, success succeed : ((UIImage) -> ())? = nil) {
+    public func hnk_setImageFromURL(_ URL: Foundation.URL, placeholder : UIImage? = nil, format : Format<UIImage>? = nil, failure fail : ((NSError?) -> ())? = nil, success succeed : ((UIImage) -> ())? = nil) {
         let fetcher = NetworkFetcher<UIImage>(URL: URL)
         self.hnk_setImageFromFetcher(fetcher, placeholder: placeholder, format: format, failure: fail, success: succeed)
     }
     
-    public func hnk_setImage(@autoclosure(escaping) image: () -> UIImage, key: String, placeholder : UIImage? = nil, format : Format<UIImage>? = nil, success succeed : ((UIImage) -> ())? = nil) {
+    public func hnk_setImage( _ image: @autoclosure @escaping () -> UIImage, key: String, placeholder : UIImage? = nil, format : Format<UIImage>? = nil, success succeed : ((UIImage) -> ())? = nil) {
         let fetcher = SimpleFetcher<UIImage>(key: key, value: image)
         self.hnk_setImageFromFetcher(fetcher, placeholder: placeholder, format: format, success: succeed)
     }
     
-    public func hnk_setImageFromFile(path: String, placeholder : UIImage? = nil, format : Format<UIImage>? = nil, failure fail : ((NSError?) -> ())? = nil, success succeed : ((UIImage) -> ())? = nil) {
+    public func hnk_setImageFromFile(_ path: String, placeholder : UIImage? = nil, format : Format<UIImage>? = nil, failure fail : ((NSError?) -> ())? = nil, success succeed : ((UIImage) -> ())? = nil) {
         let fetcher = DiskFetcher<UIImage>(path: path)
         self.hnk_setImageFromFetcher(fetcher, placeholder: placeholder, format: format, failure: fail, success: succeed)
     }
     
-    public func hnk_setImageFromFetcher(fetcher : Fetcher<UIImage>,
+    public func hnk_setImageFromFetcher(_ fetcher : Fetcher<UIImage>,
         placeholder : UIImage? = nil,
         format : Format<UIImage>? = nil,
         failure fail : ((NSError?) -> ())? = nil,
@@ -78,18 +78,18 @@ public extension UIImageView {
     
     public var hnk_scaleMode : ImageResizer.ScaleMode {
         switch (self.contentMode) {
-        case .ScaleToFill:
+        case .scaleToFill:
             return .Fill
-        case .ScaleAspectFit:
+        case .scaleAspectFit:
             return .AspectFit
-        case .ScaleAspectFill:
+        case .scaleAspectFill:
             return .AspectFill
-        case .Redraw, .Center, .Top, .Bottom, .Left, .Right, .TopLeft, .TopRight, .BottomLeft, .BottomRight:
+        case .redraw, .center, .top, .bottom, .left, .right, .topLeft, .topRight, .bottomLeft, .bottomRight:
             return .None
             }
     }
 
-    func hnk_fetchImageForFetcher(fetcher : Fetcher<UIImage>, format : Format<UIImage>? = nil, failure fail : ((NSError?) -> ())?, success succeed : ((UIImage) -> ())?) -> Bool {
+    func hnk_fetchImageForFetcher(_ fetcher : Fetcher<UIImage>, format : Format<UIImage>? = nil, failure fail : ((NSError?) -> ())?, success succeed : ((UIImage) -> ())?) -> Bool {
         let cache = Shared.imageCache
         let format = format ?? self.hnk_format
         if cache.formats[format.name] == nil {
@@ -115,13 +115,13 @@ public extension UIImageView {
         return fetch.hasSucceeded
     }
     
-    func hnk_setImage(image : UIImage, animated : Bool, success succeed : ((UIImage) -> ())?) {
+    func hnk_setImage(_ image : UIImage, animated : Bool, success succeed : ((UIImage) -> ())?) {
         self.hnk_fetcher = nil
         
         if let succeed = succeed {
             succeed(image)
         } else if animated {
-            UIView.transitionWithView(self, duration: HanekeGlobals.UIKit.SetImageAnimationDuration, options: .TransitionCrossDissolve, animations: {
+            UIView.transition(with: self, duration: HanekeGlobals.UIKit.SetImageAnimationDuration, options: .transitionCrossDissolve, animations: {
                 self.image = image
             }, completion: nil)
         } else {
@@ -129,7 +129,7 @@ public extension UIImageView {
         }
     }
     
-    func hnk_shouldCancelForKey(key:String) -> Bool {
+    func hnk_shouldCancelForKey(_ key:String) -> Bool {
         if self.hnk_fetcher?.key == key { return false }
         
         Log.debug("Cancelled set image for \((key as NSString).lastPathComponent)")

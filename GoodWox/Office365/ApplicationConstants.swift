@@ -29,6 +29,6 @@ struct BcrServer {
 /**
  Simple construct to encapsulate NSError. This could be expanded for more types of graph errors in future.
  */
-enum MSGraphError: ErrorType {
-    case NSErrorType(error: NSError)    
+enum MSGraphError: Error {
+    case nsErrorType(error: NSError)    
 }

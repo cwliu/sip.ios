@@ -3,8 +3,8 @@ import Foundation
 struct ReceiveCallData{
     static var controller: ReceiveCallController?
     static var callee: Contact?
-    static var callTime: NSDate?
-    static var callType: CallLogType = CallLogType.INCOMING_CALL_NO_ANSWER
+    static var callTime: Date?
+    static var callType: CallLogType = CallLogType.incoming_CALL_NO_ANSWER
 }
 
 struct ReceiveCallVT {
@@ -12,14 +12,14 @@ struct ReceiveCallVT {
 }
 
 var receiveCallStateChanged: LinphoneCoreCallStateChangedCb = {
-    (lc: COpaquePointer, call: COpaquePointer, callSate: LinphoneCallState,  message) in
+    (lc: OpaquePointer, call: OpaquePointer, callSate: LinphoneCallState,  message) in
     
     switch callSate{
     case LinphoneCallConnected: /**<The call encountered an error*/
         NSLog("receiveCallStateChanged: LinphoneCallConnected")
         ReceiveCallData.controller?.statusLabel.text = "Connected"
         ReceiveCallData.controller?.showEndButton()
-        ReceiveCallData.callType = CallLogType.INCOMING_CALL_ANSWERED
+        ReceiveCallData.callType = CallLogType.incoming_CALL_ANSWERED
         
     case LinphoneCallError: /**<The call encountered an error*/
         NSLog("receiveCallStateChanged: LinphoneCallError")
@@ -42,17 +42,17 @@ func finish(){
         NSLog("Terminated call result(receive): \(result)")
     }
     
-    if let callee = ReceiveCallData.callee, callTime = ReceiveCallData.callTime {
-        let callDuration =  Int(NSDate().timeIntervalSinceDate(callTime))
+    if let callee = ReceiveCallData.callee, let callTime = ReceiveCallData.callTime {
+        let callDuration =  Int(Date().timeIntervalSince(callTime))
         CallLogDbHelper.addCallLog(callee, callTime: callTime, callDuration: callDuration, callType: ReceiveCallData.callType)
     }
     
     resetReceiveCallData()
-    ReceiveCallData.controller?.dismissViewControllerAnimated(false, completion: nil)
+    ReceiveCallData.controller?.dismiss(animated: false, completion: nil)
 }
 
 func resetReceiveCallData(){
-    ReceiveCallData.callType = CallLogType.INCOMING_CALL_NO_ANSWER // Reset state
+    ReceiveCallData.callType = CallLogType.incoming_CALL_NO_ANSWER // Reset state
     ReceiveCallData.callTime = nil
     ReceiveCallData.callee = nil
 }
@@ -70,15 +70,15 @@ class ReceiveCallController: UIViewController{
     override func viewDidLoad() {
         NSLog("ReceiveCallController.viewDidLoad()")
         
-        endButton.hidden = true
+        endButton.isHidden = true
         ReceiveCallData.controller = self
-        ReceiveCallData.callTime = NSDate()
+        ReceiveCallData.callTime = Date()
         
         self.navigationItem.hidesBackButton = true
         
         let call = linphone_core_get_current_call(theLinphone.lc!)
         let address = linphone_call_get_remote_address_as_string(call)
-        let account = getUsernameFromAddress(String.fromCString(address)!)
+        let account = getUsernameFromAddress(String(cString: address))
 
         nameLabel.text = account
         if let contact = ContactDbHelper.getContactBySip(account){
@@ -86,14 +86,14 @@ class ReceiveCallController: UIViewController{
             
             nameLabel.text = contact.name
             
-            let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
-            let request = NSMutableURLRequest(URL: url!)
+            let url = URL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
+            let request = NSMutableURLRequest(url: url!)
             
             let authentication: Authentication = Authentication()
             MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
             authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
                 
-                let token = request.valueForHTTPHeaderField("Authorization")!
+                let token = request.value(forHTTPHeaderField: "Authorization")!
                 let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!, token: token)
                 
                 self.avatarImage.hnk_setImageFromFetcher(fetcher)
@@ -107,14 +107,14 @@ class ReceiveCallController: UIViewController{
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         NSLog("ReceiveCallController.prepareForSegue()")
     }
     
     @IBAction func endCall(){
         let call = linphone_core_get_current_call(theLinphone.lc!)
         if call != nil {
-            if ReceiveCallData.callType == .INCOMING_CALL_NO_ANSWER{
+            if ReceiveCallData.callType == .incoming_CALL_NO_ANSWER{
                 linphone_core_decline_call(theLinphone.lc!, call, LinphoneReasonDeclined)
             }else{
                 linphone_core_terminate_call(theLinphone.lc!, call)
@@ -129,26 +129,26 @@ class ReceiveCallController: UIViewController{
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         NSLog("viewWillAppear: ")
         ReceiveCallVT.lct.call_state_changed = receiveCallStateChanged
         linphone_core_add_listener(theLinphone.lc!,  &ReceiveCallVT.lct)
     }
     
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         NSLog("viewDidDisappear: ")
         linphone_core_remove_listener(theLinphone.lc!, &ReceiveCallVT.lct)
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     func showEndButton(){
-        acceptButton.hidden = true
-        declineButton.hidden = true
-        endButton.hidden = false
+        acceptButton.isHidden = true
+        declineButton.isHidden = true
+        endButton.isHidden = false
     }
 }
 

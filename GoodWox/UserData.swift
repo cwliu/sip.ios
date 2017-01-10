@@ -1,81 +1,81 @@
 import Foundation
 
 class UserData {
-    static let preference = NSUserDefaults.standardUserDefaults()
+    static let preference = UserDefaults.standard
     
-    static private let GRAPH_ACCOUNT_KEY: String = "GRAPH_ACCOUNT_KEY"
-    static private let GRAPH_NAME_KEY: String = "GRAPH_NAME_KEY"
-    static private let SIP_ACCOUNT_KEY: String = "SIP_ACCOUNT_KEY"
-    static private let SIP_PASSWORD_KEY: String = "SIP_PASSWORD_KEY"
-    static private let SIP_PROXY_ADDRESS_KEY: String = "SIP_PROXY_ADDRESS_KEY"
-    static private let SIP_PROXY_PORT_KEY: String = "SIP_PROXY_PORT_KEY"
-    static private let SIP_BACKEND_ACCESS_TOKEN_KEY: String = "SIP_BACKEND_ACCESS_TOKEN_KEY"
+    static fileprivate let GRAPH_ACCOUNT_KEY: String = "GRAPH_ACCOUNT_KEY"
+    static fileprivate let GRAPH_NAME_KEY: String = "GRAPH_NAME_KEY"
+    static fileprivate let SIP_ACCOUNT_KEY: String = "SIP_ACCOUNT_KEY"
+    static fileprivate let SIP_PASSWORD_KEY: String = "SIP_PASSWORD_KEY"
+    static fileprivate let SIP_PROXY_ADDRESS_KEY: String = "SIP_PROXY_ADDRESS_KEY"
+    static fileprivate let SIP_PROXY_PORT_KEY: String = "SIP_PROXY_PORT_KEY"
+    static fileprivate let SIP_BACKEND_ACCESS_TOKEN_KEY: String = "SIP_BACKEND_ACCESS_TOKEN_KEY"
     
-    static func setGraphAccount(graphAccount: String){
+    static func setGraphAccount(_ graphAccount: String){
         preference.setValue(graphAccount, forKey: GRAPH_ACCOUNT_KEY)
         preference.synchronize()
     }
     
     static func getGraphAccount() -> String?{
-        return preference.stringForKey(GRAPH_ACCOUNT_KEY)
+        return preference.string(forKey: GRAPH_ACCOUNT_KEY)
     }
     
-    static func setGraphName(graphName: String){
+    static func setGraphName(_ graphName: String){
         preference.setValue(graphName, forKey: GRAPH_NAME_KEY)
         preference.synchronize()
     }
     
     static func getGraphName() -> String?{
-        return preference.stringForKey(GRAPH_NAME_KEY)
+        return preference.string(forKey: GRAPH_NAME_KEY)
     }
     
-    static func setSipAccount(sipAccount: String){
+    static func setSipAccount(_ sipAccount: String){
         preference.setValue(sipAccount, forKey: SIP_ACCOUNT_KEY)
         preference.synchronize()
     }
     
     static func getSipAccount() -> String?{
-        return preference.stringForKey(SIP_ACCOUNT_KEY)
+        return preference.string(forKey: SIP_ACCOUNT_KEY)
     }
     
-    static func setSipPassword(sipPassword: String){
+    static func setSipPassword(_ sipPassword: String){
         preference.setValue(sipPassword, forKey: SIP_PASSWORD_KEY)
         preference.synchronize()
     }
     
     static func getSipPassword() -> String?{
-        return preference.stringForKey(SIP_PASSWORD_KEY)
+        return preference.string(forKey: SIP_PASSWORD_KEY)
     }
 
-    static func setProxyAddress(sipPassword: String){
+    static func setProxyAddress(_ sipPassword: String){
         preference.setValue(sipPassword, forKey: SIP_PROXY_ADDRESS_KEY)
         preference.synchronize()
     }
     
     static func getProxyAddress() -> String?{
-        return preference.stringForKey(SIP_PROXY_ADDRESS_KEY)
+        return preference.string(forKey: SIP_PROXY_ADDRESS_KEY)
     }
     
-    static func setProxyPort(proxyPort: String){
+    static func setProxyPort(_ proxyPort: String){
         preference.setValue(proxyPort, forKey: SIP_PROXY_PORT_KEY)
         preference.synchronize()
     }
     
     static func getProxyPort() -> String?{
-        return preference.stringForKey(SIP_PROXY_PORT_KEY)
+        return preference.string(forKey: SIP_PROXY_PORT_KEY)
     }
 
-    static func setBackendAccessToken(backendAccessToken: String){
+    static func setBackendAccessToken(_ backendAccessToken: String){
         preference.setValue(backendAccessToken, forKey: SIP_BACKEND_ACCESS_TOKEN_KEY)
         preference.synchronize()
     }
     
     static func getBackendAccessToken() -> String?{
-        return preference.stringForKey(SIP_BACKEND_ACCESS_TOKEN_KEY)
+        return preference.string(forKey: SIP_BACKEND_ACCESS_TOKEN_KEY)
     }
     
     static func clear(){        
-        let appDomain = NSBundle.mainBundle().bundleIdentifier!
-        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
+        let appDomain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: appDomain)
     }
 }

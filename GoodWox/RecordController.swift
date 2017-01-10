@@ -22,11 +22,11 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
         modifyTableStyle()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         updateTable()
     }
     
-    func favoriteClick(sender: UITapGestureRecognizer) {
+    func favoriteClick(_ sender: UITapGestureRecognizer) {
         NSLog("Single Tap on favoriteClick")
         
         if let index = sender.view?.tag{
@@ -45,11 +45,11 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     // MARK: Style
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let contact = self.contacts[indexPath.row]
         
@@ -60,12 +60,12 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
             cellID = "CallLogCell"
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellID, forIndexPath: indexPath)as! ContactCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)as! ContactCell
         cell.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
         
         cell.nameLabel.text = "\(contact.name ?? "No name")"
         
-        cell.favoriteImage.userInteractionEnabled = true
+        cell.favoriteImage.isUserInteractionEnabled = true
         let singleTap = UITapGestureRecognizer(target: self, action:#selector(RecordController.favoriteClick))
         singleTap.numberOfTapsRequired = 1
         cell.favoriteImage.addGestureRecognizer(singleTap)
@@ -87,32 +87,32 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
                 message += timeString + " ago"
             }
             
-            if callLog.type == CallLogType.INCOMING_CALL_NO_ANSWER.hashValue {
+            if callLog.type == CallLogType.incoming_CALL_NO_ANSWER.hashValue {
                 message += ", missed Call"
             }
             
-            if callLog.type == CallLogType.INCOMING_CALL_ANSWERED.hashValue {
+            if callLog.type == CallLogType.incoming_CALL_ANSWERED.hashValue {
                 message += ", " + (callLog.callDuration?.stringValue)! + " sec"
             }
             
-            if callLog.type == CallLogType.OUTGOING_CALL_NO_ANSWER.hashValue {
+            if callLog.type == CallLogType.outgoing_CALL_NO_ANSWER.hashValue {
                 message += ", no answer"
             }
             
-            if callLog.type == CallLogType.OUTGOING_CALL_ANSWERED.hashValue {
+            if callLog.type == CallLogType.outgoing_CALL_ANSWERED.hashValue {
                 message += ", " + (callLog.callDuration?.stringValue)! + "sec"
             }
             
             cell.messageLabel.text = message
             
             switch Int(callLog.type!) {
-            case CallLogType.INCOMING_CALL_ANSWERED.hashValue:
+            case CallLogType.incoming_CALL_ANSWERED.hashValue:
                 cell.callTypeIcon.image = UIImage(named: "call_received_blue_12dp")
-            case CallLogType.INCOMING_CALL_NO_ANSWER.hashValue:
+            case CallLogType.incoming_CALL_NO_ANSWER.hashValue:
                 cell.callTypeIcon.image = UIImage(named: "call_missed_red_12dp")
-            case CallLogType.OUTGOING_CALL_ANSWERED.hashValue:
+            case CallLogType.outgoing_CALL_ANSWERED.hashValue:
                 cell.callTypeIcon.image = UIImage(named: "call_made_green_12dp")
-            case CallLogType.OUTGOING_CALL_NO_ANSWER.hashValue:
+            case CallLogType.outgoing_CALL_NO_ANSWER.hashValue:
                 cell.callTypeIcon.image = UIImage(named: "call_made_green_12dp")
             default:
                 cell.callTypeIcon.image = UIImage(named: "cell_made_green_12dp")
@@ -120,13 +120,13 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
         }
         
         // Display contact
-        if(contact.type ==  ContactType.COMPANY.hashValue) {
-            let url = NSURL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
-            let request = NSMutableURLRequest(URL: url!)
+        if(contact.type ==  ContactType.company.hashValue) {
+            let url = URL(string: String(format: MicrosoftGraphApi.userPhotoURL, contact.email!))
+            let request = NSMutableURLRequest(url: url!)
             
             authentication.authenticationProvider?.appendAuthenticationHeaders(request, completion: { (request, error) in
                 
-                let token = request.valueForHTTPHeaderField("Authorization")!
+                let token = request?.value(forHTTPHeaderField: "Authorization")!
                 let fetcher = BearerHeaderNetworkFetcher<UIImage>(URL: url!, token: token)
                 
                 cell.avatarImage.hnk_setImageFromFetcher(fetcher)
@@ -143,51 +143,51 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
         return cell
     }
     
-    private func modifyTableStyle(){
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.barStyle = .Black
+    fileprivate func modifyTableStyle(){
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.barStyle = .black
         tableView.backgroundColor = UIColor(colorLiteralRed: 249/255, green: 244/255, blue: 242/255, alpha: 1)
 
     }
     
     
     // MARK: Segue
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let contact = self.contacts[indexPath.row]
         let phones = contact.phones
         selectContactIndex = indexPath.row
         
-        if contact.type == ContactType.COMPANY.hashValue {
-            self.performSegueWithIdentifier("makeCall", sender: nil)
+        if contact.type == ContactType.company.hashValue {
+            self.performSegue(withIdentifier: "makeCall", sender: nil)
             
         } else if phones.count == 0 {
-            let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no phone number available", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no phone number available", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
             
         }else if phones.count == 1 {
             targetPhone = phones[0]
-            self.performSegueWithIdentifier("makeCall", sender: nil)
+            self.performSegue(withIdentifier: "makeCall", sender: nil)
             
         }else{
-            let alertController = UIAlertController(title: "Select Phone Number", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
+            let alertController = UIAlertController(title: "Select Phone Number", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
             
             for phone in phones {
-                alertController.addAction(UIAlertAction(title: "Call: " + phone, style: UIAlertActionStyle.Default, handler: {(UIAlertAction) -> Void in
+                alertController.addAction(UIAlertAction(title: "Call: " + phone, style: UIAlertActionStyle.default, handler: {(UIAlertAction) -> Void in
                     self.targetPhone = phone
-                    self.performSegueWithIdentifier("makeCall", sender: nil)
+                    self.performSegue(withIdentifier: "makeCall", sender: nil)
                 }))
                 
             }
-            alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
+            alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
             
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         NSLog("prepareForSegue: \(segue.identifier)")
         
         
@@ -196,30 +196,30 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
         
         if(segue.identifier == "makeCall"){
             
-            let controller = segue.destinationViewController as! OutgoingCallController
+            let controller = segue.destination as! OutgoingCallController
             controller.calleeID = contact.objectID
             
-            if contact.type == ContactType.COMPANY.hashValue, let sip = self.contacts[indexPath!.row].sip{
+            if contact.type == ContactType.company.hashValue, let sip = self.contacts[indexPath!.row].sip{
                 controller.phoneNumber = sip
                 controller.calleeName = contact.name
-                controller.phoneType = .SIP
-            }else if contact.type == ContactType.MANUAL.hashValue, let phone = self.targetPhone{
+                controller.phoneType = .sip
+            }else if contact.type == ContactType.manual.hashValue, let phone = self.targetPhone{
                 controller.phoneNumber = phone
                 controller.calleeName = contact.name
-                controller.phoneType = .NONSIP
-            }else if contact.type == ContactType.PHONE.hashValue, let phone = self.targetPhone{
+                controller.phoneType = .nonsip
+            }else if contact.type == ContactType.phone.hashValue, let phone = self.targetPhone{
                 controller.phoneNumber = phone
                 controller.calleeName = contact.name
-                controller.phoneType = .NONSIP
+                controller.phoneType = .nonsip
             }else{
-                let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no phone number", preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alertController, animated: true, completion: nil)
+                let alertController = UIAlertController(title: "Oops", message: "We can't proceed because no phone number", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
     
-    @IBAction func segmentControlIndexChanged(sender: UISegmentedControl){
+    @IBAction func segmentControlIndexChanged(_ sender: UISegmentedControl){
         updateTable()
     }
     
@@ -227,11 +227,11 @@ class RecordController: UIViewController, UITableViewDataSource, UITableViewDele
         switch segmentControl.selectedSegmentIndex{
         case 0:
             let nib = UINib(nibName: "ContactCell", bundle: nil)
-            self.tableView.registerNib(nib, forCellReuseIdentifier: "ContactCell")
+            self.tableView.register(nib, forCellReuseIdentifier: "ContactCell")
             contacts = ContactDbHelper.getMostContacted()
         case 1:
             let nib = UINib(nibName: "CallLogCell", bundle: nil)
-            self.tableView.registerNib(nib, forCellReuseIdentifier: "CallLogCell")
+            self.tableView.register(nib, forCellReuseIdentifier: "CallLogCell")
             
             contacts = []
             calllLogs = CallLogDbHelper.getAll()

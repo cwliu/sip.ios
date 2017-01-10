@@ -709,6 +709,7 @@
 					A9AAE4871D0273C20034B564 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 82F9JAXFE4;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -1012,6 +1013,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoodWox/GoodWox-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/liblinphone-sdk/apple-darwin/include $(SRCROOT)/Pods/MSGraphSDK/** $(SRCROOT)/Pods/NXOAuth2Client/** $(SRCROOT)/Pods/MSGraphSDK-NXOAuth2Adapter/**";
 			};
@@ -1055,6 +1057,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "GoodWox/GoodWox-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/liblinphone-sdk/apple-darwin/include $(SRCROOT)/Pods/MSGraphSDK/** $(SRCROOT)/Pods/NXOAuth2Client/** $(SRCROOT)/Pods/MSGraphSDK-NXOAuth2Adapter/**";
 			};

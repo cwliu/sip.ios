@@ -1,16 +1,16 @@
 import Foundation
 
 
-func getUsernameFromAddress(address: String) -> String{
+func getUsernameFromAddress(_ address: String) -> String{
     
     var result: String = address
-    if((address.rangeOfString("sip:")) != nil) {
-        result = address.stringByReplacingOccurrencesOfString("sip:", withString: "");
+    if((address.range(of: "sip:")) != nil) {
+        result = address.replacingOccurrences(of: "sip:", with: "");
     }
     
-    if((result.rangeOfString("@")) != nil) {
+    if((result.range(of: "@")) != nil) {
         
-        result = result.componentsSeparatedByString("@")[0]
+        result = result.components(separatedBy: "@")[0]
     }
     
     return result
