@@ -1,2 +1,2 @@
-*.rb linguist-language=Swift
-liblinphone-sdk/*
+liblinphone-sdk/* linguist-vendored
+Pods/* linguist-vendored
